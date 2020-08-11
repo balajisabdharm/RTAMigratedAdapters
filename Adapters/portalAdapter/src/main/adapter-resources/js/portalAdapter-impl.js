@@ -458,10 +458,12 @@ function getUserProfile(uid, appid) {
 		
 		// this for testing only fixed response
 				
-		response = strResponse.replace(/{"":"http:\/\/www.rta.ae\/ActiveMatrix\/ESB\/schemas\/PortalProfileService\/Schema.xsd","CDATA":/g,"")
+		/*response = strResponse.replace(/{"":"http:\/\/www.rta.ae\/ActiveMatrix\/ESB\/schemas\/PortalProfileService\/Schema.xsd","CDATA":/g,"")
 			.replace(/"":"http:\/\/www.rta.ae\/ActiveMatrix\/ESB\/schemas\/PortalProfileService\/Schema.xsd",/g,"")
 			.replace(/{"":"http:\/\/www.rta.ae\/ActiveMatrix\/ESB\/schemas\/PortalProfileService\/Schema.xsd"}/g,"\"\"")
-			.replace(/},/g,",").replace(/}}]/g,","}}]")+"}";
+			.replace(/},/g,",").replace(/}}]/g,","}}]")+"}";*/
+		
+		response = strResponse.replace(/{"":"http:\/\/www.rta.ae\/ActiveMatrix\/ESB\/schemas\/PortalProfileService\/Schema.xsd","CDATA":/g,"").replace(/"":"http:\/\/www.rta.ae\/ActiveMatrix\/ESB\/schemas\/PortalProfileService\/Schema.xsd",/g,"").replace(/{"":"http:\/\/www.rta.ae\/ActiveMatrix\/ESB\/schemas\/PortalProfileService\/Schema.xsd"}/g,"\"\"").replace(/},/g,",").replace(/}}]/g,"}]")+"}";
 		
 		adapterLogger("getUserProfile=", "info", "Refined Response", response);
 		
