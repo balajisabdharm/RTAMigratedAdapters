@@ -356,12 +356,12 @@ function generateUAEPassURL(appId, channel) {
 	try {
 		
 		//Staging
-//		var baseURL = "https://qa-id.uaepass.ae/trustedx-authserver/oauth/main-as";
-//		var clientId = "rta_web_client";
+		var baseURL = "https://qa-id.uaepass.ae/trustedx-authserver/oauth/main-as";
+		var clientId = "rta_web_client";
 		
 		//Production
-		var baseURL = "https://id.uaepass.ae/trustedx-authserver/oauth/main-as";
-		var clientId = "rta_dubaidrive_prod";
+		//var baseURL = "https://id.uaepass.ae/trustedx-authserver/oauth/main-as";
+		//var clientId = "rta_dubaidrive_prod";
 		
 		
 		if (!appId) {
