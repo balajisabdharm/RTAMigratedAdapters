@@ -40,7 +40,7 @@ function getRequestString(operationName, linkageId, bodyParametersString) {
 	'</ws:'+operationName+'>'+
 	'<soapenv:Body>'+
 	'</soapenv:Envelope>';
-	return request;
+	return request.toString();
 }
 function invokeWebServiceString(request, isEncryptResponse, encryptionPassword) {
 	try{

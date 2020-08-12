@@ -45,7 +45,7 @@ function getCountryLookupTest(isEncryptResponse, encryptionPassword) {
         
     var SOAPAction = "CountryLookup";
     var servicePath = '/salikLookupService';
-    var requestObj = buildBody([request], true);
+    var requestObj = buildBody([request.toString()], true);
 
     //return{
     //    message:request
@@ -102,7 +102,7 @@ function getEmirateLookupTest(isEncryptResponse, encryptionPassword) {
     
     var SOAPAction = "EmirateLookup";
     var servicePath = '/salikLookupService';
-    var requestObj = buildBody([request], true);
+    var requestObj = buildBody([request.toString()], true);
 
     //return{
     //    message:request
@@ -157,7 +157,7 @@ function getPlateCodeLookupTest(isEncryptResponse, encryptionPassword) {
         
     var SOAPAction = "PlateCodeLookup";
     var servicePath = '/salikLookupService';
-    var requestObj = buildBody([request], true);
+    var requestObj = buildBody([request.toString()], true);
 
     //return{
     //    message:request
@@ -214,7 +214,7 @@ function getPlateLookupTest(isEncryptResponse, encryptionPassword) {
         
     var SOAPAction = "PlateLookup";
     var servicePath = '/salikLookupService';
-    var requestObj = buildBody([request], true);
+    var requestObj = buildBody([request.toString()], true);
 
     
     //    return{
@@ -279,7 +279,7 @@ function getDisputeLookupTest(isEncryptResponse, encryptionPassword) {
         
     var SOAPAction = "DisputeLookup";
     var servicePath = '/salikLookupService';
-    var requestObj = buildBody([request], true);
+    var requestObj = buildBody([request.toString()], true);
 
     //return{
     //    message:request
@@ -339,7 +339,7 @@ function getContactLookup(isEncryptResponse, encryptionPassword) {
         
     var SOAPAction = "ContactLookup";
     var servicePath = '/salikLookupService';
-    var requestObj = buildBody([request], true);
+    var requestObj = buildBody([request.toString()], true);
 
     //return{
     //    message:request
@@ -369,7 +369,8 @@ function invokeWebServiceString(request, servicePath, SOAPAction, isEncryptRespo
         headers : {
             "SOAPAction" : SOAPAction
         },
-        returnedContentType : 'xml',
+		returnedContentType : 'xml',
+		returnedContentType : 'utf-8',
         path : servicePath,
         body : {
             content : JSON.parse(request),
@@ -410,10 +411,6 @@ function invokeWebServiceString(request, servicePath, SOAPAction, isEncryptRespo
 
 
 
-
-
-
-
 function getCountryLookup(isEncryptResponse, encryptionPassword) {
     
     var userName = MFP.Server.getPropertyValue("wsse.tibco.username");
@@ -439,7 +436,7 @@ function getCountryLookup(isEncryptResponse, encryptionPassword) {
         
     var SOAPAction = "CountryLookup";
     var servicePath = '/salikLookupService';
-    var requestObj = buildBody([request], true);
+    var requestObj = buildBody([request.toString()], true);
 
     //return{
     //    message:request
@@ -491,7 +488,7 @@ function getEmirateLookup(isEncryptResponse, encryptionPassword) {
     
     var SOAPAction = "EmirateLookup";
     var servicePath = '/salikLookupService';
-    var requestObj = buildBody([request], true);
+    var requestObj = buildBody([request.toString()], true);
 
     //return{
     //    message:request
@@ -540,7 +537,7 @@ function getPlateCodeLookup(isEncryptResponse, encryptionPassword) {
         
     var SOAPAction = "PlateCodeLookup";
     var servicePath = '/salikLookupService';
-    var requestObj = buildBody(request, true);
+    var requestObj = buildBody([request.toString()], true);
 
     //return{
     //    message:request
@@ -655,7 +652,7 @@ function getDisputeLookup(isEncryptResponse, encryptionPassword) {
         
     var SOAPAction = "DisputeLookup";
     var servicePath = '/salikLookupService';
-    var requestObj = buildBody(request, true);
+    var requestObj = buildBody([request.toString()], true);
 
     //return{
     //    message:request
@@ -860,7 +857,7 @@ function getVehicleLookup(isEncryptResponse, encryptionPassword) {
 
     var SOAPAction = "VehicleLookup";
     var servicePath = '/salikLookupService';
-    var requestObj = buildBody([request], true);
+    var requestObj = buildBody([request.toString()], true);
 
     //return{
     //    message:request

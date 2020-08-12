@@ -312,6 +312,7 @@ function invokeWebService2(body) {
 		var input = {
 			method: 'post',
 			returnedContentType: 'xml',
+			returnedContentType: 'utf-8',
 			path: WSDL_Path_For_GetUserProfile ,
 			body: {
 				content: body.toString(),
