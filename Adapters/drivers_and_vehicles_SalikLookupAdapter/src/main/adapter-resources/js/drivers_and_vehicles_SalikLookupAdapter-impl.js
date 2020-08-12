@@ -397,7 +397,7 @@ function invokeWebServiceString(request, servicePath, SOAPAction, isEncryptRespo
             procedure : 'encryptData',
             parameters : [responseString,encryptionPassword]
         };
-         MFP.Logger.info("|drivers_and_vehicles_SalikLookupAdapter --- |Executing proc");
+         MFP.Logger.info("|drivers_and_vehicles_SalikLookupAdapter --- |Executing procedure ");
         webServiceResult = MFP.Server.invokeProcedure(invocationData);
          MFP.Logger.info("|drivers_and_vehicles_SalikLookupAdapter --- |webServiceResult ");
     }
