@@ -494,7 +494,7 @@ function replaceAll(string, find, replace) {
 
 function deleteCredientails(jsonObject){
     try{
-        MFP.Logger.info(" deleteCredientails "+jsonObject);
+        MFP.Logger.info(" deleteCredientails ");
        var jsonString = JSON.stringify(jsonObject),channelCredientials = getChannelCredentials() ,
         externalChannelCredentials = getExternalChannelCredentials() ,
         tibcoUserName = MFP.Server.getPropertyValue("wsse.tibco.username") ,
@@ -512,7 +512,7 @@ function deleteCredientails(jsonObject){
         MFP.Logger.info(" deleteCredientails externalChannelCredentials 3 ");
         replacedString =  replaceAll(replacedString,'RTAUEPRTRAPP03','');
         replacedString =  replaceAll(replacedString,'RTAUEPRTRAPP02','');
-        replacedString =  replaceAll(replacedString,'RTAUEPRTRAPP01','');  
+        replacedString =  replaceAll(replacedString,'RTAUEPRTRAPP01','');
         
         // SIT
         /*replacedString =  replaceAll(replacedString,'RTAUEPETRAPTST3','');
