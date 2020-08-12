@@ -4,8 +4,8 @@
     <connectivity>
         <connectionPolicy xsi:type="http:HTTPConnectionPolicyType">
             <protocol>https</protocol>
-            <domain>${test12c}$</domain>
-            <port>${test12c7783}$</port>
+            <domain>test12c</domain>
+            <port>7783</port>
             <connectionTimeoutInMilliseconds>30000</connectionTimeoutInMilliseconds>
             <socketTimeoutInMilliseconds>30000</socketTimeoutInMilliseconds>
             <maxConcurrentConnectionsPerNode>50</maxConcurrentConnectionsPerNode>
