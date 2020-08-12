@@ -412,7 +412,7 @@ function invokeWebServiceString(request, servicePath, SOAPAction, isEncryptRespo
             adapter : 'drivers_and_vehciles_utilitiesAdapter',
             procedure : 'deleteCredientails',
             //parameters : [webServiceResult]
-        parameters : [JSON.stringify(webServiceResult.Envelope)]
+        parameters : [webServiceResult]
     };
     return MFP.Server.invokeProcedure(invocationData);
 }
