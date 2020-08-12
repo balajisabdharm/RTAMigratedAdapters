@@ -501,7 +501,7 @@ function deleteCredientails(jsonObject){
         tibcoPassword = MFP.Server.getPropertyValue("wsse.tibco.password");
         //jsonString =jsonString +channelCredientials.username+channelCredientials.password+externalChannelCredentials.username;
          MFP.Logger.info(" deleteCredientails externalChannelCredentials ");
-        var replacedString =  replaceAll(jsonString,channelCredientials.username,'');
+       /* var replacedString =  replaceAll(jsonString,channelCredientials.username,'');
         replacedString =  replaceAll(replacedString,channelCredientials.password,'');
         replacedString =  replaceAll(replacedString,externalChannelCredentials.externalUsername,'');
         replacedString =  replaceAll(replacedString,externalChannelCredentials.externalPassword,'');
@@ -512,16 +512,17 @@ function deleteCredientails(jsonObject){
         MFP.Logger.info(" deleteCredientails externalChannelCredentials 3 ");
         replacedString =  replaceAll(replacedString,'RTAUEPRTRAPP03','');
         replacedString =  replaceAll(replacedString,'RTAUEPRTRAPP02','');
-        replacedString =  replaceAll(replacedString,'RTAUEPRTRAPP01','');
+        replacedString =  replaceAll(replacedString,'RTAUEPRTRAPP01','');  */
         
         // SIT
         /*replacedString =  replaceAll(replacedString,'RTAUEPETRAPTST3','');
         replacedString =  replaceAll(replacedString,'RTAUEPETRAPTST2','');
         replacedString =  replaceAll(replacedString,'RTAUEPETRAPTST1','');
         */
-         MFP.Logger.info(" deleteCredientails replacedString same obj being returned..#++##!!");
+         MFP.Logger.info(" deleteCredientails replacedString same obj being returned..#---++##!!");
+        jsonString
         //return JSON.parse(replacedString);
-        return JSON.parse(jsonObject);
+        return JSON.parse(jsonString);
     }catch(exception){
         //return {jsonObject} ;
         
