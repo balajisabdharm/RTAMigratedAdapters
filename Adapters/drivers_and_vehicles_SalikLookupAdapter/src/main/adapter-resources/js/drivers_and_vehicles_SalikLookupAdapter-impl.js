@@ -692,7 +692,7 @@ function buildBody(parameters1, isStatic) {
         request = MFP.Server.invokeProcedure({
             adapter : 'drivers_and_vehciles_utilitiesAdapter',
             procedure : 'buildBodyFromStaticRequest',
-            parameters : [parameters1]
+            parameters : [""]
 
         });
     } else {
