@@ -488,7 +488,8 @@ function escapeRegExp(string) {
 }
 
 function replaceAll(string, find, replace) {
-    return string.replace(new RegExp(escapeRegExp(find), 'g'), replace);
+    //return string.replace(new RegExp(escapeRegExp(find), 'g'), replace);
+    return string;
 }
 
 function deleteCredientails(jsonObject){
@@ -519,8 +520,8 @@ function deleteCredientails(jsonObject){
         replacedString =  replaceAll(replacedString,'RTAUEPETRAPTST1','');
         */
          MFP.Logger.info(" deleteCredientails replacedString "+replacedString);
-        //return JSON.parse(replacedString);
-        return {"response" : replacedString};
+        return JSON.parse(replacedString);
+        //return {"response" : replacedString};
     }catch(exception){
         return jsonObject ;
     }
