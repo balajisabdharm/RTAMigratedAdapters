@@ -571,6 +571,8 @@ function getPlateLookup(isEncryptResponse, encryptionPassword) {
 	
 	var userName = MFP.Server.getPropertyValue("wsse.tibco.username");
 	var password = MFP.Server.getPropertyValue("wsse.tibco.password");
+
+	MFP.Logger.info("getPlateLookUp Start");
 	
 	var request = '<soapenv:Envelope xmlns:sch="http://www.rta.ae/schemas/SalikLookupService/Schema.xsd" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">'+
 		 '  <soapenv:Header>'+
@@ -594,6 +596,7 @@ function getPlateLookup(isEncryptResponse, encryptionPassword) {
 	var servicePath = '/salikLookupService';
 	var requestObj = buildBody([request], true);
 
+	MFP.Logger.info("getPlateLookUp - requestObj:" + JSON.stringify(requestObj));
 	
 	//	return{
 	//		message:request
@@ -684,7 +687,7 @@ function Log(text) {
 }
 
 function buildBody(parameters, isStatic) {
-	MFP.Logger.debug("BuildBody:");
+console.log("buildBody:");
 	var request = "";
 
 	if (isStatic == true) {
@@ -702,7 +705,7 @@ function buildBody(parameters, isStatic) {
 		});
 	}
 
-	MFP.Logger.debug("buildBody - Request:" + JSON.stringify(request));
+	console.log("buildBody - Request:" + JSON.stringify(request));
 
 	return request.body;
 }
