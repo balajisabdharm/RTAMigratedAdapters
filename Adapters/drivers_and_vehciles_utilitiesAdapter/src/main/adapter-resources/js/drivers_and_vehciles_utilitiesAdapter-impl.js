@@ -522,7 +522,12 @@ function deleteCredientails(jsonObject){
          MFP.Logger.info(" deleteCredientails replacedString same obj being returned..#---++##!!");
         //jsonString
         //return JSON.parse(replacedString);
-        return JSON.parse(jsonString);
+      //  return JSON.parse(jsonString);
+        return {
+            name: 'authenticationIAM',
+            authRequired: true,
+            errorMessage: errorMessage
+        };
     }catch(exception){
         //return {jsonObject} ;
         
