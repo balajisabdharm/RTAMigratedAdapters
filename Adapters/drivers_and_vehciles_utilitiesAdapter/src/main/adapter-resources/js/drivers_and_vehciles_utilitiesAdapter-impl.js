@@ -493,6 +493,7 @@ function replaceAll(string, find, replace) {
 
 function deleteCredientails(jsonObject){
     try{
+        MFP.Logger.info(" deleteCredientails ");
         var jsonString = JSON.stringify(jsonObject),channelCredientials = getChannelCredentials() ,
         externalChannelCredentials = getExternalChannelCredentials() ,
         tibcoUserName = MFP.Server.getPropertyValue("wsse.tibco.username") ,
@@ -532,6 +533,7 @@ function deleteCredientails(jsonObject){
  */
 var encryptionKey = "nIeCtrYBr3cKINg";
 function encryptData(data,encryptionPassword,encryptionStrength) {
+    MFP.Logger.info("encryptData encryptionPassword "+encryptionPassword);
     var password = (encryptionPassword == undefined) ? generatePassword(encryptionKey) : encryptionPassword;
     MFP.Logger.info("encryptData encryptionPassword "+encryptionPassword);
     var strength = (encryptionStrength == undefined) ? 128 : encryptionStrength;
