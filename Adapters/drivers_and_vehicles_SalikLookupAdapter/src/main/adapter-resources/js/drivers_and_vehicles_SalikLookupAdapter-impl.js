@@ -653,7 +653,7 @@ function getDisputeLookup(isEncryptResponse, encryptionPassword) {
         
     var SOAPAction = "DisputeLookup";
     var servicePath = '/salikLookupService';
-    var requestObj = buildBody([request], true);
+    var requestObj = buildBody(request, true);
 
     //return{
     //    message:request
