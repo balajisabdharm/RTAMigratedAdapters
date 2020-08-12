@@ -687,7 +687,8 @@ function Log(text) {
 function buildBody(parameters1, isStatic) {
     var request = "";
  MFP.Logger.info(" buildBody "+parameters1+" isStatic "+ isStatic);
- var parameters1 = "'"+parameters1+"'";
+ var parameters1 = "'"+myTrim(parameters1)+"'";
+ MFP.Logger.info(" After Triming:  "+parameters1+" isStatic "+ isStatic);
     if (isStatic == true) {
         MFP.Logger.info(" buildBody "+isStatic);
         request = MFP.Server.invokeProcedure({
@@ -706,6 +707,10 @@ function buildBody(parameters1, isStatic) {
 
     return request.body;
 }
+
+function myTrim(x) {
+	return x.replace(/^\s+|\s+$/gm,'');
+  }
 
 function invokeWebService(body, servicePath, headers, isEncryptResponse, encryptionPassword) {
     var startTime = new Date().getTime();
