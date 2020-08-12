@@ -161,7 +161,7 @@ function getStudentInfo(requestParams, isEncryptResponse, encryptionPassword) {
             soapEnvEnd;
         var servicePath = '/CTSLicenseInfoService_V2';
         var SOAPAction = 'getStudentInfo';
-        var requestObj = buildBody([request], true);
+        var requestObj = buildBody([request.toString()], true);
 
         return invokeWebServiceString(requestObj, servicePath, SOAPAction, isEncryptResponse, encryptionPassword);
     }
@@ -187,7 +187,7 @@ function getAttendanceDetails(requestParams, isEncryptResponse, encryptionPasswo
             soapEnvEnd;
         var servicePath = '/CTSLicenseInfoService_V2';
         var SOAPAction = 'getAttendanceDetails';
-        var requestObj = buildBody([request], true);
+        var requestObj = buildBody([request.toString()], true);
 
         return invokeWebServiceString(requestObj, servicePath, SOAPAction, isEncryptResponse, encryptionPassword);
     }
@@ -213,7 +213,7 @@ function getAssessmentDetails(requestParams, isEncryptResponse, encryptionPasswo
             soapEnvEnd;
         var servicePath = '/CTSLicenseInfoService_V2';
         var SOAPAction = 'getAssessmentDetails';
-        var requestObj = buildBody([request], true);
+        var requestObj = buildBody([request.toString()], true);
 
         return invokeWebServiceString(requestObj, servicePath, SOAPAction, isEncryptResponse, encryptionPassword);
     }
@@ -391,7 +391,7 @@ function submitFeedback(requestParams, isEncryptResponse, encryptionPassword) {
 
         var servicePath = '/CTSLicenseInfoService_V2';
         var SOAPAction = 'submitFeedback';
-        var requestObj = buildBody([request], true);
+        var requestObj = buildBody([request.toString()], true);
 
         return invokeWebServiceString(requestObj, servicePath, SOAPAction, isEncryptResponse, encryptionPassword);
     }
