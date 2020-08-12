@@ -495,13 +495,13 @@ function replaceAll(string, find, replace) {
 function deleteCredientails(jsonObject){
     try{
         MFP.Logger.info(" deleteCredientails ");
-        var jsonString = JSON.stringify(jsonObject),channelCredientials = getChannelCredentials() ,
+       /* var jsonString = JSON.stringify(jsonObject),channelCredientials = getChannelCredentials() ,
         externalChannelCredentials = getExternalChannelCredentials() ,
         tibcoUserName = MFP.Server.getPropertyValue("wsse.tibco.username") ,
         tibcoPassword = MFP.Server.getPropertyValue("wsse.tibco.password");
         //jsonString =jsonString +channelCredientials.username+channelCredientials.password+externalChannelCredentials.username;
          MFP.Logger.info(" deleteCredientails externalChannelCredentials ");
-       /* var replacedString =  replaceAll(jsonString,channelCredientials.username,'');
+        var replacedString =  replaceAll(jsonString,channelCredientials.username,'');
         replacedString =  replaceAll(replacedString,channelCredientials.password,'');
         replacedString =  replaceAll(replacedString,externalChannelCredentials.externalUsername,'');
         replacedString =  replaceAll(replacedString,externalChannelCredentials.externalPassword,'');
@@ -519,7 +519,7 @@ function deleteCredientails(jsonObject){
         replacedString =  replaceAll(replacedString,'RTAUEPETRAPTST2','');
         replacedString =  replaceAll(replacedString,'RTAUEPETRAPTST1','');
         */
-         MFP.Logger.info(" deleteCredientails replacedString same obj being returned..#---++##!!");
+         MFP.Logger.info(" deleteCredientails replacedString1 same obj being returned..#---++##!###!");
         //jsonString
         //return JSON.parse(replacedString);
       //  return JSON.parse(jsonString);

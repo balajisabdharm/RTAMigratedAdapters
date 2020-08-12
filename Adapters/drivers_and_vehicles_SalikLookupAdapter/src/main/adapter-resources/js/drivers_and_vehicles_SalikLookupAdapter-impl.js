@@ -354,7 +354,7 @@ function getContactLookup(isEncryptResponse, encryptionPassword) {
 
 function invokeWebServiceString(request, servicePath, SOAPAction, isEncryptResponse, encryptionPassword) {
     
-    MFP.Logger.info("|drivers_and_vehicles_SalikLookupAdapter ------------->>> | "+ servicePath +"  | Request : " + request );
+   // MFP.Logger.info("|drivers_and_vehicles_SalikLookupAdapter ------------->>> | "+ servicePath +"  | Request : " + request );
     
       MFP.Logger.info("|drivers_and_vehicles_SalikLookupAdapter ------------isEncryptResponse->>> | "+ isEncryptResponse +"  | encryptionPassword : " + encryptionPassword );
 
@@ -383,7 +383,7 @@ function invokeWebServiceString(request, servicePath, SOAPAction, isEncryptRespo
     var _result = JSON.stringify(webServiceResult);
     var _result_truncated = (_result > 1000) ? _result.substr(0, 1001) + '&hellip;' : _result;//50692
     
-    MFP.Logger.info("|drivers_and_vehicles_SalikLookupAdapter --- | "+ servicePath +"  | Request : " + request + ", Response: "+_result );
+    //MFP.Logger.info("|drivers_and_vehicles_SalikLookupAdapter --- | "+ servicePath +"  | Request : " + request + ", Response: "+_result );
     // Update response in DB  where DBLogID  ////////////////////////////////
     /*try {
         LogResponse (LogRequestResult.Envelope.RAND_REF, JSON.stringify(webServiceResult));
@@ -404,7 +404,7 @@ function invokeWebServiceString(request, servicePath, SOAPAction, isEncryptRespo
          MFP.Logger.info("|drivers_and_vehicles_SalikLookupAdapter --- |webServiceResult ");
     }
     var endTime = new Date().getTime();
-    MFP.Logger.info("|drivers_and_vehicles_SalikLookupAdapter --- |drivers_and_vehciles_utilitiesAdapter Envelope ");
+    MFP.Logger.info("|drivers_and_vehicles_SalikLookupAdapter --- |drivers_and_vehciles_utilitiesAdapter Envelope modified response");
     
     
     //Log("time for " + servicePath + " is " + (endTime - startTime) + " ms");
