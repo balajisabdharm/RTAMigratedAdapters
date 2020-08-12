@@ -6,9 +6,7 @@ function onLogout(headers, errorMessage) {
 	MFP.Server.setActiveUser("AMAdapterAuthRealm", null);
 	MFP.Server.setActiveUser("AdapterAuthRealm", null);
 	MFP.Server.setActiveUser("UAEPassAdapterAuthRealm", null);*/
-	return {
-		name: 'authenticationIAM'
-	};
+	
 }
 
 
