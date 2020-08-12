@@ -684,6 +684,7 @@ function Log(text) {
 }
 
 function buildBody(parameters, isStatic) {
+	MFP.Logger.debug("BuildBody:");
 	var request = "";
 
 	if (isStatic == true) {
