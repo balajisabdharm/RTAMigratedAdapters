@@ -499,6 +499,7 @@ function deleteCredientails(jsonObject){
         tibcoUserName = MFP.Server.getPropertyValue("wsse.tibco.username") ,
         tibcoPassword = MFP.Server.getPropertyValue("wsse.tibco.password");
         //jsonString =jsonString +channelCredientials.username+channelCredientials.password+externalChannelCredentials.username;
+         MFP.Logger.info(" deleteCredientails externalChannelCredentials ");
         var replacedString =  replaceAll(jsonString,channelCredientials.username,'');
         replacedString =  replaceAll(replacedString,channelCredientials.password,'');
         replacedString =  replaceAll(replacedString,externalChannelCredentials.externalUsername,'');
@@ -515,6 +516,7 @@ function deleteCredientails(jsonObject){
         replacedString =  replaceAll(replacedString,'RTAUEPETRAPTST2','');
         replacedString =  replaceAll(replacedString,'RTAUEPETRAPTST1','');
         */
+         MFP.Logger.info(" deleteCredientails replacedString "+replacedString);
         return JSON.parse(replacedString);
     }catch(exception){
         return jsonObject ;
@@ -539,6 +541,8 @@ function encryptData(data,encryptionPassword,encryptionStrength) {
     var strength = (encryptionStrength == undefined) ? 128 : encryptionStrength;
      MFP.Logger.info("encryptData strength "+strength);
     var cypherText = Aes.Ctr.encrypt(data,password,strength);
+
+    MFP.Logger.info("encryptData strength "+strength);
     return {cypherText: cypherText };
 }
 
