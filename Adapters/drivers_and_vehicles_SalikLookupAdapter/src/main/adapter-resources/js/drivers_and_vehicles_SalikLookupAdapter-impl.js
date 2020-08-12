@@ -355,6 +355,8 @@ function getContactLookup(isEncryptResponse, encryptionPassword) {
 function invokeWebServiceString(request, servicePath, SOAPAction, isEncryptResponse, encryptionPassword) {
     
     MFP.Logger.info("|drivers_and_vehicles_SalikLookupAdapter ------------->>> | "+ servicePath +"  | Request : " + request );
+    
+      MFP.Logger.info("|drivers_and_vehicles_SalikLookupAdapter ------------isEncryptResponse->>> | "+ isEncryptResponse +"  | encryptionPassword : " + encryptionPassword );
 
     // Log DB Log In DB
         /*try {
@@ -567,7 +569,7 @@ function getPlateCodeLookup(isEncryptResponse, encryptionPassword) {
 }
 
 function getPlateLookup(isEncryptResponse, encryptionPassword) {
-    MFP.Logger.info("getPlateLookup Start");
+    MFP.Logger.info("getPlateLookup Start isEncryptResponse "+isEncryptResponse);
     var userName = MFP.Server.getPropertyValue("wsse.tibco.username");
 	var password = MFP.Server.getPropertyValue("wsse.tibco.password");
 	

@@ -533,7 +533,9 @@ function deleteCredientails(jsonObject){
 var encryptionKey = "nIeCtrYBr3cKINg";
 function encryptData(data,encryptionPassword,encryptionStrength) {
     var password = (encryptionPassword == undefined) ? generatePassword(encryptionKey) : encryptionPassword;
+    MFP.Logger.info("encryptData encryptionPassword "+encryptionPassword);
     var strength = (encryptionStrength == undefined) ? 128 : encryptionStrength;
+     MFP.Logger.info("encryptData strength "+strength);
     var cypherText = Aes.Ctr.encrypt(data,password,strength);
     return {cypherText: cypherText };
 }
