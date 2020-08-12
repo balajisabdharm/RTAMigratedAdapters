@@ -197,20 +197,20 @@ function getPlateLookupTest(isEncryptResponse, encryptionPassword) {
     var request = '<soapenv:Envelope xmlns:sch="http://www.rta.ae/schemas/SalikLookupService/Schema.xsd" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">'+
          '  <soapenv:Header>'+
          '    <wsse:Security soapenv:mustUnderstand="1" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">'+
-         '           <wsse:UsernameToken wsu:Id="UsernameToken-13">'+
-         '              <wsse:Username>' + userName + '</wsse:Username>'+
-         '              <wsse:Password Type="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText">' + password + '</wsse:Password>'+
-         '              <wsse:Nonce EncodingType="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-soap-message-security-1.0#Base64Binary">tCHN7DaNqD2yifNCpNnyGg==</wsse:Nonce>'+
-         '              <wsu:Created>2017-06-13T11:51:02.107Z</wsu:Created>'+
-         '           </wsse:UsernameToken>'+
-         '        </wsse:Security>'+
-         '     </soapenv:Header>'+
-         '     <soapenv:Body>'+
-         '        <sch:PlateLookup>'+
-         '           <sch:AppId>SALIK</sch:AppId>'+
-         '        </sch:PlateLookup>'+
-         '     </soapenv:Body>'+
-         '    </soapenv:Envelope>';
+         '<wsse:UsernameToken wsu:Id="UsernameToken-13">'+
+         '<wsse:Username>' + userName + '</wsse:Username>'+
+         '<wsse:Password Type="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText">' + password + '</wsse:Password>'+
+         '<wsse:Nonce EncodingType="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-soap-message-security-1.0#Base64Binary">tCHN7DaNqD2yifNCpNnyGg==</wsse:Nonce>'+
+         '<wsu:Created>2017-06-13T11:51:02.107Z</wsu:Created>'+
+         '</wsse:UsernameToken>'+
+         '</wsse:Security>'+
+         '</soapenv:Header>'+
+         '<soapenv:Body>'+
+         '<sch:PlateLookup>'+
+         '<sch:AppId>SALIK</sch:AppId>'+
+         '</sch:PlateLookup>'+
+         '</soapenv:Body>'+
+         '</soapenv:Envelope>';
         
     var SOAPAction = "PlateLookup";
     var servicePath = '/salikLookupService';
