@@ -11,14 +11,6 @@ function onLogout(headers, errorMessage) {
 	};
 }
 
-function onAuthRequired(headers, errorMessage) {
-	errorMessage = errorMessage ? errorMessage : null;
-	return {
-		name: 'authenticationIAM',
-		authRequired: true,
-		errorMessage: errorMessage
-	};
-}
 
 
 
