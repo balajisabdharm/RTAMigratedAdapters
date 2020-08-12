@@ -4,8 +4,8 @@
     <connectivity>
         <connectionPolicy xsi:type="http:HTTPConnectionPolicyType">
             <protocol>https</protocol>
-            <domain>${localhost}$</domain>
-            <port>${localhostport}$</port>
+            <domain>localhost</domain>
+            <port>80</port>
             <connectionTimeoutInMilliseconds>200000</connectionTimeoutInMilliseconds>
             <socketTimeoutInMilliseconds>200000</socketTimeoutInMilliseconds>
             <maxConcurrentConnectionsPerNode>100</maxConcurrentConnectionsPerNode>
@@ -28,12 +28,12 @@
     <procedure name="getDonationServices" />
     <procedure name="getDonationServices_iOS" />
 
-    <property name="drivers_and_vehicles_is_debugging"  description="drivers_and_vehicles_is_debugging" defaultValue="${DriversAndVehiclesIsDebugging}$"/>
-    <property name="wsse.tibco.username"  description="wsse.tibco.username" defaultValue="${wsseTibcoUsername}$"/>
-    <property name="wsse.tibco.password"  description="wsse.tibco.password" defaultValue="${wsseTibcoPassword}$"/>
-	<property name="drivers_and_vehicles_mail_port"  description="drivers_and_vehicles_mail_port" defaultValue="${driversandVehiclesMailPort}$"/>
-	<property name="drivers_and_vehicles_mail_host"  description="drivers_and_vehicles_mail_host" defaultValue="${driversandVehiclesMailHost}$"/>
-	<property name="drivers_and_vehicles_mail_toMailAddress"  description="drivers_and_vehicles_mail_toMailAddress" defaultValue="${driversandVehiclesMailtoMailAddress}$"/>
-	<property name="drivers_and_vehicles_mail_user"  description="drivers_and_vehicles_mail_user" defaultValue="${driversandVehiclesMailUser}$"/>
-	<property name="drivers_and_vehicles_mail_pass"  description="drivers_and_vehicles_mail_pass" defaultValue="${driversandVehiclesMailPass}$"/>
+    <property name="drivers_and_vehicles_is_debugging"  description="drivers_and_vehicles_is_debugging" defaultValue="true"/>
+    <property name="wsse.tibco.username"  description="wsse.tibco.username" defaultValue=""/>
+    <property name="wsse.tibco.password"  description="wsse.tibco.password" defaultValue=""/>
+	<property name="drivers_and_vehicles_mail_port"  description="drivers_and_vehicles_mail_port" defaultValue="465"/>
+	<property name="drivers_and_vehicles_mail_host"  description="drivers_and_vehicles_mail_host" defaultValue="smtp.va1.emailserver.com"/>
+	<property name="drivers_and_vehicles_mail_toMailAddress"  description="drivers_and_vehicles_mail_toMailAddress" defaultValue="dev.test@intellisc.com"/>
+	<property name="drivers_and_vehicles_mail_user"  description="drivers_and_vehicles_mail_user" defaultValue="dev.test@intellisc.com"/>
+	<property name="drivers_and_vehicles_mail_pass"  description="drivers_and_vehicles_mail_pass" defaultValue="Password@12"/>
 </mfp:adapter>

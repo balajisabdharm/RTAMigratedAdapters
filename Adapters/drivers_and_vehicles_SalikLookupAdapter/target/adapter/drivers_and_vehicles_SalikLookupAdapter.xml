@@ -4,8 +4,8 @@
     <connectivity>
         <connectionPolicy xmlns:ns4="http://www.ibm.com/mfp/integration/http" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:HTTPConnectionPolicyType">
             <protocol>https</protocol>
-            <domain>${rtamhtibstgems1rtatestdomlocal}$</domain>
-            <port>${rtamhtibstgems1rtatestdomlocalport11067}$</port>
+            <domain>rtamhtibstgems1.rtatestdom.local</domain>
+            <port>11067</port>
             <connectionTimeoutInMilliseconds>120000</connectionTimeoutInMilliseconds>
             <socketTimeoutInMilliseconds>120000</socketTimeoutInMilliseconds>
             <maxConcurrentConnectionsPerNode>50</maxConcurrentConnectionsPerNode>
@@ -25,11 +25,11 @@
     <procedure name="getSalikAboutPath" />
     <procedure name="getVehicleLookup" />
 
-    <property name="drivers_and_vehicles_is_debugging"  description="drivers_and_vehicles_is_debugging" defaultValue="${DriversAndVehiclesIsDebugging}$"/>
-    <property name="wsse.tibco.username"  description="wsse.tibco.username" defaultValue="${wsseTibcoUsername}$"/>
-    <property name="wsse.tibco.password"  description="wsse.tibco.password" defaultValue="${wsseTibcoPassword}$"/>
-	<property name="publicWorkLightProtocol"  description="publicWorkLightProtocol" defaultValue="${publicWorklightProtocol}$"/>
-	<property name="publicWorkLightHostname"  description="publicWorkLightHostname" defaultValue="${publicWorklightHostname}$"/>
-	<property name="publicWorkLightPort"  description="publicWorkLightPort" defaultValue="${publicWorklightPort}$"/>
-	<property name="publicWorkLightContext"  description="publicWorkLightContext" defaultValue="${publicWorklightContext}$"/>
+    <property name="drivers_and_vehicles_is_debugging"  description="drivers_and_vehicles_is_debugging" defaultValue="true"/>
+    <property name="wsse.tibco.username"  description="wsse.tibco.username" defaultValue=""/>
+    <property name="wsse.tibco.password"  description="wsse.tibco.password" defaultValue=""/>
+	<property name="publicWorkLightProtocol"  description="publicWorkLightProtocol" defaultValue="http"/>
+	<property name="publicWorkLightHostname"  description="publicWorkLightHostname" defaultValue="localhost"/>
+	<property name="publicWorkLightPort"  description="publicWorkLightPort" defaultValue="10080"/>
+	<property name="publicWorkLightContext"  description="publicWorkLightContext" defaultValue="/worklight"/>
 </ns2:adapter>
