@@ -504,6 +504,7 @@ function deleteCredientails(jsonObject){
         replacedString =  replaceAll(replacedString,channelCredientials.password,'');
         replacedString =  replaceAll(replacedString,externalChannelCredentials.externalUsername,'');
         replacedString =  replaceAll(replacedString,externalChannelCredentials.externalPassword,'');
+         MFP.Logger.info(" deleteCredientails externalChannelCredentials 2 ");
         replacedString =  replaceAll(replacedString,tibcoUserName,'');
         replacedString =  replaceAll(replacedString,tibcoPassword,'');
         // change 'RTAUEPETRAPTST1' to 'RTAUEPRTRAPP01' when production
