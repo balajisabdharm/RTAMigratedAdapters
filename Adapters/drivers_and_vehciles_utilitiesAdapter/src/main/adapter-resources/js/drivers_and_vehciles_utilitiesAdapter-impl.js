@@ -519,11 +519,15 @@ function deleteCredientails(jsonObject){
         replacedString =  replaceAll(replacedString,'RTAUEPETRAPTST2','');
         replacedString =  replaceAll(replacedString,'RTAUEPETRAPTST1','');
         */
-         MFP.Logger.info(" deleteCredientails replacedString same obj being returned..###!!");
-        return JSON.parse(replacedString);
+         MFP.Logger.info(" deleteCredientails replacedString same obj being returned..#++##!!");
+        //return JSON.parse(replacedString);
         return JSON.parse(jsonObject);
     }catch(exception){
-        return jsonObject ;
+        //return {jsonObject} ;
+        
+        return {"Error" : 'Cant Proceed',
+            "ErrMsg" : "001"
+        }
     }
 
 }
