@@ -520,15 +520,17 @@ function deleteCredientails(jsonObject){
         replacedString =  replaceAll(replacedString,'RTAUEPETRAPTST1','');
         */
          MFP.Logger.info(" deleteCredientails replacedString same obj being returned..#---++##!!");
-        jsonString
+        //jsonString
         //return JSON.parse(replacedString);
         return JSON.parse(jsonString);
     }catch(exception){
         //return {jsonObject} ;
         
-        return {"Error" : 'Cant Proceed',
-            "ErrMsg" : "001"
-        }
+        return {
+            name: 'authenticationIAM',
+            authRequired: true,
+            errorMessage: errorMessage
+        };
     }
 
 }
