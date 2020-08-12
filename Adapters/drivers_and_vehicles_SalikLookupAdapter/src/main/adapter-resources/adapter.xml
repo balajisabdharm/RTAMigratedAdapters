@@ -26,8 +26,8 @@
     <procedure name="getVehicleLookup" />
 
     <property name="drivers_and_vehicles_is_debugging"  description="drivers_and_vehicles_is_debugging" defaultValue="true"/>
-    <property name="wsse.tibco.username"  description="wsse.tibco.username" defaultValue=""/>
-    <property name="wsse.tibco.password"  description="wsse.tibco.password" defaultValue=""/>
+    <property name="wsse.tibco.username"  description="wsse.tibco.username" defaultValue="tstuser0"/>
+    <property name="wsse.tibco.password"  description="wsse.tibco.password" defaultValue="May2008"/>
 	<property name="publicWorkLightProtocol"  description="publicWorkLightProtocol" defaultValue="http"/>
 	<property name="publicWorkLightHostname"  description="publicWorkLightHostname" defaultValue="localhost"/>
 	<property name="publicWorkLightPort"  description="publicWorkLightPort" defaultValue="10080"/>
