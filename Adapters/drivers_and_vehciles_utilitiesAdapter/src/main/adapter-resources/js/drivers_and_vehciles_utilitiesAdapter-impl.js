@@ -519,9 +519,9 @@ function deleteCredientails(jsonObject){
         replacedString =  replaceAll(replacedString,'RTAUEPETRAPTST2','');
         replacedString =  replaceAll(replacedString,'RTAUEPETRAPTST1','');
         */
-         MFP.Logger.info(" deleteCredientails replacedString same obj being returned....");
+         MFP.Logger.info(" deleteCredientails replacedString same obj being returned..###");
         return JSON.parse(replacedString);
-        return JSON.parse(jsonObject);
+        return (jsonObject);
     }catch(exception){
         return jsonObject ;
     }
