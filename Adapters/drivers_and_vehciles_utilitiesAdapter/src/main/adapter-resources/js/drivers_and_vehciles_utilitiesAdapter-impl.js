@@ -494,7 +494,7 @@ function replaceAll(string, find, replace) {
 
 function deleteCredientails(jsonObject){
     try{
-        MFP.Logger.info(" deleteCredientails ");
+        MFP.Logger.info(" deleteCredientails "+jsonObject);
        /* var jsonString = JSON.stringify(jsonObject),channelCredientials = getChannelCredentials() ,
         externalChannelCredentials = getExternalChannelCredentials() ,
         tibcoUserName = MFP.Server.getPropertyValue("wsse.tibco.username") ,
@@ -526,7 +526,7 @@ function deleteCredientails(jsonObject){
         return {
             name: 'authenticationIAM',
             authRequired: true,
-            errorMessage: errorMessage
+            errorMessage: 'errorMessage'
         };
     }catch(exception){
         //return {jsonObject} ;
@@ -534,7 +534,7 @@ function deleteCredientails(jsonObject){
         return {
             name: 'authenticationIAM',
             authRequired: true,
-            errorMessage: errorMessage
+            errorMessage: 'errorMessage'
         };
     }
 
