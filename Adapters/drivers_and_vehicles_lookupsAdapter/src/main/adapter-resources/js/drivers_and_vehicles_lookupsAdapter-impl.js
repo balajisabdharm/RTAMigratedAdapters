@@ -49,7 +49,7 @@ function getKioskTestCentersService(params, isEncryptResponse, encryptionPasswor
 	};
 	var servicePath = "/ws/services/GetKioskTestCentersService";
 	var _soapEnvNS=soapEnvNS+ 'xmlns:ae="http://ae.gov.trf.stp.ws.GetKioskTestCentersService"';
-	var parameters = [envHeader, params, 'xmlns:ae="http://ws.trs.rta.ae"', _soapEnvNS];
+	var parameters = [envHeader.toString(), params.toString(), 'xmlns:ae="http://ws.trs.rta.ae"', _soapEnvNS.toString()];
 	var request = buildBody(parameters, false);
 
 	//Log("getKioskTestCentersService request >> " + request);
@@ -64,7 +64,7 @@ function newMaintenanceService(params, isEncryptResponse, encryptionPassword) {
 			"new:username": userName
 	};	
 	var servicePath = "/ws/services/NewMaintenanceService";
-	var parameters = [envHeader, params, '', _soapEnvNS];
+	var parameters = [envHeader.toString(), params.toString(), '', _soapEnvNS.toString()];
 	var request = buildBody(parameters, false);
 
 	//Log("NewMaintenanceService request >> " + request);
@@ -81,7 +81,7 @@ function exportCertificateService(params, isEncryptResponse, encryptionPassword)
 	var _soapEnvNS=soapEnvNS+ 'xmlns:ae="http://ae.gov.trf.vhl.ws.ExportCertificateService"';
 
 	var servicePath = "/ws/services/ExportCertificateService";
-	var parameters = [envHeader, params, '', _soapEnvNS];
+	var parameters = [envHeader.toString(), params.toString(), '', _soapEnvNS.toString()];
 	var request = buildBody(parameters, false);
 
 	//Log("exportCertificateService request >> " + request);
@@ -97,7 +97,7 @@ function vehiclePossessionCertificateService(params, isEncryptResponse, encrypti
 	};
 	var _soapEnvNS=soapEnvNS+ 'xmlns:urn="urn:VehiclePossessionCertificateService"';
 	var servicePath='/ws/services/VehiclePossessionCertificateService';
-	var parameters = [envHeader,params,'', _soapEnvNS];
+	var parameters = [envHeader.toString(),params.toString(),'', _soapEnvNS.toString()];
 	var request = buildBody(parameters, false);
 
 	//Log("VehiclePossessionCertificateService request >> " + request);
@@ -105,7 +105,7 @@ function vehiclePossessionCertificateService(params, isEncryptResponse, encrypti
 }
 function getServiceTermsAndConditionsService(request, isEncryptResponse, encryptionPassword) {
 	var servicePath = '/ws/services/GetServiceTermsAndConditionsService';
-	var parameters = [request];
+	var parameters = [request.toString()];
 	var request = buildBody(parameters, true);
 	return invokeWebServiceStatic(request, servicePath, isEncryptResponse, encryptionPassword);
 }
