@@ -144,10 +144,10 @@ function onAuthRequired(headers, errorMessage) {
 	return _handleError;
 }
 function onLogout(headers, errorMessage) {
-	WL.Server.setActiveUser("masterAuthRealm", null);
-	WL.Server.setActiveUser("AMAdapterAuthRealm", null);
-	WL.Server.setActiveUser("AdapterAuthRealm", null);
-	WL.Server.setActiveUser("UAEPassAdapterAuthRealm", null);
+	//WL.Server.setActiveUser("masterAuthRealm", null);
+	//WL.Server.setActiveUser("AMAdapterAuthRealm", null);
+	//WL.Server.setActiveUser("AdapterAuthRealm", null);
+	//WL.Server.setActiveUser("UAEPassAdapterAuthRealm", null);
 
 	return {
 		name: 'authenticationUAEPass'
@@ -267,7 +267,7 @@ function submitAuthentication(authorizationCode, appId, appRedirectUri) {
 				var identity = {
 					userId: user_id
 				};
-				WL.Server.setActiveUser("masterAuthRealm", identity);
+				//WL.Server.setActiveUser("masterAuthRealm", identity);
 				
 				var trialsSetUserInfo = 5;
 				while (trialsSetUserInfo > 0) {
@@ -396,7 +396,7 @@ function setUserIdentity(user_id) {
 	var identity = {
 		userId: user_id
 	};
-	return WL.Server.setActiveUser("masterAuthRealm", identity);
+	//return WL.Server.setActiveUser("masterAuthRealm", identity);
 	 adapterLogger("setUserIdentity", "info", "getActiveUser : after ", toString(WL.Server.getActiveUser("masterAuthRealm")));
 	
 }
