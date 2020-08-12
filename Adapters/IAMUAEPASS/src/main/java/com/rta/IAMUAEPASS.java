@@ -80,6 +80,12 @@ public class IAMUAEPASS extends UserAuthenticationSecurityCheck {
     protected boolean validateCredentials(Map<String, Object> credentials) {
         System.out.println("UserLogin: validateCredentials starts ");
         boolean status = false;
+        
+         // check UAE PASS
+        if(credentials!=null && credentials.containsKey("username") &&credentials.containsKey("authenticationType")&&credentials.containsKey("authenticationType").equals("UAEPASS")&& credentials.containsKey("appID")){
+        	return true;
+        }
+        
         if(credentials!=null && credentials.containsKey("username") && credentials.containsKey("password")&& credentials.containsKey("authenticationType")&& credentials.containsKey("appID")){
             String username = credentials.get("username").toString();
             String password = credentials.get("password").toString();
