@@ -404,11 +404,15 @@ function invokeWebServiceString(request, servicePath, SOAPAction, isEncryptRespo
          MFP.Logger.info("|drivers_and_vehicles_SalikLookupAdapter --- |webServiceResult ");
     }
     var endTime = new Date().getTime();
+    MFP.Logger.info("|drivers_and_vehicles_SalikLookupAdapter --- |drivers_and_vehciles_utilitiesAdapter deleteCredientails ");
+    
+    
     //Log("time for " + servicePath + " is " + (endTime - startTime) + " ms");
     var invocationData = {
             adapter : 'drivers_and_vehciles_utilitiesAdapter',
             procedure : 'deleteCredientails',
-            parameters : [webServiceResult]
+            //parameters : [webServiceResult]
+        parameters : [JSON.stringify(webServiceResult)]
     };
     return MFP.Server.invokeProcedure(invocationData);
 }
