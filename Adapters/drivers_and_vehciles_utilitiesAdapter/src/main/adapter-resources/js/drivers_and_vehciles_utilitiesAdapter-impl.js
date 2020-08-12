@@ -508,6 +508,7 @@ function deleteCredientails(jsonObject){
         replacedString =  replaceAll(replacedString,tibcoUserName,'');
         replacedString =  replaceAll(replacedString,tibcoPassword,'');
         // change 'RTAUEPETRAPTST1' to 'RTAUEPRTRAPP01' when production
+        MFP.Logger.info(" deleteCredientails externalChannelCredentials 3 ");
         replacedString =  replaceAll(replacedString,'RTAUEPRTRAPP03','');
         replacedString =  replaceAll(replacedString,'RTAUEPRTRAPP02','');
         replacedString =  replaceAll(replacedString,'RTAUEPRTRAPP01','');
