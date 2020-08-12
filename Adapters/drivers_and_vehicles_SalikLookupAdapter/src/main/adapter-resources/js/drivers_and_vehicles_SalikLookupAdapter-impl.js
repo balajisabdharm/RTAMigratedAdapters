@@ -569,13 +569,9 @@ function getPlateCodeLookup(isEncryptResponse, encryptionPassword) {
 
 function getPlateLookup(isEncryptResponse, encryptionPassword) {
     MFP.Logger.info("getPlateLookup Start");
-    var userName1 = MFP.Server.getPropertyValue("wsse.tibco.username");
-	var password1 = MFP.Server.getPropertyValue("wsse.tibco.password");
-	MFP.Logger.info("userName1:" + userName1 + "||||");
-	MFP.Logger.info("password1:" + password1 + "||||");
-	var userName = "plateUsername";
-	var password = "platePassword";
-    
+    var userName = MFP.Server.getPropertyValue("wsse.tibco.username");
+	var password = MFP.Server.getPropertyValue("wsse.tibco.password");
+	
     var request = '<soapenv:Envelope xmlns:sch="http://www.rta.ae/schemas/SalikLookupService/Schema.xsd" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">'+
          '<soapenv:Header>'+
          '<wsse:Security soapenv:mustUnderstand="1" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">'+
@@ -599,7 +595,7 @@ function getPlateLookup(isEncryptResponse, encryptionPassword) {
     var SOAPAction = "PlateLookup";
     var servicePath = '/salikLookupService';
     MFP.Logger.info("getPlateLookup request.......... "+request);
-    var requestObj = buildBody(request.toString(), true);
+    var requestObj = buildBody([request.toString()], true);
     MFP.Logger.info("getPlateLookup requestObj "+requestObj);
     
     //    return{
@@ -693,7 +689,7 @@ function Log(text) {
 function buildBody(parameters1, isStatic) {
     var request = "";
  MFP.Logger.info(" buildBody "+parameters1+" isStatic "+ isStatic);
- var parameters1 = [parameters1];
+
  MFP.Logger.info(" After Trimming: "+parameters1+" isStatic "+ isStatic);
     if (isStatic == true) {
         MFP.Logger.info(" buildBody "+isStatic);
