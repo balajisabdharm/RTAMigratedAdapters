@@ -634,22 +634,22 @@ function getDisputeLookup(isEncryptResponse, encryptionPassword) {
     var requestDateFormated = requestDate.toISOString(); // Returns 2011-10-05T14:48:00.000Z
 
     var request = '<soapenv:Envelope xmlns:sch="http://www.rta.ae/schemas/SalikLookupService/Schema.xsd" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">'+
-                  '      <soapenv:Header>'+
-                  '        <wsse:Security soapenv:mustUnderstand="1" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">'+
-                  '      <wsse:UsernameToken wsu:Id="UsernameToken-10">'+
-                  '              <wsse:Username>' + userName + '</wsse:Username>'+
-                  '              <wsse:Password Type="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText">' + password + '</wsse:Password>'+
-                  '              <wsse:Nonce EncodingType="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-soap-message-security-1.0#Base64Binary">SSRsy9V6/42G0Oz7S5Bg5g==</wsse:Nonce>'+
-                  '              <wsu:Created>'+ requestDateFormated +'</wsu:Created>'+
-                  '           </wsse:UsernameToken>'+
-                  '        </wsse:Security>'+
-                  '     </soapenv:Header>'+
-                  '     <soapenv:Body>'+
-                  '        <sch:DisputeLookup>'+
-                  '           <sch:AppId>SALIK</sch:AppId>'+
-                  '        </sch:DisputeLookup>'+
-                  '     </soapenv:Body>'+
-                  '    </soapenv:Envelope>';
+                  '<soapenv:Header>'+
+                  '<wsse:Security soapenv:mustUnderstand="1" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">'+
+                  '<wsse:UsernameToken wsu:Id="UsernameToken-10">'+
+                  '<wsse:Username>' + userName + '</wsse:Username>'+
+                  '<wsse:Password Type="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText">' + password + '</wsse:Password>'+
+                  '<wsse:Nonce EncodingType="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-soap-message-security-1.0#Base64Binary">SSRsy9V6/42G0Oz7S5Bg5g==</wsse:Nonce>'+
+                  '<wsu:Created>'+ requestDateFormated +'</wsu:Created>'+
+                  '</wsse:UsernameToken>'+
+                  '</wsse:Security>'+
+                  '</soapenv:Header>'+
+                  '<soapenv:Body>'+
+                  '<sch:DisputeLookup>'+
+                  '<sch:AppId>SALIK</sch:AppId>'+
+                  '</sch:DisputeLookup>'+
+                  '</soapenv:Body>'+
+                  '</soapenv:Envelope>';
         
     var SOAPAction = "DisputeLookup";
     var servicePath = '/salikLookupService';
