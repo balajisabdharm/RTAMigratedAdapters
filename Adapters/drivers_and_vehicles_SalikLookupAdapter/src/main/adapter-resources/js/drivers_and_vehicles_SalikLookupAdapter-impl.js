@@ -687,7 +687,7 @@ function Log(text) {
 function buildBody(parameters1, isStatic) {
     var request = "";
  MFP.Logger.info(" buildBody "+parameters1+" isStatic "+ isStatic);
- var parameters1 = "" + parameters1;
+ var parameters1 = '' + parameters1;
  MFP.Logger.info(" After Trimming: "+parameters1+" isStatic "+ isStatic);
     if (isStatic == true) {
         MFP.Logger.info(" buildBody "+isStatic);
