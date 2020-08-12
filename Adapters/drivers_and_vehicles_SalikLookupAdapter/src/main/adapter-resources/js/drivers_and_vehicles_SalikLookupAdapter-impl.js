@@ -701,6 +701,8 @@ function buildBody(parameters, isStatic) {
 		});
 	}
 
+	MFP.Logger.debug("buildBody - Request:" + JSON.stringify(request));
+
 	return request.body;
 }
 
