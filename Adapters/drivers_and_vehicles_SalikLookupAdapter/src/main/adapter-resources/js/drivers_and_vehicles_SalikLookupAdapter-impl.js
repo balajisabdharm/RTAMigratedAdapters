@@ -379,7 +379,7 @@ function invokeWebServiceString(request, servicePath, SOAPAction, isEncryptRespo
         },
         transformation : {
             type : 'xslFile',
-            xslFile : 'removeCDATA.xsl'
+            xslFile : 'filtered.xsl'
           }
     };
 
