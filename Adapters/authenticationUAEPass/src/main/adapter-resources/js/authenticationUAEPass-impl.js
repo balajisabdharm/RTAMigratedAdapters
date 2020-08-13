@@ -11,8 +11,9 @@ var adapterName = "authenticationUAEPass";
 var WSDL_Path = "/UAEPassIntegrationService";
 var adapterRealm ="UAEPassAdapterAuthRealm";
 //var redirectUri = "https://mfp-staging.rta.ae:6443/UAEPassCallback/uaePassRedirect";
-//var redirectUri = "https://mfp-staging.rta.ae:6443/UAEPassCallback/uaePassRedirect";
-var redirectUri = "https://m.rta.ae/UAEPassCallback/uaePassRedirect";
+var redirectUri = "https://mfp-staging.rta.ae:6443/UAEPassCallback/uaePassRedirect";
+//producation url
+//var redirectUri = "https://m.rta.ae/UAEPassCallback/uaePassRedirect";
 
 //private static final String UAE_PASS_CLIENT_ID = <<INSERT_CLIENT_ID_HERE>>;
 //private static final String UAE_PASS_CLIENT_SECRET = <<INSERT_CLIENT_SECRET_HERE>>;
