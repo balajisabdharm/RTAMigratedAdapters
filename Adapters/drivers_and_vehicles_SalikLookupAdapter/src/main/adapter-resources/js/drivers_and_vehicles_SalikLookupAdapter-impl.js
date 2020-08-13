@@ -376,11 +376,7 @@ function invokeWebServiceString(request, servicePath, SOAPAction, isEncryptRespo
         body : {
             content : JSON.parse(request),
             contentType : 'text/xml; charset=utf-8'
-        },
-        transformation : {
-            type : 'xslFile',
-            xslFile : 'filtered.xsl'
-          }
+        }
     };
 
 
