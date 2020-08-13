@@ -380,6 +380,10 @@ function invokeWebServiceString(request, servicePath, SOAPAction, isEncryptRespo
     };
 
     var webServiceResult = MFP.Server.invokeHttp(input);
+    
+    //Code changed by Amit Goyal ...response is returned without DeleteCredentials and encryptData functionality
+    
+    return webServiceResult;
     var _result = JSON.stringify(webServiceResult);
     var _result_truncated = (_result > 1000) ? _result.substr(0, 1001) + '&hellip;' : _result;//50692
     
@@ -391,6 +395,8 @@ function invokeWebServiceString(request, servicePath, SOAPAction, isEncryptRespo
         Log("|drivers_and_vehicles_SalikLookups | invokeWebServiceString ------------->>> | "+ servicePath +"  | exception ***************: " );
     }*/
     MFP.Logger.info("|drivers_and_vehicles_SalikLookupAdapter --- | Checking Encrypted Response...isEncryptResponse "+isEncryptResponse);
+    
+    
     if(isEncryptResponse != undefined && isEncryptResponse == true)
     {
         var responseString = JSON.stringify(webServiceResult);
