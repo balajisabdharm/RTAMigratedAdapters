@@ -49,7 +49,7 @@ function savePhoto(params, isEncryptResponse, encryptionPassword) {
     };
     //var parameters = [params];
     var _soapEnvNS = 'xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:SaveAttachmentsService"';
-    var parameters = [envHeader, params, "", _soapEnvNS];
+    var parameters = [envHeader.toString(), params.toString(), "", _soapEnvNS.toString()];
 
     var request = buildBody(parameters, false);
 
@@ -852,7 +852,7 @@ function fineManagementService(params, isEncryptResponse, encryptionPassword) {
         var SOAPAction = 'getFines';
         //xmlns:cli="http://client.ws.ffu.traffic.services.internet.ae"
         var _soapEnvNS = 'xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:lag="http://www.rta.ae/EIP/LAGeneralFinesInquiryService/LAGeneralFinesInquiryService_Schema"';
-        var parameters = [envHeader, paramsRequest, '', _soapEnvNS];
+        var parameters = [envHeader.toString(), paramsRequest.toString(), '', _soapEnvNS.toString()];
         var request = buildBody(parameters, false);
         // MFP.Logger.warn("|drivers_and_vehicles_trafficAdapter_Tibco |fineManagementService | Request : " + request + "at " + new Date());
         //return {"REQ" : request}; 
@@ -1141,7 +1141,7 @@ function FFULookupInfoService(params, isEncryptResponse, encryptionPassword) {
     };
     var servicePath = '/wstraffic/services/FFULookupInfoService';
     var _soapEnvNS = soapEnvNS + 'xmlns:ae="http://ae:client.ws.ffu.traffic.services.internet.ae"';
-    var parameters = [envHeader, params, '', _soapEnvNS];
+    var parameters = [envHeader.toString(), params.toString(), '', _soapEnvNS.toString()];
     var request = buildBody(parameters, false);
 
     //Log("FFULookupInfoService request >> " + request);
@@ -1150,7 +1150,7 @@ function FFULookupInfoService(params, isEncryptResponse, encryptionPassword) {
 
 function SeasonalCardService(envHeader, params, httpHeaders, isEncryptResponse, encryptionPassword) {
     var _soapEnvNS = 'xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" ' + 'xmlns:ws="http://ws.pss.rta.ae"';
-    var parameters = [envHeader, params, "", _soapEnvNS];
+    var parameters = [envHeader.toString(), params.toString(), "", _soapEnvNS.toString()];
     var request = buildBody(parameters, false);
     //Log("request to be sent:\n"+request);
     var servicePath = '/wstraffic/services/SeasonalCardService';
@@ -1173,7 +1173,7 @@ function SeasonalParkingPermitTransaction(envHeader, params, httpHeaders, isEncr
         invocationData = {
             adapter: 'drivers_and_vehicles_PermitAdapter',
             procedure: 'getSeasonalApplicationIdByTransactionId',
-            parameters: [params]
+            parameters: [params.toString()]
         };
         var getApplicationIdResult = MFP.Server.invokeProcedure(invocationData);
 
@@ -1214,7 +1214,7 @@ function SeasonalParkingPermitTransaction(envHeader, params, httpHeaders, isEncr
                         "request": cardRequestCData
                     }
                 };
-                var parameters = [envHeadersPSS, serviceParams, "", soapEnvNSPSS];
+                var parameters = [envHeadersPSS.toString(), serviceParams.toString(), "", soapEnvNSPSS.toString()];
                 var request = buildBody(parameters, false);
                 //Log("add card request to be sent:\n"+request);
                 var servicePath = '/wstraffic/services/SeasonalCardService';
@@ -1257,7 +1257,7 @@ function SeasonalParkingPermitTransaction(envHeader, params, httpHeaders, isEncr
                                 "request": vehicleRequestCData
                             }
                         };
-                        parameters = [envHeadersPSS, serviceParams, "", soapEnvNSPSS];
+                        parameters = [envHeadersPSS.toString(), serviceParams.toString(), "", soapEnvNSPSS.toString()];
                         request = buildBody(parameters, false);
                         //Log("request to be sent:\n"+request);
                         servicePath = '/wstraffic/services/SeasonalCardService';
@@ -1367,7 +1367,7 @@ function SeasonalParkingPermitTransaction_DD(envHeader, params, httpHeaders, isE
                 };
                 var currentDate = new Date();
                 if (new Date(singleCardData.issueDate) > currentDate) {
-                    var parameters = [envHeadersPSS, serviceParams, "", soapEnvNSPSS];
+                    var parameters = [envHeadersPSS.toString(), serviceParams.toString(), "", soapEnvNSPSS.toString()];
                     var request = buildBody(parameters, false);
                     //Log("add card request to be sent:\n"+request);
                     var servicePath = '/wstraffic/services/SeasonalCardService';
@@ -1410,7 +1410,7 @@ function SeasonalParkingPermitTransaction_DD(envHeader, params, httpHeaders, isE
                                     "request": vehicleRequestCData
                                 }
                             };
-                            parameters = [envHeadersPSS, serviceParams, "", soapEnvNSPSS];
+                            parameters = [envHeadersPSS.toString(), serviceParams.toString(), "", soapEnvNSPSS.toString()];
                             request = buildBody(parameters, false);
                             //Log("request to be sent:\n"+request);
                             servicePath = '/wstraffic/services/SeasonalCardService';
@@ -1495,7 +1495,7 @@ function SeasonalParkingPermitTransaction_DD(envHeader, params, httpHeaders, isE
     var invocationData = {
         adapter: 'drivers_and_vehciles_utilitiesAdapter',
         procedure: 'deleteCredientails',
-        parameters: [responseReturned]
+        parameters: [responseReturned.toString()]
     };
     return MFP.Server.invokeProcedure(invocationData);
 }
@@ -1519,7 +1519,7 @@ function TransactionServiceService_operation(envHeader, params, httpHeaders, isE
             '</soapenv:Body>' +
             '</soapenv:Envelope>';
         var servicePath = '/wstraffic/services/TransactionService';
-        var parameters = [requestString];
+        var parameters = [requestString.toString()];
         var request = buildBody(parameters, true);
         result = invokeWebServiceString(request, servicePath, isEncryptResponse, encryptionPassword);
         try {
@@ -1545,7 +1545,7 @@ function TransactionServiceService_operation(envHeader, params, httpHeaders, isE
             '</soapenv:Body>' +
             '</soapenv:Envelope>';
         var servicePath = '/wstraffic/services/TransactionService';
-        var parameters = [requestString];
+        var parameters = [requestString.toString()];
         var request = buildBody(parameters, true);
         result = invokeWebServiceString(request, servicePath, isEncryptResponse, encryptionPassword);
         try {
@@ -1556,7 +1556,7 @@ function TransactionServiceService_operation(envHeader, params, httpHeaders, isE
     } else {
         var soapEnvNS = 'xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" ';
 
-        var parameters = [envHeader, params, 'xmlns:ws="http://ws.trs.rta.ae"', soapEnvNS];
+        var parameters = [envHeader.toString(), params.toString(), 'xmlns:ws="http://ws.trs.rta.ae"', soapEnvNS.toString()];
         var request = buildBody(parameters, false);
 
         //MFP.Logger.debug("request to be sent:\n"+request);
@@ -1584,7 +1584,7 @@ function TransactionServiceService_operation(envHeader, params, httpHeaders, isE
 function TransactionServiceService_operationStringRequest(request, isEncryptResponse, encryptionPassword) {
     //MFP.Logger.debug("request to be sent:\n"+request);
 
-    var parameters = [request];
+    var parameters = [request.toString()];
     var request = buildBody(parameters, true);
     if (request.indexOf("<createTransaction><setviceCode>124</setviceCode>") > 0)
         request = request.replace("<parameters>", "<parameters><parameter><name>permitPeriod</name><value>3</value></parameter>");
@@ -1621,7 +1621,7 @@ function createTransaction(innerXml, isEncryptResponse, encryptionPassword) {
         "</soapenv:Envelope>";
 
     var servicePath = '/wstraffic/services/TransactionService';
-    var parameters = [res];
+    var parameters = [res.toString()];
     var request = buildBody(parameters, true);
     var result = invokeWebServiceString(request, servicePath, isEncryptResponse, encryptionPassword);
 
@@ -1654,7 +1654,7 @@ function cancelTransaction(transactionId, cancelationReason, isEncryptResponse, 
         '</soapenv:Envelope>';
 
     var servicePath = '/wstraffic/services/TransactionService';
-    var parameters = [res];
+    var parameters = [res.toString()];
     var request = buildBody(parameters, true);
     var result = invokeWebServiceString(request, servicePath, isEncryptResponse, encryptionPassword);
     try {
@@ -1687,7 +1687,7 @@ function payAsCash(transactionid, isEncryptResponse, encryptionPassword) {
 
 
     var servicePath = '/wstraffic/services/TransactionService';
-    var parameters = [res];
+    var parameters = [res.toString()];
     var request = buildBody(parameters, true);
     var result = invokeWebServiceString(request, servicePath, isEncryptResponse, encryptionPassword);
 
@@ -1932,7 +1932,7 @@ function recertifySeasonalParkingServices(request, result, isEncryptResponse, en
                         "</soapenv:Body>" +
                         "</soapenv:Envelope>";
                     var servicePath = '/wstraffic/services/TransactionService';
-                    var parameters = [requestString];
+                    var parameters = [requestString.toString()];
                     var recertifyRequest = buildBody(parameters, true);
                     response = invokeWebServiceString(recertifyRequest, servicePath);
                     // Check that recertifyTransaction was performed successfully.
@@ -2001,7 +2001,7 @@ function lockEntity(transactionId, spTrn, spCode, serviceCode) {
         '</soapenv:Body>' +
         '</soapenv:Envelope>';
     var servicePath = '/wstraffic/services/LockTransactionForPaymentService';
-    var parameters = [res];
+    var parameters = [res.toString()];
     var request = buildBody(parameters, true);
     var result = invokeWebServiceString(request, servicePath);
     try {
@@ -2027,7 +2027,7 @@ function lockEntity(transactionId, spTrn, spCode, serviceCode) {
     var invocationData = {
         adapter: 'drivers_and_vehciles_utilitiesAdapter',
         procedure: 'deleteCredientails',
-        parameters: [responseReturned]
+        parameters: [responseReturned.toString()]
     };
     return MFP.Server.invokeProcedure(invocationData);
 }
@@ -2167,7 +2167,7 @@ function _logRequestResponse(refNum, adapter, SOAPAction, request, response, isD
         invocationLog = {
             adapter: 'drivers_and_vehciles_CustomDB',
             procedure: 'dbLogReq',
-            parameters: [refNum.toString(), adapter, SOAPAction, request]
+            parameters: [refNum.toString(), adapter.toString(), SOAPAction.toString(), request.toString()]
         };
     } else if (request == null && response != null) {
 

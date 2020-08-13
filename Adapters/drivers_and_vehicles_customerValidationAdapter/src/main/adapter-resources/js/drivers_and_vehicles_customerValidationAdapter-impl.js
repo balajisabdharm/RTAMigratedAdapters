@@ -21,7 +21,7 @@ function getUserApplicationService(params, isEncryptResponse, encryptionPassword
 	};
 	var servicePath = '/ws/services/GetUserApplicationService';
 	var _soapEnvNS = soapEnvNS+'xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:GetUserApplicationService"';
-	var parameters = [envHeader,params, "", _soapEnvNS];
+	var parameters = [envHeader.toString(),params.toString(), "", _soapEnvNS.toString()];
 	var request = buildBody(parameters, false);
 
 	//Log("GetUserApplicationService request >> " + request);
@@ -35,7 +35,7 @@ function confirmTrafficInfoService(params, isEncryptResponse, encryptionPassword
 	};
 	var servicePath='/ws/services/ConfirmTrafficInfoService';
 	var _soapEnvNS = soapEnvNS+ 'xmlns:ae="http://ae.gov.trf.inq.ws.ConfirmTrafficInfoService"';
-	var parameters = [envHeader, params, "", _soapEnvNS];
+	var parameters = [envHeader.toString(), params.toString(), "", _soapEnvNS.toString()];
 	var request = buildBody(parameters, false);
 
 	return invokeWebServiceWithCDATAFix(request, servicePath, null, isEncryptResponse, encryptionPassword);
@@ -50,7 +50,7 @@ function mobilityCMLOrganizationsService(params, isEncryptResponse, encryptionPa
 	};
 	var servicePath='/ws/services/MobilityCMLOrganizationsService';
 	var _soapEnvNS = soapEnvNS+ 'xmlns:etr="http://eTraffic.ws"';
-	var parameters = [envHeader, params, "", _soapEnvNS];
+	var parameters = [envHeader.toString(), params.toString(), "", _soapEnvNS.toString()];
 	var request = buildBody(parameters, false);
 
 	return invokeWebService(request, servicePath, null, isEncryptResponse, encryptionPassword);
@@ -58,7 +58,7 @@ function mobilityCMLOrganizationsService(params, isEncryptResponse, encryptionPa
 
 function customerService(request, isEncryptResponse, encryptionPassword) {
 	var servicePath= '/ws/services/CustomerService';
-	var parameters = [request];
+	var parameters = [request.toString()];
 	var request = buildBody(parameters, true);
 
 	//Log("CustomerService request >> " + request);
@@ -72,7 +72,7 @@ function mobilityPersonInfoService(params, isEncryptResponse, encryptionPassword
 	};
 	var servicePath= '/ws/services/MobilityPersonInfoService';
 	var _soapEnvNS = soapEnvNS+ 'xmlns:ae="http://ae.gov.trf.inq.ws.PersonDetailsService"';
-	var parameters = [envHeader, params,"",_soapEnvNS];
+	var parameters = [envHeader.toString(), params.toString(),"",_soapEnvNS.toString()];
 	var request = buildBody(parameters, false);
 
 	//Log("MobilityPersonInfoService request >> " + request);
@@ -99,7 +99,7 @@ function viewPersonPictureService(params, isEncryptResponse, encryptionPassword)
 	};
 	var servicePath='/ws/services/ViewPersonPictureService';
 	var _soapEnvNS = soapEnvNS+'xmlns:impl="http://ae.gov.trf.inq.ws.ViewPersonPictureService"';
-	var parameters = [envHeader, params, "", _soapEnvNS];
+	var parameters = [envHeader.toString(), params.toString(), "", _soapEnvNS.toString()];
 	var request = buildBody(parameters, false);
 	var headers={"SOAPAction":"impl"};
 
@@ -114,7 +114,7 @@ function permitsService(params, isEncryptResponse, encryptionPassword) {
 	};
 	var servicePath = '/ws/services/PermitsService';
 	var _soapEnvNS = soapEnvNS+'xmlns:urn="urn:PermitsService"';
-	var parameters = [envHeader, params, "", _soapEnvNS];
+	var parameters = [envHeader.toString(), params.toString(), "", _soapEnvNS.toString()];
 	var request = buildBody(parameters, false);
 
 	//Log("PermitsService request >> " + request);
@@ -126,14 +126,14 @@ function getMyApplicationPendingRequestsOrReferences(params, isEncryptResponse, 
 			"urn:password" : password
 	};
 	var soapEnvNS = 'xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" '+'xmlns:urn="urn:GetUserApplicationService"';
-	var parameters = [envHeader, params, "", soapEnvNS];
+	var parameters = [envHeader.toString(), params.toString(), "", soapEnvNS.toString()];
 	var request = buildBody(parameters, false);
 	//MFP.Logger.debug("request to be sent:\n"+request);
 	var servicePath='/ws/services/GetUserApplicationService';
 	return invokeWebService(request,servicePath, null, isEncryptResponse, encryptionPassword);
 }
 function getMyApplicationPendingRequestsOrReferencesByXml(requestParams, isEncryptResponse, encryptionPassword){
-	var parameters = [requestParams];
+	var parameters = [requestParams.toString()];
 	var request = buildBody(parameters, true);
 	//MFP.Logger.debug("request to be sent:\n"+request);
 	var servicePath='/ws/services/GetUserApplicationService';
@@ -143,7 +143,7 @@ function savePhoto(params, isEncryptResponse, encryptionPassword) {
 	invocationData = {
 			adapter : 'drivers_and_vehicles_trafficAdapter',
 			procedure : 'savePhoto',
-			parameters : [params, isEncryptResponse, encryptionPassword]
+			parameters : [params.toString(), isEncryptResponse.toString(), encryptionPassword.toString()]
 	};
 	return MFP.Server.invokeProcedure(invocationData);
 }
@@ -157,7 +157,7 @@ function documentValidation(params, isEncryptResponse, encryptionPassword){
 	};
 	var _soapEnvNS = soapEnvNS+ 'xmlns:rta="rta:DocumentValidationService"';
 
-	var parameters = [envHeader, params, "", _soapEnvNS];
+	var parameters = [envHeader.toString(), params.toString(), "", _soapEnvNS.toString()];
 	var request = buildBody(parameters, false);
 	//MFP.Logger.warn("request to be sent:\n"+request);
 	var servicePath='/ws/services/DocumentValidationService';
