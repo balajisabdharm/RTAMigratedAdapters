@@ -356,7 +356,7 @@ function invokeWebServiceString(request, servicePath, SOAPAction, isEncryptRespo
     
    // MFP.Logger.info("|drivers_and_vehicles_SalikLookupAdapter ------------->>> | "+ servicePath +"  | Request : " + request );
     
-      MFP.Logger.info("|drivers_and_vehicles_SalikLookupAdapter ------------isEncryptResponse->>> | "+ isEncryptResponse +"  | encryptionPassword : " + encryptionPassword );
+      MFP.Logger.info("|drivers_and_vehicles_SalikLookupAdapter ------------isEncryptResponse->>>>>>>>>>> | "+ isEncryptResponse +"  | encryptionPassword : " + encryptionPassword );
 
     // Log DB Log In DB
         /*try {
@@ -371,12 +371,12 @@ function invokeWebServiceString(request, servicePath, SOAPAction, isEncryptRespo
         headers : {
             "SOAPAction" : SOAPAction
         },
-		returnedContentType : 'xml',
-        returnedContentEncoding: 'UTF8',
+		returnedContentType : 'json',
+       // returnedContentEncoding: 'UTF8',
         path : servicePath,
         body : {
             //content : JSON.parse(request),
-            content : request.toString(),
+           // content : request.toString(),
             contentType : 'text/xml; charset=utf-8'
         }
     };
