@@ -233,6 +233,11 @@ function submitAuthentication(authorizationCode, appId, appRedirectUri) {
 			var userProfile = getUserProfile(appId, _redirectUri, authorizationCode);
 			var _RTAUserProfile = userProfile.RTAUserProfile;
 			var _UAEPassUserProfile = userProfile.UAEPassUserProfile;
+			
+			adapterLogger("submitAuthentication _RTAUserProfile", "info", "authenticationUAEPass", JSON.stringify(_RTAUserProfile));
+			adapterLogger("submitAuthentication _UAEPassUserProfile", "info", "authenticationUAEPass", JSON.stringify(_UAEPassUserProfile));
+			
+			
 			if (_UAEPassUserProfile != null && _RTAUserProfile != null) {
 
 				var user_id = _RTAUserProfile.userId || "";
@@ -240,12 +245,14 @@ function submitAuthentication(authorizationCode, appId, appRedirectUri) {
 				var title_ar = _RTAUserProfile.title ? _RTAUserProfile.title.titleAr : "";
 				var title_en = _RTAUserProfile.title ? _RTAUserProfile.title.titleEn : "";
 				var first_name_ar = _RTAUserProfile.firstName || "";
+				adapterLogger("submitAuthentication title_en", "info", "authenticationUAEPass",title_en);
 				var first_name_en = _RTAUserProfile.firstName || "";
 				var middlename_ar = _RTAUserProfile.middleName || "";
 				var middlename_en = _RTAUserProfile.middleName || "";
 				var last_name_ar = _RTAUserProfile.lastName || "";
 				var last_name_en = _RTAUserProfile.lastName || "";
 				var date_of_birth = _UAEPassUserProfile.dob ? new Date(_UAEPassUserProfile.dob) : "";
+				adapterLogger("submitAuthentication _UAEPassUserProfile.dob", "info", "authenticationUAEPass", _UAEPassUserProfile.dob);
 				var id_number = _UAEPassUserProfile.idn || "";
 				var nationality_ar = _RTAUserProfile.nationality ? _RTAUserProfile.nationality.nationalityAr : "";
 				var nationality_en = _RTAUserProfile.nationality ? _RTAUserProfile.nationality.nationalityEn : "";
