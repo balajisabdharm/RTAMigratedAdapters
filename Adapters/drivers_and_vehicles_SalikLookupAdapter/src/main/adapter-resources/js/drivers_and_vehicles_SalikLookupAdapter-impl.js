@@ -376,10 +376,18 @@ function invokeWebServiceString(request, servicePath, SOAPAction, isEncryptRespo
         body : {
             content : JSON.parse(request),
             contentType : 'text/xml; charset=utf-8'
-        }
+        },
+        transformation : {
+            type : 'xslFile',
+            xslFile : 'removeCDATA.xsl'
+          }
     };
 
+
+
+
     var webServiceResult = MFP.Server.invokeHttp(input);
+    
     
     //Code changed by Amit Goyal ...response is returned without DeleteCredentials and encryptData functionality
     
