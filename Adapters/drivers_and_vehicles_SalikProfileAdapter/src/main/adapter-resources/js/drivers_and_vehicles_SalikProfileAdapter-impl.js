@@ -106,7 +106,7 @@ function invokeWebServiceString(request, servicePath, SOAPAction, isEncryptRespo
     var invocationData = {
         adapter: 'drivers_and_vehciles_utilitiesAdapter',
         procedure: 'deleteCredientails',
-        parameters: [_webServiceResult]
+        parameters: [_webServiceResult.toString()]
     };
 
     webServiceResult = MFP.Server.invokeProcedure(invocationData);
@@ -167,7 +167,7 @@ function getProfileService(requestParams, isEncryptResponse, encryptionPassword)
             soapEnvEnd;
         var servicePath = '/salikProfileService';
         var SOAPAction = 'GetProfileServiceRequest';
-        var requestObj = buildBody([request], true);
+        var requestObj = buildBody([request.toString()], true);
 
         return invokeWebServiceString(requestObj, servicePath, SOAPAction, isEncryptResponse, encryptionPassword);
     }
@@ -203,7 +203,7 @@ function addContactNumber(requestParams, isEncryptResponse, encryptionPassword) 
 
         var servicePath = '/salikProfileService';
         var SOAPAction = 'AddContactNumberRequest';
-        var requestObj = buildBody([request], true);
+        var requestObj = buildBody([request.toString()], true);
 
         return invokeWebServiceString(requestObj, servicePath, SOAPAction, isEncryptResponse, encryptionPassword);
     }
@@ -243,7 +243,7 @@ function addContactNumberDefault(requestParams, isEncryptResponse, encryptionPas
 
         var servicePath = '/salikProfileService';
         var SOAPAction = 'AddContactNumberRequest';
-        var requestObj = buildBody([request], true);
+        var requestObj = buildBody([request.toString()], true);
 
         return invokeWebServiceString(requestObj, servicePath, SOAPAction, isEncryptResponse, encryptionPassword);
     }
@@ -289,7 +289,7 @@ function updateContactNumber(requestParams, isEncryptResponse, encryptionPasswor
 
         var servicePath = '/salikProfileService';
         var SOAPAction = 'ChangeContactNumberRequest';
-        var requestObj = buildBody([request], true);
+        var requestObj = buildBody([request.toString()], true);
 
         return invokeWebServiceString(requestObj, servicePath, SOAPAction, isEncryptResponse, encryptionPassword);
     }
@@ -338,7 +338,7 @@ function updateContactNumberDefault(requestParams, isEncryptResponse, encryption
 
         var servicePath = '/salikProfileService';
         var SOAPAction = 'ChangeContactNumberRequest';
-        var requestObj = buildBody([request], true);
+        var requestObj = buildBody([request.toString()], true);
 
         return invokeWebServiceString(requestObj, servicePath, SOAPAction, isEncryptResponse, encryptionPassword);
     }
@@ -365,7 +365,7 @@ function deleteContactNumber(requestParams, isEncryptResponse, encryptionPasswor
 
         var servicePath = '/salikProfileService';
         var SOAPAction = 'DeleteContactNumberRequest';
-        var requestObj = buildBody([request], true);
+        var requestObj = buildBody([request.toString()], true);
 
         return invokeWebServiceString(requestObj, servicePath, SOAPAction, isEncryptResponse, encryptionPassword);
     }
@@ -393,7 +393,7 @@ function getFinancialSummary(requestParams, isEncryptResponse, encryptionPasswor
 
         var servicePath = '/salikProfileService';
         var SOAPAction = 'FinancialSummaryRequest';
-        var requestObj = buildBody([request], true);
+        var requestObj = buildBody([request.toString()], true);
 
         return invokeWebServiceString(requestObj, servicePath, SOAPAction, isEncryptResponse, encryptionPassword);
     }
@@ -424,7 +424,7 @@ function syncWithRTAProfile(requestParams, isEncryptResponse, encryptionPassword
 
         var servicePath = '/salikProfileService';
         var SOAPAction = 'FinancialSummaryRequest';
-        var requestObj = buildBody([request], true);
+        var requestObj = buildBody([request.toString()], true);
 
         return invokeWebServiceString(requestObj, servicePath, SOAPAction, isEncryptResponse, encryptionPassword);
     }
@@ -502,7 +502,7 @@ function importRechargeProfiles(requestParams, isEncryptResponse, encryptionPass
 
         var servicePath = '/salikProfileService';
         var SOAPAction = 'InsertCustomerProfileRequest';
-        var requestObj = buildBody([request], true);
+        var requestObj = buildBody([request.toString()], true);
 
         return invokeWebServiceString(requestObj, servicePath, SOAPAction, isEncryptResponse, encryptionPassword);
 
@@ -543,7 +543,7 @@ function getImportedRechargeProfiles(requestParams, isEncryptResponse, encryptio
 
         var servicePath = '/salikProfileService';
         var SOAPAction = 'GetCustomerProfileByProfileIDListRequest';
-        var requestObj = buildBody([request], true);
+        var requestObj = buildBody([request.toString()], true);
 
         return invokeWebServiceString(requestObj, servicePath, SOAPAction, isEncryptResponse, encryptionPassword);
     }
@@ -629,7 +629,7 @@ function updateRechargeProfiles(requestParams, isEncryptResponse, encryptionPass
 
         var servicePath = '/salikProfileService';
         var SOAPAction = 'UpdateCustomerProfileRequest';
-        var requestObj = buildBody([request], true);
+        var requestObj = buildBody([request.toString()], true);
 
         return invokeWebServiceString(requestObj, servicePath, SOAPAction, isEncryptResponse, encryptionPassword);
 
@@ -656,7 +656,7 @@ function getAllRechargeProfiles(requestParams, isEncryptResponse, encryptionPass
 
         var servicePath = '/salikProfileService';
         var SOAPAction = 'GetCustomerProfileRequest';
-        var requestObj = buildBody([request], true);
+        var requestObj = buildBody([request.toString()], true);
 
         return invokeWebServiceString(requestObj, servicePath, SOAPAction, isEncryptResponse, encryptionPassword);
     }
@@ -689,7 +689,7 @@ function getBalanceEnquirybyAccountAndPin(requestParams, isEncryptResponse, encr
 
         var servicePath = '/salikProfileService';
         var SOAPAction = 'BalanceEnquirybyAccountAndPinRequest';
-        var requestObj = buildBody([request], true);
+        var requestObj = buildBody([request.toString()], true);
 
         return invokeWebServiceString(requestObj, servicePath, SOAPAction, isEncryptResponse, encryptionPassword);
     }
@@ -715,7 +715,7 @@ function _logRequestResponse(refNum, adapter, SOAPAction, request, response, isD
         invocationLog = {
             adapter: 'drivers_and_vehciles_CustomDB',
             procedure: 'dbLogReq',
-            parameters: [refNum.toString(), adapter, SOAPAction, request]
+            parameters: [refNum.toString(), adapter.toString(), SOAPAction.toString(), request.toString()]
         };
     } else if (request == null && response != null) {
 
@@ -734,7 +734,7 @@ function _logRequestResponse(refNum, adapter, SOAPAction, request, response, isD
         invocationLog = {
             adapter: 'drivers_and_vehciles_CustomDB',
             procedure: 'dbLogRes',
-            parameters: [refNum.toString(), response]
+            parameters: [refNum.toString(), response.toString()]
         };
     }
 

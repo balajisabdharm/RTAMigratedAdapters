@@ -104,7 +104,7 @@ function SearchDisputeTest(DisputeNumber, PageId, PageSize, isEncryptResponse, e
 
     var SOAPAction = "SearchDispute";
     var servicePath = '/salikDisputesAndViolationService';
-    var requestObj = buildBody([request], true);
+    var requestObj = buildBody([request.toString()], true);
 
 
     //return invokeWebServiceString(requestObj, servicePath, SOAPAction, isEncryptResponse, encryptionPassword);
@@ -185,7 +185,7 @@ function SearchDisputeTest(DisputeNumber, PageId, PageSize, isEncryptResponse, e
     var invocationData = {
         adapter: 'drivers_and_vehciles_utilitiesAdapter',
         procedure: 'deleteCredientails',
-        parameters: [webServiceResult]
+        parameters: [webServiceResult.toString()]
     };
     return MFP.Server.invokeProcedure(invocationData);
 
@@ -233,7 +233,7 @@ function SearchDispute(DisputeNumber, PageId, PageSize, lang, isEncryptResponse,
 
     var SOAPAction = "SearchDispute";
     var servicePath = '/salikDisputesAndViolationService';
-    var requestObj = buildBody([request], true);
+    var requestObj = buildBody([request.toString()], true);
 
 
     return invokeWebServiceString(requestObj, servicePath, SOAPAction, isEncryptResponse, encryptionPassword);
@@ -284,7 +284,7 @@ function ViewOrSearchViolationsTest(PlateSourceId, PlateCategoryId, PlateNumber,
 
     var SOAPAction = "ViewOrSearchViolationsPreLogin";
     var servicePath = '/salikDisputesAndViolationService';
-    var requestObj = buildBody([request], true);
+    var requestObj = buildBody([request.toString()], true);
 
 
     //return invokeWebServiceString(requestObj, servicePath, SOAPAction, isEncryptResponse, encryptionPassword);
@@ -486,7 +486,7 @@ function ViewOrSearchViolationsTest(PlateSourceId, PlateCategoryId, PlateNumber,
     var invocationData = {
         adapter: 'drivers_and_vehciles_utilitiesAdapter',
         procedure: 'deleteCredientails',
-        parameters: [webServiceResult]
+        parameters: [webServiceResult.toString()]
     };
     return MFP.Server.invokeProcedure(invocationData);
 
@@ -572,7 +572,7 @@ function ViewOrSearchViolations(PlateSourceId, PlateCategoryId, PlateNumber, Pla
 
     var SOAPAction = "ViewOrSearchViolationsPreLogin";
     var servicePath = '/salikDisputesAndViolationService';
-    var requestObj = buildBody([request], true);
+    var requestObj = buildBody([request.toString()], true);
 
 
     return invokeWebServiceString(requestObj, servicePath, SOAPAction, isEncryptResponse, encryptionPassword);
@@ -641,7 +641,7 @@ function ValidateDisputeInformationTest(DisputeInfo, isEncryptResponse, encrypti
 
     var SOAPAction = "ValidateDisputeInformation";
     var servicePath = '/salikDisputesAndViolationService';
-    var requestObj = buildBody([request], true);
+    var requestObj = buildBody([request.toString()], true);
 
 
     //return invokeWebServiceString(requestObj, servicePath, SOAPAction, isEncryptResponse, encryptionPassword);
@@ -674,7 +674,7 @@ function ValidateDisputeInformationTest(DisputeInfo, isEncryptResponse, encrypti
     var invocationData = {
         adapter: 'drivers_and_vehciles_utilitiesAdapter',
         procedure: 'deleteCredientails',
-        parameters: [webServiceResult]
+        parameters: [webServiceResult.toString()]
     };
     return MFP.Server.invokeProcedure(invocationData);
 
@@ -758,7 +758,7 @@ function ValidateDisputeInformation(DisputeInfo, isEncryptResponse, encryptionPa
 
     var SOAPAction = "ValidateDisputeInformation";
     var servicePath = '/salikDisputesAndViolationService';
-    var requestObj = buildBody([request], true);
+    var requestObj = buildBody([request.toString()], true);
 
 
     return invokeWebServiceString(requestObj, servicePath, SOAPAction, isEncryptResponse, encryptionPassword);
@@ -823,7 +823,7 @@ function ValidateDisputeReasonTest(DisputeViolationList, isEncryptResponse, encr
 
     var SOAPAction = "ValidateDisputeReasonRequest";
     var servicePath = '/salikDisputesAndViolationService';
-    var requestObj = buildBody([request], true);
+    var requestObj = buildBody([request.toString()], true);
 
 
     //return invokeWebServiceString(requestObj, servicePath, SOAPAction, isEncryptResponse, encryptionPassword);
@@ -859,7 +859,7 @@ function ValidateDisputeReasonTest(DisputeViolationList, isEncryptResponse, encr
     var invocationData = {
         adapter: 'drivers_and_vehciles_utilitiesAdapter',
         procedure: 'deleteCredientails',
-        parameters: [webServiceResult]
+        parameters: [webServiceResult.toString()]
     };
     return MFP.Server.invokeProcedure(invocationData);
 
@@ -927,7 +927,7 @@ function ValidateDisputeReason(DisputeViolationList, isEncryptResponse, encrypti
 
     var SOAPAction = "ValidateDisputeReasonRequest";
     var servicePath = '/salikDisputesAndViolationService';
-    var requestObj = buildBody([request], true);
+    var requestObj = buildBody([request.toString()], true);
 
 
     return invokeWebServiceString(requestObj, servicePath, SOAPAction, isEncryptResponse, encryptionPassword);
@@ -995,7 +995,7 @@ function CreateDisputeTest(DisputeDetails, DisputeViolationList, isEncryptRespon
 
     var SOAPAction = "CreateDispute";
     var servicePath = '/salikDisputesAndViolationService';
-    var requestObj = buildBody([request], true);
+    var requestObj = buildBody([request.toString()], true);
 
 
     //return invokeWebServiceString(requestObj, servicePath, SOAPAction, isEncryptResponse, encryptionPassword);
@@ -1028,7 +1028,7 @@ function CreateDisputeTest(DisputeDetails, DisputeViolationList, isEncryptRespon
     var invocationData = {
         adapter: 'drivers_and_vehciles_utilitiesAdapter',
         procedure: 'deleteCredientails',
-        parameters: [webServiceResult]
+        parameters: [webServiceResult.toString()]
     };
     return MFP.Server.invokeProcedure(invocationData);
 
@@ -1195,7 +1195,7 @@ function CreateDispute(DisputeInfo, DisputeViolationList, isEncryptResponse, enc
 
     var SOAPAction = "CreateDispute";
     var servicePath = '/salikDisputesAndViolationService';
-    var requestObj = buildBody([request], true);
+    var requestObj = buildBody([request.toString()], true);
 
 
     return invokeWebServiceString(requestObj, servicePath, SOAPAction, isEncryptResponse, encryptionPassword);
@@ -1233,7 +1233,7 @@ function invokeWebServiceString(request, servicePath, SOAPAction, isEncryptRespo
     var invocationData = {
         adapter: 'drivers_and_vehciles_utilitiesAdapter',
         procedure: 'deleteCredientails',
-        parameters: [_webServiceResult]
+        parameters: [_webServiceResult.toString()]
     };
 
     webServiceResult = MFP.Server.invokeProcedure(invocationData);
@@ -1349,7 +1349,7 @@ function invokeWebService(body, servicePath, headers, isEncryptResponse, encrypt
     var invocationData = {
         adapter: 'drivers_and_vehciles_utilitiesAdapter',
         procedure: 'deleteCredientails',
-        parameters: [webServiceResult]
+        parameters: [webServiceResult.toString()]
     };
     return MFP.Server.invokeProcedure(invocationData);
 }
@@ -1421,7 +1421,7 @@ function getAllViolations(requestParams, isEncryptResponse, encryptionPassword) 
 
         var servicePath = '/salikDisputesAndViolationService';
         var SOAPAction = 'ViewOrSearchViolationsPostLogin';
-        var requestObj = buildBody([request], true);
+        var requestObj = buildBody([request.toString()], true);
 
         return invokeWebServiceString(requestObj, servicePath, SOAPAction, isEncryptResponse, encryptionPassword);
     }
@@ -1485,7 +1485,7 @@ function CreateDisputePL(requestParams, isEncryptResponse, encryptionPassword) {
             
             var servicePath = '/salikDisputesAndViolationService';
             var SOAPAction = 'CreateDisputePL';
-            var requestObj = buildBody([request], true);
+            var requestObj = buildBody([request.toString()], true);
 
             return invokeWebServiceString(requestObj, servicePath, SOAPAction, isEncryptResponse, encryptionPassword);
         }
@@ -1515,7 +1515,7 @@ function _logRequestResponse(refNum, adapter, SOAPAction, request, response, isD
         invocationLog = {
             adapter: 'drivers_and_vehciles_CustomDB',
             procedure: 'dbLogReq',
-            parameters: [refNum.toString(), adapter, SOAPAction, request]
+            parameters: [refNum.toString(), adapter.toString(), SOAPAction.toString(), request.toString()]
         };
     } else if (request == null && response != null) {
 
@@ -1534,7 +1534,7 @@ function _logRequestResponse(refNum, adapter, SOAPAction, request, response, isD
         invocationLog = {
             adapter: 'drivers_and_vehciles_CustomDB',
             procedure: 'dbLogRes',
-            parameters: [refNum.toString(), response]
+            parameters: [refNum.toString(), response.toString()]
         };
     }
 
