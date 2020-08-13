@@ -162,7 +162,7 @@ function getUserProfile(appId, redirectUri, authorizationCode) {
 		adapterLogger("getUserProfile", "info", "Adapter Input", JSON.stringify([appId, redirectUri, authorizationCode]));
 
 		if (appId && redirectUri && authorizationCode) {
-
+                         // update get user profile 
 			var request = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:uaep="http://www.rta.ae/schemas/UAEPassIntegrationService/UAEPassIntegrationSchema.xsd"> <soapenv:Header> <wsse:Security soapenv:mustUnderstand="1" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"> <wsse:UsernameToken wsu:Id="UsernameToken-1"> <wsse:Username>' + MFP.Server.getPropertyValue("tokens.tipcoService.username") + '</wsse:Username> <wsse:Password Type="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText">' + MFP.Server.getPropertyValue("tokens.tipcoService.password") + '</wsse:Password> <wsse:Nonce EncodingType="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-soap-message-security-1.0#Base64Binary">+RYFlUgxngTpN8ke3apUQQ==</wsse:Nonce> <wsu:Created>2019-02-05T08:11:44.077Z</wsu:Created> </wsse:UsernameToken> </wsse:Security> </soapenv:Header> <soapenv:Body> <uaep:getUserProfileRequest> <uaep:appId>DNVAPP</uaep:appId> <uaep:redirectUri>' + redirectUri + '</uaep:redirectUri> <uaep:authorizationCode>' + authorizationCode + '</uaep:authorizationCode> </uaep:getUserProfileRequest> </soapenv:Body> </soapenv:Envelope>';
 			adapterLogger("getUserProfile", "info", "Soap Request", request);
 			var response = invokeWebService(request);
