@@ -130,7 +130,7 @@ function onLogout(headers, errorMessage) {
 
 
 function getUserProfile(appId, redirectUri, authorizationCode) {
-<<<<<<< HEAD
+
     try {
         // Logging Adapter Inputs
         adapterLogger("getUserProfile", "info", "Adapter Input", JSON.stringify([appId, redirectUri, authorizationCode]));
