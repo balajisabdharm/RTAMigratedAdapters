@@ -227,7 +227,7 @@ function submitAuthentication(authorizationCode, appId, appRedirectUri) {
                 name: 'authenticationUAEPASS',
                 authRequired: true,
                 failure: {
-                failure: "Invalid Code,
+                failure: "Invalid Code",
                 errorCode: "02"
                     }
                 };
