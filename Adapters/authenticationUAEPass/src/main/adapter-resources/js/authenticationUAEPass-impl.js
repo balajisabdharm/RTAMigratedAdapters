@@ -11,9 +11,8 @@ var adapterName = "authenticationUAEPass";
 var WSDL_Path = "/UAEPassIntegrationService";
 var adapterRealm ="UAEPassAdapterAuthRealm";
 //var redirectUri = "https://mfp-staging.rta.ae:6443/UAEPassCallback/uaePassRedirect";
-var redirectUri = "https://mfp-staging.rta.ae:6443/UAEPassCallback/uaePassRedirect";
-//producation url
-//var redirectUri = "https://m.rta.ae/UAEPassCallback/uaePassRedirect";
+//var redirectUri = "https://mfp-staging.rta.ae:6443/UAEPassCallback/uaePassRedirect";
+var redirectUri = "https://m.rta.ae/UAEPassCallback/uaePassRedirect";
 
 //private static final String UAE_PASS_CLIENT_ID = <<INSERT_CLIENT_ID_HERE>>;
 //private static final String UAE_PASS_CLIENT_SECRET = <<INSERT_CLIENT_SECRET_HERE>>;
@@ -130,7 +129,6 @@ function onLogout(headers, errorMessage) {
 
 
 function getUserProfile(appId, redirectUri, authorizationCode) {
-
     try {
         // Logging Adapter Inputs
         adapterLogger("getUserProfile", "info", "Adapter Input", JSON.stringify([appId, redirectUri, authorizationCode]));
@@ -237,190 +235,6 @@ function submitAuthentication(authorizationCode, appId, appRedirectUri) {
         return handleError();
     }
 }
-//=======
-	try {
-		// Logging Adapter Inputs
-		adapterLogger("getUserProfile", "info", "Adapter Input", JSON.stringify([appId, redirectUri, authorizationCode]));
-
-		if (appId && redirectUri && authorizationCode) {
-                         // update get user profile 
-			var request = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:uaep="http://www.rta.ae/schemas/UAEPassIntegrationService/UAEPassIntegrationSchema.xsd"> <soapenv:Header> <wsse:Security soapenv:mustUnderstand="1" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"> <wsse:UsernameToken wsu:Id="UsernameToken-1"> <wsse:Username>' + MFP.Server.getPropertyValue("tokens.tipcoService.username") + '</wsse:Username> <wsse:Password Type="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText">' + MFP.Server.getPropertyValue("tokens.tipcoService.password") + '</wsse:Password> <wsse:Nonce EncodingType="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-soap-message-security-1.0#Base64Binary">+RYFlUgxngTpN8ke3apUQQ==</wsse:Nonce> <wsu:Created>2019-02-05T08:11:44.077Z</wsu:Created> </wsse:UsernameToken> </wsse:Security> </soapenv:Header> <soapenv:Body> <uaep:getUserProfileRequest> <uaep:appId>DNVAPP</uaep:appId> <uaep:redirectUri>' + redirectUri + '</uaep:redirectUri> <uaep:authorizationCode>' + authorizationCode + '</uaep:authorizationCode> </uaep:getUserProfileRequest> </soapenv:Body> </soapenv:Envelope>';
-			adapterLogger("getUserProfile", "info", "Soap Request", request);
-			var response = invokeWebService(request);
-			adapterLogger("getUserProfile", "info", "Soap Response", JSON.stringify(response));
-			var RTAUserProfile = null;
-			var UAEPassUserProfile = null;
-			var internalResponse;
-			if (response && response.isSuccessful && response.statusCode == 200) {
-
-				if (response.Envelope && response.Envelope.Body && response.Envelope.Body.getUserProfileResponse) {
-
-					var getUserProfileResponse = response.Envelope.Body.getUserProfileResponse;
-					if (getUserProfileResponse && getUserProfileResponse.UAEPassUserProfile) {
-						UAEPassUserProfile = getUserProfileResponse.UAEPassUserProfile;
-					}
-					if (getUserProfileResponse && getUserProfileResponse.RTAUserProfile) {
-						RTAUserProfile = getUserProfileResponse.RTAUserProfile;
-					}
-					internalResponse = {
-						UAEPassUserProfile: UAEPassUserProfile,
-						RTAUserProfile: RTAUserProfile
-					};
-					adapterLogger("getUserProfile", "info", "Procudure Response", JSON.stringify(internalResponse));
-					return internalResponse;
-				}
-
-				//TODO No Profile
-				internalResponse = {
-					UAEPassUserProfile: null,
-					RTAUserProfile: null
-				};
-				adapterLogger("getUserProfile", "info", "Procudure Response", JSON.stringify(internalResponse));
-				return internalResponse;
-
-			}
-			else {
-				// adapterLogger("getUserProfile","error", "Status Code is not 200");
-				response = handleError("Status Code is not 200", 500);
-				adapterLogger("getUserProfile", "error", "Status Code is not 200", JSON.stringify(response));
-				return response;
-			}
-		}
-		else {
-			return handleError("Invalid Parameters", 406);
-		}
-	}
-	catch (error) {
-		adapterLogger("getUserProfile", "error", "Exception", toString(error));
-		return handleError();
-	}
-}
-function submitAuthentication(authorizationCode, appId, appRedirectUri) {
-	try {
-
-		adapterLogger("submitAuthentication", "info", "Adapter Input", JSON.stringify([authorizationCode, appId, appRedirectUri]));
-
-		if (!authorizationCode || !appId) {
-			return handleError("Invalid Parameters", 406);
-		}
-
-		var _redirectUri = redirectUri;
-		if (appRedirectUri) {
-			_redirectUri = appRedirectUri;
-		}
-
-		onLogout();
-		if (authorizationCode) {
-			var userProfile = getUserProfile(appId, _redirectUri, authorizationCode);
-			var _RTAUserProfile = userProfile.RTAUserProfile;
-			var _UAEPassUserProfile = userProfile.UAEPassUserProfile;
-			
-			adapterLogger("submitAuthentication _RTAUserProfile", "info", "authenticationUAEPass", JSON.stringify(_RTAUserProfile));
-			adapterLogger("submitAuthentication _UAEPassUserProfile", "info", "authenticationUAEPass", JSON.stringify(_UAEPassUserProfile));
-			
-			
-			if (_UAEPassUserProfile != null && _RTAUserProfile != null) {
-
-				var user_id = _RTAUserProfile.userId || "";
-				var cn = _RTAUserProfile.userId || "";
-				var title_ar = _RTAUserProfile.title ? _RTAUserProfile.title.titleAr : "";
-				var title_en = _RTAUserProfile.title ? _RTAUserProfile.title.titleEn : "";
-				var first_name_ar = _RTAUserProfile.firstName || "";
-				adapterLogger("submitAuthentication title_en", "info", "authenticationUAEPass",title_en);
-				var first_name_en = _RTAUserProfile.firstName || "";
-				var middlename_ar = _RTAUserProfile.middleName || "";
-				var middlename_en = _RTAUserProfile.middleName || "";
-				var last_name_ar = _RTAUserProfile.lastName || "";
-				var last_name_en = _RTAUserProfile.lastName || "";
-				var date_of_birth = _UAEPassUserProfile.dob ? new Date(_UAEPassUserProfile.dob) : "";
-				adapterLogger("submitAuthentication _UAEPassUserProfile.dob", "info", "authenticationUAEPass", _UAEPassUserProfile.dob);
-				var id_number = _UAEPassUserProfile.idn || "";
-				var nationality_ar = _RTAUserProfile.nationality ? _RTAUserProfile.nationality.nationalityAr : "";
-				var nationality_en = _RTAUserProfile.nationality ? _RTAUserProfile.nationality.nationalityEn : "";
-				var mobile = _RTAUserProfile.mobileNo || "";
-				var mail = _RTAUserProfile.email || "";
-				var preferred_language = _RTAUserProfile.prefLanguage || "";
-				var preferred_communication = _RTAUserProfile.prefComm || "";
-				var portal_id = _RTAUserProfile.prefComm || "";
-				var password_changed_flag = 0;
-				var isEmailVerified = _RTAUserProfile.isEmailVerified || "true";
-				var isMobileVerified = _RTAUserProfile.isMobileVerified || "false";
-				var isEmiratesIdVerified = _RTAUserProfile.isEmiratesIdVerified || "false";
-				var title_id = _RTAUserProfile.title ? _RTAUserProfile.title.titleID : "";
-				var nationality_id = _RTAUserProfile.nationality ? _RTAUserProfile.nationality.nationalityID : "";
-				var user_type = _RTAUserProfile.userType || "";
-				var trafficNo = _RTAUserProfile.trafficNo || "";
-				var _serviceRelatedInfo = null;
-				var finalResponse = null;
-				adapterLogger("submitAuthentication", "info", "User Id : ", user_id);
-				var identity = {
-					userId: user_id
-				};
-				//WL.Server.setActiveUser("masterAuthRealm", identity);
-				
-				var trialsSetUserInfo = 5;
-				while (trialsSetUserInfo > 0) {
-					var invocationData = {
-						adapter: 'userProfile',
-						procedure: 'setUserInfo',
-						parameters: [user_id, cn, title_ar, title_en, first_name_ar, first_name_en, middlename_ar, middlename_en, last_name_ar, last_name_en, date_of_birth, id_number, nationality_ar,
-							nationality_en, mobile, mail, preferred_language, preferred_communication, portal_id, password_changed_flag, isEmailVerified, isMobileVerified, isEmiratesIdVerified,
-							title_id, nationality_id, user_type, trafficNo]
-					};
-					adapterLogger("submitAuthentication |setUserInfo", "info", "Request", JSON.stringify(invocationData));
-					var shellDatabaseResponse = MFP.Server.invokeProcedure(invocationData);
-					adapterLogger("submitAuthentication |setUserInfo", "info", "Response", JSON.stringify(shellDatabaseResponse));
-					// setUserIdentity(user_id);
-					if (shellDatabaseResponse && shellDatabaseResponse.isSuccessful) {
-						trialsSetUserInfo = 0;
-
-						var trialsGetUserProfile = 5;
-						while (trialsGetUserProfile > 0) {
-							invocationData = {
-								adapter: 'userProfile',
-								procedure: 'getUserProfile',
-								parameters: [user_id]
-							};
-
-							var fullUserProfileResponse = MFP.Server.invokeProcedure(invocationData);
-							if (fullUserProfileResponse && fullUserProfileResponse.isSuccessful) {
-								trialsGetUserProfile = 0;
-								if (_RTAUserProfile.serviceRelatedInfo)
-									_serviceRelatedInfo = (Object.prototype.toString.call(_RTAUserProfile.serviceRelatedInfo) === '[object Array]') ? _RTAUserProfile.serviceRelatedInfo : convertObiectToArray(_RTAUserProfile.serviceRelatedInfo);
-
-
-								var finalResponse = {
-									name: 'authenticationUAEPass',
-									authRequired: false,
-									UAEPassProfile: _UAEPassUserProfile,
-									havePortalAccount: true,
-									userProfile: fullUserProfileResponse,
-									serviceRelatedInfo: _serviceRelatedInfo,
-								};
-								adapterLogger("submitAuthentication", "info", "Response Returned Successfully", toString(finalResponse));
-								return finalResponse;
-							}
-							else {
-								trialsGetUserProfile--;
-							}
-						}
-					}
-					else {
-						trialsSetUserInfo--;
-					}
-				}
-			}
-
-			else if (_UAEPassUserProfile != null) {
-				var finalResponse = {
-					name: 'authenticationUAEPass',
-					authRequired: false,
-					UAEPassProfile: _UAEPassUserProfile,
-					havePortalAccount: false
-
-				};
-				adapterLogger("submitAuthentication", "info", "Response Returned Successfully with no profile", finalResponse);
->>>>>>> 27f9380c77baa966723ee9b844da602c676d9bd4
 
 function getUAEPASSProfile(authorizationCode, appId, appRedirectUri) {
     try {
