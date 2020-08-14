@@ -525,7 +525,7 @@ function deleteCredientails(jsonObject){
        //return JSON.parse(jsonString);
         
     }catch(exception){
-        return {jsonObject} ;
+        return jsonObject ;
         
     }
 
