@@ -440,9 +440,9 @@ function buildBody(envHeader, params, namespaces, soapEnvNS) {
  */
 function buildBodyFromStaticRequest(request) {
     //MFP.Logger.info("&&&&&&&& "+request+" &&&&&&");
-    var body = JSON.stringify(replaceCredentials(request));
+    var body1 = JSON.stringify(replaceCredentials(request));
     //MFP.Logger.info("&&&&&&&& "+body+" &&&&&&");
-    return {body : body};
+    return {body : body1};
 }
 
 
