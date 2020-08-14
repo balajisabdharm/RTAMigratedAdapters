@@ -237,7 +237,7 @@ function submitAuthentication(authorizationCode, appId, appRedirectUri) {
         return handleError();
     }
 }
-=======
+//=======
 	try {
 		// Logging Adapter Inputs
 		adapterLogger("getUserProfile", "info", "Adapter Input", JSON.stringify([appId, redirectUri, authorizationCode]));
