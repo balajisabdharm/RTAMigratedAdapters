@@ -197,7 +197,7 @@ function submitAuthentication(authorizationCode, appId, appRedirectUri) {
                          name: 'authenticationUAEPASS',
                          authRequired: true,
                          failure: {
-                         failure: "Invalid Parameters,
+                         failure: "Invalid Parameters",
                          errorCode: "01"
                              }
                          };
