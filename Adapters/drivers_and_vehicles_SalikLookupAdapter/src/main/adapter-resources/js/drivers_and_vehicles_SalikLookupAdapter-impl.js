@@ -371,7 +371,8 @@ function invokeWebServiceString(request, servicePath, SOAPAction, isEncryptRespo
         headers : {
             "SOAPAction" : SOAPAction
         },
-		returnedContentType : 'xml',
+		//returnedContentType : 'xml',
+        returnedContentType : 'json',
        // returnedContentEncoding: 'UTF8',plain
         path : servicePath,
         body : {
