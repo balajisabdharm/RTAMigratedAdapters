@@ -310,10 +310,12 @@ function invokeWebService2(body) {
 	try {
 		var input = {
 			method: 'post',
-			returnedContentType: 'plain',
+			returnedContentType: 'xml',
+			returnedContentEncoding: 'utf-8',
 			path: WSDL_Path_For_GetUserProfile ,
 			body: {
 				content: body.toString(),
+				acceptedEncoding: 'gzip',
 				contentType: 'text/xml; charset=utf-8'
 			}
 		};
