@@ -387,11 +387,12 @@ function invokeWebServiceString(request, servicePath, SOAPAction, isEncryptRespo
 
     var webServiceResult = MFP.Server.invokeHttp(input);
     
-    MFP.Logger.info("Response is plain  " +JSON.stringify(webServiceResult));
-    //Code changed by Amit Goyal ...response is returned without DeleteCredentials and encryptData functionality
-    
-    return JSON.parse(JSON.stringify(webServiceResult));
-    var _result = JSON.stringify(webServiceResult);
+   
+    var _result = (webServiceResult.toString());
+    MFP.Logger.info("Response in plain contentType" +_result);
+       //Code changed by Amit Goyal ...response is returned without DeleteCredentials and encryptData functionality
+       
+       return JSON.parse(_result);
     //var _result_truncated = (_result > 1000) ? _result.substr(0, 1001) + '&hellip;' : _result;//50692
     
     //MFP.Logger.info("|drivers_and_vehicles_SalikLookupAdapter --- | "+ servicePath +"  | Request : " + request + ", Response: "+_result );
