@@ -386,8 +386,8 @@ function invokeWebServiceString(request, servicePath, SOAPAction, isEncryptRespo
 
 
     var webServiceResult = MFP.Server.invokeHttp(input);
-    var _result_truncated =JSON.stringify(webServiceResult)
-    MFP.Logger.info("Response   without modification" +result_truncated);
+    var _result_truncated =JSON.stringify(webServiceResult);
+    MFP.Logger.info("Response   without modification" +_result_truncated);
     //Code changed by Amit Goyal ...response is returned without DeleteCredentials and encryptData functionality
     var s = _result_truncated.replace(/[\n\t\r]/g,' ');
     return JSON.parse(_result_truncated);
