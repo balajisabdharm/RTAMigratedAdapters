@@ -3,7 +3,7 @@
     <description>drivers_and_vehicles_vehicleAdapter</description>
     <connectivity>
         <connectionPolicy xsi:type="http:HTTPConnectionPolicyType">
-            <protocol>https</protocol>
+            <protocol>http</protocol>
             <domain>${test12c}$</domain>
             <port>${test12c7783}$</port>
             <connectionTimeoutInMilliseconds>30000</connectionTimeoutInMilliseconds>

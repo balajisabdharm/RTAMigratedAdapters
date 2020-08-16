@@ -12,7 +12,9 @@
 
 var soapEnvNS = 'xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" ';
 var userName = "%#credentials!#!username#%";
+//var userName = "test";
 var password = "%#credentials!#!password#%";
+//var password = "test"
 var externalUsername = "%#credentials!#!externalUsername#%";
 var externalPassword = "%#credentials!#!externalPassword#%";
 var IsDebugging;
@@ -157,16 +159,19 @@ function userOwnedAndBookedPlatesService(params, isEncryptResponse, encryptionPa
 }
 function usersVehiclesService(params, isEncryptResponse, encryptionPassword){
 	var envHeader={
-			"urn:password":password,
-			"urn:username":userName
+			"urn:password":password.toString(),
+			"urn:username":userName.toString()
 	};
+	MFP.Logger.info("envHeader12:"+ JSON.stringify(envHeader));
 	var servicePath='/ws/services/UsersVehiclesService';
 	var _soapEnvNS=soapEnvNS+ 'xmlns:urn="urn:UsersVehiclesService"';
-
+	//var params = {"urn:getUsersVehicles":{"urn:trafficFileNumber":"10131982"}};
 	var parameters = [envHeader.toString(),params.toString(), '', _soapEnvNS.toString()];
+//	var parameters = [envHeader.toString(),envHeader.toString(), '',_soapEnvNS.toString()];
+//	var parameters = ["","","", ""];
 	var request = buildBody(parameters, false);
 
-	Log("UsersVehiclesService request >> " + request);
+	MFP.Logger.info("UsersVehiclesService request >> " + request);
 	var result = invokeWebService(request,servicePath, null, isEncryptResponse, encryptionPassword);
 	
 	if(result.Envelope != undefined && result.Envelope != null)
@@ -253,11 +258,12 @@ function buildBody(parameters, isStatic) {
 			parameters : parameters
 		});
 	}
-
+	MFP.Logger.info("buildBody:"+ JSON.stringify(request));
 	return request.body;
 }
 function invokeWebService(body,servicePath,headers, isEncryptResponse, encryptionPassword) {
 	var startTime = new Date().getTime();
+	MFP.Logger.info("invokeWebService:" + body.toString());
 	if (!headers)
 		headers = {
 			"SOAPAction" : ""
