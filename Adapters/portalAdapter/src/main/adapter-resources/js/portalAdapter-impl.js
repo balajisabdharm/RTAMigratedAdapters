@@ -311,6 +311,7 @@ function invokeWebService2(body) {
 		var input = {
 			method: 'post',
 			returnedContentType: 'xml',
+			returnedContentEncoding: 'utf-8',
 			path: WSDL_Path_For_GetUserProfile ,
 			body: {
 				content: body.toString(),
@@ -453,7 +454,8 @@ function getUserProfile(uid, appid) {
 		var response = invokeWebService2(request);
 		
 		var strResponse = toString(response);
-		adapterLogger("getUserProfile=", "info", "Soap Response", strResponse);
+		//adapterLogger("getUserProfile=", "info", "Soap Response", strResponse);
+		//WL.Logger.info("getUserProfile Soap Response"+ strResponse);
 		
 		// this for testing only fixed response
 				
@@ -500,8 +502,9 @@ function getUserProfile(uid, appid) {
 			if (userProfile.mobileNo.indexOf("+") != -1)
 				userProfile.mobileNo = userProfile.mobileNo.replace("+", "");
 		}
-		adapterLogger("getUserProfile", "info", "responseMOD", toString(response));
-		//		MFP.Logger.info("|portalAdapter |getUserProfile |responseMOD: " + JSON.stringify(response));
+		//adapterLogger("getUserProfile", "info", "responseMOD", toString(response));
+		MFP.Logger.info("|portalAdapter |getUserProfile |responseMOD: " + JSON.stringify(response));
+		
 		return response;
 	}
 	catch (e) {
