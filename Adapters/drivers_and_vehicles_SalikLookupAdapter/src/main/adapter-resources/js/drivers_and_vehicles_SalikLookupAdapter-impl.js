@@ -386,9 +386,10 @@ function invokeWebServiceString(request, servicePath, SOAPAction, isEncryptRespo
 
 
     var webServiceResult = MFP.Server.invokeHttp(input);
+    var _result = JSON.stringify(webServiceResult);
     
-   MFP.Logger.info("Response in plain contentType" +webServiceResult);
-    var _result = (webServiceResult.toString());
+   MFP.Logger.info("Response in plain contentType" +_result);
+    
     MFP.Logger.info("Response in plain contentType" +_result);
        //Code changed by Amit Goyal ...response is returned without DeleteCredentials and encryptData functionality
        
