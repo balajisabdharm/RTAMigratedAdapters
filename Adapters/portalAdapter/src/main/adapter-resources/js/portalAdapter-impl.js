@@ -437,7 +437,7 @@ function getUserProfile(uid, appid) {
 			return handleError(errorMapping.message_en, errorMapping.message_ar, errorMapping.responseCode, "getUserProfile");
 		}
 		adapterLogger("getUserProfile", "info", "Adapter Input", toString([uid, appid]));
-		var request = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" '
+		/*var request = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" '
 			+ 'xmlns:sch="http://www.rta.ae/ActiveMatrix/ESB/schemas/PortalProfileService/Schema.xsd" '
 			+ 'xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"'
 			+ ' xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">'
@@ -447,11 +447,32 @@ function getUserProfile(uid, appid) {
 			+ '</sch:userId><sch:applicationId>'
 			+ appid
 			+ '</sch:applicationId>'
-			+ '</sch:getUserProfile></soapenv:Body></soapenv:Envelope>';
-		adapterLogger("getUserProfile", "info", "Soap Request", toString(request));
+			+ '</sch:getUserProfile></soapenv:Body></soapenv:Envelope>';*/
+
+        var request = '<soapenv:Envelope '
+            + 'xmlns:sch="http://www.rta.ae/ActiveMatrix/ESB/schemas/PortalProfileService/Schema.xsd"  xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">'
+            +  '<soapenv:Header><wsse:Security soapenv:mustUnderstand="1" '
+            + 'xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"'
+            + ' xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">'
+            
+           + '<wsse:UsernameToken wsu:Id="UsernameToken-7"><wsse:Username>' + 'EIPUser' + '</wsse:Username>'
+        +'<wsse:Password Type="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText>' + 'EIPUser'
+        +'</wsse:Password><wsse:Nonce EncodingType="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-soap-message-security-1.0#Base64Binary">'
+        +'jeM8hixX40AV0zxt/7LeUA==</wsse:Nonce>'
+        +'<wsu:Created>2020-05-27T10:58:00.044Z</wsu:Created></wsse:UsernameToken></wsse:Security></soapenv:Header>'
+           
+            + '<soapenv:Body><sch:getUserProfile><sch:userId>'
+            + uid
+            + '</sch:userId><sch:applicationId>'
+            + appid
+            + '</sch:applicationId>'
+            + '</sch:getUserProfile></soapenv:Body></soapenv:Envelope>';
+        
+        
+        adapterLogger("getUserProfile", "info", "Soap Request", toString(request));
 		//MFP.Logger.info("|portalAdapter |getUserProfile |request: " + request );
 
-		var response = invokeWebService2(request);
+		var response = invokeWebService2(toString(request));
 		
 		var strResponse = toString(response);
 		//adapterLogger("getUserProfile=", "info", "Soap Response", strResponse);
