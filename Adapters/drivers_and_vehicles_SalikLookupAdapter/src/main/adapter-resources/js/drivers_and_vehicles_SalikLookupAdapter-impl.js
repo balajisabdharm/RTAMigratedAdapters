@@ -372,12 +372,12 @@ function invokeWebServiceString(request, servicePath, SOAPAction, isEncryptRespo
             "SOAPAction" : SOAPAction
         },
 		returnedContentType : 'xml',
-       // returnedContentEncoding: 'UTF8',
+       // returnedContentEncoding: 'UTF8',plain
         path : servicePath,
         body : {
             content : JSON.parse(request),
-            //contentType : 'text/xml; charset=utf-8'
-            contentType :'application/soap+xml;charset=utf-8'
+            contentType : 'text/xml; charset=utf-8'
+            //contentType :'application/soap+xml;charset=utf-8'
         }
     };
 
@@ -391,7 +391,7 @@ function invokeWebServiceString(request, servicePath, SOAPAction, isEncryptRespo
     
     return webServiceResult;
     var _result = JSON.stringify(webServiceResult);
-    var _result_truncated = (_result > 1000) ? _result.substr(0, 1001) + '&hellip;' : _result;//50692
+    //var _result_truncated = (_result > 1000) ? _result.substr(0, 1001) + '&hellip;' : _result;//50692
     
     //MFP.Logger.info("|drivers_and_vehicles_SalikLookupAdapter --- | "+ servicePath +"  | Request : " + request + ", Response: "+_result );
     // Update response in DB  where DBLogID  ////////////////////////////////
