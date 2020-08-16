@@ -456,7 +456,7 @@ function getUserProfile(uid, appid) {
             + ' xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">'
             
            + '<wsse:UsernameToken wsu:Id="UsernameToken-7"><wsse:Username>' + 'EIPUser' + '</wsse:Username>'
-        +'<wsse:Password Type="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText>' + 'EIPUser'
+        +'<wsse:Password Type="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText">' + 'EIPUser'
         +'</wsse:Password><wsse:Nonce EncodingType="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-soap-message-security-1.0#Base64Binary">'
         +'jeM8hixX40AV0zxt/7LeUA==</wsse:Nonce>'
         +'<wsu:Created>2020-05-27T10:58:00.044Z</wsu:Created></wsse:UsernameToken></wsse:Security></soapenv:Header>'
