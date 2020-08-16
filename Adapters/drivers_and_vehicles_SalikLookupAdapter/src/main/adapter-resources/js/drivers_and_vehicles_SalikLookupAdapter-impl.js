@@ -368,11 +368,11 @@ function invokeWebServiceString(request, servicePath, SOAPAction, isEncryptRespo
     var startTime = new Date().getTime();
     var input = {
         method : 'post',
-        headers : {
+        /* headers : {
             "SOAPAction" : SOAPAction
-        },
-		//returnedContentType : 'xml',
-        returnedContentType : 'plain',
+        },*/
+		returnedContentType : 'xml',
+       // returnedContentType : 'plain',
        // returnedContentEncoding: 'UTF8',plain
         path : servicePath,
         body : {
