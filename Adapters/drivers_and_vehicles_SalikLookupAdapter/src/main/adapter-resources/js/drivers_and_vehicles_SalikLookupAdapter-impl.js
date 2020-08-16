@@ -372,7 +372,7 @@ function invokeWebServiceString(request, servicePath, SOAPAction, isEncryptRespo
             "SOAPAction" : SOAPAction
         },
 		//returnedContentType : 'xml',
-        returnedContentType : 'text/xml',
+        returnedContentType : 'text',
        // returnedContentEncoding: 'UTF8',plain
         path : servicePath,
         body : {
@@ -389,7 +389,7 @@ function invokeWebServiceString(request, servicePath, SOAPAction, isEncryptRespo
     var _result_truncated =JSON.stringify(webServiceResult);
     MFP.Logger.info("Response   without modification" +_result_truncated);
     //Code changed by Amit Goyal ...response is returned without DeleteCredentials and encryptData functionality
-    var s = _result_truncated.replace(/[\n\t\r]/g,' ');
+    var s = _result_truncated.replace(/[\n\t\r|\r\n|\n|\r|\t]/gm,' ');
     return JSON.parse(_result_truncated);
     var _result = JSON.stringify(webServiceResult);
     //var _result_truncated = (_result > 1000) ? _result.substr(0, 1001) + '&hellip;' : _result;//50692
