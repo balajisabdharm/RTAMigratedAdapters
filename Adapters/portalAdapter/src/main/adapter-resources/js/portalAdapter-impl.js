@@ -315,7 +315,6 @@ function invokeWebService2(body) {
 			path: WSDL_Path_For_GetUserProfile ,
 			body: {
 				content: body.toString(),
-				acceptedEncoding: 'gzip',
 				contentType: 'text/xml; charset=utf-8'
 			}
 		};
@@ -456,7 +455,7 @@ function getUserProfile(uid, appid) {
 		
 		var strResponse = toString(response);
 		//adapterLogger("getUserProfile=", "info", "Soap Response", strResponse);
-		WL.Logger.info("getUserProfile Soap Response"+ strResponse);
+		//WL.Logger.info("getUserProfile Soap Response"+ strResponse);
 		
 		// this for testing only fixed response
 				
@@ -465,11 +464,11 @@ function getUserProfile(uid, appid) {
 			.replace(/{"":"http:\/\/www.rta.ae\/ActiveMatrix\/ESB\/schemas\/PortalProfileService\/Schema.xsd"}/g,"\"\"")
 			.replace(/},/g,",").replace(/}}]/g,","}}]")+"}";*/
 		
-		//response = strResponse.replace(/{"":"http:\/\/www.rta.ae\/ActiveMatrix\/ESB\/schemas\/PortalProfileService\/Schema.xsd","CDATA":/g,"").replace(/"":"http:\/\/www.rta.ae\/ActiveMatrix\/ESB\/schemas\/PortalProfileService\/Schema.xsd",/g,"").replace(/{"":"http:\/\/www.rta.ae\/ActiveMatrix\/ESB\/schemas\/PortalProfileService\/Schema.xsd"}/g,"\"\"").replace(/},/g,",").replace(/}}]/g,"}]")+"}";
+		response = strResponse.replace(/{"":"http:\/\/www.rta.ae\/ActiveMatrix\/ESB\/schemas\/PortalProfileService\/Schema.xsd","CDATA":/g,"").replace(/"":"http:\/\/www.rta.ae\/ActiveMatrix\/ESB\/schemas\/PortalProfileService\/Schema.xsd",/g,"").replace(/{"":"http:\/\/www.rta.ae\/ActiveMatrix\/ESB\/schemas\/PortalProfileService\/Schema.xsd"}/g,"\"\"").replace(/},/g,",").replace(/}}]/g,"}]")+"}";
 		
-		//adapterLogger("getUserProfile=", "info", "Refined Response", response);
+		adapterLogger("getUserProfile=", "info", "Refined Response", response);
 		
-		//response = JSON.parse(response);
+		response = JSON.parse(response);
 		
 		if (response && response.isSuccessful && response.statusCode == 200 && response.Envelope && response.Envelope.Body
 			&& response.Envelope.Body.getUserProfileReturn.userProfile != undefined) {
