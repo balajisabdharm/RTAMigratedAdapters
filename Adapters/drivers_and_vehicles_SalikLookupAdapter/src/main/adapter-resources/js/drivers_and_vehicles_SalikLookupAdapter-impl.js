@@ -372,7 +372,7 @@ function invokeWebServiceString(request, servicePath, SOAPAction, isEncryptRespo
             "SOAPAction" : SOAPAction
         },
 		//returnedContentType : 'xml',
-        returnedContentType : 'text/xml',
+        returnedContentType : 'plain',
        // returnedContentEncoding: 'UTF8',plain
         path : servicePath,
         body : {
