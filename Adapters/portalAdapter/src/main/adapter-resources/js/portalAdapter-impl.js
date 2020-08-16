@@ -437,7 +437,7 @@ function getUserProfile(uid, appid) {
 			return handleError(errorMapping.message_en, errorMapping.message_ar, errorMapping.responseCode, "getUserProfile");
 		}
 		adapterLogger("getUserProfile", "info", "Adapter Input", toString([uid, appid]));
-		/*var request = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" '
+		var request = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" '
 			+ 'xmlns:sch="http://www.rta.ae/ActiveMatrix/ESB/schemas/PortalProfileService/Schema.xsd" '
 			+ 'xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"'
 			+ ' xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">'
@@ -447,9 +447,9 @@ function getUserProfile(uid, appid) {
 			+ '</sch:userId><sch:applicationId>'
 			+ appid
 			+ '</sch:applicationId>'
-			+ '</sch:getUserProfile></soapenv:Body></soapenv:Envelope>';*/
+			+ '</sch:getUserProfile></soapenv:Body></soapenv:Envelope>';
 
-        var request = '<soapenv:Envelope '
+        var request_new = '<soapenv:Envelope '
             + 'xmlns:sch="http://www.rta.ae/ActiveMatrix/ESB/schemas/PortalProfileService/Schema.xsd"  xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">'
             +  '<soapenv:Header><wsse:Security soapenv:mustUnderstand="1" '
             + 'xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"'
@@ -470,10 +470,12 @@ function getUserProfile(uid, appid) {
         
         
         adapterLogger("getUserProfile", "info", "Soap Request", toString(request));
+        
+         adapterLogger("getUserProfile", "info", "New Soap Request", toString(request_new));
 		//MFP.Logger.info("|portalAdapter |getUserProfile |request: " + request );
 
-		var response = invokeWebService2(toString(request));
-		
+		//var response = invokeWebService2(request);
+		var response = invokeWebService2(request_new);
 		var strResponse = toString(response);
 		//adapterLogger("getUserProfile=", "info", "Soap Response", strResponse);
 		//WL.Logger.info("getUserProfile Soap Response"+ strResponse);
