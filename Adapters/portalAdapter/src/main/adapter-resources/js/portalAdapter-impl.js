@@ -506,7 +506,7 @@ function getUserProfile(uid, appid) {
 					nationalityAr: "other"
 				}
 			}
-			if (userProfile.prefLanguage.toLowerCase() == "en")
+			/*if (userProfile.prefLanguage.toLowerCase() == "en")
 				userProfile.prefLanguage = "English";
 
 			if (userProfile.prefLanguage.toLowerCase() == "ar")
@@ -525,7 +525,7 @@ function getUserProfile(uid, appid) {
 				userProfile.mobileNo = "00";
 
 			if (userProfile.mobileNo.indexOf("+") != -1)
-				userProfile.mobileNo = userProfile.mobileNo.replace("+", "");
+				userProfile.mobileNo = userProfile.mobileNo.replace("+", "");*/
 		}
 		//adapterLogger("getUserProfile", "info", "responseMOD", toString(response));
 		MFP.Logger.info("|portalAdapter |getUserProfile |responseMOD: " + JSON.stringify(response));
