@@ -310,7 +310,7 @@ function invokeWebService2(body) {
 	try {
 		var input = {
 			method: 'post',
-			returnedContentType: 'text',
+			returnedContentType: 'plain',
 			path: WSDL_Path_For_GetUserProfile ,
 			body: {
 				content: body.toString(),
