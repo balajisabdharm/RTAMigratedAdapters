@@ -389,7 +389,7 @@ function invokeWebServiceString(request, servicePath, SOAPAction, isEncryptRespo
 
        //Code changed by Amit Goyal ...response is returned without DeleteCredentials and encryptData functionality
        
-       return JSON.parse(_result);
+       return _result;
     //var _result_truncated = (_result > 1000) ? _result.substr(0, 1001) + '&hellip;' : _result;//50692
     
     //MFP.Logger.info("|drivers_and_vehicles_SalikLookupAdapter --- | "+ servicePath +"  | Request : " + request + ", Response: "+_result );
