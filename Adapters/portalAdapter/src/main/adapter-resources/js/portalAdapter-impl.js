@@ -311,7 +311,7 @@ function invokeWebService2(body) {
 		var input = {
 			method: 'post',
 			returnedContentType: 'xml',
-			returnedContentEncoding: 'ISO 8859-6',
+			returnedContentEncoding: 'ASCII',
 			path: WSDL_Path_For_GetUserProfile ,
 			body: {
 				content: body.toString(),
