@@ -310,7 +310,7 @@ function invokeWebService2(body) {
 	try {
 		var input = {
 			method: 'post',
-			returnedContentType: 'plain',
+			returnedContentType: 'xml',
 			returnedContentEncoding: 'ASCII',
 			path: WSDL_Path_For_GetUserProfile ,
 			body: {
@@ -488,13 +488,13 @@ function getUserProfile(uid, appid) {
 			.replace(/{"":"http:\/\/www.rta.ae\/ActiveMatrix\/ESB\/schemas\/PortalProfileService\/Schema.xsd"}/g,"\"\"")
 			.replace(/},/g,",").replace(/}}]/g,","}}]")+"}";*/
 		
-		//response = strResponse.replace(/{"":"http:\/\/www.rta.ae\/ActiveMatrix\/ESB\/schemas\/PortalProfileService\/Schema.xsd","CDATA":/g,"").replace(/"":"http:\/\/www.rta.ae\/ActiveMatrix\/ESB\/schemas\/PortalProfileService\/Schema.xsd",/g,"").replace(/{"":"http:\/\/www.rta.ae\/ActiveMatrix\/ESB\/schemas\/PortalProfileService\/Schema.xsd"}/g,"\"\"").replace(/},/g,",").replace(/}}]/g,"}]")+"}";
+		response = strResponse.replace(/{"":"http:\/\/www.rta.ae\/ActiveMatrix\/ESB\/schemas\/PortalProfileService\/Schema.xsd","CDATA":/g,"").replace(/"":"http:\/\/www.rta.ae\/ActiveMatrix\/ESB\/schemas\/PortalProfileService\/Schema.xsd",/g,"").replace(/{"":"http:\/\/www.rta.ae\/ActiveMatrix\/ESB\/schemas\/PortalProfileService\/Schema.xsd"}/g,"\"\"").replace(/},/g,",").replace(/}}]/g,"}]")+"}";
 		
 		adapterLogger("getUserProfile=", "info", "Refined Response", response);
 		//Commented
 		//response = JSON.parse(response);
 		
-       // response = JSON.parse(strResponse);
+        response = JSON.parse(strResponse);
 		if (response && response.isSuccessful && response.statusCode == 200 && response.Envelope && response.Envelope.Body
 			&& response.Envelope.Body.getUserProfileReturn.userProfile != undefined) {
 			adapterLogger("getUserProfile", "info", "Soap Response Nationality for JAXB", response.Envelope.Body.getUserProfileReturn.userProfile.nationality);
