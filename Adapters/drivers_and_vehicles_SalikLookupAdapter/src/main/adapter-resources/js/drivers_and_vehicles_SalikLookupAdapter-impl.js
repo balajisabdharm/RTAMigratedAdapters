@@ -18,12 +18,12 @@ var externalPassword = "%#credentials!#!externalPassword#%";
 var IsDebugging;
 var xsdStr = "http://www.rta.ae/schemas/SalikLookupService/Schema.xsd";
 
-function fixNameSpace(strXSD,response){
-	reg1 = new RegExp('{"":"'+strXSD+'","CDATA":', "g");
-	reg2 = new RegExp('"":"'+strXSD+'",',"g");
-	reg3 = new RegExp('{"":"'+strXSD+'"}',"g");
+function fixNameSpace(response){
+	reg1 = new RegExp('{"":"'+xsdStr+'","CDATA":', "g");
+	reg2 = new RegExp('"":"'+xsdStr+'",',"g");
+	reg3 = new RegExp('{"":"'+xsdStr+'"}',"g");
 	response = response.replace(reg1,"").replace(reg2,"").replace(reg3,"\"\"").replace(/},/g,",").replace(/}}]/g,"}]")+"}";
-	
+	MFP.Logger.info("refined Response " + response);
 	return JSON.parse(response);
 }
 
@@ -474,7 +474,7 @@ function getCountryLookup(isEncryptResponse, encryptionPassword) {
     var response = invokeWebServiceString(requestObj, servicePath, SOAPAction, isEncryptResponse, encryptionPassword);
     
 	
-    return fixNameSpace(xsdStr,response.toString());
+    return fixNameSpace(response.toString());
 //    return{
 //        Envelope:{
 //
@@ -523,8 +523,9 @@ function getEmirateLookup(isEncryptResponse, encryptionPassword) {
     //    message:request
     //}
     
-    return invokeWebServiceString(requestObj, servicePath, SOAPAction, isEncryptResponse, encryptionPassword);
+    var response= invokeWebServiceString(requestObj, servicePath, SOAPAction, isEncryptResponse, encryptionPassword);
     
+    return fixNameSpace(response.toString());
 //    return{
 //        Envelope:{
 //
