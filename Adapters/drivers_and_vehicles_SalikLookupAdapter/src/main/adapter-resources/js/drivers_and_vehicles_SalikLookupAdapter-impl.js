@@ -353,9 +353,10 @@ function getContactLookup(isEncryptResponse, encryptionPassword) {
     //return{
     //    message:request
     //}
-
+    var response = invokeWebServiceString(requestObj, servicePath, SOAPAction, isEncryptResponse, encryptionPassword);
     
-    return invokeWebServiceString(requestObj, servicePath, SOAPAction, isEncryptResponse, encryptionPassword);
+	
+    return fixNameSpace(response);
 }
 
 
@@ -574,9 +575,10 @@ function getPlateCodeLookup(isEncryptResponse, encryptionPassword) {
     //return{
     //    message:request
     //}
-
+var response = invokeWebServiceString(requestObj, servicePath, SOAPAction, isEncryptResponse, encryptionPassword);
     
-    return invokeWebServiceString(requestObj, servicePath, SOAPAction, isEncryptResponse, encryptionPassword);
+	
+    return fixNameSpace(response);
     
 //    return{
 //        Envelope:{
@@ -630,9 +632,10 @@ function getPlateLookup(isEncryptResponse, encryptionPassword) {
     //    return{
     //        message:request
     //    }
-
+var response = invokeWebServiceString(requestObj, servicePath, SOAPAction, isEncryptResponse, encryptionPassword);
     
-    return invokeWebServiceString(requestObj, servicePath, SOAPAction, isEncryptResponse, encryptionPassword);
+	
+    return fixNameSpace(response);
     
     
     
@@ -690,8 +693,10 @@ function getDisputeLookup(isEncryptResponse, encryptionPassword) {
     //    message:request
     //}
 
+    var response = invokeWebServiceString(requestObj, servicePath, SOAPAction, isEncryptResponse, encryptionPassword);
     
-    return invokeWebServiceString(requestObj, servicePath, SOAPAction, isEncryptResponse, encryptionPassword);
+	
+    return fixNameSpace(response);
 }
 
 
@@ -895,8 +900,10 @@ function getVehicleLookup(isEncryptResponse, encryptionPassword) {
     //    message:request
     //}
 
-
-    return invokeWebServiceString(requestObj, servicePath, SOAPAction, isEncryptResponse, encryptionPassword);
+var response = invokeWebServiceString(requestObj, servicePath, SOAPAction, isEncryptResponse, encryptionPassword);
+    
+	
+    return fixNameSpace(response);
 }
 
 
