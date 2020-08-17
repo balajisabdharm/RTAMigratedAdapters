@@ -315,8 +315,7 @@ function invokeWebService2(body) {
 			path: WSDL_Path_For_GetUserProfile ,
 			body: {
 				content: body.toString(),
-				//contentType: 'text/xml; charset=utf-8'
-            contentType: 'xml',
+				contentType: 'text/xml; charset=utf-8'
 			}
 		};
 
