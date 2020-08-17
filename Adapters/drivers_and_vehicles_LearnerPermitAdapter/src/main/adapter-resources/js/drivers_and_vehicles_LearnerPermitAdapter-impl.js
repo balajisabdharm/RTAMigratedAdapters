@@ -5,8 +5,8 @@
  *  disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
  *  Created By Ahmed Raouf 10-April-2019
  */
-var _userName = "%#credentials!#!username_tibco#%";
-var _password = "%#credentials!#!password_tibco#%";
+var _userName = "Mobstguser";
+var _password = "m792!du)+1g";
 var adapterName = "drivers_and_vehicles_LearnerPermitAdapter";
 var IsDebugging;
 var soapEnvStart = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sch="http://www.rta.ae/schemas/CTSLicenseInfoService_V2/Schema.xsd">';
