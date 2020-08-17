@@ -528,7 +528,7 @@ function getUserProfile(uid, appid) {
 				userProfile.mobileNo = userProfile.mobileNo.replace("+", "");*/
 		}
 		//adapterLogger("getUserProfile", "info", "responseMOD", toString(response));
-		MFP.Logger.info("|portalAdapter |getUserProfile |responseMOD: " + JSON.stringify(response));
+		//MFP.Logger.info("|portalAdapter |getUserProfile |responseMOD: " + JSON.stringify(response));
 		
 		return response;
 	}
