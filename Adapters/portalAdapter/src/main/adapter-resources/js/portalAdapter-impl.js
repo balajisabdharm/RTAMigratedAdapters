@@ -429,6 +429,17 @@ function getUserProfileV2(uid, appid) {
 	}
 }*/
 
+
+function fixNameSpace(strXSD, response){
+                reg1 = new RegExp('{"":"'+strXSD+'","CDATA":', "g");
+                reg2 = new RegExp('"":"'+strXSD+'",',"g");
+                reg3 = new RegExp('{"":"'+strXSD+'"}',"g");
+                response = response.replace(reg1,"").replace(reg2,"").replace(reg3,"\"\"").replace(/},/g,",").replace(/}}]/g,"}]")+"}";
+
+                return JSON.parse(response);
+}
+
+
 // updated bt faran
 function getUserProfile(uid, appid) {
 	try {
@@ -488,11 +499,14 @@ function getUserProfile(uid, appid) {
 			.replace(/{"":"http:\/\/www.rta.ae\/ActiveMatrix\/ESB\/schemas\/PortalProfileService\/Schema.xsd"}/g,"\"\"")
 			.replace(/},/g,",").replace(/}}]/g,","}}]")+"}";*/
 		
-		response = strResponse.replace(/{"":"http:\/\/www.rta.ae\/ActiveMatrix\/ESB\/schemas\/PortalProfileService\/Schema.xsd","CDATA":/g,"").replace(/"":"http:\/\/www.rta.ae\/ActiveMatrix\/ESB\/schemas\/PortalProfileService\/Schema.xsd",/g,"").replace(/{"":"http:\/\/www.rta.ae\/ActiveMatrix\/ESB\/schemas\/PortalProfileService\/Schema.xsd"}/g,"\"\"").replace(/},/g,",").replace(/}}]/g,"}]")+"}";
+		//response = strResponse.replace(/{"":"http:\/\/www.rta.ae\/ActiveMatrix\/ESB\/schemas\/PortalProfileService\/Schema.xsd","CDATA":/g,"").replace(/"":"http:\/\/www.rta.ae\/ActiveMatrix\/ESB\/schemas\/PortalProfileService\/Schema.xsd",/g,"").replace(/{"":"http:\/\/www.rta.ae\/ActiveMatrix\/ESB\/schemas\/PortalProfileService\/Schema.xsd"}/g,"\"\"").replace(/},/g,",").replace(/}}]/g,"}]")+"}";
 		
 		adapterLogger("getUserProfile=", "info", "Refined Response", response);
 		//Commented
-		response = JSON.parse(response);
+		//response = JSON.parse(response);
+		// generic method 
+		var strXSD = "http://www.rta.ae/ActiveMatrix/ESB/schemas/PortalProfileService/Schema.xsd";
+		response=fixNameSpace(strXSD,response);
 		
   //      response = JSON.parse(strResponse);
 		if (response && response.isSuccessful && response.statusCode == 200 && response.Envelope && response.Envelope.Body
