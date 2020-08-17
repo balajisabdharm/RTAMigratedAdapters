@@ -16,9 +16,16 @@ var password = "%#credentials!#!password#%";
 var externalUsername = "%#credentials!#!externalUsername#%";
 var externalPassword = "%#credentials!#!externalPassword#%";
 var IsDebugging;
+var xsdStr = "http://www.rta.ae/schemas/SalikLookupService/Schema.xsd";
 
-
-
+function fixNameSpace(strXSD,response){
+	reg1 = new RegExp('{"":"'+strXSD+'","CDATA":', "g");
+	reg2 = new RegExp('"":"'+strXSD+'",',"g");
+	reg3 = new RegExp('{"":"'+strXSD+'"}',"g");
+	response = response.replace(reg1,"").replace(reg2,"").replace(reg3,"\"\"").replace(/},/g,",").replace(/}}]/g,"}]")+"}";
+	
+	return JSON.parse(response);
+}
 
 function getCountryLookupTest(isEncryptResponse, encryptionPassword) {
     
@@ -464,9 +471,10 @@ function getCountryLookup(isEncryptResponse, encryptionPassword) {
     //}
 
     
-    return invokeWebServiceString(requestObj, servicePath, SOAPAction, isEncryptResponse, encryptionPassword);
+    var response = invokeWebServiceString(requestObj, servicePath, SOAPAction, isEncryptResponse, encryptionPassword);
     
-    
+	
+    return fixNameSpace(xsdStr,response.toString());
 //    return{
 //        Envelope:{
 //
