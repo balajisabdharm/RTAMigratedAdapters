@@ -14,7 +14,7 @@
     <procedure name="submitAuthentication" />
     <procedure name="generateUAEPassURL" />
     <procedure name="onLogout" />
-	<procedure name="getUAEPASSProfile " />
+	<procedure name="getUAEPASSProfile" />
 	
 	<property name="tokens.tipcoService.username"  description="tokens.tipcoService.username" defaultValue="${tipcoServiceUsername}$"/>
     <property name="tokens.tipcoService.password"  description="tokens.tipcoService.password" defaultValue="${tipcoServicePassword}$"/>
