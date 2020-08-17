@@ -19,6 +19,7 @@ var IsDebugging;
 var xsdStr = "http://www.rta.ae/schemas/SalikLookupService/Schema.xsd";
 
 function fixNameSpace(response){
+	MFP.Logger.info(" ================================================= REMOVING NAMESPACE =================================================");
 	response = JSON.stringify(response);
 	reg1 = new RegExp('{"":"'+xsdStr+'","CDATA":', "g");
 	reg2 = new RegExp('"":"'+xsdStr+'",',"g");
