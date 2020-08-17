@@ -1,10 +1,13 @@
-WL.Server.createEventSource({
-	name : 'DnV_PaymentReconciliationEventSource',
-	poll : {
-		interval : 300, // Job run each 5 minutes
-		onPoll : 'reconciliatePendingTransactions'
-	}
-});
+//CreateEventSource has to be moved to the cron job - 
+//so the reconciliatePendingTransaction has to be call from the cron job
+
+// WL.Server.createEventSource({
+// 	name : 'DnV_PaymentReconciliationEventSource',
+// 	poll : {
+// 		interval : 300, // Job run each 5 minutes
+// 		onPoll : 'reconciliatePendingTransactions'
+// 	}
+// });
 function getTrafficCredentials() {
 	return {
 		userName : "mobile_user",
