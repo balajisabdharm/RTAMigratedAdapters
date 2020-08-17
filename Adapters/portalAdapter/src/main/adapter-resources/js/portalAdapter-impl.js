@@ -492,9 +492,9 @@ function getUserProfile(uid, appid) {
 		
 		adapterLogger("getUserProfile=", "info", "Refined Response", response);
 		//Commented
-		//response = JSON.parse(response);
+		response = JSON.parse(response);
 		
-        response = JSON.parse(strResponse);
+  //      response = JSON.parse(strResponse);
 		if (response && response.isSuccessful && response.statusCode == 200 && response.Envelope && response.Envelope.Body
 			&& response.Envelope.Body.getUserProfileReturn.userProfile != undefined) {
 			adapterLogger("getUserProfile", "info", "Soap Response Nationality for JAXB", response.Envelope.Body.getUserProfileReturn.userProfile.nationality);
