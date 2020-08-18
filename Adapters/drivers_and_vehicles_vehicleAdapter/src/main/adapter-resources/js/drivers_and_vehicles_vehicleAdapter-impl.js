@@ -167,8 +167,8 @@ function usersVehiclesService(params, isEncryptResponse, encryptionPassword){
 	var request = buildBody(parameters, false);
 
 	Log("UsersVehiclesService request >> " + request);
-	var result = invokeWebService(request,servicePath, null, isEncryptResponse, encryptionPassword);
-	
+	var resultRecv = invokeWebService(request,servicePath, null, isEncryptResponse, encryptionPassword);
+    var result = resultRecv.toString();
 	if(result.Envelope != undefined && result.Envelope != null)
 		{
 			if(result.Envelope.Body != undefined && result.Envelope.Body != null)
