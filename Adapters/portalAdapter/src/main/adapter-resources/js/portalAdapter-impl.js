@@ -150,7 +150,7 @@ function isUndefinedOrNull(v) {
 		result = false;
 	return result;
 }
-//Code Commented as advised by Ayman from RTA
+//Code Commented as advised by Ayman from RTA Not Required as DEFAULT AUTH is being used
 /*function _isAuthorized(user_id) {
 	//var authUserIdentity = MFP.Server.getActiveUser("masterAuthRealm");
 	var authUserIdentity = MFP.Server.getAuthenticatedUser("IAMUAEPASS");
