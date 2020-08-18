@@ -11,9 +11,9 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 var soapEnvNS = 'xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" ';
-var userName = "%#credentials!#!username#%";
+var userName = "Mobstguser";
 //var userName = "test";
-var password = "%#credentials!#!password#%";
+var password = "m792!du)+1g";
 //var password = "test"
 var externalUsername = "%#credentials!#!externalUsername#%";
 var externalPassword = "%#credentials!#!externalPassword#%";
