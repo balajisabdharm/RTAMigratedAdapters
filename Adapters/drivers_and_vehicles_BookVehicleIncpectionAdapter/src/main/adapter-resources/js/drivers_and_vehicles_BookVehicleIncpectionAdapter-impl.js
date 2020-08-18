@@ -56,9 +56,10 @@ function getGlobalServices(vehicleType, isEncryptResponse, encryptionPassword){
 
 function getAvailableAppointmentCenters (isEncryptResponse, encryptionPassword){
 	var bodyRequest ="<sch:getAvailableAppointmentCentersRequest/>";
+    MFP.Logger.info("getAvailableAppointmentCenters "+ bodyRequest);
 	var request = getRequestString(bodyRequest);
 
-	var requestObj = buildBody([ request ], true);
+    var requestObj = buildBody([ request.toString() ], true);
 	MFP.Logger.warn("getAvailableAppointmentCenters request | " + requestObj);
 	var result = invokeWebServiceString(requestObj, isEncryptResponse,
 			encryptionPassword);
@@ -321,7 +322,7 @@ function buildBody(parameters, isStatic) {
 			parameters : parameters
 		});
 	}
-
+    MFP.Logger.info("buildBody "+buildBody);
 	return request.body;
 }
 
@@ -345,6 +346,7 @@ function getRequestString(bodyString) {
 		+ '<soapenv:Body>'
 		+ bodyString
 		+ '</soapenv:Body>' + '</soapenv:Envelope>';
+    MFP.Logger.info("getRequestString "+request);
 	return request;
 }
 

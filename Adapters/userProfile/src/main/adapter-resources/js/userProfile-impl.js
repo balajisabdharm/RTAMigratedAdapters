@@ -833,7 +833,7 @@ function deleteUserNotification(id, user_id) {
  * @param: String
  * @returns: JSON object
  */
-function deleteUserNotifications(user_id) {
+function deleteUserNotification(user_id) {
 	try{
 		var isAuthorizedResponse = this._isAuthorized(user_id);
 		if(isAuthorizedResponse.authRequired == false) {
@@ -2793,7 +2793,7 @@ function getSalikAccount (user_id) {
  * @param: String
  * @returns: Boolean
  */
-function _isAuthorized(user_id) {
+/*function _isAuthorized(user_id) {
 	try{
 		return {
 				authRequired : false
@@ -2821,6 +2821,14 @@ function _isAuthorized(user_id) {
 		adapterLogger("_isAuthorized","error", "Exception",toString(e));
 		return handleError();
 	}
+}*/
+
+function _isAuthorized(user_id) {
+    
+    return {
+        authRequired : false
+    };
+    
 }
 
 /**
