@@ -78,7 +78,7 @@ var DB_TABLES = {
 						+'						src.MONEY_DT, '
 						+'						src.HAPPINESS_DT, '
 						+'						src.ENV_IMPACT_DT )'),
-		getLatest_DT_ForAllUsers_And_InsertOrUpdate_Into_GreenPointsAgg : WL.Server
+		getLatest_DT_ForAllUsers_And_InsertOrUpdate_Into_GreenPointsAgg : MFP.Server
 		.createSQLStatement('MERGE INTO GREEN_POINTS_AGG dest '
 						+'	USING( SELECT USER_ID , '
 						+'			USER_NAME , '
@@ -168,7 +168,7 @@ var DB_TABLES = {
 /**
  * daily event source for update GreenPoints by aggregating rank for all users
  */
-WL.Server.createEventSource({
+MFP.Server.createEventSource({
 	name : 'GreenPointsEventSource',
 	poll : {
 		interval : 24 * 60 * 60,
