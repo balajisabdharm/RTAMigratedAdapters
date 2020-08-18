@@ -43,7 +43,6 @@ function getGlobalServices(vehicleType, isEncryptResponse, encryptionPassword){
 	}
 	bodyRequest += '</sch:getGlobalServicesRequest>';
 	var request = getRequestString(bodyRequest);
-
 	var requestObj = buildBody([ request ], true);
 	MFP.Logger.warn("getGlobalServices request | " + requestObj);
 	var result = invokeWebServiceString(requestObj, isEncryptResponse,
