@@ -56,10 +56,10 @@ function getGlobalServices(vehicleType, isEncryptResponse, encryptionPassword){
 
 function getAvailableAppointmentCenters (isEncryptResponse, encryptionPassword){
 	var bodyRequest ="<sch:getAvailableAppointmentCentersRequest/>";
-    MFP.Logger.info("getAvailableAppointmentCenters "+ bodyRequest);
+    MFP.Logger.info("getAvailableAppointmentCenters >>>>>> "+ bodyRequest);
 	var request = getRequestString(bodyRequest);
 
-    var requestObj = buildBody([JSON.stringify(request)], true);
+    var requestObj = buildBody([request], true);
 	MFP.Logger.warn("getAvailableAppointmentCenters request | " + requestObj);
 	var result = invokeWebServiceString(requestObj, isEncryptResponse,
 			encryptionPassword);
@@ -307,7 +307,7 @@ function getAppointmentBasket(appointmentId,isEncryptResponse, encryptionPasswor
 
 function buildBody(parameters, isStatic) {
 	var request = "";
-
+MFP.Logger.info("buildBody parameters"+parameters);
 	if (isStatic == true) {
 		request = MFP.Server.invokeProcedure({
 			adapter : 'drivers_and_vehciles_utilitiesAdapter',
