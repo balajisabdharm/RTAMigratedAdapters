@@ -168,7 +168,8 @@ function usersVehiclesService(params, isEncryptResponse, encryptionPassword){
 
 	Log("UsersVehiclesService request >> " + request);
 	var resultRecv = invokeWebService(request,servicePath, null, isEncryptResponse, encryptionPassword);
-    var result = resultRecv.toString();
+    MFP.Logger.warn("usersVehiclesService resultRecv "+JSON.stringify(resultRecv));.
+    var result = JSON.stringify(resultRecv);
 	if(result.Envelope != undefined && result.Envelope != null)
 		{
 			if(result.Envelope.Body != undefined && result.Envelope.Body != null)
