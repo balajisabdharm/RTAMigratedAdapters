@@ -164,9 +164,9 @@ function usersVehiclesService(params, isEncryptResponse, encryptionPassword){
 	var _soapEnvNS=soapEnvNS+ 'xmlns:urn="urn:UsersVehiclesService"';
 
 	var parameters = [envHeader,params, '', _soapEnvNS];
-	var request = buildBody(parameters, false);
+    var request = buildBody(parameters.toString(), false);
 
-    MFP.Logger.warn("UsersVehiclesService request >> " + request);
+    MFP.Logger.warn("UsersVehiclesService request >>>>> " + request);
 	var resultRecv = invokeWebService(request,servicePath, null, isEncryptResponse, encryptionPassword);
     MFP.Logger.warn("usersVehiclesService resultRecv obstained "+JSON.stringify(resultRecv));.
     var result = JSON.stringify(resultRecv);
@@ -238,6 +238,8 @@ function reInsuranceCertificateService(params, isEncryptResponse, encryptionPass
 	return invokeWebService(request,servicePath, null, isEncryptResponse, encryptionPassword);
 }
 function buildBody(parameters, isStatic) {
+    
+    MFP.Logger.info("buildBody Start "+parameters);
 	var request = "";
 
 	if (isStatic == true) {
