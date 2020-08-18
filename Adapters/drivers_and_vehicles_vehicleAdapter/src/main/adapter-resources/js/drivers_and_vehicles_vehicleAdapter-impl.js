@@ -280,6 +280,7 @@ function invokeWebService(body,servicePath,headers, isEncryptResponse, encryptio
 	headers && (input['headers'] = headers);
 
 	var webServiceResult = MFP.Server.invokeHttp(input);
+    MFP.Logger.warn("invokeWebService.backend "+JSON.stringify(webServiceResult));
 	if(isEncryptResponse != undefined && isEncryptResponse == true)
 	{
 		var responseString = JSON.stringify(webServiceResult);
@@ -289,6 +290,7 @@ function invokeWebService(body,servicePath,headers, isEncryptResponse, encryptio
 				parameters : [responseString,encryptionPassword]
 		};
 		webServiceResult = MFP.Server.invokeProcedure(invocationData);
+        MFP.Logger.warn("invokeWebService.encryptData "+JSON.stringify(webServiceResult));
 	}	
 	var endTime = new Date().getTime();
 	//Log("time for "+ servicePath + " is " + (endTime - startTime) + " ms");
@@ -297,7 +299,9 @@ function invokeWebService(body,servicePath,headers, isEncryptResponse, encryptio
 			procedure : 'deleteCredientails',
 			parameters : [webServiceResult]
 	};
-	return MFP.Server.invokeProcedure(invocationData); 
+	var finalResult= MFP.Server.invokeProcedure(invocationData);
+    MFP.Logger.warn("invokeWebService.deleteCredientails "+JSON.stringify(finalResult));
+    return finalResult;
 }
 
 function isVehicleDueForRenewal(expiryDate) {
