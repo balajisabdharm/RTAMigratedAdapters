@@ -11,5 +11,5 @@
             <maxConcurrentConnectionsPerNode>100</maxConcurrentConnectionsPerNode>
         </connectionPolicy>
     </connectivity>
-    <procedure name="heartbeat" scope="test"/>
+    <procedure name="heartbeat"/>
 </mfp:adapter>
