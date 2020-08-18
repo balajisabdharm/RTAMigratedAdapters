@@ -360,8 +360,8 @@ function invokeWebServiceString(request, isEncryptResponse, encryptionPassword) 
 			returnedContentType : 'HTML',
 			path : '/appointmentService',
 			body : {
-				content : JSON.parse(request),
-               // content : (request),
+				//content : JSON.parse(request),
+               content : (request),
 				contentType : 'text/xml; charset=utf-8'
 			}
 	};
