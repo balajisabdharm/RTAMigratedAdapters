@@ -56,7 +56,7 @@ function getGlobalServices(vehicleType, isEncryptResponse, encryptionPassword){
 
 function getAvailableAppointmentCenters (isEncryptResponse, encryptionPassword){
 	var bodyRequest ="<sch:getAvailableAppointmentCentersRequest/>";
-    MFP.Logger.info("getAvailableAppointmentCenters >>>>>> "+ bodyRequest);
+    MFP.Logger.info("getAvailableAppointmentCenters >@@>>>>> "+ bodyRequest);
 	var request = getRequestString(bodyRequest);
 
     var requestObj = buildBody([request], true);
