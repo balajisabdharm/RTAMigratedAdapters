@@ -60,7 +60,7 @@ function getAvailableAppointmentCenters (isEncryptResponse, encryptionPassword){
 	var request = getRequestString(bodyRequest);
 
     //var requestObj = buildBody([JSON.stringify(request)], true);
-    var requestObj = buildBody[(request)], true);
+    var requestObj = buildBody([(request)], true);
 	MFP.Logger.warn("getAvailableAppointmentCenters request | " + requestObj);
 	var result = invokeWebServiceString(JSON.parse(requestObj), isEncryptResponse,
 			encryptionPassword);
