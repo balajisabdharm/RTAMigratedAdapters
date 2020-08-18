@@ -61,7 +61,7 @@ function getAvailableAppointmentCenters (isEncryptResponse, encryptionPassword){
 
     var requestObj = buildBody([JSON.stringify(request)], true);
 	MFP.Logger.warn("getAvailableAppointmentCenters request | " + requestObj);
-	var result = invokeWebServiceString(JSON.parse(requestObj), isEncryptResponse,
+	var result = invokeWebServiceString((requestObj), isEncryptResponse,
 			encryptionPassword);
 	MFP.Logger.warn("getAvailableAppointmentCenters result | " + result);
 	return result;
@@ -358,11 +358,12 @@ function invokeWebServiceString(request, isEncryptResponse, encryptionPassword) 
 			headers : {
 				"SOAPAction" : ""
 			},
-			returnedContentType : 'HTML',
+			//returnedContentType : 'HTML',
+            returnedContentType : 'xml',
 			path : '/appointmentService',
 			body : {
 				//content : JSON.parse(request),
-               content : (request),
+                content : (request.toString()),
 				contentType : 'text/xml; charset=utf-8'
 			}
 	};
