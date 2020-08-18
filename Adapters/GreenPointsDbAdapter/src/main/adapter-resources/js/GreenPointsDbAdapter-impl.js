@@ -11,7 +11,7 @@
 
 var DB_TABLES = {
 	'GreenPoints' : {
-		getLatest_PT_ForAllUsers_And_InsertOrUpdate_Into_GreenPointsAgg : WL.Server
+		getLatest_PT_ForAllUsers_And_InsertOrUpdate_Into_GreenPointsAgg : MFP.Server
 			.createSQLStatement('MERGE INTO GREEN_POINTS_AGG dest '
 						+'	USING( SELECT USER_ID , '
 						+'			USER_NAME , '
