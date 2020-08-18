@@ -26,6 +26,19 @@ var validationError = {
     "errorMessage": "missing or invalid params! please check mandatory [Params]."
 };
 
+var xsdStr = "http://www.rta.ae/ActiveMatrix/ESB/CTSLicenseInfoService_V2/1_0";
+function fixNameSpace(response){
+	MFP.Logger.info(" ================================================= REMOVING NAMESPACE =================================================");
+	response = JSON.stringify(response);
+	reg1 = new RegExp('{"":"'+xsdStr+'","CDATA":', "g");
+	reg2 = new RegExp('"":"'+xsdStr+'",',"g");
+	reg3 = new RegExp('{"":"'+xsdStr+'"}',"g");
+	response = response.replace(reg1,"").replace(reg2,"").replace(reg3,"\"\"").replace(/}]}/g,"]").replace(/}}]/g,"}]").replace(/},/g,",")+"}}";
+	MFP.Logger.info("refined Response -->" + response);
+	
+	return JSON.parse(response);
+}
+
 function notValid(string) {
     return (!string || string == undefined || string == "" || string.length == 0);
 }
@@ -163,7 +176,8 @@ function getStudentInfo(requestParams, isEncryptResponse, encryptionPassword) {
         var SOAPAction = 'getStudentInfo';
         var requestObj = buildBody([request.toString()], true);
 
-        return invokeWebServiceString(requestObj, servicePath, SOAPAction, isEncryptResponse, encryptionPassword);
+        var response = invokeWebServiceString(requestObj, servicePath, SOAPAction, isEncryptResponse, encryptionPassword);
+        return fixNameSpace(response);
     }
 
 }
@@ -189,7 +203,8 @@ function getAttendanceDetails(requestParams, isEncryptResponse, encryptionPasswo
         var SOAPAction = 'getAttendanceDetails';
         var requestObj = buildBody([request.toString()], true);
 
-        return invokeWebServiceString(requestObj, servicePath, SOAPAction, isEncryptResponse, encryptionPassword);
+        var response= invokeWebServiceString(requestObj, servicePath, SOAPAction, isEncryptResponse, encryptionPassword);
+        return fixNameSpace(response);
     }
 
 }
@@ -215,7 +230,8 @@ function getAssessmentDetails(requestParams, isEncryptResponse, encryptionPasswo
         var SOAPAction = 'getAssessmentDetails';
         var requestObj = buildBody([request.toString()], true);
 
-        return invokeWebServiceString(requestObj, servicePath, SOAPAction, isEncryptResponse, encryptionPassword);
+        var response = invokeWebServiceString(requestObj, servicePath, SOAPAction, isEncryptResponse, encryptionPassword);
+        return fixNameSpace(response);
     }
 
 }
@@ -393,7 +409,8 @@ function submitFeedback(requestParams, isEncryptResponse, encryptionPassword) {
         var SOAPAction = 'submitFeedback';
         var requestObj = buildBody([request.toString()], true);
 
-        return invokeWebServiceString(requestObj, servicePath, SOAPAction, isEncryptResponse, encryptionPassword);
+        var response = invokeWebServiceString(requestObj, servicePath, SOAPAction, isEncryptResponse, encryptionPassword);
+        return fixNameSpace(response);
     }
 
 }
