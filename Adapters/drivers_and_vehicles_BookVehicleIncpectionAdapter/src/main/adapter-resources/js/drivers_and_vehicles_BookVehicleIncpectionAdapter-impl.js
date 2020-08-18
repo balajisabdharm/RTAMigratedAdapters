@@ -360,15 +360,15 @@ function invokeWebServiceString(request, isEncryptResponse, encryptionPassword) 
 			returnedContentType : 'HTML',
 			path : '/appointmentService',
 			body : {
-				//content : JSON.parse(request),
-                content : (request),
+				content : JSON.parse(request),
+               // content : (request),
 				contentType : 'text/xml; charset=utf-8'
 			}
 	};
 
 	var webServiceResult = MFP.Server.invokeHttp(input);
-	MFP.Logger.warn("invokeWebServiceString"+webServiceResult);
-	MFP.Logger.warn(JSON.stringify(webServiceResult));
+
+	MFP.Logger.warn("invokeWebServiceString response "+JSON.stringify(webServiceResult));
 	if (isEncryptResponse != undefined && isEncryptResponse == true) {
 		var responseString = JSON.stringify(webServiceResult);
 		var invocationData = {
