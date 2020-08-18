@@ -166,7 +166,7 @@ function usersVehiclesService(params, isEncryptResponse, encryptionPassword){
 	var parameters = [envHeader,params, '', _soapEnvNS];
 	var request = buildBody(parameters, false);
 
-	Log("UsersVehiclesService request >> " + request);
+    MFP.Logger.warn("UsersVehiclesService request >> " + request);
 	var resultRecv = invokeWebService(request,servicePath, null, isEncryptResponse, encryptionPassword);
     MFP.Logger.warn("usersVehiclesService resultRecv obstained "+JSON.stringify(resultRecv));.
     var result = JSON.stringify(resultRecv);
