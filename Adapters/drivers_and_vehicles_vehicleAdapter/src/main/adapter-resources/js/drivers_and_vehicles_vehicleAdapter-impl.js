@@ -156,6 +156,7 @@ function userOwnedAndBookedPlatesService(params, isEncryptResponse, encryptionPa
 	return invokeWebService(request,servicePath, null, isEncryptResponse, encryptionPassword);
 }
 function usersVehiclesService(params, isEncryptResponse, encryptionPassword){
+     MFP.Logger.warn("UsersVehiclesService start >>>>> " + params);
 	var envHeader={
 			"urn:password":password,
 			"urn:username":userName
@@ -164,11 +165,11 @@ function usersVehiclesService(params, isEncryptResponse, encryptionPassword){
 	var _soapEnvNS=soapEnvNS+ 'xmlns:urn="urn:UsersVehiclesService"';
 
 	var parameters = [envHeader,params, '', _soapEnvNS];
-    var request = buildBody(parameters.toString(), false);
+	var request = buildBody(parameters, false);
 
     MFP.Logger.warn("UsersVehiclesService request >>>>> " + request);
 	var resultRecv = invokeWebService(request,servicePath, null, isEncryptResponse, encryptionPassword);
-    MFP.Logger.warn("usersVehiclesService resultRecv obstained "+JSON.stringify(resultRecv));.
+    MFP.Logger.warn("usersVehiclesService resultRecv obstained "+JSON.stringify(resultRecv));
     var result = JSON.stringify(resultRecv);
 	if(result.Envelope != undefined && result.Envelope != null)
 		{
