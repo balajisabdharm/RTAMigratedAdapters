@@ -150,7 +150,8 @@ function isUndefinedOrNull(v) {
 		result = false;
 	return result;
 }
-function _isAuthorized(user_id) {
+//Code Commented as advised by Ayman from RTA
+/*function _isAuthorized(user_id) {
 	//var authUserIdentity = MFP.Server.getActiveUser("masterAuthRealm");
 	var authUserIdentity = MFP.Server.getAuthenticatedUser("IAMUAEPASS");
 	MFP.Logger.info("|_isAuthorized" + JSON.stringify(authUserIdentity));
@@ -172,6 +173,15 @@ function _isAuthorized(user_id) {
 		errorCode: "401",
 		errorMessage: "Not Authorized"
 	};
+}*/
+
+function _isAuthorized(user_id) {
+    //var authUserIdentity = MFP.Server.getActiveUser("masterAuthRealm");
+    
+            return {
+                authRequired: false
+            };
+   
 }
 
 function _extractXMLValue(tag, data) {
