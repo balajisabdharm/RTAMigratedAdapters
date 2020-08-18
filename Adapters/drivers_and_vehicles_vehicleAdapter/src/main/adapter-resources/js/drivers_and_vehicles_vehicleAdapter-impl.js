@@ -162,10 +162,15 @@ function usersVehiclesService(params, isEncryptResponse, encryptionPassword){
 			"urn:password":password.toString(),
 			"urn:username":userName.toString()
 	};
-	MFP.Logger.info("envHeader12:"+ JSON.stringify(envHeader));
+	
 	var servicePath='/ws/services/UsersVehiclesService';
 	var _soapEnvNS=soapEnvNS+ 'xmlns:urn="urn:UsersVehiclesService"';
 	//var params = {"urn:getUsersVehicles":{"urn:trafficFileNumber":"10131982"}};
+	MFP.Logger.info("envHeader12:"+ JSON.stringify(envHeader)   );
+	MFP.Logger.info("params:"+ params.toString());
+	MFP.Logger.info("_soapEnvNS:"+ _soapEnvNS.toString());
+	
+	
 	var parameters = [envHeader.toString(),params.toString(), '', _soapEnvNS.toString()];
 //	var parameters = [envHeader.toString(),envHeader.toString(), '',_soapEnvNS.toString()];
 //	var parameters = ["","","", ""];
