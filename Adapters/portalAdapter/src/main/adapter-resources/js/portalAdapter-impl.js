@@ -149,7 +149,7 @@ function isUndefinedOrNull(v) {
 		result = false;
 	return result;
 }
-function _isAuthorized(user_id) {
+/*function _isAuthorized(user_id) {
 	//var authUserIdentity = MFP.Server.getAuthenticatedUser();
 	var authUserIdentity = MFP.Server.getAuthenticatedUser();
 	MFP.Logger.info("|_isAuthorized" + JSON.stringify(authUserIdentity));
@@ -171,7 +171,13 @@ function _isAuthorized(user_id) {
 		errorCode: "401",
 		errorMessage: "Not Authorized"
 	};
+}*/
+function _isAuthorized(user_id) {
+    return {
+        authRequired: false
+    };
 }
+
 
 function _extractXMLValue(tag, data) {
 	var res = "";
