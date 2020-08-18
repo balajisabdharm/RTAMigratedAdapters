@@ -61,7 +61,7 @@ function getAvailableAppointmentCenters (isEncryptResponse, encryptionPassword){
 
     var requestObj = buildBody([JSON.stringify(request)], true);
 	MFP.Logger.warn("getAvailableAppointmentCenters request | " + requestObj);
-	var result = invokeWebServiceString(JSON.stringify(requestObj), isEncryptResponse,
+	var result = invokeWebServiceString(JSON.parse(requestObj), isEncryptResponse,
 			encryptionPassword);
 	MFP.Logger.warn("getAvailableAppointmentCenters result | " + result);
 	return result;
@@ -351,7 +351,7 @@ function getRequestString(bodyString) {
 }
 
 function invokeWebServiceString(request, isEncryptResponse, encryptionPassword) {
-	MFP.Logger.warn(request);
+	MFP.Logger.warn("invokeWebServiceString request" +request);
 	var input = {
 			method : 'post',
 			headers : {
@@ -360,7 +360,8 @@ function invokeWebServiceString(request, isEncryptResponse, encryptionPassword) 
 			returnedContentType : 'HTML',
 			path : '/appointmentService',
 			body : {
-				content : JSON.parse(request),
+				//content : JSON.parse(request),
+                content : (request),
 				contentType : 'text/xml; charset=utf-8'
 			}
 	};
