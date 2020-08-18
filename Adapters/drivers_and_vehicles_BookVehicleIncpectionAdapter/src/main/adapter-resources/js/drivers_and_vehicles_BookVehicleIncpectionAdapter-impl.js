@@ -345,7 +345,7 @@ function getRequestString(bodyString) {
 		+ '<soapenv:Body>'
 		+ bodyString
 		+ '</soapenv:Body>' + '</soapenv:Envelope>';
-	return request.toString();
+	return request;
 }
 
 function invokeWebServiceString(request, isEncryptResponse, encryptionPassword) {
