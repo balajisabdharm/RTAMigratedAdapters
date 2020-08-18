@@ -351,7 +351,7 @@ function getRequestString(bodyString) {
 }
 
 function invokeWebServiceString(request, isEncryptResponse, encryptionPassword) {
-	MFP.Logger.warn("invokeWebServiceString request" +request);
+	MFP.Logger.warn("invokeWebServiceString request >>>" +request);
 	var input = {
 			method : 'post',
 			headers : {
@@ -368,7 +368,7 @@ function invokeWebServiceString(request, isEncryptResponse, encryptionPassword) 
 
 	var webServiceResult = MFP.Server.invokeHttp(input);
 
-	MFP.Logger.warn("invokeWebServiceString response "+JSON.stringify(webServiceResult));
+	MFP.Logger.warn("invokeWebServiceString response "+(webServiceResult));
 	if (isEncryptResponse != undefined && isEncryptResponse == true) {
 		var responseString = JSON.stringify(webServiceResult);
 		var invocationData = {
