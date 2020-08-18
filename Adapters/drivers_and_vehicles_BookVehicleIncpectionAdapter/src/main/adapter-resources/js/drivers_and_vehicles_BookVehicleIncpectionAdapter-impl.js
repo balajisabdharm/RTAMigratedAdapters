@@ -352,12 +352,15 @@ function getRequestString(bodyString) {
 
 function invokeWebServiceString(request, isEncryptResponse, encryptionPassword) {
 	MFP.Logger.warn("invokeWebServiceString request >>>" +request);
+    
+    MFP.Logger.warn("invokeWebServiceString request in json format >>>>>" +JSON.parse(request));
 	var input = {
 			method : 'post',
 			headers : {
 				"SOAPAction" : ""
 			},
-			returnedContentType : 'HTML',
+			//returnedContentType : 'HTML',
+            returnedContentType : 'xml',
 			path : '/appointmentService',
 			body : {
 				//content : JSON.parse(request),
