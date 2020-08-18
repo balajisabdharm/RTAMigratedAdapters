@@ -156,19 +156,19 @@ function userOwnedAndBookedPlatesService(params, isEncryptResponse, encryptionPa
 	return invokeWebService(request,servicePath, null, isEncryptResponse, encryptionPassword);
 }
 function usersVehiclesService(params, isEncryptResponse, encryptionPassword){
+     MFP.Logger.warn(" UsersVehiclesService procedure start >>>>> " + params);
 	var envHeader={
 			"urn:password":password,
 			"urn:username":userName
 	};
 	var servicePath='/ws/services/UsersVehiclesService';
 	var _soapEnvNS=soapEnvNS+ 'xmlns:urn="urn:UsersVehiclesService"';
-
 	var parameters = [envHeader,params, '', _soapEnvNS];
 	var request = buildBody(parameters, false);
-
-	Log("UsersVehiclesService request >> " + request);
-	var result = invokeWebService(request,servicePath, null, isEncryptResponse, encryptionPassword);
-	
+    MFP.Logger.warn("UsersVehiclesService request >>>>>> " + request);
+	var resultRecv = invokeWebService(request,servicePath, null, isEncryptResponse, encryptionPassword);
+    MFP.Logger.warn("usersVehiclesService resultRecv obstained "+JSON.stringify(resultRecv));
+    var result = JSON.stringify(resultRecv);
 	if(result.Envelope != undefined && result.Envelope != null)
 		{
 			if(result.Envelope.Body != undefined && result.Envelope.Body != null)
@@ -237,6 +237,8 @@ function reInsuranceCertificateService(params, isEncryptResponse, encryptionPass
 	return invokeWebService(request,servicePath, null, isEncryptResponse, encryptionPassword);
 }
 function buildBody(parameters, isStatic) {
+    
+    MFP.Logger.info("buildBody Start "+parameters);
 	var request = "";
 
 	if (isStatic == true) {
@@ -279,6 +281,7 @@ function invokeWebService(body,servicePath,headers, isEncryptResponse, encryptio
 	headers && (input['headers'] = headers);
 
 	var webServiceResult = MFP.Server.invokeHttp(input);
+    MFP.Logger.warn("invokeWebService.backend "+JSON.stringify(webServiceResult));
 	if(isEncryptResponse != undefined && isEncryptResponse == true)
 	{
 		var responseString = JSON.stringify(webServiceResult);
@@ -288,6 +291,7 @@ function invokeWebService(body,servicePath,headers, isEncryptResponse, encryptio
 				parameters : [responseString,encryptionPassword]
 		};
 		webServiceResult = MFP.Server.invokeProcedure(invocationData);
+        MFP.Logger.warn("invokeWebService.encryptData "+JSON.stringify(webServiceResult));
 	}	
 	var endTime = new Date().getTime();
 	//Log("time for "+ servicePath + " is " + (endTime - startTime) + " ms");
@@ -296,7 +300,9 @@ function invokeWebService(body,servicePath,headers, isEncryptResponse, encryptio
 			procedure : 'deleteCredientails',
 			parameters : [webServiceResult]
 	};
-	return MFP.Server.invokeProcedure(invocationData); 
+	var finalResult= MFP.Server.invokeProcedure(invocationData);
+    MFP.Logger.warn("invokeWebService.deleteCredientails "+JSON.stringify(finalResult));
+    return finalResult;
 }
 
 function isVehicleDueForRenewal(expiryDate) {
