@@ -313,7 +313,7 @@ MFP.Logger.info("buildBody parameters"+parameters);
 		request = MFP.Server.invokeProcedure({
 			adapter : 'drivers_and_vehciles_utilitiesAdapter',
 			procedure : 'buildBodyFromStaticRequest',
-			parameters : [parameters]
+            parameters : [parameters.toString()]
 
 		});
 	} else {
