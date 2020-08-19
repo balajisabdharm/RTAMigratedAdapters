@@ -367,7 +367,7 @@ function invokeWebServiceString(request, isEncryptResponse, encryptionPassword) 
 			body : {
 				content : request.toString(),
                 //content : (request.toString()),
-				contentType : 'text/xml; charset=utf-8'
+				contentType : 'text/xml'
 			}
 	};
 
