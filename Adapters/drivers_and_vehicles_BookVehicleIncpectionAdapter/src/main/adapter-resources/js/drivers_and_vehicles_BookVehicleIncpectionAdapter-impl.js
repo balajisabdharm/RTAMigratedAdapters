@@ -348,7 +348,7 @@ function getRequestString(bodyString) {
 		+ bodyString
 		+ '</soapenv:Body>' + '</soapenv:Envelope>';
     MFP.Logger.info("getRequestString "+request);
-	return request;
+	return request.toString();
 }
 
 function invokeWebServiceString(request, isEncryptResponse, encryptionPassword) {
