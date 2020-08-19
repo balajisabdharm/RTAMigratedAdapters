@@ -1,19 +1,19 @@
-var sqlGetProfesstions = WL.Server.createSQLStatement('SELECT LABEL_AR "LABEL_AR", LABEL_EN "LABEL_EN", EXTID "EXTID" FROM Lookups WHERE LABEL_AR LIKE ? or LABEL_EN LIKE ?'); 
+var sqlGetProfesstions = 'SELECT LABEL_AR "LABEL_AR", LABEL_EN "LABEL_EN", EXTID "EXTID" FROM Lookups WHERE LABEL_AR LIKE ? or LABEL_EN LIKE ?'; 
 
-var sqlInsertProfesstions = WL.Server.createSQLStatement("INSERT INTO LOOKUPS (LABEL_AR, LABEL_EN, EXTID, TYPE) VALUES (?,?,?,'PROFESSIONS')");
+var sqlInsertProfesstions = "INSERT INTO LOOKUPS (LABEL_AR, LABEL_EN, EXTID, TYPE) VALUES (?,?,?,'PROFESSIONS')";
 
-var sqlUpdateProfessions = WL.Server.createSQLStatement("UPDATE LOOKUPS SET LABEL_AR=?, LABEL_EN=? WHERE EXTID=?");
+var sqlUpdateProfessions = "UPDATE LOOKUPS SET LABEL_AR=?, LABEL_EN=? WHERE EXTID=?";
 
-var openConnectionStatment = WL.Server.createSQLStatement("SELECT 1 FROM DUAL");
+var openConnectionStatment = "SELECT 1 FROM DUAL";
 
 
-WL.Server.createEventSource({
-	name : 'ProfessionsEventSource',
-	poll : {
-		interval : 259200, // Job run each 3 days
-		onPoll : 'synchroniseProfessions'
-	}
-});
+// WL.Server.createEventSource({
+// 	name : 'ProfessionsEventSource',
+// 	poll : {
+// 		interval : 259200, // Job run each 3 days
+// 		onPoll : 'synchroniseProfessions'
+// 	}
+// });
 
 /**
  * this function returns the list of professions containing by the ${word} string. 

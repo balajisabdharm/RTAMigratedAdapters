@@ -11,8 +11,7 @@
 
 var DB_TABLES = {
 	'GreenPoints' : {
-		getLatest_PT_ForAllUsers_And_InsertOrUpdate_Into_GreenPointsAgg : WL.Server
-			.createSQLStatement('MERGE INTO GREEN_POINTS_AGG dest '
+		getLatest_PT_ForAllUsers_And_InsertOrUpdate_Into_GreenPointsAgg : 'MERGE INTO GREEN_POINTS_AGG dest '
 						+'	USING( SELECT USER_ID , '
 						+'			USER_NAME , '
 						+'			CARD_ID , '
@@ -77,9 +76,8 @@ var DB_TABLES = {
 						+'						src.CO2_DT, '
 						+'						src.MONEY_DT, '
 						+'						src.HAPPINESS_DT, '
-						+'						src.ENV_IMPACT_DT )'),
-		getLatest_DT_ForAllUsers_And_InsertOrUpdate_Into_GreenPointsAgg : WL.Server
-		.createSQLStatement('MERGE INTO GREEN_POINTS_AGG dest '
+						+'						src.ENV_IMPACT_DT )',
+		getLatest_DT_ForAllUsers_And_InsertOrUpdate_Into_GreenPointsAgg :'MERGE INTO GREEN_POINTS_AGG dest '
 						+'	USING( SELECT USER_ID , '
 						+'			USER_NAME , '
 						+'			CARD_ID , '
@@ -144,7 +142,7 @@ var DB_TABLES = {
 						+'						src.CO2_DT, '
 						+'						src.MONEY_DT, '
 						+'						src.HAPPINESS_DT, '
-						+'						src.ENV_IMPACT_DT )')
+						+'						src.ENV_IMPACT_DT )'
 	},
 
 	'GreenPointsAgg' : {
