@@ -161,6 +161,9 @@ function usersVehiclesService(params, isEncryptResponse, encryptionPassword){
 			"urn:password":password,
 			"urn:username":userName
 	};
+	MFP.Logger.warn("Received params >>>>>> " + request);
+	params = [{"urn:getUsersVehicles":{"urn:trafficFileNumber":"+"\""+params+"\""}}];
+	MFP.Logger.warn("New params >>>>>> " + request);
 	var servicePath='/ws/services/UsersVehiclesService';
 	var _soapEnvNS=soapEnvNS+ 'xmlns:urn="urn:UsersVehiclesService"';
 	var parameters = [envHeader,params, '', _soapEnvNS];
