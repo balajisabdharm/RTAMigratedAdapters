@@ -354,7 +354,7 @@ function getRequestString(bodyString) {
 }
 
 function invokeWebServiceString(request, isEncryptResponse, encryptionPassword) {
-	request='<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:sch=\"http://www.rta.ae/ActiveMatrix/ESB/AppointmentService/XMLSchema/Schema.xsd\"><soapenv:Header><wsse:Security soapenv:mustUnderstand=\"0\" xmlns:wsse=\" http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd\" xmlns=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd\" xmlns:sch=\"http://schemas.xmlsoap.org/soap/envelope/\"><wsse:UsernameToken><wsse:Username>Mobstguser</wsse:Username><wsse:Password>m792!du)+1g</wsse:Password></wsse:UsernameToken></wsse:Security></soapenv:Header><soapenv:Body><sch:getAvailableAppointmentCentersRequest/></soapenv:Body></soapenv:Envelope>';
+	request='<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sch="http://www.rta.ae/ActiveMatrix/ESB/AppointmentService/XMLSchema/Schema.xsd"><soapenv:Header><wsse:Security soapenv:mustUnderstand="0" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:sch="http://schemas.xmlsoap.org/soap/envelope/"><wsse:UsernameToken><wsse:Username>Mobstguser</wsse:Username><wsse:Password>m792!du)+1g</wsse:Password></wsse:UsernameToken></wsse:Security></soapenv:Header><soapenv:Body><sch:getAvailableAppointmentCentersRequest/></soapenv:Body></soapenv:Envelope>';
 	MFP.Logger.warn("invokeWebServiceString request >>>" +request);
    
 	var input = {
