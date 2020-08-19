@@ -69,7 +69,7 @@ function bookletLicenseInquiryService(params, isEncryptResponse, encryptionPassw
 	};
 	var servicePath='/ws/services/BookletLicenseInquiryService';
 	var _soapEnvNS=soapEnvNS+ 'xmlns:ws="http://ae.gov.trf.vhl.ws.BookletLicenseInquiryService"';
-
+	
 	var parameters = [envHeader.toString(), params.toString(), '', _soapEnvNS.toString()];
 	var request = buildBody(parameters, false);
 
@@ -165,10 +165,12 @@ function usersVehiclesService(params, isEncryptResponse, encryptionPassword){
 	
 	var servicePath='/ws/services/UsersVehiclesService';
 	var _soapEnvNS=soapEnvNS+ 'xmlns:urn="urn:UsersVehiclesService"';
+	MFP.Logger.info("UsersVehiclesService received params >>>>> " + params);
 	var params = {"urn:getUsersVehicles":{"urn:trafficFileNumber":"\""+params+"\""}};
 	MFP.Logger.info("envHeader12:"+ JSON.stringify(envHeader)   );
 	MFP.Logger.info("_soapEnvNS:"+ _soapEnvNS.toString());
-	MFP.Logger.info("params:"+ params.toString());
+	MFP.Logger.info("Formatted params:"+ params.toString());
+	MFP.Logger.info("JSON.Stringify params:"+ JSON.stringify(params));
 	
 	var parameters = [envHeader.toString(),params.toString(), '', _soapEnvNS.toString()];
 //	var parameters = [envHeader.toString(),envHeader.toString(), '',_soapEnvNS.toString()];
