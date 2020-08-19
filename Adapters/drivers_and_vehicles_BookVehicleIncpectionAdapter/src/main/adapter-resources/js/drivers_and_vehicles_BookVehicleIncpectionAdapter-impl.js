@@ -371,7 +371,7 @@ function invokeWebServiceString(request, isEncryptResponse, encryptionPassword) 
 				contentType : 'text/xml'
 			}
 	};
-	MFP.Logger.infp("Test WebServiceResult1::");
+	MFP.Logger.info("Test WebServiceResult1::");
 	var webServiceResult = MFP.Server.invokeHttp(input);
 	MFP.Logger.infp("Test WebServiceResult:");
 	MFP.Logger.warn("invokeWebServiceString response "+webServiceResult.toString());
