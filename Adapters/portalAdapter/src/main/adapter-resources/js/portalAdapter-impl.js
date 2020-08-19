@@ -688,7 +688,7 @@ function updateUserProfile(applicationId, titleId, firstName, lastName, national
 			prefLanguage, prefComm, email, isEmailVerified, isMobileVerified]));
 		//MFP.Logger.info("|portalAdapter |updateUserProfile |Data: " + titleId+" "+ firstName+" "+ lastName+" "+ nationalityId+" "+ mobileNo+" "+ userId+" "+ prefLanguage+" "+ prefComm);
 		var isAuthorizedResponse = this._isAuthorized(userId);
-		if (isAuthorizedResponse.authRequired === false) {
+		//if (isAuthorizedResponse.authRequired === false) {
 			//MFP.Logger.info("|portalAdapter |authRequired |False: ");
 			adapterLogger("updateUserProfile", "info", "authRequired", "False");
 
@@ -791,12 +791,12 @@ function updateUserProfile(applicationId, titleId, firstName, lastName, national
 				return handleError("Invalid Parameters", 406);
 			}
 
-		}
+		/*}
 		else {
 			//MFP.Logger.info("|portalAdapter |authRequired |True: " + isAuthorizedResponse);
 			adapterLogger("updateUserProfile", "info", "True", toString(isAuthorizedResponse));
 			return isAuthorizedResponse;
-		}
+		}*/
 	}
 	catch (e) {
 		adapterLogger("updateUserProfile", "error", "Exception", e.toString());
