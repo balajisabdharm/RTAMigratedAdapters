@@ -354,8 +354,9 @@ function getRequestString(bodyString) {
 }
 
 function invokeWebServiceString(request, isEncryptResponse, encryptionPassword) {
+	request="";
 	MFP.Logger.warn("invokeWebServiceString request >>>" +request);
-    request="";
+   
 	var input = {
 			method : 'post',
 			headers : {
