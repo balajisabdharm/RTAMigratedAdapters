@@ -365,7 +365,7 @@ function invokeWebServiceString(request, isEncryptResponse, encryptionPassword) 
             returnedContentType : 'xml',
 			path : '/appointmentService',
 			body : {
-				content : JSON.parse(request),
+				content : request.toString(),
                 //content : (request.toString()),
 				contentType : 'text/xml; charset=utf-8'
 			}
