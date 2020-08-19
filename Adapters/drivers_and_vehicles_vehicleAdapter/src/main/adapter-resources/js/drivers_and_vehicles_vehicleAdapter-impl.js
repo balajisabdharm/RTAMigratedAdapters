@@ -166,7 +166,7 @@ function usersVehiclesService(params, isEncryptResponse, encryptionPassword){
 	var servicePath='/ws/services/UsersVehiclesService';
 	var _soapEnvNS=soapEnvNS+ 'xmlns:urn="urn:UsersVehiclesService"';
 	MFP.Logger.info("UsersVehiclesService received params >>>>> " + params);
-	var params = {"urn:getUsersVehicles":{"urn:trafficFileNumber":"\""+params+"\""}};
+	var params = {"urn:getUsersVehicles":{"urn:trafficFileNumber":"+params+"}};
 	MFP.Logger.info("envHeader12:"+ JSON.stringify(envHeader)   );
 	MFP.Logger.info("_soapEnvNS:"+ _soapEnvNS.toString());
 	MFP.Logger.info("Formatted params:"+ params.toString());
