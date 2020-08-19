@@ -75,7 +75,7 @@ function getAvailableAppointmentCentersByDate (date,isEncryptResponse, encryptio
 		bodyRequest +="</sch:getAvailableAppointmentCentersRequest>";
 	var request = getRequestString(bodyRequest);
 
-	var requestObj = buildBody([ request ], true);
+	var requestObj = buildBody(request, true);
 	MFP.Logger.warn("getAvailableAppointmentCentersByDate request | " + requestObj);
 	var result = invokeWebServiceString(requestObj, isEncryptResponse,
 			encryptionPassword);
@@ -313,7 +313,7 @@ MFP.Logger.info("buildBody parameters"+parameters);
 		request = MFP.Server.invokeProcedure({
 			adapter : 'drivers_and_vehciles_utilitiesAdapter',
 			procedure : 'buildBodyFromStaticRequest',
-			parameters : parameters,
+			parameters : [parameters]
 
 		});
 	} else {
