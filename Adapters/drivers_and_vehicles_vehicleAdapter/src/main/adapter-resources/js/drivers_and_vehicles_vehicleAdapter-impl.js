@@ -168,7 +168,6 @@ function usersVehiclesService(params, isEncryptResponse, encryptionPassword){
 	//var params = {"urn:getUsersVehicles":{"urn:trafficFileNumber":"10131982"}};
 	MFP.Logger.info("envHeader12:"+ JSON.stringify(envHeader)   );
 	MFP.Logger.info("_soapEnvNS:"+ _soapEnvNS.toString());
-	MFP.Logger.info("params:"+ params);
 	MFP.Logger.info("params:"+ params.toString());
 	
 	var parameters = [envHeader.toString(),params.toString(), '', _soapEnvNS.toString()];
