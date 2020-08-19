@@ -21,15 +21,15 @@ var IsDebugging;
 
 var xsdStr = "http://xml.apache.org/axis/";
 function fixNameSpace(response){
-	MFP.Logger.info(" ================================================= REMOVING NAMESPACE =================================================");
-	response = JSON.stringify(response);
-	reg1 = new RegExp('{"":"'+xsdStr+'","CDATA":', "g");
-	reg2 = new RegExp('"":"'+xsdStr+'",',"g");
-	reg3 = new RegExp('{"":"'+xsdStr+'"}',"g");
-	response = response.replace(reg1,"").replace(reg2,"").replace(reg3,"\"\"").replace(/}]}/g,"]").replace(/}}]/g,"}]").replace(/},/g,",")+"}}";
-	MFP.Logger.info("refined Response -->" + response);
-	
-	return JSON.parse(response);
+//	MFP.Logger.info(" ================================================= REMOVING NAMESPACE =================================================");
+//	response = JSON.stringify(response);
+//	reg1 = new RegExp('{"":"'+xsdStr+'","CDATA":', "g");
+//	reg2 = new RegExp('"":"'+xsdStr+'",',"g");
+//	reg3 = new RegExp('{"":"'+xsdStr+'"}',"g");
+//	response = response.replace(reg1,"").replace(reg2,"").replace(reg3,"\"\"").replace(/}]}/g,"]").replace(/}}]/g,"}]").replace(/},/g,",")+"}}";
+//	MFP.Logger.info("refined Response -->" + response);
+return response;	
+//	return JSON.parse(response);
 }
 
 
