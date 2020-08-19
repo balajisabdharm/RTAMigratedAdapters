@@ -352,7 +352,7 @@ function getRequestString(bodyString) {
 }
 
 function invokeWebServiceString(request, isEncryptResponse, encryptionPassword) {
-	MFP.Logger.warn("invokeWebServiceString request >>>" +JSON.parse(request));
+	MFP.Logger.warn("invokeWebServiceString request >>>" +request);
     
 	var input = {
 			method : 'post',
@@ -363,8 +363,8 @@ function invokeWebServiceString(request, isEncryptResponse, encryptionPassword) 
             returnedContentType : 'xml',
 			path : '/appointmentService',
 			body : {
-				content : JSON.parse(request),
-               // content : (request.toString()),
+				//content : JSON.parse(request),
+                content : (request.toString()),
 				contentType : 'text/xml; charset=utf-8'
 			}
 	};
