@@ -18,6 +18,21 @@ var password = "m792!du)+1g";
 var externalUsername = "%#credentials!#!externalUsername#%";
 var externalPassword = "%#credentials!#!externalPassword#%";
 var IsDebugging;
+
+var xsdStr = "http://xml.apache.org/axis/";
+function fixNameSpace(response){
+	MFP.Logger.info(" ================================================= REMOVING NAMESPACE =================================================");
+	response = JSON.stringify(response);
+	reg1 = new RegExp('{"":"'+xsdStr+'","CDATA":', "g");
+	reg2 = new RegExp('"":"'+xsdStr+'",',"g");
+	reg3 = new RegExp('{"":"'+xsdStr+'"}',"g");
+	response = response.replace(reg1,"").replace(reg2,"").replace(reg3,"\"\"").replace(/}]}/g,"]").replace(/}}]/g,"}]").replace(/},/g,",")+"}}";
+	MFP.Logger.info("refined Response -->" + response);
+	
+	return JSON.parse(response);
+}
+
+
 function Log(text){
 	try {
 		IsDebugging=MFP.Server.getPropertyValue("drivers_and_vehicles_is_debugging");
@@ -43,7 +58,7 @@ function returenVehicleFromTourService(params, isEncryptResponse, encryptionPass
 	var request = buildBody(parameters, false);
 
 	//Log("BookletLicenseInquiryService request >> " + request);
-	return invokeWebService(request,servicePath, null, isEncryptResponse, encryptionPassword);
+	return fixNameSpace(invokeWebService(request,servicePath, null, isEncryptResponse, encryptionPassword));
 }
 function getVehicleInformationAmendment(params, isEncryptResponse, encryptionPassword) {
 	var envHeader = {
@@ -58,7 +73,7 @@ function getVehicleInformationAmendment(params, isEncryptResponse, encryptionPas
 	var request = buildBody(parameters, false);
 
 	//Log("getVehicleInformationAmendment request >> " + request);
-	return invokeWebService(request,servicePath, null, isEncryptResponse, encryptionPassword);
+	return fixNameSpace(invokeWebService(request,servicePath, null, isEncryptResponse, encryptionPassword));
 }
 
 
@@ -97,7 +112,7 @@ function bookletLicenseInquiryService(params, isEncryptResponse, encryptionPassw
 				}
 			}
 		}
-	 return result ;
+	 return fixNameSpace(result) ;
 }
 function mCardService(params, isEncryptResponse, encryptionPassword) {
 	var envHeader = {
@@ -111,7 +126,7 @@ function mCardService(params, isEncryptResponse, encryptionPassword) {
 	var request = buildBody(parameters, false);
 
 	//Log("MCardService request >> " + request);
-	return invokeWebService(request,servicePath, null, isEncryptResponse, encryptionPassword);
+	return fixNameSpace(invokeWebService(request,servicePath, null, isEncryptResponse, encryptionPassword));
 }
 function ownerVehicleInfoService(params, isEncryptResponse, encryptionPassword){
 	var envHeader ={
@@ -125,7 +140,7 @@ function ownerVehicleInfoService(params, isEncryptResponse, encryptionPassword){
 	var request = buildBody(parameters, false);
 
 	//Log("OwnerVehicleInfoService request >> " + request);
-	return invokeWebService(request,servicePath, null, isEncryptResponse, encryptionPassword);
+	return fixNameSpace(invokeWebService(request,servicePath, null, isEncryptResponse, encryptionPassword));
 }
 function trafficInquiryService(params, isEncryptResponse, encryptionPassword) {
 	var envHeader={
@@ -141,7 +156,7 @@ function trafficInquiryService(params, isEncryptResponse, encryptionPassword) {
 	var request = buildBody(parameters, false);
 
 	//Log("TrafficInquiryService request >> " + request);
-	return invokeWebService(request,servicePath, null, isEncryptResponse, encryptionPassword);
+	return fixNameSpace(invokeWebService(request,servicePath, null, isEncryptResponse, encryptionPassword));
 }
 function userOwnedAndBookedPlatesService(params, isEncryptResponse, encryptionPassword){
 	var envHeader={
@@ -155,7 +170,7 @@ function userOwnedAndBookedPlatesService(params, isEncryptResponse, encryptionPa
 	var request = buildBody(parameters, false);
 
 	//Log("UserOwnedAndBookedPlatesService request >> " + request);
-	return invokeWebService(request,servicePath, null, isEncryptResponse, encryptionPassword);
+	return fixNameSpace(invokeWebService(request,servicePath, null, isEncryptResponse, encryptionPassword));
 }
 function usersVehiclesService(params, isEncryptResponse, encryptionPassword){
 	var envHeader={
@@ -232,7 +247,7 @@ function usersVehiclesService(params, isEncryptResponse, encryptionPassword){
 		}
 		
 	Log("UsersVehiclesService Response >> " + JSON.stringify(result));
-	return result ;
+	return fixNameSpace(result) ;
 }
 function reInsuranceCertificateService(params, isEncryptResponse, encryptionPassword){
 	var envHeader = {
