@@ -442,7 +442,7 @@ function buildBodyFromStaticRequest(request) {
     MFP.Logger.info("&&&&&&&& "+request+" &&&&&&");
     //var body1 = JSON.stringify(replaceCredentials(request));
     var body1 = (replaceCredentials(request));
-    MFP.Logger.info("&&&&&&&& "+body+" &&&&&&");
+    MFP.Logger.info("&&&&&&&& "+body1+" &&&&&&");
     return {body : body1};
 }
 
