@@ -60,10 +60,12 @@ function getAvailableAppointmentCenters (isEncryptResponse, encryptionPassword){
 	var request = getRequestString(bodyRequest);
 
     //var requestObj = buildBody([JSON.stringify(request)], true);
-	var requestObj = buildBody([JSON.stringify(request)], true);
+	var requestObj = buildBody([(request)], true);
     MFP.Logger.warn("getAvailableAppointmentCenters request | " + requestObj);
-	var result = invokeWebServiceString(JSON.stringify(requestObj), isEncryptResponse,
+	//var result = invokeWebServiceString(JSON.stringify(requestObj), isEncryptResponse,
 			encryptionPassword);
+    var result = invokeWebServiceString((requestObj), isEncryptResponse,
+    encryptionPassword);
 	MFP.Logger.warn("getAvailableAppointmentCenters result | " + result);
 	return result;
 }
@@ -313,8 +315,7 @@ MFP.Logger.info("buildBody parameters"+parameters);
 		request = MFP.Server.invokeProcedure({
 			adapter : 'drivers_and_vehciles_utilitiesAdapter',
 			procedure : 'buildBodyFromStaticRequest',
-            parameters : [parameters.toString()]
-
+            parameters : parameters
 		});
 	} else {
 		request = MFP.Server.invokeProcedure({
