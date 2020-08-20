@@ -64,7 +64,7 @@ function getAvailableAppointmentCenters (isEncryptResponse, encryptionPassword){
     MFP.Logger.warn("getAvailableAppointmentCenters request | " + JSON.stringify(requestObj));
 	//var result = invokeWebServiceString(JSON.stringify(requestObj), isEncryptResponse,encryptionPassword);
     var result = invokeWebServiceString(requestObj, isEncryptResponse,encryptionPassword);
-	MFP.Logger.warn("getAvailableAppointmentCenters result | " + result);
+	MFP.Logger.warn("getAvailableAppointmentCenters result | " + JSON.stringify(result));
 	return result;
 }
 //get all centers on specific date
@@ -373,7 +373,7 @@ function invokeWebServiceString(request, isEncryptResponse, encryptionPassword) 
 	MFP.Logger.info("Test WebServiceResult1::");
 	var webServiceResult = MFP.Server.invokeHttp(input);
 	MFP.Logger.info("Test WebServiceResult:");
-//	MFP.Logger.warn("invokeWebServiceString response "+webServiceResult.toString());
+	MFP.Logger.warn("invokeWebServiceString response "+webServiceResult.toString());
 	if (isEncryptResponse != undefined && isEncryptResponse == true) {
 		var responseString = JSON.stringify(webServiceResult);
 		var invocationData = {
