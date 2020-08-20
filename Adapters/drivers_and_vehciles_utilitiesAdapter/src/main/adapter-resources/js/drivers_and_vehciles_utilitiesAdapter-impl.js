@@ -418,7 +418,7 @@ function replaceCredentials(envHeader){
  */
 function buildBody(envHeader, params, namespaces, soapEnvNS) {
     
-    MFP.Logger.info("RECEIVED IN BUILD BODY ====================>>>>>>>&&&&&&&& ");
+   /* MFP.Logger.info("RECEIVED IN BUILD BODY ====================>>>>>>>&&&&&&&& ");
     
     MFP.Logger.info("envHeader "+envHeader);
     MFP.Logger.info("params "+params);
@@ -426,22 +426,22 @@ function buildBody(envHeader, params, namespaces, soapEnvNS) {
     MFP.Logger.info("soapEnvNS "+soapEnvNS);
     
     MFP.Logger.info("RECEIVED IN BUILD BODY ====================>>>>>>>&&&&&&&& ");
-    
+    */
     var body = '<soapenv:Envelope ' + soapEnvNS + '>\n'+ '<soapenv:Header>\n';
     
-    MFP.Logger.info(" BUILD BODY ====================>>>>>>>&&&&&&&& ");
+    /*MFP.Logger.info(" BUILD BODY ====================>>>>>>>&&&&&&&& ");
     
     MFP.Logger.info(body);
     
     MFP.Logger.info("");
-    MFP.Logger.info("");
+    MFP.Logger.info("");*/
     body = jsonToXml(envHeader, body, namespaces);
-    MFP.Logger.info(" BUILD BODY 2 ====================>>>>>>>&&&&&&&& ");
+   // MFP.Logger.info(" BUILD BODY 2 ====================>>>>>>>&&&&&&&& ");
     
-    MFP.Logger.info(body);
+    //MFP.Logger.info(body);
     
     
-    MFP.Logger.info(" BUILD BODY ====================>>>>>>>&&&&&&&& ");
+    //MFP.Logger.info(" BUILD BODY ====================>>>>>>>&&&&&&&& ");
     
     body += '</soapenv:Header>\n';
     body += '<soapenv:Body>\n';
