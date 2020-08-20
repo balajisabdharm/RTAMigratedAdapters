@@ -179,7 +179,7 @@ function invokeWebService(body,targetURL,headers, isEncryptResponse, encryptionP
 			//path:'/TransactionServiceMock',
 			body : {
 				//content : body.toString(),
-                content : JSON.parse(body),
+                content : (body),
 				contentType : 'text/xml; charset=utf-8'
 			}
 	};
@@ -199,15 +199,13 @@ function invokeWebService(body,targetURL,headers, isEncryptResponse, encryptionP
 				parameters : [responseString,encryptionPassword]
 		};
 		webServiceResult = MFP.Server.invokeProcedure(invocationData);
-         MFP.Logger("drivers_and_vehicles_lookupsAdapter invokeWebService webServiceResult  isEncryptResponse 00000000000"+JSON.stringify(webServiceResult) );
 	}	
 	//var endTime = new Date().getTime();
 	//Log("time for "+ targetURL + " is " + (endTime - startTime) + " ms");
 	var invocationData = {
 			adapter : 'drivers_and_vehciles_utilitiesAdapter',
 			procedure : 'deleteCredientails',
-			//parameters : [webServiceResult]
-        parameters : [JSON.stringify(webServiceResult)]
+			parameters : [webServiceResult]
 	};
 	return MFP.Server.invokeProcedure(invocationData); 
 }
