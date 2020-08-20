@@ -165,6 +165,7 @@ function buildBody(parameters, isStatic) {
 
 function invokeWebService(body,targetURL,headers, isEncryptResponse, encryptionPassword) {
 	//var startTime = new Date().getTime();
+    MFP.Logger("drivers_and_vehicles_lookupsAdapter invokeWebService targetURL "+targetURL+" headers "+headers );
 	if (!headers)
 		headers = {
 			"SOAPAction" : ""
@@ -188,6 +189,7 @@ function invokeWebService(body,targetURL,headers, isEncryptResponse, encryptionP
 	headers && (input['headers'] = headers);
 
 	var webServiceResult = MFP.Server.invokeHttp(input);
+    MFP.Logger("drivers_and_vehicles_lookupsAdapter invokeWebService webServiceResult "+JSON.stringify(webServiceResult) );
 	if(isEncryptResponse != undefined && isEncryptResponse == true)
 	{
 		var responseString = JSON.stringify(webServiceResult);
@@ -197,13 +199,15 @@ function invokeWebService(body,targetURL,headers, isEncryptResponse, encryptionP
 				parameters : [responseString,encryptionPassword]
 		};
 		webServiceResult = MFP.Server.invokeProcedure(invocationData);
+         MFP.Logger("drivers_and_vehicles_lookupsAdapter invokeWebService webServiceResult  isEncryptResponse 00000000000"+JSON.stringify(webServiceResult) );
 	}	
 	//var endTime = new Date().getTime();
 	//Log("time for "+ targetURL + " is " + (endTime - startTime) + " ms");
 	var invocationData = {
 			adapter : 'drivers_and_vehciles_utilitiesAdapter',
 			procedure : 'deleteCredientails',
-			parameters : [webServiceResult]
+			//parameters : [webServiceResult]
+        parameters : [JSON.stringify(webServiceResult)]
 	};
 	return MFP.Server.invokeProcedure(invocationData); 
 }
