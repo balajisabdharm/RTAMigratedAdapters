@@ -76,7 +76,8 @@ function newMaintenanceService(params, isEncryptResponse, encryptionPassword) {
 	//params = JSON.stringify(paramsStr);
 	//Log("NewMaintenanceService JSONStringify params >>>>>>>>>>>> " + params);
 	//var parameters = [envHeader.toString(), params.toString(), '', _soapEnvNS.toString()];
-    var parameters = [JSON.stringify(envHeader), params, '', _soapEnvNS];
+    //var parameters = [JSON.stringify(envHeader), params, '', _soapEnvNS];
+    var parameters =[envHeader,JSON.parse(params),'',_soapEnvNS];
      MFP.Logger.info("NewMaintenanceService String parameters >>>>>>>>>>>> " + parameters);
 	var request = buildBody(parameters, false);
 	//var request = buildBody(JSON.stringify(envHeader), params, '', _soapEnvNS, false);
@@ -154,7 +155,7 @@ function buildBody(parameters, isStatic) {
 		request = MFP.Server.invokeProcedure({
 			adapter : 'drivers_and_vehciles_utilitiesAdapter',
 			procedure : 'buildBody',
-			parameters : []
+			parameters :parameters
             //parameters : [envHeader,params,'',_soapEnvNS]
 		});
 	}
