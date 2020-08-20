@@ -387,7 +387,7 @@ function sendMail(fromMailAddress,subject, message,attachments) {
 
 
 function replaceCredentials(envHeader){
-    MFP.Logger.info("replaceCredentials Start envHeader "+envHeader);
+    MFP.Logger.info("replaceCredentials Start envHeader >> "+envHeader);
    var string = envHeader;
     string = this.replaceAll(string, "%#credentials!#!username#%", getChannelCredentials().username);
     string = this.replaceAll(string, "%#credentials!#!externalUsername#%", getExternalChannelCredentials().externalUsername);
