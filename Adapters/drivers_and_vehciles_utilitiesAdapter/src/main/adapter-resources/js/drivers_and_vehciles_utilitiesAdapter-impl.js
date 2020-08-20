@@ -389,7 +389,7 @@ function sendMail(fromMailAddress,subject, message,attachments) {
 function replaceCredentials(envHeader){
     MFP.Logger.info("replaceCredentials Start envHeader "+envHeader);
    var string = envHeader;
-    /*string = this.replaceAll(string, "%#credentials!#!username#%", getChannelCredentials().username);
+    string = this.replaceAll(string, "%#credentials!#!username#%", getChannelCredentials().username);
     string = this.replaceAll(string, "%#credentials!#!externalUsername#%", getExternalChannelCredentials().externalUsername);
     string = this.replaceAll(string, "%#credentials!#!username_tibco#%", getTibcoCredentials().username_tibco);
     string = this.replaceAll(string, "%#credentials!#!password#%", getChannelCredentials().password);
@@ -400,11 +400,11 @@ function replaceCredentials(envHeader){
 
     MFP.Logger.debug("??????????????????????????????????????????");
     MFP.Logger.debug("converted Body " + string);
-    MFP.Logger.debug("??????????????????????????????????????????");*/
+    MFP.Logger.debug("??????????????????????????????????????????");
    
     //Returning dummy response
-    //return string ;
-   return envHeader;
+    return string ;
+   // return envHeader;
 }
 
 /**
@@ -441,7 +441,8 @@ function buildBody(envHeader, params, namespaces, soapEnvNS) {
  */
 function buildBodyFromStaticRequest(request) {
     MFP.Logger.info("&&&&&&&& "+request+" &&&&&&");
-    var body = JSON.stringify(replaceCredentials(request));
+   // var body = JSON.stringify(replaceCredentials(request));
+    var body = (replaceCredentials(request));
     MFP.Logger.info("&&&&&&&& "+body+" &&&&&&");
     return {body : body};
 }
