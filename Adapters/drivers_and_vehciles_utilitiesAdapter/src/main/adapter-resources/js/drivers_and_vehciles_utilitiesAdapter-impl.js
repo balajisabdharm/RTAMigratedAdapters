@@ -436,9 +436,9 @@ function buildBody(envHeader, params, namespaces, soapEnvNS) {
     MFP.Logger.info("");
     MFP.Logger.info("");
     body = jsonToXml(envHeader, body, namespaces);
+    MFP.Logger.info(" BUILD BODY 2 ====================>>>>>>>&&&&&&&& ");
     
-    
-    
+    MFP.Logger.info(body);
     
     
     MFP.Logger.info(" BUILD BODY ====================>>>>>>>&&&&&&&& ");
