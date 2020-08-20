@@ -154,7 +154,7 @@ function buildBody(parameters, isStatic) {
 		request = MFP.Server.invokeProcedure({
 			adapter : 'drivers_and_vehciles_utilitiesAdapter',
 			procedure : 'buildBody',
-			parameters : parameters
+			parameters : []
             //parameters : [envHeader,params,'',_soapEnvNS]
 		});
 	}
