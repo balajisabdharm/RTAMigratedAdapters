@@ -188,6 +188,9 @@ function invokeWebService(body, servicePath, headers, isEncryptResponse, encrypt
     headers && (input['headers'] = headers);
 
     var webServiceResult = MFP.Server.invokeHttp(input);
+	
+	Log("Got back WebService Result >>>>>>>>>>>> ====================== " + webServiceResult);
+	
     if(isEncryptResponse != undefined && isEncryptResponse == true)
     {
         var responseString = JSON.stringify(webServiceResult);
