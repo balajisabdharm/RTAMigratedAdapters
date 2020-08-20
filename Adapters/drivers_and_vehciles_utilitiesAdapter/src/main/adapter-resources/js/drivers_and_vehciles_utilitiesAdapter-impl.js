@@ -429,7 +429,20 @@ function buildBody(envHeader, params, namespaces, soapEnvNS) {
     
     var body = '<soapenv:Envelope ' + soapEnvNS + '>\n'+ '<soapenv:Header>\n';
     
+    MFP.Logger.info(" BUILD BODY ====================>>>>>>>&&&&&&&& ");
+    
+    MFP.Logger.info(body);
+    
+    MFP.Logger.info("");
+    MFP.Logger.info("");
     body = jsonToXml(envHeader, body, namespaces);
+    
+    
+    
+    
+    
+    MFP.Logger.info(" BUILD BODY ====================>>>>>>>&&&&&&&& ");
+    
     body += '</soapenv:Header>\n';
     body += '<soapenv:Body>\n';
     body  = jsonToXml(params, body, namespaces);
