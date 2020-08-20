@@ -362,7 +362,7 @@ function invokeWebServiceString(request, isEncryptResponse, encryptionPassword) 
 				"SOAPAction" : ""
 			},
 			//returnedContentType : 'HTML',
-            returnedContentType : 'xml',
+            returnedContentType : 'html',
 			path : '/appointmentService',
 			body : {
 				content : request.toString(),
