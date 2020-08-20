@@ -165,7 +165,7 @@ function buildBody(parameters, isStatic) {
 
 function invokeWebService(body,targetURL,headers, isEncryptResponse, encryptionPassword) {
 	//var startTime = new Date().getTime();
-  MFP.Logger("drivers_and_vehicles_lookupsAdapter invokeWebService called ");
+
 	if (!headers)
 		headers = {
 			"SOAPAction" : ""
@@ -179,7 +179,7 @@ function invokeWebService(body,targetURL,headers, isEncryptResponse, encryptionP
 			//path:'/TransactionServiceMock',
 			body : {
 				content : body.toString(),
-                
+                //content : (body),
 				contentType : 'text/xml; charset=utf-8'
 			}
 	};
