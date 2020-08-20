@@ -393,10 +393,6 @@ function invokeWebServiceString(request, servicePath, SOAPAction, isEncryptRespo
             //contentType :'application/soap+xml;charset=utf-8'
         }
     };
-
-
-
-
     var webServiceResult = MFP.Server.invokeHttp(input);
     var _result_truncated =JSON.stringify(webServiceResult);
     MFP.Logger.info("Response   without modification" +_result_truncated);
