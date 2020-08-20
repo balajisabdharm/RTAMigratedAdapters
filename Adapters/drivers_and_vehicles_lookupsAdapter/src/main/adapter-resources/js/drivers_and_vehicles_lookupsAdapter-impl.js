@@ -65,7 +65,7 @@ function newMaintenanceService(params, isEncryptResponse, encryptionPassword) {
 	};	
 	var servicePath = "/ws/services/NewMaintenanceService";
 	var paramsStr ="[{\"new:getTableData\":{\"RequestName\":\""+params+"\"}}]";
-	params = JSON.stringify(paramStr);
+	params = JSON.stringify(paramsStr);
 	
 	var parameters = [envHeader.toString(), params.toString(), '', _soapEnvNS.toString()];
 	var request = buildBody(parameters, false);
