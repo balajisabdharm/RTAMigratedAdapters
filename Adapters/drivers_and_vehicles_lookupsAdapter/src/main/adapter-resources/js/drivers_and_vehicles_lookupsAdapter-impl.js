@@ -209,7 +209,7 @@ function invokeWebServiceStatic(request, servicePath, isEncryptResponse, encrypt
 	};
 
 	var webServiceResult = MFP.Server.invokeHttp(input);
-	if(isEncryptResponse != undefined && isEncryptResponse == true)
+	/*if(isEncryptResponse != undefined && isEncryptResponse == true)
 	{
 		var responseString = JSON.stringify(webServiceResult);
 		var invocationData = {
@@ -218,7 +218,7 @@ function invokeWebServiceStatic(request, servicePath, isEncryptResponse, encrypt
 				parameters : [responseString,encryptionPassword]
 		};
 		webServiceResult = MFP.Server.invokeProcedure(invocationData);
-	}	
+	}*/	
 	var invocationData = {
 			adapter : 'drivers_and_vehciles_utilitiesAdapter',
 			procedure : 'deleteCredientails',
