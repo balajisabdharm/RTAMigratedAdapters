@@ -64,11 +64,11 @@ function newMaintenanceService(params, isEncryptResponse, encryptionPassword) {
 			"new:username": userName
 	};	
 	var servicePath = "/ws/services/NewMaintenanceService";
-	var paramsStr ="[{\"new:getTableData\":{\"RequestName\":\""+params+"\"}}]";
-	Log("NewMaintenanceService String params >>>>>>>>>>>> " + paramsStr);
+	//var paramsStr ="[{\"new:getTableData\":{\"RequestName\":\""+params+"\"}}]";
+	//Log("NewMaintenanceService String params >>>>>>>>>>>> " + paramsStr);
 	//params = JSON.stringify(paramsStr);
 	//Log("NewMaintenanceService JSONStringify params >>>>>>>>>>>> " + params);
-	var parameters = [envHeader.toString(), params, '', _soapEnvNS.toString()];
+	var parameters = [envHeader.toString(), params.toString(), '', _soapEnvNS.toString()];
 	var request = buildBody(parameters, false);
 	
 	Log("NewMaintenanceService request >>>>>>>>>>>> " + request);
