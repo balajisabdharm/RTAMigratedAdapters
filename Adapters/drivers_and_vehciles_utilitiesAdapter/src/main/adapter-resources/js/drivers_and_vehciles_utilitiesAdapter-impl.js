@@ -2,7 +2,7 @@
 function getChannelCredentials() {
     return {
         username : "Mobstguser",
-        password : "m792!du)+1g"
+        password : "test"
         //password : "eyprtm"   //Production
     };
 }
