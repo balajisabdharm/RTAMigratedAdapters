@@ -78,7 +78,7 @@ function newMaintenanceService(params, isEncryptResponse, encryptionPassword) {
 	//var parameters = [envHeader.toString(), params.toString(), '', _soapEnvNS.toString()];
     //var parameters = [JSON.stringify(envHeader), params, '', _soapEnvNS];
     var parameters =[JSON.stringify(envHeader),params.toString(),'',_soapEnvNS.toString()];
-     MFP.Logger.info("NewMaintenanceService String parameters >>>>>>>>>>>> " + parameters);
+     //MFP.Logger.info("NewMaintenanceService String parameters >>>>>>>>>>>> " + parameters);
 	var request = buildBody(parameters, false);
 	//var request = buildBody(JSON.stringify(envHeader), params, '', _soapEnvNS, false);
 	Log("NewMaintenanceService request >>>>>>>>>>>> " + request);
@@ -142,16 +142,16 @@ function getServiceTermsAndConditionsService(request, isEncryptResponse, encrypt
 
 function buildBody(parameters, isStatic) {
 	var request = "";
-    MFP.Logger.info("drivers_and_vehicles_lookupAdapter buildBody parameters "+parameters );
+   // MFP.Logger.info("drivers_and_vehicles_lookupAdapter buildBody parameters "+parameters );
 	if (isStatic == true) {
 		request = MFP.Server.invokeProcedure({
 			adapter : 'drivers_and_vehciles_utilitiesAdapter',
 			procedure : 'buildBodyFromStaticRequest',
-			parameters : parameters,
+			parameters : parameters
 
 		});
 	} else {
-        MFP.Logger.info("drivers_and_vehicles_lookupAdapter going in false ");
+     //   MFP.Logger.info("drivers_and_vehicles_lookupAdapter going in false ");
 		request = MFP.Server.invokeProcedure({
 			adapter : 'drivers_and_vehciles_utilitiesAdapter',
 			procedure : 'buildBody',
