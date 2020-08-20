@@ -143,7 +143,7 @@ function getServiceTermsAndConditionsService(request, isEncryptResponse, encrypt
 function buildBody(parameters, isStatic) {
 	var request = "";
    // MFP.Logger.info("drivers_and_vehicles_lookupAdapter buildBody parameters "+parameters );
-	if (isStatic == true) {
+/*	if (isStatic == true) {
 		request = MFP.Server.invokeProcedure({
 			adapter : 'drivers_and_vehciles_utilitiesAdapter',
 			procedure : 'buildBodyFromStaticRequest',
@@ -161,6 +161,8 @@ function buildBody(parameters, isStatic) {
 	}
 
 	return request.body;
+	*/
+	return request;
 }
 
 function invokeWebService(body,targetURL,headers, isEncryptResponse, encryptionPassword) {
