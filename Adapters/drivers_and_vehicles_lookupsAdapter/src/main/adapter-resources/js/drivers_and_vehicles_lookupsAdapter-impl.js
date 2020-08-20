@@ -82,7 +82,7 @@ function newMaintenanceService(params, isEncryptResponse, encryptionPassword) {
 	var request = buildBody(parameters, false);
 	//var request = buildBody(JSON.stringify(envHeader), params, '', _soapEnvNS, false);
 	Log("NewMaintenanceService request >>>>>>>>>>>> " + request);
-    var response = invokeWebService(JSON.stringify(request), servicePath, null, isEncryptResponse, encryptionPassword);
+    var response = invokeWebService(request, servicePath, null, isEncryptResponse, encryptionPassword);
 	Log("NewMaintenanceService RESPONSE >>>>>>>>>>>>>>>> " + response);
 	return response;
 	
@@ -165,7 +165,7 @@ function buildBody(parameters, isStatic) {
 
 function invokeWebService(body,targetURL,headers, isEncryptResponse, encryptionPassword) {
 	//var startTime = new Date().getTime();
-    MFP.Logger("drivers_and_vehicles_lookupsAdapter invokeWebService targetURL "+targetURL+" headers "+headers );
+    //MFP.Logger("drivers_and_vehicles_lookupsAdapter invokeWebService targetURL "+targetURL+" headers "+headers );
 	if (!headers)
 		headers = {
 			"SOAPAction" : ""
