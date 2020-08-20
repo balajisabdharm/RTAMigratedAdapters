@@ -417,8 +417,18 @@ function replaceCredentials(envHeader){
  * @returns {___anonymous2126_2136}
  */
 function buildBody(envHeader, params, namespaces, soapEnvNS) {
+    
+    MFP.Logger.info("RECEIVED IN BUILD BODY ====================>>>>>>>&&&&&&&& ");
+    
+    MFP.Logger.info("envHeader "+envHeader);
+    MFP.Logger.info("params "+params);
+    MFP.Logger.info("namespaces "+namespaces);
+    MFP.Logger.info("soapEnvNS "+soapEnvNS);
+    
+    MFP.Logger.info("RECEIVED IN BUILD BODY ====================>>>>>>>&&&&&&&& ");
+    
     var body = '<soapenv:Envelope ' + soapEnvNS + '>\n'+ '<soapenv:Header>\n';
-
+    
     body = jsonToXml(envHeader, body, namespaces);
     body += '</soapenv:Header>\n';
     body += '<soapenv:Body>\n';
