@@ -165,7 +165,7 @@ function buildBody(parameters, isStatic) {
 
 function invokeWebService(body,targetURL,headers, isEncryptResponse, encryptionPassword) {
 	//var startTime = new Date().getTime();
-MFP.Logger("drivers_and_vehicles_lookupsAdapter invokeWebService webServiceResult body"+ body );
+
 	if (!headers)
 		headers = {
 			"SOAPAction" : ""
@@ -178,8 +178,8 @@ MFP.Logger("drivers_and_vehicles_lookupsAdapter invokeWebService webServiceResul
 			path : targetURL,
 			//path:'/TransactionServiceMock',
 			body : {
-				//content : body.toString(),
-                content : body,
+				content : body.toString(),
+                //content : body,
 				contentType : 'text/xml; charset=utf-8'
 			}
 	};
@@ -189,7 +189,7 @@ MFP.Logger("drivers_and_vehicles_lookupsAdapter invokeWebService webServiceResul
 	headers && (input['headers'] = headers);
 
 	var webServiceResult = MFP.Server.invokeHttp(input);
-    MFP.Logger("drivers_and_vehicles_lookupsAdapter invokeWebService webServiceResult "+JSON.stringify(webServiceResult) );
+    MFP.Logger("drivers_and_vehicles_lookupsAdapter invokeWebService webServiceResult ");
 	if(isEncryptResponse != undefined && isEncryptResponse == true)
 	{
 		var responseString = JSON.stringify(webServiceResult);
