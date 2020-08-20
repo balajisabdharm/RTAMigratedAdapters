@@ -424,9 +424,10 @@ function buildBody(envHeader, params, namespaces, soapEnvNS) {
     body += '</soapenv:Header>\n';
     body += '<soapenv:Body>\n';
     body  = jsonToXml(params, body, namespaces);
+    MFP.Logger.debug("******body " + body);
     body += '</soapenv:Body>\n' + '</soapenv:Envelope>\n';
 
-    //MFP.Logger.debug("******bo0000000dy " + body);
+    MFP.Logger.debug("******bo0000000dy " + body);
     body = replaceCredentials(body);
 
     return {body : body};
