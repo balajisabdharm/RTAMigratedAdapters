@@ -46,7 +46,7 @@ function LearningPermitsService(params, isEncryptResponse, encryptionPassword){
 	};
 	var servicePath='/ws/services/LearningPermitsService';	
 	var _soapEnvNS =soapEnvNS +'xmlns:rta="rta:LearningPermitsService"';
-	var parameters = [envHeader, params, '', _soapEnvNS];
+	var parameters = [envHeader, params.toString(), '', _soapEnvNS.toString()];
 	var request = buildBody(parameters, false);
 
 	//Log("MobilityDrivingLicenseInfoService request >> " + request);
