@@ -165,7 +165,10 @@ function buildBody(parameters, isStatic) {
 
 function invokeWebService(body,targetURL,headers, isEncryptResponse, encryptionPassword) {
 	//var startTime = new Date().getTime();
+<<<<<<< HEAD
     //MFP.Logger("drivers_and_vehicles_lookupsAdapter invokeWebService targetURL "+targetURL+" headers "+headers );
+=======
+>>>>>>> parent of 840f4b7... Update drivers_and_vehicles_lookupsAdapter-impl.js
 	if (!headers)
 		headers = {
 			"SOAPAction" : ""
