@@ -427,7 +427,7 @@ function buildBody(envHeader, params, namespaces, soapEnvNS) {
     MFP.Logger.debug("******body " + body);
     body += '</soapenv:Body>\n' + '</soapenv:Envelope>\n';
 
-    MFP.Logger.debug("******bo0000000dy " + body);
+    MFP.Logger.debug("complete body " + body);
     body = replaceCredentials(body);
 
     return {body : body};
