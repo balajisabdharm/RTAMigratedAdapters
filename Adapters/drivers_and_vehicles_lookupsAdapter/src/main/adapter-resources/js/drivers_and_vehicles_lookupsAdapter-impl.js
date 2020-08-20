@@ -151,7 +151,7 @@ function buildBody(parameters, isStatic) {
 }
 
 function invokeWebService(body,targetURL,headers, isEncryptResponse, encryptionPassword) {
-	var startTime = new Date().getTime();
+	//var startTime = new Date().getTime();
 	if (!headers)
 		headers = {
 			"SOAPAction" : ""
@@ -183,8 +183,8 @@ function invokeWebService(body,targetURL,headers, isEncryptResponse, encryptionP
 				parameters : [responseString,encryptionPassword]
 		};
 		webServiceResult = MFP.Server.invokeProcedure(invocationData);
-	}	
-	var endTime = new Date().getTime();
+	}*/	
+	//var endTime = new Date().getTime();
 	//Log("time for "+ targetURL + " is " + (endTime - startTime) + " ms");
 	var invocationData = {
 			adapter : 'drivers_and_vehciles_utilitiesAdapter',
