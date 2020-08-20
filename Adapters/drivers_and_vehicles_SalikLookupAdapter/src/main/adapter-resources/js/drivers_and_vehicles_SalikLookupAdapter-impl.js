@@ -367,7 +367,7 @@ function invokeWebServiceString(request, servicePath, SOAPAction, isEncryptRespo
     
    // MFP.Logger.info("|drivers_and_vehicles_SalikLookupAdapter ------------->>> | "+ servicePath +"  | Request : " + request );
     
-      MFP.Logger.info("|drivers_and_vehicles_SalikLookupAdapter -----isEncryptResponse>>>>> | "+ isEncryptResponse +"  | requestObj ::::::" + request );
+      MFP.Logger.info("|drivers_and_vehicles_SalikLookupAdapter -----isEncryptResponse>>!!>>> | "+ isEncryptResponse +"  | requestObj ::::::" + request );
 
     // Log DB Log In DB
         /*try {
