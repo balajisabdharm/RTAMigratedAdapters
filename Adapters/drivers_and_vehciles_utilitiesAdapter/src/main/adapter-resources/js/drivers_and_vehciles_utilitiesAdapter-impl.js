@@ -424,20 +424,20 @@ function buildBody(envHeader, params, namespaces, soapEnvNS) {
 
     //body = jsonToXml(envHeader, body, namespaces);
     body = jsonToXml(JSON.parse(envHeader), body.toString(), namespaces);
-    MFP.Logger.debug("******body " + body);
+    //MFP.Logger.debug("******body " + body);
     body += '</soapenv:Header>\n';
     body += '<soapenv:Body>\n';
     //body  = jsonToXml(params, body, namespaces);
     body  = jsonToXml(JSON.parse(params), body.toString(), namespaces);
-    MFP.Logger.debug("******body " + body);
+    //MFP.Logger.debug("******body " + body);
     body += '</soapenv:Body>\n' + '</soapenv:Envelope>\n';
-
-    MFP.Logger.debug("complete body " + body);
+   
     body = replaceCredentials(body);
-
+    
+    MFP.Logger.debug("complete body " + body);
     return {body : body};
     
-    return JSON.parse(envHeader);
+    //return JSON.parse(envHeader);
 }
 
 /**
@@ -469,7 +469,7 @@ function getAttributes(jsonObj) {
 }
 
 function jsonToXml(jsonObj, xmlStr, namespaces) {
-    MFP.Logger.info("jsonToXml jsonObj "+jsonObj);
+   // MFP.Logger.info("jsonToXml jsonObj "+jsonObj);
     var toAppend = '';
     for(var attr in jsonObj) {
         var val = jsonObj[attr];
@@ -489,7 +489,7 @@ function jsonToXml(jsonObj, xmlStr, namespaces) {
         }
     }
 
- MFP.Logger.info("jsonToXml toAppend "+toAppend);
+ //MFP.Logger.info("jsonToXml toAppend "+toAppend);
     return xmlStr += toAppend;
 }
 
