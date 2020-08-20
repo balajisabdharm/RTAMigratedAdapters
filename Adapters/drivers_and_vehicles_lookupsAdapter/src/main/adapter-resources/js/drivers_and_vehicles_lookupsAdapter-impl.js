@@ -183,7 +183,7 @@ function invokeWebService(body,targetURL,headers, isEncryptResponse, encryptionP
 				parameters : [responseString,encryptionPassword]
 		};
 		webServiceResult = MFP.Server.invokeProcedure(invocationData);
-	}*/	
+	}	
 	//var endTime = new Date().getTime();
 	//Log("time for "+ targetURL + " is " + (endTime - startTime) + " ms");
 	var invocationData = {
