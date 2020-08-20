@@ -502,6 +502,7 @@ function jsonToXml(jsonObj, xmlStr, namespaces) {
             toAppend += "</" + attr + ">\n";
         }
     }
+}
 
 
     return xmlStr += toAppend;
