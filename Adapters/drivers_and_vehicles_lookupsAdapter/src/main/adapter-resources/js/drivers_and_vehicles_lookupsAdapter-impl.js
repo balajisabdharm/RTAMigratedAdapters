@@ -150,6 +150,7 @@ function buildBody(envHeader,params,check,_soapEnvNS, isStatic) {
 
 		});
 	} else {
+        MFP.Logger.info("drivers_and_vehicles_lookupAdapter going in false ");
 		request = MFP.Server.invokeProcedure({
 			adapter : 'drivers_and_vehciles_utilitiesAdapter',
 			procedure : 'buildBody',
