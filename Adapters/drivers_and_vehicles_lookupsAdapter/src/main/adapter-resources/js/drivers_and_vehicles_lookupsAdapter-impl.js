@@ -56,6 +56,7 @@ function getKioskTestCentersService(params, isEncryptResponse, encryptionPasswor
 	return invokeWebService(request,servicePath, null, isEncryptResponse, encryptionPassword);
 }	
 function newMaintenanceService(params, isEncryptResponse, encryptionPassword) {
+    MFP.Logger.info("newMaintenanceService params "+params );
 	var _soapEnvNS=soapEnvNS+ 'xmlns:new="http://dubaipolice/ebsrv/services/NewMaintenance" xmlns:main="http://dubaipolice/ebsrv/services/NewMaintenance"';
 	var envHeader = {
 			"new:externalPassword": externalPassword,
@@ -65,11 +66,12 @@ function newMaintenanceService(params, isEncryptResponse, encryptionPassword) {
 	};	
 	var servicePath = "/ws/services/NewMaintenanceService";
 	//var paramsStr ="[{\"new:getTableData\":{\"RequestName\":\""+params+"\"}}]";
-	//Log("NewMaintenanceService String params >>>>>>>>>>>> " + paramsStr);
+    MFP.Logger.info("NewMaintenanceService String params >>>>>>>>>>>> " + paramsStr);
 	//params = JSON.stringify(paramsStr);
 	//Log("NewMaintenanceService JSONStringify params >>>>>>>>>>>> " + params);
 	//var parameters = [envHeader.toString(), params.toString(), '', _soapEnvNS.toString()];
-    var parameters = [envHeader.toString(), params, '', _soapEnvNS.toString()];
+    var parameters = [envHeader.toString(), params, '', _soapEnvNS];
+     MFP.Logger.info("NewMaintenanceService String parameters >>>>>>>>>>>> " + parameters);
 	var request = buildBody(parameters, false);
 	
 	Log("NewMaintenanceService request >>>>>>>>>>>> " + request);

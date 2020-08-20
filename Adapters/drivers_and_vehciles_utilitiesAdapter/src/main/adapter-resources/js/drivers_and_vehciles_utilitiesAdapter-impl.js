@@ -418,6 +418,7 @@ function replaceCredentials(envHeader){
  * @returns {___anonymous2126_2136}
  */
 function buildBody(envHeader, params, namespaces, soapEnvNS) {
+    MFP.Logger.info("Utilities - buildBody envHeader "+envHeader +" |||||params " +params +" |||||| namespaces "+namespaces);
     var body = '<soapenv:Envelope ' + soapEnvNS + '>\n'+ '<soapenv:Header>\n';
 
     body = jsonToXml(envHeader, body, namespaces);
@@ -462,7 +463,7 @@ function getAttributes(jsonObj) {
 }
 
 function jsonToXml(jsonObj, xmlStr, namespaces) {
-
+    MFP.Logger.info("jsonToXml jsonObj "+jsonObj);
     var toAppend = '';
     for(var attr in jsonObj) {
         var val = jsonObj[attr];
@@ -482,7 +483,7 @@ function jsonToXml(jsonObj, xmlStr, namespaces) {
         }
     }
 
-
+ MFP.Logger.info("jsonToXml toAppend "+toAppend);
     return xmlStr += toAppend;
 }
 
