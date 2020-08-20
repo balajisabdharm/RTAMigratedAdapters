@@ -174,8 +174,7 @@ function invokeWebService(body,targetURL,headers, isEncryptResponse, encryptionP
 	headers && (input['headers'] = headers);
 
 	var webServiceResult = MFP.Server.invokeHttp(input);
-	return webServiceResult;
-	/*if(isEncryptResponse != undefined && isEncryptResponse == true)
+	if(isEncryptResponse != undefined && isEncryptResponse == true)
 	{
 		var responseString = JSON.stringify(webServiceResult);
 		var invocationData = {
@@ -187,12 +186,12 @@ function invokeWebService(body,targetURL,headers, isEncryptResponse, encryptionP
 	}*/	
 	//var endTime = new Date().getTime();
 	//Log("time for "+ targetURL + " is " + (endTime - startTime) + " ms");
-	/*var invocationData = {
+	var invocationData = {
 			adapter : 'drivers_and_vehciles_utilitiesAdapter',
 			procedure : 'deleteCredientails',
 			parameters : [webServiceResult]
 	};
-	return MFP.Server.invokeProcedure(invocationData); */
+	return MFP.Server.invokeProcedure(invocationData); 
 }
 
 function invokeWebServiceStatic(request, servicePath, isEncryptResponse, encryptionPassword) {
