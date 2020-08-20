@@ -58,18 +58,18 @@ function getKioskTestCentersService(params, isEncryptResponse, encryptionPasswor
 function newMaintenanceService(params, isEncryptResponse, encryptionPassword) {
     MFP.Logger.info("newMaintenanceService params "+params );
 	var _soapEnvNS=soapEnvNS+ 'xmlns:new="http://dubaipolice/ebsrv/services/NewMaintenance" xmlns:main="http://dubaipolice/ebsrv/services/NewMaintenance"';
-	/*var envHeader = {
+	var envHeader = {
 			"new:externalPassword": externalPassword,
 			"new:externalUsername": externalUsername,
 			"new:password": password,
 			"new:username": userName
-	};*/
-    var envHeader = {
+	};
+   /* var envHeader = {
             "new:externalPassword": "Test@1234",
             "new:externalUsername": "mobile_user",
             "new:password": "m792!du)+1g",
             "new:username": "Mobstguser"
-    };
+    };*/
     var servicePath = "/ws/services/NewMaintenanceService";
 	//var paramsStr ="[{\"new:getTableData\":{\"RequestName\":\""+params+"\"}}]";
    // MFP.Logger.info("NewMaintenanceService String params >>>>>>>>>>>> " + paramsStr);
