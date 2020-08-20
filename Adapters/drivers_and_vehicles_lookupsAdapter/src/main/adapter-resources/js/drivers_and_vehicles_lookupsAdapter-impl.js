@@ -178,7 +178,7 @@ function invokeWebService(body,targetURL,headers, isEncryptResponse, encryptionP
 			//path:'/TransactionServiceMock',
 			body : {
 				//content : body.toString(),
-                content : body,
+                content : JSON.parse(body),
 				contentType : 'text/xml; charset=utf-8'
 			}
 	};
