@@ -82,9 +82,9 @@ function newMaintenanceService(params, isEncryptResponse, encryptionPassword) {
 	var request = buildBody(parameters, false);
 	//var request = buildBody(JSON.stringify(envHeader), params, '', _soapEnvNS, false);
 	Log("NewMaintenanceService request >>>>>>>>>>>> " + request);
-   // var response = invokeWebService(request, servicePath, null, isEncryptResponse, encryptionPassword);
-	//Log("NewMaintenanceService RESPONSE >>>>>>>>>>>>>>>> " + response);
-	return request;
+    var response = invokeWebService(request, servicePath, null, isEncryptResponse, encryptionPassword);
+	Log("NewMaintenanceService RESPONSE >>>>>>>>>>>>>>>> " + response);
+	return response;
 	
 }
 
@@ -166,50 +166,46 @@ function buildBody(parameters, isStatic) {
 }
 
 function invokeWebService(body,targetURL,headers, isEncryptResponse, encryptionPassword) {
-	//var startTime = new Date().getTime();
+	var startTime = new Date().getTime();
+    if (!headers)
+        headers = {
+            "SOAPAction" : ""
+        };
+    else
+        headers["SOAPAction"] = "";
+    var input = {
+        method : 'post',
+        returnedContentType : 'xml',
+        path : servicePath,
+        body : {
+            content : body.toString(),
+            contentType : 'text/xml; charset=utf-8'
+        }
+    };
 
-	if (!headers)
-		headers = {
-			"SOAPAction" : ""
-	};
-	else
-		headers["SOAPAction"] = "";
-	var input = {
-			method : 'post',
-			returnedContentType : 'xml',
-			path : targetURL,
-			//path:'/TransactionServiceMock',
-			body : {
-				content : body.toString(),
-                //content : body,
-				contentType : 'text/xml; charset=utf-8'
-			}
-	};
+    // Adding custom HTTP headers if they were provided as parameter to the
+    // procedure call
+    headers && (input['headers'] = headers);
 
-	// Adding custom HTTP headers if they were provided as parameter to the
-	// procedure call
-	headers && (input['headers'] = headers);
-
-	var webServiceResult = MFP.Server.invokeHttp(input);
-    MFP.Logger("drivers_and_vehicles_lookupsAdapter invokeWebService webServiceResult ");
-	if(isEncryptResponse != undefined && isEncryptResponse == true)
-	{
-		var responseString = JSON.stringify(webServiceResult);
-		var invocationData = {
-				adapter : 'drivers_and_vehciles_utilitiesAdapter',
-				procedure : 'encryptData',
-				parameters : [responseString,encryptionPassword]
-		};
-		webServiceResult = MFP.Server.invokeProcedure(invocationData);
-	}	
-	//var endTime = new Date().getTime();
-	//Log("time for "+ targetURL + " is " + (endTime - startTime) + " ms");
-	var invocationData = {
-			adapter : 'drivers_and_vehciles_utilitiesAdapter',
-			procedure : 'deleteCredientails',
-			parameters : [webServiceResult]
-	};
-	return MFP.Server.invokeProcedure(invocationData); 
+    var webServiceResult = MFP.Server.invokeHttp(input);
+    if(isEncryptResponse != undefined && isEncryptResponse == true)
+    {
+        var responseString = JSON.stringify(webServiceResult);
+        var invocationData = {
+            adapter : 'drivers_and_vehciles_utilitiesAdapter',
+            procedure : 'encryptData',
+            parameters : [responseString,encryptionPassword]
+        };
+        webServiceResult = MFP.Server.invokeProcedure(invocationData);
+    }
+    var endTime = new Date().getTime();
+    //Log("time for " + servicePath + " is " + (endTime - startTime) + " ms");
+    var invocationData = {
+            adapter : 'drivers_and_vehciles_utilitiesAdapter',
+            procedure : 'deleteCredientails',
+            parameters : [webServiceResult]
+    };
+    return MFP.Server.invokeProcedure(invocationData);
 }
 
 function invokeWebServiceStatic(request, servicePath, isEncryptResponse, encryptionPassword) {
@@ -227,7 +223,7 @@ function invokeWebServiceStatic(request, servicePath, isEncryptResponse, encrypt
 	};
 
 	var webServiceResult = MFP.Server.invokeHttp(input);
-	/*if(isEncryptResponse != undefined && isEncryptResponse == true)
+	if(isEncryptResponse != undefined && isEncryptResponse == true)
 	{
 		var responseString = JSON.stringify(webServiceResult);
 		var invocationData = {
@@ -236,7 +232,7 @@ function invokeWebServiceStatic(request, servicePath, isEncryptResponse, encrypt
 				parameters : [responseString,encryptionPassword]
 		};
 		webServiceResult = MFP.Server.invokeProcedure(invocationData);
-	}*/	
+	}	
 	var invocationData = {
 			adapter : 'drivers_and_vehciles_utilitiesAdapter',
 			procedure : 'deleteCredientails',
