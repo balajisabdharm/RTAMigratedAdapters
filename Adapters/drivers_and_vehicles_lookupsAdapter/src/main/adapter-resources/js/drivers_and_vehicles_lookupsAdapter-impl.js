@@ -82,9 +82,9 @@ function newMaintenanceService(params, isEncryptResponse, encryptionPassword) {
 	var request = buildBody(parameters, false);
 	//var request = buildBody(JSON.stringify(envHeader), params, '', _soapEnvNS, false);
 	Log("NewMaintenanceService request >>>>>>>>>>>> " + request);
-    var response = invokeWebService(request, servicePath, null, isEncryptResponse, encryptionPassword);
-	Log("NewMaintenanceService RESPONSE >>>>>>>>>>>>>>>> " + response);
-	return response;
+   // var response = invokeWebService(request, servicePath, null, isEncryptResponse, encryptionPassword);
+	//Log("NewMaintenanceService RESPONSE >>>>>>>>>>>>>>>> " + response);
+	return request;
 	
 }
 
@@ -143,7 +143,7 @@ function getServiceTermsAndConditionsService(request, isEncryptResponse, encrypt
 function buildBody(parameters, isStatic) {
 	var request = "";
    // MFP.Logger.info("drivers_and_vehicles_lookupAdapter buildBody parameters "+parameters );
-/*	if (isStatic == true) {
+	if (isStatic == true) {
 		request = MFP.Server.invokeProcedure({
 			adapter : 'drivers_and_vehciles_utilitiesAdapter',
 			procedure : 'buildBodyFromStaticRequest',
@@ -161,8 +161,8 @@ function buildBody(parameters, isStatic) {
 	}
 
 	return request.body;
-	*/
-	return request;
+	
+	//return request;
 }
 
 function invokeWebService(body,targetURL,headers, isEncryptResponse, encryptionPassword) {
