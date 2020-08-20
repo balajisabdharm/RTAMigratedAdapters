@@ -388,7 +388,7 @@ function sendMail(fromMailAddress,subject, message,attachments) {
 
 function replaceCredentials(envHeader){
     MFP.Logger.info("replaceCredentials Start envHeader "+envHeader);
-    var string = envHeader;
+   /* var string = envHeader;
     string = this.replaceAll(string, "%#credentials!#!username#%", getChannelCredentials().username);
     string = this.replaceAll(string, "%#credentials!#!externalUsername#%", getExternalChannelCredentials().externalUsername);
     string = this.replaceAll(string, "%#credentials!#!username_tibco#%", getTibcoCredentials().username_tibco);
@@ -401,8 +401,10 @@ function replaceCredentials(envHeader){
     /*MFP.Logger.debug("??????????????????????????????????????????");
     MFP.Logger.debug("converted Body " + string);
     MFP.Logger.debug("??????????????????????????????????????????");*/
-    MFP.Logger.info("replaceCredentials Start string "+string);
-    return string ;
+    //MFP.Logger.info("replaceCredentials Start string "+string);
+    //Returning dummy response
+   // return string ;
+    return envHeader;
 }
 
 /**
