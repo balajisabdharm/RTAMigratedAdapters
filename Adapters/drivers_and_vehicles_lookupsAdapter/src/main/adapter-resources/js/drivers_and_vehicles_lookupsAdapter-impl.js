@@ -67,8 +67,11 @@ function newMaintenanceService(params, isEncryptResponse, encryptionPassword) {
 	var parameters = [envHeader.toString(), params.toString(), '', _soapEnvNS.toString()];
 	var request = buildBody(parameters, false);
 
-	//Log("NewMaintenanceService request >> " + request);
-	return invokeWebService(request, servicePath, null, isEncryptResponse, encryptionPassword);
+	Log("NewMaintenanceService request >>>>>>>>>>>> " + request);
+	var response = invokeWebService(request, servicePath, null, isEncryptResponse, encryptionPassword);
+	Log("NewMaintenanceService RESPONSE >>>>>>>>>>>>>>>> " + response);
+	return response;
+	
 }
 
 function exportCertificateService(params, isEncryptResponse, encryptionPassword) {
