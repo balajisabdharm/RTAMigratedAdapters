@@ -82,7 +82,7 @@ function newMaintenanceService(params, isEncryptResponse, encryptionPassword) {
 	var request = buildBody(parameters, false);
 	//var request = buildBody(JSON.stringify(envHeader), params, '', _soapEnvNS, false);
 	Log("NewMaintenanceService request >>>>>>>>>>>> " + request);
-	var response = invokeWebService(request, servicePath, null, isEncryptResponse, encryptionPassword);
+    var response = invokeWebService(JSON.stringify(request), servicePath, null, isEncryptResponse, encryptionPassword);
 	Log("NewMaintenanceService RESPONSE >>>>>>>>>>>>>>>> " + response);
 	return response;
 	
@@ -177,7 +177,8 @@ function invokeWebService(body,targetURL,headers, isEncryptResponse, encryptionP
 			path : targetURL,
 			//path:'/TransactionServiceMock',
 			body : {
-				content : body.toString(),
+				//content : body.toString(),
+                content : body,
 				contentType : 'text/xml; charset=utf-8'
 			}
 	};
