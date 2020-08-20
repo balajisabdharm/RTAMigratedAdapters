@@ -165,7 +165,7 @@ function buildBody(parameters, isStatic) {
 	//return request;
 }
 
-function invokeWebService(body,targetURL,headers, isEncryptResponse, encryptionPassword) {
+function invokeWebService(body, servicePath, headers, isEncryptResponse, encryptionPassword) {
 	var startTime = new Date().getTime();
     if (!headers)
         headers = {
