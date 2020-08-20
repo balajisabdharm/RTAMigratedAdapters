@@ -422,10 +422,12 @@ function buildBody(envHeader, params, namespaces, soapEnvNS) {
     MFP.Logger.info("Utilities - buildBody envHeader "+envHeader +" |||||params " +params +" |||||| namespaces "+namespaces+"****** soapEnvNS******   "+soapEnvNS);
     var body = '<soapenv:Envelope ' + soapEnvNS + '>\n'+ '<soapenv:Header>\n';
 
-    body = jsonToXml(envHeader, body, namespaces);
+    //body = jsonToXml(envHeader, body, namespaces);
+    body = jsonToXml(JSON.parse(envHeader), body.toString(), namespaces);
     body += '</soapenv:Header>\n';
     body += '<soapenv:Body>\n';
-    body  = jsonToXml(params, body, namespaces);
+    //body  = jsonToXml(params, body, namespaces);
+     body  = jsonToXml(JSON.parse(params), body.toString(), namespaces);
     MFP.Logger.debug("******body " + body);
     body += '</soapenv:Body>\n' + '</soapenv:Envelope>\n';
 
