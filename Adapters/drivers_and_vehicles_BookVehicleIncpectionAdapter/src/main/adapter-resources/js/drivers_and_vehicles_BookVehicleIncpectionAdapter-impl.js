@@ -45,10 +45,10 @@ function getGlobalServices(vehicleType, isEncryptResponse, encryptionPassword){
 	var request = getRequestString(bodyRequest);
 	var requestObj = buildBody([request.toString()], true);
 	//var requestObj = buildBody([ request ], true);
-	MFP.Logger.warn("getGlobalServices request | " + requestObj);
+	//MFP.Logger.warn("getGlobalServices request | " + requestObj);
 	var result = invokeWebServiceString(requestObj, isEncryptResponse,
 			encryptionPassword);
-		MFP.Logger.warn("getGlobalServices result | " + result);
+	//	MFP.Logger.warn("getGlobalServices result | " + result);
 	return result ;
 	
 }
@@ -77,10 +77,10 @@ function getAvailableAppointmentCentersByDate (date,isEncryptResponse, encryptio
 	var request = getRequestString(bodyRequest);
 	var requestObj = buildBody([request.toString()], true);
 	//var requestObj = buildBody(request, true);
-	MFP.Logger.warn("getAvailableAppointmentCentersByDate request | " + requestObj);
+	//MFP.Logger.warn("getAvailableAppointmentCentersByDate request | " + requestObj);
 	var result = invokeWebServiceString(requestObj, isEncryptResponse,
 			encryptionPassword);
-	MFP.Logger.warn("getAvailableAppointmentCentersByDate result | " + result);
+	//MFP.Logger.warn("getAvailableAppointmentCentersByDate result | " + result);
 	return result;
 }
 //get lanes on specific center
@@ -97,10 +97,10 @@ function getAvailableAppointmentCenterLanes(centerId,appointmentId,isEncryptResp
 	var request = getRequestString(bodyRequest);
 	var requestObj = buildBody([request.toString()], true);
 	//var requestObj = buildBody([ request ], true);
-	MFP.Logger.warn("getAvailableAppointmentCenterLanes request | " + requestObj);
+	//MFP.Logger.warn("getAvailableAppointmentCenterLanes request | " + requestObj);
 	var result = invokeWebServiceString(requestObj, isEncryptResponse,
 			encryptionPassword);
-	MFP.Logger.warn("getAvailableAppointmentCenterLanes result | " + result);
+	//MFP.Logger.warn("getAvailableAppointmentCenterLanes result | " + result);
 	return result;
 }
 //get all centers on specific date
@@ -142,10 +142,10 @@ function addAppointmentToBasket(vehicleType,vehiclesNumber,serviceID,ownerType,i
 	var request = getRequestString(bodyRequest);
 	var requestObj = buildBody([request.toString()], true);
 	//var requestObj = buildBody([ request ], true);
-	MFP.Logger.warn("addAppointmentToBasket request | " + requestObj);
+	//MFP.Logger.warn("addAppointmentToBasket request | " + requestObj);
 	var result = invokeWebServiceString(requestObj, isEncryptResponse,
 			encryptionPassword);
-	MFP.Logger.warn("addAppointmentToBasket result | " + result);
+	//MFP.Logger.warn("addAppointmentToBasket result | " + result);
 	return result;
 }
 //get available slots on specific lane
@@ -165,10 +165,10 @@ function getAvailableAppointmentTimeSlots(centerId,appointmentId,updateMode,appo
 	var request = getRequestString(bodyRequest);
 	var requestObj = buildBody([request.toString()], true);
 	//var requestObj = buildBody([ request ], true);
-	MFP.Logger.warn("getAvailableAppointmentTimeSlots request | " + requestObj);
+	//MFP.Logger.warn("getAvailableAppointmentTimeSlots request | " + requestObj);
 	var result = invokeWebServiceString(requestObj, isEncryptResponse,
 			encryptionPassword);
-	MFP.Logger.warn("getAvailableAppointmentTimeSlots result | " + result);
+	//MFP.Logger.warn("getAvailableAppointmentTimeSlots result | " + result);
 	return result ;
 }
 //get available slots on specific lane
@@ -188,10 +188,10 @@ function getAvailableLaneAppointmentTimeSlots(laneId,appointmentId,updateMode,ap
 	var request = getRequestString(bodyRequest);
 	var requestObj = buildBody([request.toString()], true);
 	//var requestObj = buildBody([ request ], true);
-	MFP.Logger.warn("getAvailableLaneAppointmentTimeSlots request | " + requestObj);
+	//MFP.Logger.warn("getAvailableLaneAppointmentTimeSlots request | " + requestObj);
 	var result = invokeWebServiceString(requestObj, isEncryptResponse,
 			encryptionPassword);
-	MFP.Logger.warn("getAvailableLaneAppointmentTimeSlots result | " + result);
+	//MFP.Logger.warn("getAvailableLaneAppointmentTimeSlots result | " + result);
 	return result ;
 }
 
@@ -212,10 +212,10 @@ function getAvailableAppointmentTimeSlots(centerId,appointmentId,updateMode,appo
 	var request = getRequestString(bodyRequest);
 	var requestObj = buildBody([request.toString()], true);
 	//var requestObj = buildBody([ request ], true);
-	MFP.Logger.warn("getAvailableAppointmentTimeSlots request | " + requestObj);
+	//MFP.Logger.warn("getAvailableAppointmentTimeSlots request | " + requestObj);
 	var result = invokeWebServiceString(requestObj, isEncryptResponse,
 			encryptionPassword);
-	MFP.Logger.warn("getAvailableAppointmentTimeSlots result | " + result);
+	//MFP.Logger.warn("getAvailableAppointmentTimeSlots result | " + result);
 	return result ;
 }
 
@@ -237,10 +237,10 @@ function submitAppointmentLocationAndTime(UpdateMode,laneId,appointmentId,appoin
 	var request = getRequestString(bodyRequest);
 	var requestObj = buildBody([request.toString()], true);
 	//var requestObj = buildBody([ request ], true);
-	MFP.Logger.warn("submitAppointmentLocationAndTime request | " + requestObj);
+	//MFP.Logger.warn("submitAppointmentLocationAndTime request | " + requestObj);
 	var result = invokeWebServiceString(requestObj, isEncryptResponse,
 			encryptionPassword);
-	MFP.Logger.warn("submitAppointmentLocationAndTime result | " + result);
+	//MFP.Logger.warn("submitAppointmentLocationAndTime result | " + result);
 	return result
 }
 
@@ -262,10 +262,10 @@ function submitContactDetails(appointmentId,firstName,lastName,email,mobileNo,em
 	var request = getRequestString(bodyRequest);
 	var requestObj = buildBody([request.toString()], true);
 	//var requestObj = buildBody([ request ], true);
-	MFP.Logger.warn("submitContactDetails request | " + requestObj);
+	//MFP.Logger.warn("submitContactDetails request | " + requestObj);
 	var result = invokeWebServiceString(requestObj, isEncryptResponse,
 			encryptionPassword);
-	MFP.Logger.warn("submitContactDetails result | " + result);
+	//MFP.Logger.warn("submitContactDetails result | " + result);
 	return result ;
 }
 
@@ -280,10 +280,10 @@ function confirmAppointment(appointmentId,isEncryptResponse, encryptionPassword)
 	var request = getRequestString(bodyRequest);
 	var requestObj = buildBody([request.toString()], true);
 	//var requestObj = buildBody([ request ], true);
-	MFP.Logger.warn("confirmAppointment request | " + requestObj);
+	//MFP.Logger.warn("confirmAppointment request | " + requestObj);
 	var result = invokeWebServiceString(requestObj, isEncryptResponse,
 			encryptionPassword);
-	MFP.Logger.warn("confirmAppointment result | " + result);
+	//MFP.Logger.warn("confirmAppointment result | " + result);
 	return result ;
 }
 
@@ -296,10 +296,10 @@ function getAppointmentBasket(appointmentId,isEncryptResponse, encryptionPasswor
 	var request = getRequestString(bodyRequest);
 	var requestObj = buildBody([request.toString()], true);
 	//var requestObj = buildBody([ request ], true);
-	MFP.Logger.warn("getAppointmentBasket request | " + requestObj);
+	//MFP.Logger.warn("getAppointmentBasket request | " + requestObj);
 	var result = invokeWebServiceString(requestObj, isEncryptResponse,
 			encryptionPassword);
-	MFP.Logger.warn("getAppointmentBasket result | " + result);
+	//MFP.Logger.warn("getAppointmentBasket result | " + result);
 	return result ;
 }
 
@@ -323,7 +323,7 @@ MFP.Logger.info("buildBody parameters"+parameters);
 			parameters : parameters
 		});
 	}
-    MFP.Logger.info("buildBody response "+request.body);
+    //MFP.Logger.info("buildBody response "+request.body);
 	return request.body;
 }
 
