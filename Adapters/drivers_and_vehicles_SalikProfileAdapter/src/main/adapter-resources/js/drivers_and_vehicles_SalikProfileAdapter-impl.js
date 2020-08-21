@@ -391,6 +391,11 @@ function getFinancialSummary(requestParams, isEncryptResponse, encryptionPasswor
 
             soapEnvEnd;
 
+	    Log("*********************************************************");
+	    Log(request);
+	    
+	    Log("*********************************************************");
+	    
         var servicePath = '/salikProfileService';
         var SOAPAction = 'FinancialSummaryRequest';
         var requestObj = buildBody([request.toString()], true);
