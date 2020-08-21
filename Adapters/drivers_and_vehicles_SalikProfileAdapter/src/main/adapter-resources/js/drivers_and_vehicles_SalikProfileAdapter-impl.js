@@ -125,7 +125,7 @@ function invokeWebServiceString(request, servicePath, SOAPAction, isEncryptRespo
     }
 Log("we are here ...............................");
     //log response
-    _logRequestResponse(refNum, adapterName, SOAPAction, null, responseString, true);
+    _logRequestResponse(refNum.toString(), adapterName, SOAPAction, null, responseString, true);
 	
     return webServiceResult;
 }
