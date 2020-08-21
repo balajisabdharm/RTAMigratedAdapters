@@ -43,7 +43,8 @@ function getGlobalServices(vehicleType, isEncryptResponse, encryptionPassword){
 	}
 	bodyRequest += '</sch:getGlobalServicesRequest>';
 	var request = getRequestString(bodyRequest);
-	var requestObj = buildBody([ request ], true);
+	var requestObj = buildBody([request.toString()], true);
+	//var requestObj = buildBody([ request ], true);
 	MFP.Logger.warn("getGlobalServices request | " + requestObj);
 	var result = invokeWebServiceString(requestObj, isEncryptResponse,
 			encryptionPassword);
@@ -60,11 +61,11 @@ function getAvailableAppointmentCenters (isEncryptResponse, encryptionPassword){
 	var request = getRequestString(bodyRequest);
 
     //var requestObj = buildBody([JSON.stringify(request)], true);
-	var requestObj = buildBody([request], true);
-    MFP.Logger.warn("getAvailableAppointmentCenters request | " + JSON.stringify(requestObj));
+	var requestObj = buildBody([request.toString()], true);
+    //MFP.Logger.warn("getAvailableAppointmentCenters request | " + JSON.stringify(requestObj));
 	//var result = invokeWebServiceString(JSON.stringify(requestObj), isEncryptResponse,encryptionPassword);
     var result = invokeWebServiceString(requestObj, isEncryptResponse,encryptionPassword);
-	MFP.Logger.warn("getAvailableAppointmentCenters result | " + JSON.stringify(result));
+	//MFP.Logger.warn("getAvailableAppointmentCenters result | " + JSON.stringify(result));
 	return result;
 }
 //get all centers on specific date
@@ -74,8 +75,8 @@ function getAvailableAppointmentCentersByDate (date,isEncryptResponse, encryptio
 		bodyRequest +="<sch:date>" + date + "</sch:date>";
 		bodyRequest +="</sch:getAvailableAppointmentCentersRequest>";
 	var request = getRequestString(bodyRequest);
-
-	var requestObj = buildBody(request, true);
+	var requestObj = buildBody([request.toString()], true);
+	//var requestObj = buildBody(request, true);
 	MFP.Logger.warn("getAvailableAppointmentCentersByDate request | " + requestObj);
 	var result = invokeWebServiceString(requestObj, isEncryptResponse,
 			encryptionPassword);
@@ -94,8 +95,8 @@ function getAvailableAppointmentCenterLanes(centerId,appointmentId,isEncryptResp
 	bodyRequest += '</sch:getAvailableAppointmentCenterLanesRequest>';
 	
 	var request = getRequestString(bodyRequest);
-
-	var requestObj = buildBody([ request ], true);
+	var requestObj = buildBody([request.toString()], true);
+	//var requestObj = buildBody([ request ], true);
 	MFP.Logger.warn("getAvailableAppointmentCenterLanes request | " + requestObj);
 	var result = invokeWebServiceString(requestObj, isEncryptResponse,
 			encryptionPassword);
@@ -109,12 +110,12 @@ function getAvailableAppointmentCentersByDate (date,isEncryptResponse, encryptio
 		bodyRequest +="<sch:date>" + date + "</sch:date>";
 		bodyRequest +="</sch:getAvailableAppointmentCentersRequest>";
 	var request = getRequestString(bodyRequest);
-
-	var requestObj = buildBody([ request ], true);
-	MFP.Logger.warn("getAvailableAppointmentCentersByDate request | " + requestObj);
+	var requestObj = buildBody([request.toString()], true);
+	//var requestObj = buildBody([ request ], true);
+	//MFP.Logger.warn("getAvailableAppointmentCentersByDate request | " + requestObj);
 	var result = invokeWebServiceString(requestObj, isEncryptResponse,
 			encryptionPassword);
-	MFP.Logger.warn("getAvailableAppointmentCentersByDate result | " + result);
+	//MFP.Logger.warn("getAvailableAppointmentCentersByDate result | " + result);
 	return result;
 }
 //add appointment to backet to book appoitment
@@ -139,8 +140,8 @@ function addAppointmentToBasket(vehicleType,vehiclesNumber,serviceID,ownerType,i
 	bodyRequest +="</sch:addAppointmentToBasketRequest>"
 		
 	var request = getRequestString(bodyRequest);
-
-	var requestObj = buildBody([ request ], true);
+	var requestObj = buildBody([request.toString()], true);
+	//var requestObj = buildBody([ request ], true);
 	MFP.Logger.warn("addAppointmentToBasket request | " + requestObj);
 	var result = invokeWebServiceString(requestObj, isEncryptResponse,
 			encryptionPassword);
@@ -162,8 +163,8 @@ function getAvailableAppointmentTimeSlots(centerId,appointmentId,updateMode,appo
 
 	
 	var request = getRequestString(bodyRequest);
-
-	var requestObj = buildBody([ request ], true);
+	var requestObj = buildBody([request.toString()], true);
+	//var requestObj = buildBody([ request ], true);
 	MFP.Logger.warn("getAvailableAppointmentTimeSlots request | " + requestObj);
 	var result = invokeWebServiceString(requestObj, isEncryptResponse,
 			encryptionPassword);
@@ -185,8 +186,8 @@ function getAvailableLaneAppointmentTimeSlots(laneId,appointmentId,updateMode,ap
 
 	
 	var request = getRequestString(bodyRequest);
-
-	var requestObj = buildBody([ request ], true);
+	var requestObj = buildBody([request.toString()], true);
+	//var requestObj = buildBody([ request ], true);
 	MFP.Logger.warn("getAvailableLaneAppointmentTimeSlots request | " + requestObj);
 	var result = invokeWebServiceString(requestObj, isEncryptResponse,
 			encryptionPassword);
@@ -209,8 +210,8 @@ function getAvailableAppointmentTimeSlots(centerId,appointmentId,updateMode,appo
 
 	
 	var request = getRequestString(bodyRequest);
-
-	var requestObj = buildBody([ request ], true);
+	var requestObj = buildBody([request.toString()], true);
+	//var requestObj = buildBody([ request ], true);
 	MFP.Logger.warn("getAvailableAppointmentTimeSlots request | " + requestObj);
 	var result = invokeWebServiceString(requestObj, isEncryptResponse,
 			encryptionPassword);
@@ -234,8 +235,8 @@ function submitAppointmentLocationAndTime(UpdateMode,laneId,appointmentId,appoin
 
 	
 	var request = getRequestString(bodyRequest);
-
-	var requestObj = buildBody([ request ], true);
+	var requestObj = buildBody([request.toString()], true);
+	//var requestObj = buildBody([ request ], true);
 	MFP.Logger.warn("submitAppointmentLocationAndTime request | " + requestObj);
 	var result = invokeWebServiceString(requestObj, isEncryptResponse,
 			encryptionPassword);
@@ -259,8 +260,8 @@ function submitContactDetails(appointmentId,firstName,lastName,email,mobileNo,em
 		bodyRequest += '</sch:submitContactDetailsRequest>';
 		
 	var request = getRequestString(bodyRequest);
-
-	var requestObj = buildBody([ request ], true);
+	var requestObj = buildBody([request.toString()], true);
+	//var requestObj = buildBody([ request ], true);
 	MFP.Logger.warn("submitContactDetails request | " + requestObj);
 	var result = invokeWebServiceString(requestObj, isEncryptResponse,
 			encryptionPassword);
@@ -277,8 +278,8 @@ function confirmAppointment(appointmentId,isEncryptResponse, encryptionPassword)
 		bodyRequest += '</sch:confirmAppointmentRequest>';
 
 	var request = getRequestString(bodyRequest);
-
-	var requestObj = buildBody([ request ], true);
+	var requestObj = buildBody([request.toString()], true);
+	//var requestObj = buildBody([ request ], true);
 	MFP.Logger.warn("confirmAppointment request | " + requestObj);
 	var result = invokeWebServiceString(requestObj, isEncryptResponse,
 			encryptionPassword);
@@ -293,8 +294,8 @@ function getAppointmentBasket(appointmentId,isEncryptResponse, encryptionPasswor
 		bodyRequest += '</sch:getAppointmentBasketRequest>';
 
 	var request = getRequestString(bodyRequest);
-
-	var requestObj = buildBody([ request ], true);
+	var requestObj = buildBody([request.toString()], true);
+	//var requestObj = buildBody([ request ], true);
 	MFP.Logger.warn("getAppointmentBasket request | " + requestObj);
 	var result = invokeWebServiceString(requestObj, isEncryptResponse,
 			encryptionPassword);
