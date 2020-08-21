@@ -9,16 +9,16 @@ var _userName = "%#credentials!#!username_tibco#%";
 var _password = "%#credentials!#!password_tibco#%";
 var adapterName = "drivers_and_vehicles_SalikProfileAdapter";
 var IsDebugging;
-var soapEnvStart = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sch="http://www.rta.ae/schemas/SalikProfileService/Schema.xsd">';
+var soapEnvStart = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:sch=\"http://www.rta.ae/schemas/SalikProfileService/Schema.xsd\">";
 var soapEnvEnd = '</soapenv:Envelope>';
 var soapHeaderStart = '<soapenv:Header>';
 var soapHeaderEnd = '</soapenv:Header>';
-var tibcoHeader = '<wsse:Security soapenv:mustUnderstand="0" xmlns:wsse=" http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd " xmlns=" http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:sch="http://schemas.xmlsoap.org/soap/envelope/">' +
-    '<wsse:UsernameToken>' +
-    '<wsse:Username>' + _userName + '</wsse:Username>' +
-    '<wsse:Password>' + _password + '</wsse:Password>' +
-    '</wsse:UsernameToken>' +
-    '</wsse:Security>';
+var tibcoHeader = "<wsse:Security soapenv:mustUnderstand=\"0\" xmlns:wsse=\" http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd \" xmlns=\" http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd\" xmlns:sch=\"http://schemas.xmlsoap.org/soap/envelope/\">" +
+    "<wsse:UsernameToken>" +
+    "<wsse:Username>" + _userName + "</wsse:Username>" +
+    "<wsse:Password>" + _password + "</wsse:Password>" +
+    "</wsse:UsernameToken>" +
+    "</wsse:Security>";
 var validationError = {
     "errorCode": "-1",
     "errorMessage": "missing or invalid params! please check mandatory [Params]."
@@ -390,11 +390,6 @@ function getFinancialSummary(requestParams, isEncryptResponse, encryptionPasswor
             '</soapenv:Body>' +
 
             soapEnvEnd;
-
-	    Log("*********************************************************");
-	    Log(request);
-	    
-	    Log("*********************************************************");
 	    
         var servicePath = '/salikProfileService';
         var SOAPAction = 'FinancialSummaryRequest';
