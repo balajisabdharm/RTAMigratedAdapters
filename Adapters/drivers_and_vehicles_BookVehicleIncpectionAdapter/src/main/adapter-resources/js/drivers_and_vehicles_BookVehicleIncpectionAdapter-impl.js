@@ -386,7 +386,7 @@ function invokeWebServiceString(request, isEncryptResponse, encryptionPassword) 
 	var invocationData = {
 			adapter : 'drivers_and_vehciles_utilitiesAdapter',
 			procedure : 'deleteCredientails',
-			parameters : [webServiceResult]
+			parameters : [webServiceResult.toString()]
 	};
 	return MFP.Server.invokeProcedure(invocationData);
 }
