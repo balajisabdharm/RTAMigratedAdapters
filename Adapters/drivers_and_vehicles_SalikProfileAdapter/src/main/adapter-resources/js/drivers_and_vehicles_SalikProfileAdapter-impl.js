@@ -717,7 +717,7 @@ function _logRequestResponse(refNum, adapter, SOAPAction, request, response, isD
         invocationLog = {
             adapter: 'drivers_and_vehciles_CustomDB',
             procedure: 'dbLogReq',
-            parameters: [refNum, adapter, SOAPAction, request.toString()]
+            parameters: [refNum, adapter, SOAPAction, request]
         };
     } else if (request == null && response != null) {
 
@@ -736,7 +736,7 @@ function _logRequestResponse(refNum, adapter, SOAPAction, request, response, isD
         invocationLog = {
             adapter: 'drivers_and_vehciles_CustomDB',
             procedure: 'dbLogRes',
-            parameters: [refNum, response.toString()]
+            parameters: [refNum, response]
         };
     }
 
