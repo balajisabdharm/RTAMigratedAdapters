@@ -63,7 +63,7 @@ function formateDate(timestamp) {
 
 function Log(text) {
 
-   // MFP.Logger.warn(text);
+    MFP.Logger.warn(text);
 
     try {
         IsDebugging = MFP.Server.getPropertyValue("drivers_and_vehicles_is_debugging");
@@ -83,9 +83,8 @@ function invokeWebServiceString(request, servicePath, SOAPAction, isEncryptRespo
     var webServiceResult;
     var responseString;
 
-	Log("............................... we are here ");
     //log request 
-    _logRequestResponse(refNum.toString(), adapterName, SOAPAction, request.toString(), null, true);
+    _logRequestResponse(refNum, adapterName, SOAPAction, request, null, true);
 
     //do request
     var input = {
@@ -96,7 +95,7 @@ function invokeWebServiceString(request, servicePath, SOAPAction, isEncryptRespo
         returnedContentType: 'xml',
         path: servicePath,
         body: {
-            content: request.toString(),
+            content: JSON.parse(request),
             contentType: 'text/xml; charset=utf-8'
         }
     };
@@ -107,7 +106,7 @@ function invokeWebServiceString(request, servicePath, SOAPAction, isEncryptRespo
     var invocationData = {
         adapter: 'drivers_and_vehciles_utilitiesAdapter',
         procedure: 'deleteCredientails',
-        parameters: [_webServiceResult]
+        parameters: [_webServiceResult.toString()]
     };
 
     webServiceResult = MFP.Server.invokeProcedure(invocationData);
@@ -119,14 +118,14 @@ function invokeWebServiceString(request, servicePath, SOAPAction, isEncryptRespo
         var invocationData = {
             adapter: 'drivers_and_vehciles_utilitiesAdapter',
             procedure: 'encryptData',
-            parameters: [webServiceResult, encryptionPassword]
+            parameters: [responseString, encryptionPassword]
         };
         webServiceResult = MFP.Server.invokeProcedure(invocationData);
     }
-Log("we are here ...............................");
+
     //log response
-    _logRequestResponse(refNum.toString(), adapterName, SOAPAction, null, responseString, true);
-	
+    _logRequestResponse(refNum, adapterName, SOAPAction, null, responseString, true);
+
     return webServiceResult;
 }
 
@@ -205,8 +204,6 @@ function addContactNumber(requestParams, isEncryptResponse, encryptionPassword) 
         var servicePath = '/salikProfileService';
         var SOAPAction = 'AddContactNumberRequest';
         var requestObj = buildBody([request.toString()], true);
-	    
-	    
 
         return invokeWebServiceString(requestObj, servicePath, SOAPAction, isEncryptResponse, encryptionPassword);
     }
@@ -393,11 +390,11 @@ function getFinancialSummary(requestParams, isEncryptResponse, encryptionPasswor
             '</soapenv:Body>' +
 
             soapEnvEnd;
-	    
+
         var servicePath = '/salikProfileService';
         var SOAPAction = 'FinancialSummaryRequest';
-	    
         var requestObj = buildBody([request.toString()], true);
+
         return invokeWebServiceString(requestObj, servicePath, SOAPAction, isEncryptResponse, encryptionPassword);
     }
 }
@@ -703,7 +700,7 @@ function _logRequestResponse(refNum, adapter, SOAPAction, request, response, isD
     var invocationLog = {};
 
     if (request != null && response == null) {
-        /*MFP.Logger.warn('\r\n\r\n' +
+        MFP.Logger.warn('\r\n\r\n' +
             '|--------START----------------|\r\n' +
             '|--------REQUEST--------------|\r\n' +
             '|--------START----------------|\r\n' +
@@ -711,18 +708,18 @@ function _logRequestResponse(refNum, adapter, SOAPAction, request, response, isD
             '|--------TIME: ' + formateDate(refNum) + '-------|\r\n' +
             '|--------Adapter: ' + adapter + '|\r\n' +
             '|--------Action: ' + SOAPAction + '---|\r\n' +
-            '|--------Request: ' + request.toString() + '---|\r\n' +
+            '|--------Request: ' + JSON.stringify(request) + '---|\r\n' +
             '|--------END------------------|\r\n' +
             '|--------REQUEST--------------|\r\n' +
-            '|--------END------------------|\r\n');*/
+            '|--------END------------------|\r\n');
         invocationLog = {
             adapter: 'drivers_and_vehciles_CustomDB',
             procedure: 'dbLogReq',
-            parameters: [refNum, adapter, SOAPAction, request]
+            parameters: [refNum.toString(), adapter.toString(), SOAPAction.toString(), request.toString()]
         };
     } else if (request == null && response != null) {
 
-      /*  MFP.Logger.warn('\r\n\r\n' +
+        MFP.Logger.warn('\r\n\r\n' +
             '|--------START----------------|\r\n' +
             '|--------RESPONSE-------------|\r\n' +
             '|--------START----------------|\r\n' +
@@ -733,11 +730,11 @@ function _logRequestResponse(refNum, adapter, SOAPAction, request, response, isD
             '|--------Response: ' + JSON.stringify(response) + '---|\r\n' +
             '|--------END------------------|\r\n' +
             '|--------RESPONSE-------------|\r\n' +
-            '|--------END------------------|\r\n');*/
+            '|--------END------------------|\r\n');
         invocationLog = {
             adapter: 'drivers_and_vehciles_CustomDB',
             procedure: 'dbLogRes',
-            parameters: [refNum, response]
+            parameters: [refNum.toString(), response.toString()]
         };
     }
 

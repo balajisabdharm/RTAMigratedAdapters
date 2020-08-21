@@ -23,8 +23,7 @@ function eyeTestInformationService(params, isEncryptResponse, encryptionPassword
     var _soapEnvNS = soapEnvNS +
         'xmlns:ae="http://ae.gov.trf.drl.ws.EyeTestInformationService"';
 
-    //var parameters = [envHeader.toString(), params.toString(), '', _soapEnvNS.toString()];
-	var parameters = [JSON.stringify(envHeader),params.toString(), '', _soapEnvNS.toString()];
+    var parameters = [envHeader.toString(), params.toString(), '', _soapEnvNS.toString()];
     var request = buildBody(parameters, false);
 
     //Log("EyeTestInformationService request >> " + request);
@@ -103,8 +102,7 @@ function getTrafficFileService(params, isEncryptResponse, encryptionPassword) {
 	var _soapEnvNS = soapEnvNS
 	+ 'xmlns:ae="http://ae.gov.trf.stp.ws.GetTrafficFileService"';
 
-	//var parameters = [ envHeader.toString(), params.toString(), '', _soapEnvNS.toString() ];
-	var parameters = [JSON.stringify(envHeader),params.toString(), '', _soapEnvNS.toString()];
+	var parameters = [ envHeader.toString(), params.toString(), '', _soapEnvNS.toString() ];
 	var request = buildBody(parameters, false);
 
 	//Log("GetTrafficFileService request >> " + request);
@@ -121,8 +119,7 @@ function getAppointmentDetails(params, isEncryptResponse, encryptionPassword) {
 	};
 	servicePath = '/ws/services/TestAppointmentTaxiLemoService';
 	_soapEnvNS = 'xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"  xmlns:ae="http://ae.gov.trf.inq.ws.TestAppointmentTaxiLemoService"';
-	//var parameters = [ envHeader.toString(), params.toString(), '', _soapEnvNS.toString()];
-	var parameters = [JSON.stringify(envHeader),params.toString(), '', _soapEnvNS.toString()];
+	var parameters = [ envHeader.toString(), params.toString(), '', _soapEnvNS.toString()];
 	var request = buildBody(parameters, false);
 	var response = invokeWebService(request, servicePath, null, isEncryptResponse, encryptionPassword);
 	//Log("TestAppointmentTaxiLemoService request >> " + request);
@@ -138,8 +135,7 @@ function issueDriverLicenseService(params, isEncryptResponse, encryptionPassword
 	var servicePath = '/ws/services/IssueDriverLicenseService';
 	var _soapEnvNS = soapEnvNS
 	+ 'xmlns:ae="http://ae.gov.trf.dtt.ws.IssueDriverLicenseService"';
-	//var parameters = [ envHeader.toString(), params.toString(), '', _soapEnvNS.toString() ];
-	var parameters = [JSON.stringify(envHeader),params.toString(), '', _soapEnvNS.toString()];
+	var parameters = [ envHeader.toString(), params.toString(), '', _soapEnvNS.toString() ];
 	var request = buildBody(parameters, false);
 
 	//Log("DeriverLicenseTestService - IssuingNewDLOnTest_Service request >> "+ request);
@@ -154,8 +150,7 @@ function mobilityDrivingLicenseInfoService(params, isEncryptResponse, encryption
     var servicePath = '/ws/services/MobilityDrivingLicenseInfoService';
     var _soapEnvNS = soapEnvNS +
         'xmlns:ae="http://ae.gov.trf.inq.ws.MobilityDrivingLicenseInfoService"';
-    //var parameters = [envHeader.toString(), params.toString(), '', _soapEnvNS.toString()];
-	var parameters = [JSON.stringify(envHeader),params.toString(), '', _soapEnvNS.toString()];
+    var parameters = [envHeader.toString(), params.toString(), '', _soapEnvNS.toString()];
     var request = buildBody(parameters, false);
 
     //Log("MobilityDrivingLicenseInfoService request >> " + request);
@@ -198,8 +193,7 @@ function getDriverLicenseTestApointmentsDetails(params, isEncryptResponse, encry
 	};
 	var servicePath = '/ws/services/TestAppointmentService';
 	var _soapEnvNS = soapEnvNS + 'xmlns:rta="rta:TestAppointmentService"';
-	//var parameters = [ envHeader.toString(), params.toString(), '', _soapEnvNS.toString() ];
-	var parameters = [JSON.stringify(envHeader),params.toString(), '', _soapEnvNS.toString()];
+	var parameters = [ envHeader.toString(), params.toString(), '', _soapEnvNS.toString() ];
 	var request = buildBody(parameters, false);
 
 	//Log("getDriverLicenseTestApointmentsDetails request >> " + request);

@@ -32,8 +32,7 @@ function getHandBooksDetails(params, isEncryptResponse, encryptionPassword) {
 			"ae:password" : password
 	};
 	var _soapEnvNS = soapEnvNS +'xmlns:ae="http://ae.gov.trf.drl.ws.TrainingManualService"';
-	//var parameters = [envHeader, params, "", _soapEnvNS];
-	var parameters = [JSON.stringify(envHeader), params.toString(), '', _soapEnvNS.toString()];
+	var parameters = [envHeader, params, "", _soapEnvNS];
 	var request = buildBody(parameters, false);
 	//MFP.Logger.debug("request to be sent:\n"+request);
 	var servicePath='ws/services/TrainingManualService';
@@ -47,7 +46,7 @@ function LearningPermitsService(params, isEncryptResponse, encryptionPassword){
 	};
 	var servicePath='/ws/services/LearningPermitsService';	
 	var _soapEnvNS =soapEnvNS +'xmlns:rta="rta:LearningPermitsService"';
-	var parameters = [JSON.stringify(envHeader), params.toString(), '', _soapEnvNS.toString()];
+	var parameters = [envHeader, params, '', _soapEnvNS];
 	var request = buildBody(parameters, false);
 
 	//Log("MobilityDrivingLicenseInfoService request >> " + request);
@@ -63,7 +62,7 @@ function getTrainingInformation(params, isEncryptResponse, encryptionPassword){
 	};
 	var servicePath='/traffic/services/DIIntegerationService';	
 	var _soapEnvNS =soapEnvNS +'xmlns:etr="http://eTraffic.ws"';
-	var parameters = [JSON.stringify(envHeader), params.toString(), '', _soapEnvNS.toString()];
+	var parameters = [envHeader, params, '', _soapEnvNS];
 	var request = buildBody(parameters, false);
 
 	//Log("getTrainingInformation request >> " + request);
@@ -82,7 +81,7 @@ function getPaymentClearance(params, isEncryptResponse, encryptionPassword){
 	var servicePath='/ws/services/PaymentClearanceService';	
 	var _soapEnvNS =soapEnvNS +'xmlns:cli="http://client.pce.ws.dtt.esrv.rta.ae"';
 
-	var parameters = [JSON.stringify(envHeader), params.toString(), '', _soapEnvNS.toString()];
+	var parameters = [envHeader, params, '', _soapEnvNS];
 	var request = buildBody(parameters, false);
 
 	//Log("getPaymentClearance request >> " + request);
@@ -93,7 +92,7 @@ function getPaymentClearance(params, isEncryptResponse, encryptionPassword){
 
 function getPlateVehicleDetails(envHeader, params, httpHeaders, isEncryptResponse, encryptionPassword) {
 	var _soapEnvNS = 'xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" '+'xmlns:ae="http://ae.gov.trf.vhl.ws.GeneralPlateService"';
-	var parameters = [JSON.stringify(envHeader), params.toString(), '', _soapEnvNS.toString()];
+	var parameters = [envHeader, params, "", _soapEnvNS];
 	var request = buildBody(parameters, false);
 	//Log("request to be sent:>>"+request);
 	var servicePath = '/ws/services/GeneralPlateService';
@@ -102,7 +101,7 @@ function getPlateVehicleDetails(envHeader, params, httpHeaders, isEncryptRespons
 
 function SeasonalParkingPermitService(envHeader, params, httpHeaders, isEncryptResponse, encryptionPassword) {
 	var _soapEnvNS = 'xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" '+'xmlns:rta="rta:SeasonalParkingPermitService"';
-	var parameters = [JSON.stringify(envHeader), params.toString(), '', _soapEnvNS.toString()];
+	var parameters = [envHeader, params, "", _soapEnvNS];
 	var request = buildBody(parameters, false);
 	//Log("request to be sent:>> "+request);
 	var servicePath = '/ws/services/SeasonalParkingPermitService';
@@ -154,8 +153,7 @@ function getSeasonalApplicationIdByTransactionId(params, isEncryptResponse, encr
 				"rta:transactionId":cardsData.transactionId
 			}
 	};
-	//var parameters = [envHeadersRTA, serviceParams, "", soapEnvNSRTA];
-	var parameters = [JSON.stringify(envHeadersRTA), serviceParams.toString(), '', soapEnvNSRTA.toString()];
+	var parameters = [envHeadersRTA, serviceParams, "", soapEnvNSRTA];
 	var request = buildBody(parameters, false);
 	//Log("request to be sent:\n"+request);
 	var servicePath = '/ws/services/SeasonalParkingPermitService';
@@ -180,7 +178,7 @@ function getSeasonalApplicationIdByTransactionId_DD(params, isEncryptResponse, e
 				"rta:transactionId":transactionInfo.transactionId
 			}
 	};
-	var parameters = [JSON.stringify(envHeadersRTA), serviceParams.toString(), '', soapEnvNSRTA.toString()];
+	var parameters = [envHeadersRTA, serviceParams, "", soapEnvNSRTA];
 	var request = buildBody(parameters, false);
 	//Log("request to be sent:\n"+request);
 	var servicePath = '/ws/services/SeasonalParkingPermitService';
