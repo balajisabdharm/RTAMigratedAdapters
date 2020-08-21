@@ -85,7 +85,7 @@ function invokeWebServiceString(request, servicePath, SOAPAction, isEncryptRespo
 
 	Log("............................... we are here ");
     //log request 
-    _logRequestResponse(refNum, adapterName, SOAPAction, request, null, true);
+    _logRequestResponse(refNum, adapterName, SOAPAction, request.toString(), null, true);
 
     //do request
     var input = {
