@@ -31,7 +31,7 @@ function FFULookupInfoService(params, isEncryptResponse, encryptionPassword){
 	var invocationData = {
 			adapter : 'drivers_and_vehicles_trafficAdapter',
 			procedure : 'FFULookupInfoService',
-			parameters : [params, isEncryptResponse.toString(), encryptionPassword.toString()]
+			parameters : [params.toString(), isEncryptResponse, encryptionPassword]
 	};
 	var response =  MFP.Server.invokeProcedure(invocationData);
 	var invocationData = {
