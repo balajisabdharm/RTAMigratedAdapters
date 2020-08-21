@@ -63,7 +63,7 @@ function formateDate(timestamp) {
 
 function Log(text) {
 
-    MFP.Logger.warn(text);
+   // MFP.Logger.warn(text);
 
     try {
         IsDebugging = MFP.Server.getPropertyValue("drivers_and_vehicles_is_debugging");
@@ -110,7 +110,7 @@ function invokeWebServiceString(request, servicePath, SOAPAction, isEncryptRespo
     };
 
     webServiceResult = MFP.Server.invokeProcedure(invocationData);
-    //responseString = JSON.stringify(webServiceResult);
+    responseString = JSON.stringify(webServiceResult);
 
     //encrypt response
     if (isEncryptResponse != undefined && isEncryptResponse == true) {
@@ -122,9 +122,9 @@ function invokeWebServiceString(request, servicePath, SOAPAction, isEncryptRespo
         };
         webServiceResult = MFP.Server.invokeProcedure(invocationData);
     }
-
+Log("we are here ...............................");
     //log response
-    _logRequestResponse(refNum, adapterName, SOAPAction, null, webServiceResult, true);
+    _logRequestResponse(refNum, adapterName, SOAPAction, null, responseString, true);
 	
     return webServiceResult;
 }
