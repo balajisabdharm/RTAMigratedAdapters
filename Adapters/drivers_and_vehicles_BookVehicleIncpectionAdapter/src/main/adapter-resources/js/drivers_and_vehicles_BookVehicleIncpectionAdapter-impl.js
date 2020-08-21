@@ -380,7 +380,7 @@ function invokeWebServiceString(request, isEncryptResponse, encryptionPassword) 
 		var invocationData = {
 				adapter : 'drivers_and_vehciles_utilitiesAdapter',
 				procedure : 'encryptData',
-				parameters : [ webServiceResult, encryptionPassword ]
+				parameters : [ webServiceResult.toString(), encryptionPassword ]
 		};
 		webServiceResult = MFP.Server.invokeProcedure(invocationData);
 	}
