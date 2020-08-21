@@ -103,7 +103,7 @@ function invokeWebServiceString(request, servicePath, SOAPAction, isEncryptRespo
     _webServiceResult = MFP.Server.invokeHttp(input);
 
     //delete credientails
-  /*  var invocationData = {
+    var invocationData = {
         adapter: 'drivers_and_vehciles_utilitiesAdapter',
         procedure: 'deleteCredientails',
         parameters: [_webServiceResult]
@@ -122,11 +122,11 @@ function invokeWebServiceString(request, servicePath, SOAPAction, isEncryptRespo
         };
         webServiceResult = MFP.Server.invokeProcedure(invocationData);
     }
-*/
+
     //log response
     _logRequestResponse(refNum, adapterName, SOAPAction, null, responseString, true);
 	
-    return _webServiceResult;
+    return webServiceResult;
 }
 
 
@@ -394,7 +394,7 @@ function getFinancialSummary(requestParams, isEncryptResponse, encryptionPasswor
         var servicePath = '/salikProfileService';
         var SOAPAction = 'FinancialSummaryRequest';
 	    
-        var requestObj = buildBody([request.toString()], true);
+        var requestObj = buildBody([request], true);
 
         return invokeWebServiceString(requestObj, servicePath, SOAPAction, isEncryptResponse, encryptionPassword);
     }
