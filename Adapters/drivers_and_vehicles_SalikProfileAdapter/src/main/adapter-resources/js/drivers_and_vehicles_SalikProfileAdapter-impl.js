@@ -95,7 +95,7 @@ function invokeWebServiceString(request, servicePath, SOAPAction, isEncryptRespo
         returnedContentType: 'xml',
         path: servicePath,
         body: {
-            content: JSON.parse(request),
+            content: request.toString(),
             contentType: 'text/xml; charset=utf-8'
         }
     };
@@ -393,12 +393,6 @@ function getFinancialSummary(requestParams, isEncryptResponse, encryptionPasswor
 	    
         var servicePath = '/salikProfileService';
         var SOAPAction = 'FinancialSummaryRequest';
-	    
-	    Log("=======================================================");
-	    Log(request);
-	    Log("=======================================================");
-	    Log(request.toString());
-	    Log("=======================================================");
 	    
         var requestObj = buildBody([request.toString()], true);
 
