@@ -14,6 +14,8 @@ var userName = "%#credentials!#!username#%";
 var password = "%#credentials!#!password#%";
 var externalUsername = "%#credentials!#!externalUsername#%";
 var externalPassword = "%#credentials!#!externalPassword#%";
+var username_traffic = "%#credentials!#!username_traffic#%";
+var password_traffic = "%#credentials!#!password_traffic#%";
 var IsDebugging;
 function Log(text){
 	try {
