@@ -110,7 +110,7 @@ function invokeWebServiceString(request, servicePath, SOAPAction, isEncryptRespo
     };
 
     webServiceResult = MFP.Server.invokeProcedure(invocationData);
-    responseString = JSON.stringify(webServiceResult);
+    //responseString = JSON.stringify(webServiceResult);
 
     //encrypt response
     if (isEncryptResponse != undefined && isEncryptResponse == true) {
@@ -118,7 +118,7 @@ function invokeWebServiceString(request, servicePath, SOAPAction, isEncryptRespo
         var invocationData = {
             adapter: 'drivers_and_vehciles_utilitiesAdapter',
             procedure: 'encryptData',
-            parameters: [responseString, encryptionPassword]
+            parameters: [webServiceResult, encryptionPassword]
         };
         webServiceResult = MFP.Server.invokeProcedure(invocationData);
     }
