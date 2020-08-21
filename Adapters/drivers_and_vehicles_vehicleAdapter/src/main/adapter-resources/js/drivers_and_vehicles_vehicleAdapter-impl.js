@@ -174,20 +174,15 @@ function userOwnedAndBookedPlatesService(params, isEncryptResponse, encryptionPa
 }
 function usersVehiclesService(params, isEncryptResponse, encryptionPassword){
 	var envHeader={
-			"urn:password":password.toString(),
-			"urn:username":userName.toString()
+			"urn:password":password,
+			"urn:username":userName
 	};
 	
 	var servicePath='/ws/services/UsersVehiclesService';
 	var _soapEnvNS=soapEnvNS+ 'xmlns:urn="urn:UsersVehiclesService"';
-	MFP.Logger.info("UsersVehiclesService received params >>>>> " + params);
 	//var params = {"urn:getUsersVehicles":{"urn:trafficFileNumber":"+params+"}};
-	MFP.Logger.info("envHeader12:"+ JSON.stringify(envHeader)   );
-	MFP.Logger.info("_soapEnvNS:"+ _soapEnvNS.toString());
-	MFP.Logger.info("Formatted params:"+ params.toString());
-	MFP.Logger.info("JSON.Stringify params:"+ JSON.stringify(params));
 	
-	var parameters = [envHeader.toString(),params.toString(), '', _soapEnvNS.toString()];
+	var parameters = [JSON.stringify(envHeader),params.toString(), '', _soapEnvNS.toString()];
 //	var parameters = [envHeader.toString(),envHeader.toString(), '',_soapEnvNS.toString()];
 //	var parameters = ["","","", ""];
 	var request = buildBody(parameters, false);
