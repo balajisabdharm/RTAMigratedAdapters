@@ -702,7 +702,7 @@ function _logRequestResponse(refNum, adapter, SOAPAction, request, response, isD
     var invocationLog = {};
 
     if (request != null && response == null) {
-        MFP.Logger.warn('\r\n\r\n' +
+        /*MFP.Logger.warn('\r\n\r\n' +
             '|--------START----------------|\r\n' +
             '|--------REQUEST--------------|\r\n' +
             '|--------START----------------|\r\n' +
@@ -713,15 +713,15 @@ function _logRequestResponse(refNum, adapter, SOAPAction, request, response, isD
             '|--------Request: ' + request.toString() + '---|\r\n' +
             '|--------END------------------|\r\n' +
             '|--------REQUEST--------------|\r\n' +
-            '|--------END------------------|\r\n');
+            '|--------END------------------|\r\n');*/
         invocationLog = {
             adapter: 'drivers_and_vehciles_CustomDB',
             procedure: 'dbLogReq',
-            parameters: [refNum.toString(), adapter.toString(), SOAPAction.toString(), request.toString()]
+            parameters: [refNum, adapter, SOAPAction, request.toString()]
         };
     } else if (request == null && response != null) {
 
-        MFP.Logger.warn('\r\n\r\n' +
+      /*  MFP.Logger.warn('\r\n\r\n' +
             '|--------START----------------|\r\n' +
             '|--------RESPONSE-------------|\r\n' +
             '|--------START----------------|\r\n' +
@@ -732,11 +732,11 @@ function _logRequestResponse(refNum, adapter, SOAPAction, request, response, isD
             '|--------Response: ' + JSON.stringify(response) + '---|\r\n' +
             '|--------END------------------|\r\n' +
             '|--------RESPONSE-------------|\r\n' +
-            '|--------END------------------|\r\n');
+            '|--------END------------------|\r\n');*/
         invocationLog = {
             adapter: 'drivers_and_vehciles_CustomDB',
             procedure: 'dbLogRes',
-            parameters: [refNum.toString(), response.toString()]
+            parameters: [refNum, response.toString()]
         };
     }
 
