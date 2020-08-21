@@ -13,7 +13,7 @@ var soapEnvStart = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/
 var soapEnvEnd = '</soapenv:Envelope>';
 var soapHeaderStart = '<soapenv:Header>';
 var soapHeaderEnd = '</soapenv:Header>';
-var tibcoHeader = '<wsse:Security soapenv:mustUnderstand="0" xmlns:wsse=" http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd " xmlns=" http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:sch="http://schemas.xmlsoap.org/soap/envelope/\>' +
+var tibcoHeader = '<wsse:Security soapenv:mustUnderstand="0" xmlns:wsse=" http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd " xmlns=" http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:sch="http://schemas.xmlsoap.org/soap/envelope/">' +
     '<wsse:UsernameToken>' +
     '<wsse:Username>' + _userName + '</wsse:Username>' +
     '<wsse:Password>' + _password + '</wsse:Password>' +
@@ -397,12 +397,6 @@ function getFinancialSummary(requestParams, isEncryptResponse, encryptionPasswor
         var SOAPAction = 'FinancialSummaryRequest';
 	    
         var requestObj = buildBody([request.toString()], true);
-	    
-	    Log("**********************************************************");
-	    Log(requestObj);
-	    Log("===========================================================");
-	    Log(requestObj.toString());
-
         return invokeWebServiceString(requestObj, servicePath, SOAPAction, isEncryptResponse, encryptionPassword);
     }
 }
