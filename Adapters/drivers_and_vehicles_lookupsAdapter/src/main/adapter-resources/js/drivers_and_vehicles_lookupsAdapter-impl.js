@@ -28,7 +28,7 @@ function Log(text){
 		MFP.Logger.debug(text);
 }
 function FFULookupInfoService(params, isEncryptResponse, encryptionPassword){
-	var invocationData = {
+	/*var invocationData = {
 			adapter : 'drivers_and_vehicles_trafficAdapter',
 			procedure : 'FFULookupInfoService',
 			parameters : [params, isEncryptResponse, encryptionPassword]
@@ -39,7 +39,26 @@ function FFULookupInfoService(params, isEncryptResponse, encryptionPassword){
 			procedure : 'deleteCredientails',
 			parameters : [response.toString()]
 	};
-	return MFP.Server.invokeProcedure(invocationData); 
+	return MFP.Server.invokeProcedure(invocationData); */
+	
+	
+	var envHeader = { 
+			"ae:authenticationHeader" :{
+				"ae:externalUsername" : externalUsername,
+				"ae:externalUserPassword" :externalPassword,
+				"ae:username" : username_traffic,
+				"ae:password" : password_traffic
+			}
+	};
+	var servicePath= '/wstraffic/services/FFULookupInfoService';
+	var _soapEnvNS=soapEnvNS+ 'xmlns:ae="http://ae:client.ws.ffu.traffic.services.internet.ae"';
+	//var parameters = [envHeader, params, '', _soapEnvNS];
+	var parameters = [JSON.stringify(envHeader),params.toString(), '', _soapEnvNS.toString()];
+	var request = buildBody(parameters, false);
+
+	//Log("FFULookupInfoService request >> " + request);
+	return invokeWebService(request, servicePath, null, isEncryptResponse, encryptionPassword);
+	
 }
 
 function getKioskTestCentersService(params, isEncryptResponse, encryptionPassword) {
@@ -49,7 +68,8 @@ function getKioskTestCentersService(params, isEncryptResponse, encryptionPasswor
 	};
 	var servicePath = "/ws/services/GetKioskTestCentersService";
 	var _soapEnvNS=soapEnvNS+ 'xmlns:ae="http://ae.gov.trf.stp.ws.GetKioskTestCentersService"';
-	var parameters = [envHeader.toString(), params.toString(), 'xmlns:ae="http://ws.trs.rta.ae"', _soapEnvNS.toString()];
+	//var parameters = [envHeader.toString(), params.toString(), 'xmlns:ae="http://ws.trs.rta.ae"', _soapEnvNS.toString()];
+	var parameters = [JSON.stringify(envHeader),params.toString(), 'xmlns:ae="http://ws.trs.rta.ae"', _soapEnvNS.toString()];
 	var request = buildBody(parameters, false);
 
 	//Log("getKioskTestCentersService request >> " + request);
@@ -98,7 +118,8 @@ function exportCertificateService(params, isEncryptResponse, encryptionPassword)
 	var _soapEnvNS=soapEnvNS+ 'xmlns:ae="http://ae.gov.trf.vhl.ws.ExportCertificateService"';
 
 	var servicePath = "/ws/services/ExportCertificateService";
-	var parameters = [envHeader.toString(), params.toString(), '', _soapEnvNS.toString()];
+	//var parameters = [envHeader.toString(), params.toString(), '', _soapEnvNS.toString()];
+	var parameters = [JSON.stringify(envHeader),params.toString(), '', _soapEnvNS.toString()];
 	var request = buildBody(parameters, false);
 
 	//Log("exportCertificateService request >> " + request);
@@ -114,7 +135,8 @@ function vehiclePossessionCertificateService(params, isEncryptResponse, encrypti
 	};
 	var _soapEnvNS=soapEnvNS+ 'xmlns:urn="urn:VehiclePossessionCertificateService"';
 	var servicePath='/ws/services/VehiclePossessionCertificateService';
-	var parameters = [envHeader.toString(),params.toString(),'', _soapEnvNS.toString()];
+	//var parameters = [envHeader.toString(),params.toString(),'', _soapEnvNS.toString()];
+	var parameters = [JSON.stringify(envHeader),params.toString(), '', _soapEnvNS.toString()];
 	var request = buildBody(parameters, false);
 
 	//Log("VehiclePossessionCertificateService request >> " + request);
