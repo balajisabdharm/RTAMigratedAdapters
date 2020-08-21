@@ -394,7 +394,7 @@ function getFinancialSummary(requestParams, isEncryptResponse, encryptionPasswor
         var servicePath = '/salikProfileService';
         var SOAPAction = 'FinancialSummaryRequest';
 	    
-        var requestObj = buildBody([request], true);
+        var requestObj = buildBody([request.toString()], true);
 
         return invokeWebServiceString(requestObj, servicePath, SOAPAction, isEncryptResponse, encryptionPassword);
     }
@@ -709,7 +709,7 @@ function _logRequestResponse(refNum, adapter, SOAPAction, request, response, isD
             '|--------TIME: ' + formateDate(refNum) + '-------|\r\n' +
             '|--------Adapter: ' + adapter + '|\r\n' +
             '|--------Action: ' + SOAPAction + '---|\r\n' +
-            '|--------Request: ' + JSON.stringify(request) + '---|\r\n' +
+            '|--------Request: ' + request.toString() + '---|\r\n' +
             '|--------END------------------|\r\n' +
             '|--------REQUEST--------------|\r\n' +
             '|--------END------------------|\r\n');
