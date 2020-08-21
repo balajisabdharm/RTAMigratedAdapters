@@ -1211,7 +1211,7 @@ function invokeWebServiceString(request, servicePath, SOAPAction, isEncryptRespo
     var responseString;
 
     //log request 
-    _logRequestResponse(refNum, adapterName, SOAPAction, request, null, true);
+    _logRequestResponse(refNum.toString(), adapterName, SOAPAction, request.toString(), null, true);
 
     //do request
     var input = {
@@ -1222,7 +1222,7 @@ function invokeWebServiceString(request, servicePath, SOAPAction, isEncryptRespo
         returnedContentType: 'xml',
         path: servicePath,
         body: {
-            content: JSON.parse(request),
+            content: request.toString(),
             contentType: 'text/xml; charset=utf-8'
         }
     };
@@ -1233,7 +1233,7 @@ function invokeWebServiceString(request, servicePath, SOAPAction, isEncryptRespo
     var invocationData = {
         adapter: 'drivers_and_vehciles_utilitiesAdapter',
         procedure: 'deleteCredientails',
-        parameters: [_webServiceResult.toString()]
+        parameters: [_webServiceResult]
     };
 
     webServiceResult = MFP.Server.invokeProcedure(invocationData);
@@ -1251,7 +1251,7 @@ function invokeWebServiceString(request, servicePath, SOAPAction, isEncryptRespo
     }
 
     //log response
-    _logRequestResponse(refNum, adapterName, SOAPAction, null, responseString, true);
+    _logRequestResponse(refNum.toString(), adapterName, SOAPAction, null, responseString, true);
 
     //check fault response
     /*if(!webServiceResult["isSuccessful"] && webServiceResult["errors"]){

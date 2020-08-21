@@ -367,7 +367,7 @@ function invokeWebServiceString(request, servicePath, SOAPAction, isEncryptRespo
     
    // MFP.Logger.info("|drivers_and_vehicles_SalikLookupAdapter ------------->>> | "+ servicePath +"  | Request : " + request );
     
-      MFP.Logger.info("|drivers_and_vehicles_SalikLookupAdapter ------------isEncryptResponse-**###>>>>>> | "+ isEncryptResponse +"  | requestObj plain ::::::" + request );
+      MFP.Logger.info("|drivers_and_vehicles_SalikLookupAdapter -----isEncryptResponse>>!!>>> | "+ isEncryptResponse +"  | requestObj ::::::" + request );
 
     // Log DB Log In DB
         /*try {
@@ -379,32 +379,28 @@ function invokeWebServiceString(request, servicePath, SOAPAction, isEncryptRespo
     var startTime = new Date().getTime();
     var input = {
         method : 'post',
-        /* headers : {
+         headers : {
             "SOAPAction" : SOAPAction
-        },*/
+        },
 		returnedContentType : 'xml',
        // returnedContentType : 'plain',
        // returnedContentEncoding: 'UTF8',plain
         path : servicePath,
         body : {
-            content : JSON.parse(request),
+            //content : JSON.parse(request),
+            content : request,
             contentType : 'text/xml; charset=utf-8'
             //contentType :'application/soap+xml;charset=utf-8'
         }
     };
-
-
-
-
     var webServiceResult = MFP.Server.invokeHttp(input);
     var _result_truncated =JSON.stringify(webServiceResult);
-    MFP.Logger.info("Response   without modification" +_result_truncated);
+    MFP.Logger.info("Response without modification" +_result_truncated);
     //Code changed by Amit Goyal ...response is returned without DeleteCredentials and encryptData functionality
     var s = _result_truncated.replace(/[\n\t\r|\r\n|\n|\r|\t]/gm,' ');
     return JSON.parse(_result_truncated);
     var _result = JSON.stringify(webServiceResult);
     //var _result_truncated = (_result > 1000) ? _result.substr(0, 1001) + '&hellip;' : _result;//50692
-    
     //MFP.Logger.info("|drivers_and_vehicles_SalikLookupAdapter --- | "+ servicePath +"  | Request : " + request + ", Response: "+_result );
     // Update response in DB  where DBLogID  ////////////////////////////////
     /*try {
