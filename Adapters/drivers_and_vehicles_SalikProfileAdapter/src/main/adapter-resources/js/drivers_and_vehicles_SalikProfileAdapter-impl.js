@@ -204,6 +204,8 @@ function addContactNumber(requestParams, isEncryptResponse, encryptionPassword) 
         var servicePath = '/salikProfileService';
         var SOAPAction = 'AddContactNumberRequest';
         var requestObj = buildBody([request.toString()], true);
+	    
+	    
 
         return invokeWebServiceString(requestObj, servicePath, SOAPAction, isEncryptResponse, encryptionPassword);
     }
@@ -395,6 +397,11 @@ function getFinancialSummary(requestParams, isEncryptResponse, encryptionPasswor
         var SOAPAction = 'FinancialSummaryRequest';
 	    
         var requestObj = buildBody([request.toString()], true);
+	    
+	    Log("**********************************************************");
+	    Log(requestObj);
+	    Log("===========================================================");
+	    Log(requestObj.toString());
 
         return invokeWebServiceString(requestObj, servicePath, SOAPAction, isEncryptResponse, encryptionPassword);
     }
