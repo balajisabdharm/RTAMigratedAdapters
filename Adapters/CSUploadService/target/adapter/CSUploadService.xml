@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Licensed Materials - Property of IBM
+	5725-I43 (C) Copyright IBM Corp. 2011, 2016. All Rights Reserved.
+	US Government Users Restricted Rights - Use, duplication or
+	disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+<mfp:adapter name="CSUploadService"
+			 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			 xmlns:mfp="http://www.ibm.com/mfp/integration"
+			 xmlns:http="http://www.ibm.com/mfp/integration/http">
+
+<displayName>CSUploadService</displayName>
+	<description>CSUploadService</description>
+	<connectivity>
+		<connectionPolicy xsi:type="http:HTTPConnectionPolicyType">
+			<protocol>https</protocol>
+			<domain>rtamhtibstgamx1.rtatestdom.local</domain>
+			<port>11064</port>
+			<connectionTimeoutInMilliseconds>300000</connectionTimeoutInMilliseconds>
+			<socketTimeoutInMilliseconds>30000</socketTimeoutInMilliseconds>
+			<maxConcurrentConnectionsPerNode>5</maxConcurrentConnectionsPerNode>
+		</connectionPolicy>
+	</connectivity>
+	<procedure name="uploadFileInBase64"/>
+	<procedure name="uploadMergeFilesInBase64"/>
+
+	<property name="rta.soap.language.header.xmlns"  description="rta.soap.language.header.xmlns" defaultValue="${rtaSoapLanguageHeaderXmlns}$"/>
+	<property name="wsse.tibco.username"  description="wsse.tibco.username" defaultValue="${wsseTibcoUsername}$"/>
+	<property name="wsse.tibco.password"  description="wsse.tibco.password" defaultValue="${wsseTibcoPassword}$"/>
+	
+	<property name="rta.image.nolTempPath"  description="rta.image.nolTempPath" defaultValue="${rtaImageNolTempPath}$"/>
+
+	<property name="rta.pt.nolUploadService.endPoint"  description="rta.pt.nolUploadService.endPoint" defaultValue="${rtaPtNolUploadServiceEndPoint}$"/>
+ <property name="rta.image.nolUploadFileSizeLimit"  description="rta.image.nolUploadFileSizeLimit" defaultValue="${rtaimagenolUploadFileSizeLimit}$"/>
+</mfp:adapter>
