@@ -429,8 +429,8 @@ function getWSSE(){
 	var wsse = 
 		'<wsse:Security soapenv:mustUnderstand="0" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">'
 			+'<wsse:UsernameToken wsu:Id="UsernameToken-69">'
-				+'<wsse:Username>'+WL.Server.configuration["wsse.tibco.username"]+'</wsse:Username>'
-				+'<wsse:Password Type="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText">'+WL.Server.configuration["wsse.tibco.password"]+'</wsse:Password>'
+				+'<wsse:Username>'+ MFP.Server.getPropertyValue("wsse.tibco.username")+'</wsse:Username>'
+				+'<wsse:Password Type="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText">'+ MFP.Server.getPropertyValue("wsse.tibco.password")+'</wsse:Password>'
 			+'</wsse:UsernameToken>'
 		+'</wsse:Security>';
 	
@@ -582,7 +582,7 @@ function jsonToXmlList(jsonObj, xmlStr, namespaces) {
 function invokeWebService(request,soapAction){
 	var invokeReferenceId = "ME"+new Date().getTime()+Math.floor((Math.random() * 100) + 1);
 	try {
-		WL.Logger.info("["+soapAction +"][Request]["+invokeReferenceId+"] \r\n"+ request.toString());
+		MFP.Logger.info("["+soapAction +"][Request]["+invokeReferenceId+"] \r\n"+ request.toString());
 		
 	    var input = {
 	        method : 'post',
@@ -594,10 +594,10 @@ function invokeWebService(request,soapAction){
 	            contentType : 'text/xml; charset=UTF-8'
 	        }
 	    };
-	    var response = WL.Server.invokeHttp(input);
+	    var response = MFP.Server.invokeHttp(input);
 		//return {error:err,isSuccessful:false,invokeReferenceId:invokeReferenceId};
 	    
-		WL.Logger.info("["+soapAction + "][Response]["+invokeReferenceId+"] \r\n"+JSON.stringify(response, null, '\t'));
+		MFP.Logger.info("["+soapAction + "][Response]["+invokeReferenceId+"] \r\n"+JSON.stringify(response, null, '\t'));
 	    
 	    if(response.Envelope){
 			response.Envelope.Body.invokeReferenceId = invokeReferenceId;
@@ -610,7 +610,7 @@ function invokeWebService(request,soapAction){
 	    }
 	    
 	}catch(err) {
-		WL.Logger.error("["+soapAction+"][Error]["+invokeReferenceId+"]: "+err);
+		MFP.Logger.error("["+soapAction+"][Error]["+invokeReferenceId+"]: "+err);
 		return {error:err,isSuccessful:false,invokeReferenceId:invokeReferenceId};
 	}
 }

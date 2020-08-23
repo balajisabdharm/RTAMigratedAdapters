@@ -52,4 +52,7 @@
 	<procedure name="verifyPin"/>
 	<procedure name="getMaxEWalletAccountBalance"/>
 
+	<property name="wsse.tibco.username"  description="wsse.tibco.username" defaultValue="${wsseTibcoUsername}$"/>
+    <property name="wsse.tibco.password"  description="wsse.tibco.password" defaultValue="${wsseTibcoPassword}$"/>
+
 </mfp:adapter>
