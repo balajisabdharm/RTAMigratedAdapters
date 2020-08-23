@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Licensed Materials - Property of IBM
+	5725-I43 (C) Copyright IBM Corp. 2011, 2016. All Rights Reserved.
+	US Government Users Restricted Rights - Use, duplication or
+	disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+<mfp:adapter name="CSEWalletService"
+			 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			 xmlns:mfp="http://www.ibm.com/mfp/integration"
+			 xmlns:http="http://www.ibm.com/mfp/integration/http">
+
+<displayName>CSEWalletService</displayName>
+	<description>CSEWalletService</description>
+	<connectivity>
+		<connectionPolicy xsi:type="http:HTTPConnectionPolicyType">
+			<protocol>https</protocol>
+			<domain>rtamhtibstgamx1.rtatestdom.local</domain>
+			<port>11084</port>
+			<connectionTimeoutInMilliseconds>300000</connectionTimeoutInMilliseconds>
+			<socketTimeoutInMilliseconds>30000</socketTimeoutInMilliseconds>
+			<maxConcurrentConnectionsPerNode>5</maxConcurrentConnectionsPerNode>
+			<!-- Following properties used by adapter's key manager for choosing specific certificate from key store  
+			<sslCertificateAlias></sslCertificateAlias> 
+			<sslCertificatePassword></sslCertificatePassword>
+			-->		
+		</connectionPolicy>
+	</connectivity>
+
+	<procedure name="getAccountBasicInformation"/>
+	<procedure name="validateEWalletApplication"/>
+	<procedure name="submitEWalletApplication"/>
+	<procedure name="previewEWalletCancellation"/>
+	<procedure name="submitEWalletCancellation"/>
+	<procedure name="getAccountInformation"/>
+	<procedure name="getTradeLicense"/>
+	<procedure name="getAuthorizedStampLetter"/>
+	<procedure name="updateAccountInformation"/>
+	<procedure name="calculateTopupFee"/>
+	<procedure name="validateTopup"/>
+	<procedure name="createTopupRequest"/>
+	<procedure name="updateTopupStatus"/>
+	<procedure name="getServiceSubscriptionOptions"/>
+	<procedure name="getSubscribedServices"/>
+	<procedure name="validateServiceAuthentication"/>
+	<procedure name="updateServiceSubscription"/>
+	<procedure name="getEWalletTxnHistory"/>
+	<procedure name="validateEWalletLinkage"/>
+	<procedure name="submitEWalletLinkage"/>
+	<procedure name="resetPin"/>
+	<procedure name="updatePin"/>
+	<procedure name="verifyPin"/>
+	<procedure name="getMaxEWalletAccountBalance"/>
+
+</mfp:adapter>
