@@ -30,10 +30,10 @@
 	<procedure name="getUIList"/>
 	<procedure name="getImageInBase64"/>
 
-	<property name="rta.soap.language.header.xmlns"  description="rta.soap.language.header.xmlns" defaultValue="${rtaSoapLanguageHeaderXmlns}$"/>
-	<property name="wsse.tibco.username"  description="wsse.tibco.username" defaultValue="${wsseTibcoUsername}$"/>
-	<property name="wsse.tibco.password"  description="wsse.tibco.password" defaultValue="${wsseTibcoPassword}$"/>
-	<property name="rta.pt.nolResourcesService.endPoint"  description="rta.pt.nolResourcesService.endPoint" defaultValue="${rtaPtNolResourcesServiceEndPoint}$"/>
-	<property name="rta.image.nolTempPath"  description="rta.image.nolTempPath" defaultValue="${rtaImageNolTempPath}$"/>
+	<property name="rta.soap.language.header.xmlns"  description="rta.soap.language.header.xmlns" defaultValue="rtaSoapLanguageHeaderXmlns"/>
+	<property name="wsse.tibco.username"  description="wsse.tibco.username" defaultValue="wsseTibcoUsername"/>
+	<property name="wsse.tibco.password"  description="wsse.tibco.password" defaultValue="wsseTibcoPassword"/>
+	<property name="rta.pt.nolResourcesService.endPoint"  description="rta.pt.nolResourcesService.endPoint" defaultValue="rtaPtNolResourcesServiceEndPoint"/>
+	<property name="rta.image.nolTempPath"  description="rta.image.nolTempPath" defaultValue="rtaImageNolTempPath"/>
 
 </mfp:adapter>

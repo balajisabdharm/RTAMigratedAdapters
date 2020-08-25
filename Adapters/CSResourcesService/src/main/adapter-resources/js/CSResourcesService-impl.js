@@ -4,6 +4,8 @@ var datetime = new Date();
 
 function getUIList(language,params) {
 
+	MFP.Logger.info("Test||||||||||||||||||||||||||");
+
 	var request = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xs="http://www.rta.ae/ActiveMatrix/ESB/ResourcesService/XMLSchema">'
 		+getHeader(language)
 		+'<soapenv:Body>'
@@ -16,32 +18,39 @@ function getUIList(language,params) {
 	var result = invokeWebService(request,"getUIList");
 	
 	return result;
+
+
 }
 
 function getImageInBase64(language,params) {
 	
-	var file = com.rta.java.adapter.CSImageMerge.getImage(params.imageId,MFP.Server.getPropertyValue("rta.image.nolTempPath"));
-	if(file==null){
+	// var file = com.rta.java.adapter.CSImageMerge.getImage(params.imageId,MFP.Server.getPropertyValue("rta.image.nolTempPath"));
+	// if(file==null){
 
-		var request = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xs="http://www.rta.ae/ActiveMatrix/ESB/ResourcesService/XMLSchema">'
-				+getHeader(language)
-				+'<soapenv:Body>'
-					+'<xs:uiImageRequest>'
-						+jsonToXml(params,'', null)
-					+'</xs:uiImageRequest>'
-				+'</soapenv:Body>'
-			+'</soapenv:Envelope>';
+	// 	var request = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xs="http://www.rta.ae/ActiveMatrix/ESB/ResourcesService/XMLSchema">'
+	// 			+getHeader(language)
+	// 			+'<soapenv:Body>'
+	// 				+'<xs:uiImageRequest>'
+	// 					+jsonToXml(params,'', null)
+	// 				+'</xs:uiImageRequest>'
+	// 			+'</soapenv:Body>'
+	// 		+'</soapenv:Envelope>';
 		
-		var result = invokeWebService(request,"getImageInBase64");
+	// 	var result = invokeWebService(request,"getImageInBase64");
 		
-		if(result.layoutImageInBase64 !=null){
-			com.rta.java.adapter.CSImageMerge.saveImage(params.imageId,JSON.stringify(result),MFP.Server.getPropertyValue("rta.image.nolTempPath"));
-		}
+	// 	if(result.layoutImageInBase64 !=null){
+	// 		com.rta.java.adapter.CSImageMerge.saveImage(params.imageId,JSON.stringify(result),MFP.Server.getPropertyValue("rta.image.nolTempPath"));
+	// 	}
 		
-		return result;
-	}else{
-		return JSON.parse(file);
-	}
+	// 	return result;
+	// }else{
+	// 	return JSON.parse(file);
+	// }
+
+	var result = {
+		response:"success"
+	};
+	return result;
 }
 	
 
@@ -58,6 +67,9 @@ function getHeader(language){
 }
 
 function getWSSE(){
+	var username = MFP.Server.getPropertyValue("wsse.tibco.username");
+	MFP.Logger.info("getWSSE");
+	MFP.Logger.info("getWSSE"+ username);
 	var wsse = 
 		'<wsse:Security soapenv:mustUnderstand="0" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">'
 			+'<wsse:UsernameToken wsu:Id="UsernameToken-69">'
