@@ -4,8 +4,6 @@ var datetime = new Date();
 
 function getUIList(language,params) {
 
-	MFP.Logger.info("Test||||||||||||||||||||||||||");
-
 	var request = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xs="http://www.rta.ae/ActiveMatrix/ESB/ResourcesService/XMLSchema">'
 		+getHeader(language)
 		+'<soapenv:Body>'
@@ -24,33 +22,30 @@ function getUIList(language,params) {
 
 function getImageInBase64(language,params) {
 	
-	// var file = com.rta.java.adapter.CSImageMerge.getImage(params.imageId,MFP.Server.getPropertyValue("rta.image.nolTempPath"));
-	// if(file==null){
+	var file = com.rta.java.adapter.CSImageMerge.getImage(params.imageId,MFP.Server.getPropertyValue("rta.image.nolTempPath"));
+	if(file==null){
 
-	// 	var request = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xs="http://www.rta.ae/ActiveMatrix/ESB/ResourcesService/XMLSchema">'
-	// 			+getHeader(language)
-	// 			+'<soapenv:Body>'
-	// 				+'<xs:uiImageRequest>'
-	// 					+jsonToXml(params,'', null)
-	// 				+'</xs:uiImageRequest>'
-	// 			+'</soapenv:Body>'
-	// 		+'</soapenv:Envelope>';
+		var request = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xs="http://www.rta.ae/ActiveMatrix/ESB/ResourcesService/XMLSchema">'
+				+getHeader(language)
+				+'<soapenv:Body>'
+					+'<xs:uiImageRequest>'
+						+jsonToXml(params,'', null)
+					+'</xs:uiImageRequest>'
+				+'</soapenv:Body>'
+			+'</soapenv:Envelope>';
 		
-	// 	var result = invokeWebService(request,"getImageInBase64");
+		var result = invokeWebService(request,"getImageInBase64");
 		
-	// 	if(result.layoutImageInBase64 !=null){
-	// 		com.rta.java.adapter.CSImageMerge.saveImage(params.imageId,JSON.stringify(result),MFP.Server.getPropertyValue("rta.image.nolTempPath"));
-	// 	}
+		if(result.layoutImageInBase64 !=null){
+			com.rta.java.adapter.CSImageMerge.saveImage(params.imageId,JSON.stringify(result),MFP.Server.getPropertyValue("rta.image.nolTempPath"));
+		}
 		
-	// 	return result;
-	// }else{
-	// 	return JSON.parse(file);
-	// }
+		return result;
+	}else{
+		return JSON.parse(file);
+	}
 
-	var result = {
-		response:"success"
-	};
-	return result;
+	
 }
 	
 
