@@ -448,7 +448,7 @@ function fixNameSpace(strXSD, response){
 // updated bt faran
 function getUserProfile(uid, appid) {
     
-    MFP.Logger.info("|portalAdapter |getUserProfile |uid: " + uid + " appid" +appid );
+    MFP.Logger.info("|portalAdapter | getUserProfile received input parameters: " + uid + " appid" +appid );
 	try {
 
 		if (!uid || !appid) {
