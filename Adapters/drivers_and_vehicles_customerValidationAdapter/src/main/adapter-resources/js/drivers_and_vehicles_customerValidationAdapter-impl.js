@@ -165,7 +165,8 @@ function documentValidation(params, isEncryptResponse, encryptionPassword){
 	var _soapEnvNS = soapEnvNS+ 'xmlns:rta="rta:DocumentValidationService"';
 
 	//var parameters = [envHeader.toString(), params.toString(), "", _soapEnvNS.toString()];
-	var parameters = [JSON.stringify(envHeader),params.toString(), '', _soapEnvNS.toString()];
+	params[0] = JSON.stringify(params[0]);
+	var parameters = [JSON.stringify(envHeader),params, '', _soapEnvNS.toString()];
 	var request = buildBody(parameters, false);
 	//MFP.Logger.warn("request to be sent:\n"+request);
 	var servicePath='/ws/services/DocumentValidationService';
