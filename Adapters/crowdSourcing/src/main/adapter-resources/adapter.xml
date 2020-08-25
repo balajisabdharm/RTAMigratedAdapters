@@ -24,26 +24,26 @@
 		</connectionPolicy>
 	</connectivity>
 
-<procedure name="insertQuesAnswers"/>
-<procedure name="allQuesAnswers"/>
-<procedure name="allVotes"/>
-<procedure name="allconfig"/>
+<procedure name="insertQuesAnswers" secured="false"/>
+<procedure name="allQuesAnswers" secured="false"/>
+<procedure name="allVotes" secured="false"/>
+<procedure name="allconfig" secured="false"/>
 
-<procedure name="getProposedBusRoutes"/>
-<procedure name="getKMLFile"/>
-<procedure name="getQuestionsByCategoryId"/>
-<procedure name="submitAnswers"/>
-<procedure name="getVotesReportById"/>
-<procedure name="getPagnationVotes"/>
-<procedure name="crowdSourcingLogin"/>
-<procedure name="googleMapKey"/>
-<procedure name="generateReport"/>
-<procedure name="getReportData"/>
-<procedure name="DeleteAll"/>
-<procedure name="generateFinalReport"/>
+<procedure name="getProposedBusRoutes" secured="false"/>
+<procedure name="getKMLFile" secured="false"/>
+<procedure name="getQuestionsByCategoryId" secured="false"/>
+<procedure name="submitAnswers" secured="false"/>
+<procedure name="getVotesReportById" secured="false"/>
+<procedure name="getPagnationVotes" secured="false"/>
+<procedure name="crowdSourcingLogin" secured="false"/>
+<procedure name="googleMapKey" secured="false"/>
+<procedure name="generateReport" secured="false"/>
+<procedure name="getReportData" secured="false"/>
+<procedure name="DeleteAll" secured="false"/>
+<procedure name="generateFinalReport" secured="false"/>
 
-<procedure name="deletecCurrentReport"/>
-<procedure name="getRepoertData"/>
-<procedure name="getAllVotes"/>
+<procedure name="deletecCurrentReport" secured="false"/>
+<procedure name="getRepoertData" secured="false"/>
+<procedure name="getAllVotes" secured="false"/>
 
 </mfp:adapter>
