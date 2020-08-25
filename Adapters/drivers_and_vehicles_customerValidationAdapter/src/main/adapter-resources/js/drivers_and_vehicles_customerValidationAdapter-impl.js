@@ -166,7 +166,7 @@ function documentValidation(params, isEncryptResponse, encryptionPassword){
 	//MFP.Logger.warn(params);
 	//var parameters = [envHeader.toString(), params.toString(), "", _soapEnvNS.toString()];
 	params[0] = JSON.stringify(params[0]);
-    MFP.Logger.warn(params);
+    MFP.Logger.warn(params[0])
 	var parameters = [JSON.stringify(envHeader),params[0], '', _soapEnvNS.toString()];
 	var request = buildBody(parameters, false);
 	//MFP.Logger.warn("request to be sent:\n"+request);
