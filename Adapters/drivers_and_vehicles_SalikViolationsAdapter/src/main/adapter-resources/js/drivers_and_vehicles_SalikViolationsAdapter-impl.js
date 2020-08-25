@@ -24,6 +24,19 @@ var validationError = {
     "errorMessage": "missing or invalid params! please check mandatory [Params]."
 };
 
+var xsdStr = "http://www.rta.ae/schemas/SalikDisputesAndViolationService/Schema.xsd";
+function fixNameSpace(response){
+	MFP.Logger.info(" ================================================= REMOVING NAMESPACE =================================================");
+	response = JSON.stringify(response);
+	reg1 = new RegExp('{"":"'+xsdStr+'","CDATA":', "g");
+	reg2 = new RegExp('"":"'+xsdStr+'",',"g");
+	reg3 = new RegExp('{"":"'+xsdStr+'"}',"g");
+	response = response.replace(reg1,"").replace(reg2,"").replace(reg3,"\"\"").replace(/}]}/g,"]").replace(/}}]/g,"}]").replace(/},/g,",")+"}}";
+	MFP.Logger.info("refined Response -->" + response);
+	
+	return JSON.parse(response);
+}
+
 function getGrantHeader(RtaUserId, linking_attribute) {
     return '<sch:Header>' +
         '<sch:grant_type>IamGrant</sch:grant_type>' +
@@ -1423,7 +1436,7 @@ function getAllViolations(requestParams, isEncryptResponse, encryptionPassword) 
         var SOAPAction = 'ViewOrSearchViolationsPostLogin';
         var requestObj = buildBody([request.toString()], true);
 
-        return invokeWebServiceString(requestObj, servicePath, SOAPAction, isEncryptResponse, encryptionPassword);
+        return fixNameSpace(invokeWebServiceString(requestObj, servicePath, SOAPAction, isEncryptResponse, encryptionPassword));
     }
 }
 
