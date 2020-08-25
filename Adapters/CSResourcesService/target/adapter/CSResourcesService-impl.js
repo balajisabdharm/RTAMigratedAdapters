@@ -4,7 +4,7 @@ var datetime = new Date();
 
 function getUIList(language,params) {
 
-	MFP.Logger.info("||||||||||||||||||||||||||");
+	MFP.Logger.info("Test||||||||||||||||||||||||||");
 
 	var request = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xs="http://www.rta.ae/ActiveMatrix/ESB/ResourcesService/XMLSchema">'
 		+getHeader(language)
