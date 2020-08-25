@@ -758,13 +758,11 @@ function fineManagementService(params, isEncryptResponse, encryptionPassword) {
             case "1":
                 var paramsRequest = {
                     "lag:getFines": {
-                        
+                        "lag:ticketStatus": "1",
                         "lag:getFinesByTrfNo": {
-                            "lag:TrfNo": params["cli:getFines"]["cli:getFineRequestInfo"]["cli:trafficFileNo"],
-                            "lag:appId": "DNVAPP"//, //params["cli:getFines"]["cli:getFineRequestInfo"]["cli:appId"],
-                            
-                        },
-                        "lag:ticketStatus": "1"
+                            "lag:appId": "DNVAPP", //params["cli:getFines"]["cli:getFineRequestInfo"]["cli:appId"],
+                            "lag:TrfNo": params["cli:getFines"]["cli:getFineRequestInfo"]["cli:trafficFileNo"]
+                        }
                     }
                 };
                 break;
