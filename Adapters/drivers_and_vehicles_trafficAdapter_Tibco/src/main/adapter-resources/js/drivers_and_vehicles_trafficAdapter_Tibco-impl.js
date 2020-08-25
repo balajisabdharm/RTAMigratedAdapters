@@ -852,7 +852,7 @@ function fineManagementService(params, isEncryptResponse, encryptionPassword) {
         var SOAPAction = 'getFines';
         //xmlns:cli="http://client.ws.ffu.traffic.services.internet.ae"
         var _soapEnvNS = 'xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:lag="http://www.rta.ae/EIP/LAGeneralFinesInquiryService/LAGeneralFinesInquiryService_Schema"';
-        var parameters = [envHeader.toString(), paramsRequest.toString(), '', _soapEnvNS.toString()];
+        var parameters = [envHeader, paramsRequest, '', _soapEnvNS];
         var request = buildBody(parameters, false);
         // MFP.Logger.warn("|drivers_and_vehicles_trafficAdapter_Tibco |fineManagementService | Request : " + request + "at " + new Date());
         //return {"REQ" : request}; 
