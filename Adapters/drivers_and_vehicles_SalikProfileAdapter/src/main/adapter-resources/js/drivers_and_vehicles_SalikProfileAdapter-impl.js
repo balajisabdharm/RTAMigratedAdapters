@@ -416,7 +416,7 @@ function getFinancialSummary(requestParams, isEncryptResponse, encryptionPasswor
         var response = invokeWebServiceString(requestObj, servicePath, SOAPAction, isEncryptResponse, encryptionPassword);
 	
 	    response.Envelope.Body = fixNameSpace(response.Envelope.Body);
-	    
+	    return response;
 	 //   return fixNameSpace(response);
     }
 }
