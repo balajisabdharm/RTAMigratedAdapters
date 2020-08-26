@@ -32,7 +32,7 @@ function fixNameSpace(response){
 	reg1 = new RegExp('{"":"'+xsdStr+'","CDATA":', "g");
 	reg2 = new RegExp('"":"'+xsdStr+'",',"g");
 	reg3 = new RegExp('{"":"'+xsdStr+'"}',"g");
-	response = response.replace(reg1,"").replace(reg2,"").replace(reg3,"\"\"").replace(/}]}/g,"]").replace(/}}]/g,"}]").replace(/},/g,",").replace(/}]}}},/g,"}]}},") +"}}}";
+	response = response.replace(reg1,"").replace(reg2,"").replace(reg3,"\"\"").replace(/}]}/g,"]").replace(/}}]/g,"}]").replace(/},/g,",").replace(/}]}}},/g,"}]}},") +"}";
 	MFP.Logger.info("refined Response -->" + response);
 	
 	return JSON.parse(response);
