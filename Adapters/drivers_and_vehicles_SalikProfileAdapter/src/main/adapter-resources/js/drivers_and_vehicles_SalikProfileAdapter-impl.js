@@ -398,7 +398,13 @@ function getFinancialSummary(requestParams, isEncryptResponse, encryptionPasswor
         var SOAPAction = 'FinancialSummaryRequest';
 	    
         var requestObj = buildBody([request.toString()], true);
-        return invokeWebServiceString(requestObj, servicePath, SOAPAction, isEncryptResponse, encryptionPassword);
+        var repsonse  = invokeWebServiceString(requestObj, servicePath, SOAPAction, isEncryptResponse, encryptionPassword);
+	    
+	    if(repsonse.Envelope.Body.FinancialSummaryResponse != undefined) {
+		repsonse.Envelope.Body.FinancialSummaryResponse = {CDATA : webServiceResult.Envelope.Body.FinancialSummaryResponse};
+	}
+	    
+	    return response;
     }
 }
 
