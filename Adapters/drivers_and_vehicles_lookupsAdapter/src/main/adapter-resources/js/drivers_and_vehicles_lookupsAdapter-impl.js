@@ -273,6 +273,7 @@ function getParkingZoneFile(requestParams) {
  		"Env":"",
  		"Type":"",
 	 }*/
+	 requestParams = JSON.parse(requestParams);
 	 MFP.Logger.info("Env" +JSON.stringify(requestParams));
 	 MFP.Logger.info("Type" + requestParams.Type.toString());
     var invocationData = {
