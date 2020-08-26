@@ -54,7 +54,7 @@ function returenVehicleFromTourService(params, isEncryptResponse, encryptionPass
 	var servicePath='/ws/services/UsersTourVehiclesService';
 	var _soapEnvNS = soapEnvNS+ 'xmlns:urn="urn:UsersTourVehiclesService"';
 	//var parameters = [envHeader.toString(), params.toString(),'' , _soapEnvNS.toString()];
-	var parameters = [JSON.stringify(envHeader),params.toString(), '', _soapEnvNS.toString()];
+	var parameters = [JSON.stringify(envHeader),JSON.stringify(params), '', _soapEnvNS.toString()];
 	var request = buildBody(parameters, false);
 
 	//Log("BookletLicenseInquiryService request >> " + request);
@@ -70,7 +70,7 @@ function getVehicleInformationAmendment(params, isEncryptResponse, encryptionPas
 	var servicePath='/ws/services/VehicleInformationAmendmentService';
 	var _soapEnvNS =soapEnvNS +' xmlns:rta="rta:VehicleInformationAmendmentService"';
 	//var parameters = [envHeader.toString(), params.toString(),'' , _soapEnvNS.toString()];
-	var parameters = [JSON.stringify(envHeader),params.toString(), '', _soapEnvNS.toString()];
+	var parameters = [JSON.stringify(envHeader),JSON.stringify(params), '', _soapEnvNS.toString()];
 	var request = buildBody(parameters, false);
 
 	//Log("getVehicleInformationAmendment request >> " + request);
@@ -87,7 +87,7 @@ function bookletLicenseInquiryService(params, isEncryptResponse, encryptionPassw
 	var _soapEnvNS=soapEnvNS+ 'xmlns:ws="http://ae.gov.trf.vhl.ws.BookletLicenseInquiryService"';
 	
 	//var parameters = [envHeader.toString(), params.toString(), '', _soapEnvNS.toString()];
-	var parameters = [JSON.stringify(envHeader),params.toString(), '', _soapEnvNS.toString()];
+	var parameters = [JSON.stringify(envHeader),JSON.stringify(params), '', _soapEnvNS.toString()];
 	var request = buildBody(parameters, false);
 
 	//Log("BookletLicenseInquiryService request >> " + request);
@@ -125,7 +125,7 @@ function mCardService(params, isEncryptResponse, encryptionPassword) {
 	var _soapEnvNS=soapEnvNS+ 'xmlns:ae="http://ae.gov.trf.vhl.ws.MCardService"';
 
 	//var parameters = [envHeader.toString(), params.toString(), '', _soapEnvNS.toString()];
-	var parameters = [JSON.stringify(envHeader),params.toString(), '', _soapEnvNS.toString()];
+	var parameters = [JSON.stringify(envHeader),JSON.stringify(params), '', _soapEnvNS.toString()];
 	var request = buildBody(parameters, false);
 
 	//Log("MCardService request >> " + request);
@@ -140,7 +140,7 @@ function ownerVehicleInfoService(params, isEncryptResponse, encryptionPassword){
 	var _soapEnvNS = soapEnvNS+ 'xmlns:etr="http://eTraffic.ws"';
 
 	//var parameters = [envHeader.toString(), params.toString(), '', _soapEnvNS.toString()];
-	var parameters = [JSON.stringify(envHeader),params.toString(), '', _soapEnvNS.toString()];
+	var parameters = [JSON.stringify(envHeader),JSON.stringify(params), '', _soapEnvNS.toString()];
 	var request = buildBody(parameters, false);
 
 	//Log("OwnerVehicleInfoService request >> " + request);
@@ -157,7 +157,7 @@ function trafficInquiryService(params, isEncryptResponse, encryptionPassword) {
 	var _soapEnvNS=soapEnvNS+ 'xmlns:ae="drivers_and_vehicles_getGeneralData"';
 
 	//var parameters = [envHeader.toString(), params.toString(), '', _soapEnvNS.toString()];
-	var parameters = [JSON.stringify(envHeader),params.toString(), '', _soapEnvNS.toString()];
+	var parameters = [JSON.stringify(envHeader),JSON.stringify(params), '', _soapEnvNS.toString()];
 	var request = buildBody(parameters, false);
 
 	//Log("TrafficInquiryService request >> " + request);
@@ -172,7 +172,7 @@ function userOwnedAndBookedPlatesService(params, isEncryptResponse, encryptionPa
 	var _soapEnvNS=soapEnvNS+ 'xmlns:ae="http://ae.gov.trf.vhl.ws.UserOwnedAndBookedPlatesService"';
 
 	//var parameters = [envHeader.toString(),params.toString(), '', _soapEnvNS.toString()];
-	var parameters = [JSON.stringify(envHeader),params.toString(), '', _soapEnvNS.toString()];
+	var parameters = [JSON.stringify(envHeader), JSON.stringify(params), '', _soapEnvNS.toString()];
 	var request = buildBody(parameters, false);
 
 	//Log("UserOwnedAndBookedPlatesService request >> " + request);
@@ -188,7 +188,7 @@ function usersVehiclesService(params, isEncryptResponse, encryptionPassword){
 	var _soapEnvNS=soapEnvNS+ 'xmlns:urn="urn:UsersVehiclesService"';
 	//var params = {"urn:getUsersVehicles":{"urn:trafficFileNumber":"+params+"}};
 	
-	var parameters = [JSON.stringify(envHeader),params.toString(), '', _soapEnvNS.toString()];
+	var parameters = [JSON.stringify(envHeader),JSON.stringify(params), '', _soapEnvNS.toString()];
 //	var parameters = [envHeader.toString(),envHeader.toString(), '',_soapEnvNS.toString()];
 //	var parameters = ["","","", ""];
 	var request = buildBody(parameters, false);
@@ -258,7 +258,7 @@ function reInsuranceCertificateService(params, isEncryptResponse, encryptionPass
 	var servicePath='/ws/services/ReInsuranceCertificateService';
 	var _soapEnvNS =soapEnvNS+ ' xmlns:urn="urn:ReInsuranceCertificateService"';
 	//var parameters = [envHeader.toString(),params.toString(),'', _soapEnvNS.toString()];
-	var parameters = [JSON.stringify(envHeader),params.toString(), '', _soapEnvNS.toString()];
+	var parameters = [JSON.stringify(envHeader),JSON.stringify(params), '', _soapEnvNS.toString()];
 	var request = buildBody(parameters, false);
 
 	//Log("ReInsuranceCertificateService request >> " + request);
