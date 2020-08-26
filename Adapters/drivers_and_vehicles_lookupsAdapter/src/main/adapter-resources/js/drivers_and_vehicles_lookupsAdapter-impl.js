@@ -276,7 +276,7 @@ function getParkingZoneFile(requestParams) {
     var invocationData = {
         adapter: 'drivers_and_vehciles_CustomDB',
         procedure: 'getParkingZoneFile',
-        parameters: [requestParams.Env, requestParams.Type]
+        parameters: [requestParams.Env.toString(), requestParams.Type.toString()]
     };
     return MFP.Server.invokeProcedure(invocationData);
         
