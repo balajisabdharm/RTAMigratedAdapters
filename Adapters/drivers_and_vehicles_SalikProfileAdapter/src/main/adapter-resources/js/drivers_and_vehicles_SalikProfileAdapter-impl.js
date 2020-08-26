@@ -412,8 +412,9 @@ function getFinancialSummary(requestParams, isEncryptResponse, encryptionPasswor
         var SOAPAction = 'FinancialSummaryRequest';
 	    
         var requestObj = buildBody([request.toString()], true);
-        return fixNameSpace(invokeWebServiceString(requestObj, servicePath, SOAPAction, isEncryptResponse, encryptionPassword));
+        var response = invokeWebServiceString(requestObj, servicePath, SOAPAction, isEncryptResponse, encryptionPassword);
 	
+	    response.Envelope.Body = fixNameSpace(response.Envelope.Body);
 	    
 	 //   return fixNameSpace(response);
     }
