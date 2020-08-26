@@ -272,7 +272,9 @@ function getParkingZoneFile(requestParams) {
 	 /* var requestParams = {
  		"Env":"",
  		"Type":"",
- 	}*/
+	 }*/
+	 MFP.Logger.info("Env" + requestParams.Env.toString());
+	 MFP.Logger.info("Type" + requestParams.Type.toString());
     var invocationData = {
         adapter: 'drivers_and_vehciles_CustomDB',
         procedure: 'getParkingZoneFile',
