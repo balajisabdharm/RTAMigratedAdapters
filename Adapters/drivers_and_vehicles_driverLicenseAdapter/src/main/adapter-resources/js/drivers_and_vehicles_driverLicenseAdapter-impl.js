@@ -151,11 +151,13 @@ function mobilityDrivingLicenseInfoService(params, isEncryptResponse, encryption
         "ae:username": userName,
         "ae:password": password
     };
+	
     var servicePath = '/ws/services/MobilityDrivingLicenseInfoService';
     var _soapEnvNS = soapEnvNS +
         'xmlns:ae="http://ae.gov.trf.inq.ws.MobilityDrivingLicenseInfoService"';
     //var parameters = [envHeader.toString(), params.toString(), '', _soapEnvNS.toString()];
-	var parameters = [JSON.stringify(envHeader),params.toString(), '', _soapEnvNS.toString()];
+	params = JSON.stringify(params);
+	var parameters = [JSON.stringify(envHeader),params, '', _soapEnvNS.toString()];
     var request = buildBody(parameters, false);
 
     //Log("MobilityDrivingLicenseInfoService request >> " + request);
