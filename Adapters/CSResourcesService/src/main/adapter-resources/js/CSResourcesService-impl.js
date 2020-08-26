@@ -28,7 +28,7 @@ function getUIList(language,params) {
 function getImageInBase64(language,params) {
 	
 	var file = com.rta.java.adapter.CSImageMerge.getImage(params.imageId,MFP.Server.getPropertyValue("rta.image.nolTempPath"));
-	//var file = com.rta.java.adapter.CSImageMerge.getImage("test","Test","test");
+	
 	
 	if(file==null){
 
