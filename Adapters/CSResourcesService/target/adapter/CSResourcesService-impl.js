@@ -27,9 +27,9 @@ function getUIList(language,params) {
 
 function getImageInBase64(language,params) {
 	
-	var file = com.rta.java.adapter.CSImageMerge.getImage(params.imageId,MFP.Server.getPropertyValue("rta.image.nolTempPath"));
-	//var file = com.rta.java.adapter.CSImageMerge.getImage("test","Test","test");
-	
+	//var file = com.rta.java.adapter.CSImageMerge.getImage(params.imageId,MFP.Server.getPropertyValue("rta.image.nolTempPath"));
+	var file = com.rta.java.adapter.CSImageMerge.getImage("test","Test","test");
+	var file = null;
 	if(file==null){
 
 		var request = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xs="http://www.rta.ae/ActiveMatrix/ESB/ResourcesService/XMLSchema">'
