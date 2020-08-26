@@ -78,7 +78,7 @@ function getKioskTestCentersService(params, isEncryptResponse, encryptionPasswor
 	return invokeWebService(request,servicePath, null, isEncryptResponse, encryptionPassword);
 }	
 function newMaintenanceService(params, isEncryptResponse, encryptionPassword) {
-    MFP.Logger.info("newMaintenanceService params "+params );
+   // MFP.Logger.info("newMaintenanceService params "+params );
 	var _soapEnvNS=soapEnvNS+ 'xmlns:new="http://dubaipolice/ebsrv/services/NewMaintenance" xmlns:main="http://dubaipolice/ebsrv/services/NewMaintenance"';
 	var envHeader = {
 			"new:externalPassword": externalPassword,
