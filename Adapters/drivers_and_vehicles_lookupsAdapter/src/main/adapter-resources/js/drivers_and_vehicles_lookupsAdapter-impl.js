@@ -105,7 +105,7 @@ function newMaintenanceService(params, isEncryptResponse, encryptionPassword) {
 	//var request = buildBody(JSON.stringify(envHeader), params, '', _soapEnvNS, false);
 	Log("NewMaintenanceService request >>>>>>>>>>>> " + request);
     var response = invokeWebService(request, servicePath, null, isEncryptResponse, encryptionPassword);
-	//Log("NewMaintenanceService RESPONSE >>>>>>>>>>>>>>>> " + response);
+	Log("NewMaintenanceService RESPONSE >>>>>>>>>>>>>>>> " + JSON.stringify(response));
 	return response;
 	
 }
