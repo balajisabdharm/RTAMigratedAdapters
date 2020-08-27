@@ -1,8 +1,7 @@
-
 function getChannelCredentials() {
     return {
-        username : "mobile_user",
-        password : "Test@1234"
+         username : "mobile_user",
+		password : "Test@1234"
         //password : "eyprtm"   //Production
     };
 }
@@ -388,8 +387,8 @@ function sendMail(fromMailAddress,subject, message,attachments) {
 
 
 function replaceCredentials(envHeader){
-    MFP.Logger.info("replaceCredentials Start envHeader "+envHeader);
-    var string = envHeader;
+    MFP.Logger.info("replaceCredentials Start envHeader >> "+envHeader);
+   var string = envHeader;
     string = this.replaceAll(string, "%#credentials!#!username#%", getChannelCredentials().username);
     string = this.replaceAll(string, "%#credentials!#!externalUsername#%", getExternalChannelCredentials().externalUsername);
     string = this.replaceAll(string, "%#credentials!#!username_tibco#%", getTibcoCredentials().username_tibco);
@@ -399,11 +398,13 @@ function replaceCredentials(envHeader){
     string = this.replaceAll(string, "%#credentials!#!username_traffic#%", getTrafficCredentials().username);
     string = this.replaceAll(string, "%#credentials!#!password_traffic#%", getTrafficCredentials().password);
 
-    /*MFP.Logger.debug("??????????????????????????????????????????");
+    MFP.Logger.debug("??????????????????????????????????????????");
     MFP.Logger.debug("converted Body " + string);
-    MFP.Logger.debug("??????????????????????????????????????????");*/
-    MFP.Logger.info("replaceCredentials Start string "+string);
+    MFP.Logger.debug("??????????????????????????????????????????");
+   
+    //Returning dummy response
     return string ;
+   // return envHeader;
 }
 
 /**
@@ -417,18 +418,32 @@ function replaceCredentials(envHeader){
  * @returns {___anonymous2126_2136}
  */
 function buildBody(envHeader, params, namespaces, soapEnvNS) {
-    var body = '<soapenv:Envelope ' + soapEnvNS + '>\n'+ '<soapenv:Header>\n';
-
-    body = jsonToXml(envHeader, body, namespaces);
+    MFP.Logger.info("****** ****************************************************************** ******   ");
+	MFP.Logger.info("Utilities - buildBody envHeader ");
+    MFP.Logger.info("Utilities - buildBody envHeader "+envHeader );
+    MFP.Logger.info(" |||||params " +params );
+    MFP.Logger.info(" |||||| namespaces "+namespaces);
+    MFP.Logger.info("****** soapEnvNS******   "+soapEnvNS);
+	MFP.Logger.info("****** ****************************************************************** ******   ");
+    var body = '<soapenv:Envelope ' + soapEnvNS.toString() + '>\n'+ '<soapenv:Header>\n';
+    MFP.Logger.info("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
+    MFP.Logger.info("******body " + JSON.stringify(body));
+    //body = jsonToXml(envHeader, body, namespaces);
+    body = jsonToXml(JSON.parse(envHeader), body.toString(), namespaces);
+    MFP.Logger.info("******body " + JSON.stringify(body));
     body += '</soapenv:Header>\n';
     body += '<soapenv:Body>\n';
-    body  = jsonToXml(params, body, namespaces);
+    //body  = jsonToXml(params, body, namespaces);
+    body  = jsonToXml(JSON.stringify(params), body.toString(), namespaces);
+    //MFP.Logger.debug("******body " + body);
     body += '</soapenv:Body>\n' + '</soapenv:Envelope>\n';
-
-    //MFP.Logger.debug("******bo0000000dy " + body);
+   
     body = replaceCredentials(body);
-
+    
+    MFP.Logger.debug("complete body " + body);
     return {body : body};
+    
+    //return JSON.parse(envHeader);
 }
 
 /**
@@ -440,7 +455,8 @@ function buildBody(envHeader, params, namespaces, soapEnvNS) {
  */
 function buildBodyFromStaticRequest(request) {
     MFP.Logger.info("&&&&&&&& "+request+" &&&&&&");
-    var body = JSON.stringify(replaceCredentials(request));
+   // var body = JSON.stringify(replaceCredentials(request));
+    var body = (replaceCredentials(request));
     MFP.Logger.info("&&&&&&&& "+body+" &&&&&&");
     return {body : body};
 }
@@ -459,7 +475,7 @@ function getAttributes(jsonObj) {
 }
 
 function jsonToXml(jsonObj, xmlStr, namespaces) {
-
+   // MFP.Logger.info("jsonToXml jsonObj "+jsonObj);
     var toAppend = '';
     for(var attr in jsonObj) {
         var val = jsonObj[attr];
@@ -479,7 +495,7 @@ function jsonToXml(jsonObj, xmlStr, namespaces) {
         }
     }
 
-
+ //MFP.Logger.info("jsonToXml toAppend "+toAppend);
     return xmlStr += toAppend;
 }
 
@@ -557,4 +573,5 @@ function invokeEncryptedProcedure(encryptedInvocationData,key)
     var invocationData = JSON.parse(decryptedInvocationData.cypherText);
     return MFP.Server.invokeProcedure(invocationData);
 }
+
 
