@@ -47,23 +47,23 @@ function getCentersData(param, currentLocation, language, isEncryptResponse, enc
 
 	var request =
 
-		"<soapenv:Envelope xmlns:sch='http://www.rta.ae/ActiveMatrix/ESB/VehicleTestCentersService/VehicleTestCentersServiceSchema/XMLSchema' xmlns:wsse='http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd' xmlns:wsu ='http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd'"+ 
-		" xmlns:soapenv='http://schemas.xmlsoap.org/soap/envelope/'>"+
-		"<soapenv:Header>"+
-		"<wsse:Security>"+
-		"<wsse:UsernameToken>"+
-		"<wsse:Username>"+username_tibco+"</wsse:Username>"+
-		"<wsse:Password>"+password_tibco+"</wsse:Password>"+
-		"</wsse:UsernameToken>"+
-		"</wsse:Security>"+
-		"</soapenv:Header>"+
-		"<soapenv:Body>"+
-		"<sch:GetCentersDataRequest>"+
-		" <sch:vehicleType>"+vehicleType+"</sch:vehicleType>"+
-		"<sch:service>"+service+"</sch:service>"+
-		"</sch:GetCentersDataRequest>"+
-		"</soapenv:Body>"+
-		"</soapenv:Envelope>";
+		'<soapenv:Envelope xmlns:sch="http://www.rta.ae/ActiveMatrix/ESB/VehicleTestCentersService/VehicleTestCentersServiceSchema/XMLSchema" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:wsu ="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"'+ 
+		' xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">'+
+		'<soapenv:Header>'+
+		'<wsse:Security>'+
+		'<wsse:UsernameToken>'+
+		'<wsse:Username>'+username_tibco+'</wsse:Username>'+
+		'<wsse:Password>'+password_tibco+'</wsse:Password>'+
+		'</wsse:UsernameToken>'+
+		'</wsse:Security>'+
+		'</soapenv:Header>'+
+		'<soapenv:Body>'+
+		'<sch:GetCentersDataRequest>'+
+		' <sch:vehicleType>'+vehicleType+'</sch:vehicleType>'+
+		'<sch:service>'+service+'</sch:service>'+
+		'</sch:GetCentersDataRequest>'+
+		'</soapenv:Body>'+
+		'</soapenv:Envelope>';
 
 	var requestObj = buildBody([ request.toString() ], true);
 
@@ -138,7 +138,7 @@ function invokeWebServiceString(request, servicePath, SOAPAction, isEncryptRespo
 			returnedContentType : 'xml',
 			path : servicePath,
 			body : {
-				content : JSON.parse(request),
+				content : request.toString(),
 				contentType : 'text/xml; charset=utf-8'
 			}
 	};
