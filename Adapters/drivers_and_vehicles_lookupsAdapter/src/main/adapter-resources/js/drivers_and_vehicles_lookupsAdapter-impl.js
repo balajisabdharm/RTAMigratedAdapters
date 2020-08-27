@@ -213,7 +213,7 @@ function invokeWebService(body, servicePath, headers, isEncryptResponse, encrypt
 
     var webServiceResult = MFP.Server.invokeHttp(input);
 	
-	Log("Got back WebService Result >>>>>>>>>>>> ====================== " + webServiceResult);
+	//Log("Got back WebService Result >>>>>>>>>>>> ====================== " + webServiceResult);
 	
     if(isEncryptResponse != undefined && isEncryptResponse == true)
     {
