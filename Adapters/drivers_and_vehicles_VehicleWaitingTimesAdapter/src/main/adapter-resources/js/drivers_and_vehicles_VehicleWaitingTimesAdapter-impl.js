@@ -34,7 +34,7 @@ function getAvailableServices(isEncryptResponse, encryptionPassword) {
 		"</soapenv:Body>"+
 		"</soapenv:Envelope>";
 
-	var requestObj = buildBody([ request ], true);
+	var requestObj = buildBody([ request.toString() ], true);
 	return invokeWebServiceString(requestObj, servicePath, "", isEncryptResponse, encryptionPassword);
 }
 
@@ -65,7 +65,7 @@ function getCentersData(param, currentLocation, language, isEncryptResponse, enc
 		"</soapenv:Body>"+
 		"</soapenv:Envelope>";
 
-	var requestObj = buildBody([ request ], true);
+	var requestObj = buildBody([ request.toString() ], true);
 
 	var result = invokeWebServiceString(requestObj, servicePath, "");
 	// Obtain signed Google URLs
