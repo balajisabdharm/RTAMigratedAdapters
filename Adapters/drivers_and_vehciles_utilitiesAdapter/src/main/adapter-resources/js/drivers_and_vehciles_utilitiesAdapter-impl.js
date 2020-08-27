@@ -429,7 +429,7 @@ function buildBody(envHeader, params, namespaces, soapEnvNS) {
 
     //body = jsonToXml(envHeader, body, namespaces);
     body = jsonToXml(JSON.parse(envHeader), body.toString(), namespaces);
-    //MFP.Logger.debug("******body " + body);
+    MFP.Logger.debug("******body " + body);
     body += '</soapenv:Header>\n';
     body += '<soapenv:Body>\n';
     //body  = jsonToXml(params, body, namespaces);
