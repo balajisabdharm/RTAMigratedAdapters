@@ -43,10 +43,19 @@ function retrieveFinesService(params, isEncryptResponse, encryptionPassword) {
 }
 
 function fineManagementService(params, isEncryptResponse, encryptionPassword){
+	
+	if(!isEncryptResponse){
+		isEncryptResponse='false';	
+	}
+	if(!encryptionPassword){
+		encryptionPassword='';	
+	}
+	
+	
 		invocationData = {
 							adapter : 'drivers_and_vehicles_trafficAdapter_Tibco',
 							procedure : 'fineManagementService',
-							parameters : [params, isEncryptResponse, encryptionPassword]
+							parameters : [params, isEncryptResponse.toString(), encryptionPassword.toString()]
 						};
 		return MFP.Server.invokeProcedure(invocationData);
 }
