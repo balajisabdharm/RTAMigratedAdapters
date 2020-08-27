@@ -214,6 +214,7 @@ function update_Green_Points_Agg_Table(){
  * @returns
  */
 function getGreenPoints(userid) {
+	MFP.Logger.info("getGreenPoints");
 	var greenPoints = MFP.Server.invokeSQLStatement({
 		preparedStatement : DB_TABLES['GreenPointsAgg'].sqlGet,
 		parameters : [userid]
