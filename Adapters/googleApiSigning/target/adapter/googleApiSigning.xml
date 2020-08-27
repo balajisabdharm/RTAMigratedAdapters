@@ -1,0 +1,19 @@
+<mfp:adapter name="googleApiSigning" xmlns:http="http://www.ibm.com/mfp/integration/http" xmlns:mfp="http://www.ibm.com/mfp/integration" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <displayName>googleApiSigning</displayName>
+    <description>googleApiSigning</description>
+    <connectivity>
+        <connectionPolicy xsi:type="http:HTTPConnectionPolicyType">
+            <protocol>http</protocol>
+            <domain>localhost</domain>
+            <port>443</port>
+            <connectionTimeoutInMilliseconds>30000</connectionTimeoutInMilliseconds>
+            <socketTimeoutInMilliseconds>30000</socketTimeoutInMilliseconds>
+            <maxConcurrentConnectionsPerNode>100</maxConcurrentConnectionsPerNode>
+        </connectionPolicy>
+    </connectivity>
+    <procedure name="signApi" />
+	
+	<property name="google.clientID"  description="google.clientID" defaultValue="${googleClientId}$"/>
+	<property name="google.cryptoKey"  description="google.cryptoKey" defaultValue="${googleCryptoKey}$"/>
+
+</mfp:adapter>
