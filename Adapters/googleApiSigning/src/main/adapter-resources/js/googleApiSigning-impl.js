@@ -5,8 +5,8 @@
  * @returns json list of items
  */
 function signApi(url) {
-	var googleClientID = MFP.Server.getPropertyValue("google.clientID"]; 
-	var googleKey = MFP.Server.getPropertyValue("google.cryptoKey"]; 
+	var googleClientID = MFP.Server.getPropertyValue("google.clientID"); 
+	var googleKey = MFP.Server.getPropertyValue("google.cryptoKey"); 
 	var urlClientKey = url+"&client="+googleClientID;
 	return {
 	    signedURL : com.rta.java.util.url.signing.UrlSigner.signURL(urlClientKey, googleKey)
