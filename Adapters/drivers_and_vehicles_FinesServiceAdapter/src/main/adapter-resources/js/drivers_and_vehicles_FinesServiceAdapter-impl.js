@@ -35,7 +35,7 @@ function retrieveFinesService(params, isEncryptResponse, encryptionPassword) {
 	var servicePath= '/ws/services/RetrieveFinesService';
 	var _soapEnvNS = soapEnvNS + 'xmlns:impl="urn:RetrieveFinesService" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:urn="urn:RetrieveFinesService" ';
 	
-	var parameters = [envHeader.toString(), params.toString(), '', _soapEnvNS.toString()];
+	var parameters = [JSON.stringify(envHeader), JSON.stringify(params), '', _soapEnvNS.toString()];
     var request = buildBody(parameters, false);
 	
 	//Log("RetrieveFinesService request >> " + request);
@@ -46,7 +46,7 @@ function fineManagementService(params, isEncryptResponse, encryptionPassword){
 		invocationData = {
 							adapter : 'drivers_and_vehicles_trafficAdapter_Tibco',
 							procedure : 'fineManagementService',
-							parameters : [params, isEncryptResponse.toString(), encryptionPassword.toString()]
+							parameters : [params, isEncryptResponse, encryptionPassword]
 						};
 		return MFP.Server.invokeProcedure(invocationData);
 }
