@@ -418,24 +418,24 @@ function replaceCredentials(envHeader){
  * @returns {___anonymous2126_2136}
  */
 function buildBody(envHeader, params, namespaces, soapEnvNS) {
-    MFP.Logger.info("****** ****************************************************************** ******   ");
-	MFP.Logger.info("Utilities - buildBody envHeader ");
-    MFP.Logger.info("Utilities - buildBody envHeader "+envHeader );
-    MFP.Logger.info(" |||||params " +params );
-    MFP.Logger.info(" |||||| namespaces "+namespaces);
-    MFP.Logger.info("****** soapEnvNS******   "+soapEnvNS);
-	MFP.Logger.info("****** ****************************************************************** ******   ");
+  //  MFP.Logger.info("****** ****************************************************************** ******   ");
+//	MFP.Logger.info("Utilities - buildBody envHeader ");
+//    MFP.Logger.info("Utilities - buildBody envHeader "+envHeader );
+//    MFP.Logger.info(" |||||params " +params );
+//    MFP.Logger.info(" |||||| namespaces "+namespaces);
+//    MFP.Logger.info("****** soapEnvNS******   "+soapEnvNS);
+//	MFP.Logger.info("****** ****************************************************************** ******   ");
     var body = '<soapenv:Envelope ' + soapEnvNS.toString() + '>\n'+ '<soapenv:Header>\n';
-    MFP.Logger.info("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
-    MFP.Logger.info("******body " + JSON.stringify(body));
-    //body = jsonToXml(envHeader, body, namespaces);
-    body = jsonToXml(JSON.parse(envHeader), body.toString(), namespaces);
+  //  MFP.Logger.info("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
+  //  MFP.Logger.info("******body " + JSON.stringify(body));
+   // body = jsonToXml(envHeader, body, namespaces);
+    body = jsonToXml(envHeader, body.toString(), namespaces);
     MFP.Logger.info("******body " + JSON.stringify(body));
     body += '</soapenv:Header>\n';
     body += '<soapenv:Body>\n';
     //body  = jsonToXml(params, body, namespaces);
-    body  = jsonToXml(JSON.stringify(params), body.toString(), namespaces);
-    //MFP.Logger.debug("******body " + body);
+    body  = jsonToXml(params, body.toString(), namespaces);
+    MFP.Logger.debug("******body " + body);
     body += '</soapenv:Body>\n' + '</soapenv:Envelope>\n';
    
     body = replaceCredentials(body);
