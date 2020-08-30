@@ -107,7 +107,6 @@ function newMaintenanceService(params, isEncryptResponse, encryptionPassword) {
     var response = invokeWebService(request, servicePath, null, isEncryptResponse, encryptionPassword);
 	//Log("NewMaintenanceService RESPONSE >>>>>>>>>>>>>>>> " + JSON.stringify(response));
 	return response;
-	
 }
 
 function exportCertificateService(params, isEncryptResponse, encryptionPassword) {
