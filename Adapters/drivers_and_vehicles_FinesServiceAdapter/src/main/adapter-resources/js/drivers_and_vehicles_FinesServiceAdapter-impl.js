@@ -55,7 +55,7 @@ function fineManagementService(params, isEncryptResponse, encryptionPassword){
 		invocationData = {
 							adapter : 'drivers_and_vehicles_trafficAdapter_Tibco',
 							procedure : 'fineManagementService',
-							parameters : [params, isEncryptResponse.toString(), encryptionPassword.toString()]
+							parameters : [params.toString(), isEncryptResponse.toString(), encryptionPassword.toString()]
 						};
 		return MFP.Server.invokeProcedure(invocationData);
 }
