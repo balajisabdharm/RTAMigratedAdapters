@@ -2207,7 +2207,7 @@ function invokeWebServiceString(request, isEncryptResponse, encryptionPassword) 
 			returnedContentType : 'HTML',
 			path : '/seasonalCardService_V3',
 			body : {
-				content : request.toString(),
+				content : JSON.stringify(request),
 				contentType : 'text/xml; charset=utf-8'
 			}
 	};
