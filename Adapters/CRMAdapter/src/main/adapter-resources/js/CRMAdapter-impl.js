@@ -1,4 +1,3 @@
-
 function getSoapHeader(){
 	var header = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" '
 		+'xmlns:sch="http://www.rta.ae/ActiveMatrix/ESB/schemas/MobileCRMService/Schema.xsd" '
@@ -188,4 +187,5 @@ function invokeWebService(body){
 //    response.requestBody = body; //Enable for debugging
     return response;
 }
+//just to deploy adapter
 
