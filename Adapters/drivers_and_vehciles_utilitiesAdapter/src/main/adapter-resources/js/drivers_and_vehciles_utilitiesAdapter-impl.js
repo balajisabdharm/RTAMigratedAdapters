@@ -428,14 +428,14 @@ function buildBody(envHeader, params, namespaces, soapEnvNS) {
     MFP.Logger.info("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
     MFP.Logger.info("******body " + JSON.stringify(body));
    // body = jsonToXml(envHeader, body, namespaces);
-    envHeader = JSON.stringify(envHeader)
+    //envHeader = JSON.stringify(envHeader)
     body = jsonToXml(envHeader, body.toString(), namespaces);
     MFP.Logger.info("******body " + JSON.stringify(body));
     body += '</soapenv:Header>';
     body += '<soapenv:Body>';
     //body  = jsonToXml(params, body, namespaces);
 	
-    params = JSON.stringify(params);
+    //params = JSON.stringify(params);
     body  = jsonToXml(params, body.toString(), namespaces);
     MFP.Logger.debug("******body " + body);
     body += '</soapenv:Body>' + '</soapenv:Envelope>';
