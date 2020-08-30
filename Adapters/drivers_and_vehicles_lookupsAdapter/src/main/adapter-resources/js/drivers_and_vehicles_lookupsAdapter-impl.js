@@ -71,14 +71,13 @@ function getKioskTestCentersService(params, isEncryptResponse, encryptionPasswor
 	var servicePath = "/ws/services/GetKioskTestCentersService";
 	var _soapEnvNS=soapEnvNS+ 'xmlns:ae="http://ae.gov.trf.stp.ws.GetKioskTestCentersService"';
 	//var parameters = [envHeader.toString(), params.toString(), 'xmlns:ae="http://ws.trs.rta.ae"', _soapEnvNS.toString()];
-	var parameters = [JSON.stringify(envHeader),JSON.stringify(params), 'xmlns:ae="http://ws.trs.rta.ae"', _soapEnvNS.toString()];
+	var parameters = [envHeader,params, 'xmlns:ae="http://ws.trs.rta.ae"', _soapEnvNS.toString()];
 	var request = buildBody(parameters, false);
 
 	//Log("getKioskTestCentersService request >> " + request);
 	return invokeWebService(request,servicePath, null, isEncryptResponse, encryptionPassword);
 }	
 function newMaintenanceService(params, isEncryptResponse, encryptionPassword) {
-   // MFP.Logger.info("newMaintenanceService params "+params );
 	var _soapEnvNS=soapEnvNS+ 'xmlns:new="http://dubaipolice/ebsrv/services/NewMaintenance" xmlns:main="http://dubaipolice/ebsrv/services/NewMaintenance"';
 	var envHeader = {
 			"new:externalPassword": externalPassword,
@@ -86,24 +85,9 @@ function newMaintenanceService(params, isEncryptResponse, encryptionPassword) {
 			"new:password": password,
 			"new:username": userName
 	};
-   /* var envHeader = {
-            "new:externalPassword": "Test@1234",
-            "new:externalUsername": "mobile_user",
-            "new:password": "m792!du)+1g",
-            "new:username": "Mobstguser"
-    };*/
     var servicePath = "/ws/services/NewMaintenanceService";
-	//var paramsStr ="[{\"new:getTableData\":{\"RequestName\":\""+params+"\"}}]";
-   // MFP.Logger.info("NewMaintenanceService String params >>>>>>>>>>>> " + paramsStr);
-	//params = JSON.stringify(paramsStr);
-	//Log("NewMaintenanceService JSONStringify params >>>>>>>>>>>> " + params);
 	var parameters = [envHeader, params, '', _soapEnvNS.toString()];
-    
-    //var parameters =[JSON.stringify(envHeader),JSON.stringify(params),'',_soapEnvNS.toString()];
-     //MFP.Logger.info("NewMaintenanceService String parameters >>>>>>>>>>>> " + parameters);
-	var request = buildBody(parameters, false);
-	//var request = buildBody(JSON.stringify(envHeader), params, '', _soapEnvNS, false);
-	Log("NewMaintenanceService request >>>>>>>>>>>>>> " + request);
+    	var request = buildBody(parameters, false);
     var response = invokeWebService(request, servicePath, null, isEncryptResponse, encryptionPassword);
 	//Log("NewMaintenanceService RESPONSE >>>>>>>>>>>>>>>> " + JSON.stringify(response));
 	return response;
@@ -120,7 +104,7 @@ function exportCertificateService(params, isEncryptResponse, encryptionPassword)
 
 	var servicePath = "/ws/services/ExportCertificateService";
 	//var parameters = [envHeader.toString(), params.toString(), '', _soapEnvNS.toString()];
-	var parameters = [JSON.stringify(envHeader),JSON.stringify(params), '', _soapEnvNS.toString()];
+	var parameters = [envHeader,params, '', _soapEnvNS.toString()];
 	var request = buildBody(parameters, false);
 
 	//Log("exportCertificateService request >> " + request);
@@ -137,7 +121,7 @@ function vehiclePossessionCertificateService(params, isEncryptResponse, encrypti
 	var _soapEnvNS=soapEnvNS+ 'xmlns:urn="urn:VehiclePossessionCertificateService"';
 	var servicePath='/ws/services/VehiclePossessionCertificateService';
 	//var parameters = [envHeader.toString(),params.toString(),'', _soapEnvNS.toString()];
-	var parameters = [JSON.stringify(envHeader),JSON.stringify(params), '', _soapEnvNS.toString()];
+	var parameters = [envHeader,params, '', _soapEnvNS.toString()];
 	var request = buildBody(parameters, false);
 
 	//Log("VehiclePossessionCertificateService request >> " + request);
