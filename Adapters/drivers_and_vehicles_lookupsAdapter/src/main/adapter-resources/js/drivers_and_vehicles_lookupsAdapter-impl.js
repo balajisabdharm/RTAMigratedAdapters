@@ -37,7 +37,7 @@ function FFULookupInfoService(params, isEncryptResponse, encryptionPassword){
 	if(!encryptionPassword){
 		encryptionPassword = "";
 	}
-	var invocationData = {
+	/*var invocationData = {
 			adapter : 'drivers_and_vehicles_trafficAdapter',
 			procedure : 'FFULookupInfoService',
 			parameters : [params, isEncryptResponse, encryptionPassword]
@@ -51,9 +51,9 @@ function FFULookupInfoService(params, isEncryptResponse, encryptionPassword){
 			parameters : [response]
 	};
 	return MFP.Server.invokeProcedure(invocationData); 
+	*/
 	
-	
-	/*var envHeader = { 
+	var envHeader = { 
 			"ae:authenticationHeader" :{
 				"ae:externalUsername" : externalUsername,
 				"ae:externalUserPassword" :externalPassword,
@@ -63,12 +63,11 @@ function FFULookupInfoService(params, isEncryptResponse, encryptionPassword){
 	};
 	var servicePath= '/wstraffic/services/FFULookupInfoService';
 	var _soapEnvNS=soapEnvNS+ 'xmlns:ae="http://ae:client.ws.ffu.traffic.services.internet.ae"';
-	//var parameters = [envHeader, params, '', _soapEnvNS];
-	var parameters = [envHeader,params, '', _soapEnvNS.toString()];
+	var parameters = [envHeader, params, '', _soapEnvNS];
 	var request = buildBody(parameters, false);
 
 	//Log("FFULookupInfoService request >> " + request);
-	return invokeWebService(request, servicePath, null, isEncryptResponse, encryptionPassword);*/
+	return invokeWebService(request, servicePath, null, isEncryptResponse, encryptionPassword);
 	
 }
 
