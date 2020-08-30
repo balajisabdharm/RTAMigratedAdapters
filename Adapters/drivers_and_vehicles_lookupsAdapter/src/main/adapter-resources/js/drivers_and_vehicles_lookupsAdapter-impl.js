@@ -80,8 +80,8 @@ function getKioskTestCentersService(params, isEncryptResponse, encryptionPasswor
 function newMaintenanceService(params, isEncryptResponse, encryptionPassword) {
 	var _soapEnvNS=soapEnvNS+ 'xmlns:new="http://dubaipolice/ebsrv/services/NewMaintenance" xmlns:main="http://dubaipolice/ebsrv/services/NewMaintenance"';
 	var envHeader = {
-			"new:externalPassword": externalPassword,
-			"new:externalUsername": externalUsername,
+			//"new:externalPassword": externalPassword,
+			//"new:externalUsername": externalUsername,
 			"new:password": password,
 			"new:username": userName
 	};
