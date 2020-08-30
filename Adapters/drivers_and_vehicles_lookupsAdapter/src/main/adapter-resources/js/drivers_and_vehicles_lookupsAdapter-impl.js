@@ -30,7 +30,7 @@ function Log(text){
 		MFP.Logger.debug(text);
 }
 function FFULookupInfoService(params, isEncryptResponse, encryptionPassword){
-	/*var invocationData = {
+	var invocationData = {
 			adapter : 'drivers_and_vehicles_trafficAdapter',
 			procedure : 'FFULookupInfoService',
 			parameters : [params, isEncryptResponse, encryptionPassword]
@@ -41,10 +41,10 @@ function FFULookupInfoService(params, isEncryptResponse, encryptionPassword){
 			procedure : 'deleteCredientails',
 			parameters : [response.toString()]
 	};
-	return MFP.Server.invokeProcedure(invocationData); */
+	return MFP.Server.invokeProcedure(invocationData); 
 	
 	
-	var envHeader = { 
+	/*var envHeader = { 
 			"ae:authenticationHeader" :{
 				"ae:externalUsername" : externalUsername,
 				"ae:externalUserPassword" :externalPassword,
@@ -59,7 +59,7 @@ function FFULookupInfoService(params, isEncryptResponse, encryptionPassword){
 	var request = buildBody(parameters, false);
 
 	//Log("FFULookupInfoService request >> " + request);
-	return invokeWebService(request, servicePath, null, isEncryptResponse, encryptionPassword);
+	return invokeWebService(request, servicePath, null, isEncryptResponse, encryptionPassword);*/
 	
 }
 
@@ -176,10 +176,10 @@ function buildBody(parameters, isStatic) {
 
 function invokeWebService(body, servicePath, headers, isEncryptResponse, encryptionPassword) {
 	MFP.Logger.info("--------body:" + body.toString());
-	MFP.Logger.info("servicePath:" + JSON.stringify(servicePath));
-	MFP.Logger.info("headers:" + JSON.stringify(headers));
-	MFP.Logger.info("isEncryptResponse:" + JSON.stringify(isEncryptResponse));
-	MFP.Logger.info("encryptionPassword:" + JSON.stringify(encryptionPassword));
+//	MFP.Logger.info("servicePath:" + JSON.stringify(servicePath));
+//	MFP.Logger.info("headers:" + JSON.stringify(headers));
+//	MFP.Logger.info("isEncryptResponse:" + JSON.stringify(isEncryptResponse));
+//	MFP.Logger.info("encryptionPassword:" + JSON.stringify(encryptionPassword));
 	var startTime = new Date().getTime();
     if (!headers)
         headers = {
@@ -200,10 +200,10 @@ function invokeWebService(body, servicePath, headers, isEncryptResponse, encrypt
     // Adding custom HTTP headers if they were provided as parameter to the
     // procedure call
     headers && (input['headers'] = headers);
-
+MFP.Logger.info("invoking WS ..... ");
     var webServiceResult = MFP.Server.invokeHttp(input);
-	
-	//Log("Got back WebService Result >>>>>>>>>>>> ====================== " + webServiceResult);
+MFP.Logger.info("invoked WS ..... ");	
+	Log("Got back WebService Result >>>>>>>>>>>> ====================== " + JSON.stringify(webServiceResult));
 	
     if(isEncryptResponse != undefined && isEncryptResponse == true)
     {
