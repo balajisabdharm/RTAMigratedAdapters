@@ -175,7 +175,7 @@ function buildBody(parameters, isStatic) {
 }
 
 function invokeWebService(body, servicePath, headers, isEncryptResponse, encryptionPassword) {
-	MFP.Logger.info("body:" + JSON.stringify(body));
+	MFP.Logger.info("--------body:" + body.toString());
 	MFP.Logger.info("servicePath:" + JSON.stringify(servicePath));
 	MFP.Logger.info("headers:" + JSON.stringify(headers));
 	MFP.Logger.info("isEncryptResponse:" + JSON.stringify(isEncryptResponse));
