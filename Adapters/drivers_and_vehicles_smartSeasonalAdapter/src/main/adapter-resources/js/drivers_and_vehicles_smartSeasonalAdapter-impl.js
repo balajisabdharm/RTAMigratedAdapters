@@ -2198,18 +2198,18 @@ function Log(text) {
 		MFP.Logger.debug(text);
 }
 function invokeWebServiceString(request, isEncryptResponse, encryptionPassword) {
-	MFP.Logger.warn(request);
-	request=JSON.parse(request);
+	MFP.Logger.warn("Invoking WS with ::: "+request);
+	//request=JSON.parse(request);
 	var input = {
 			method : 'post',
 			headers : {
 				"SOAPAction" : ""
 			},
-			returnedContentType : 'HTML',
-			path : '/seasonalCardService_V3',
+			returnedContentType : "HTML",
+			path : "/seasonalCardService_V3",
 			body : {
-				content : JSON.stringify(request),
-				contentType : 'text/xml; charset=utf-8'
+				content : request.toString(),
+				contentType : "text/xml; charset=utf-8"
 			}
 	};
 
