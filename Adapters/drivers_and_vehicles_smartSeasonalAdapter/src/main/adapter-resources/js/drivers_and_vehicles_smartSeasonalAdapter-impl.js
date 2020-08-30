@@ -1694,7 +1694,7 @@ function getSeasonalCardTypes(branchID, isEncryptResponse, encryptionPassword) {
 	bodyRequest += "</sch:getSeasonalCardTypesList>";
 	var request = getRequestString(bodyRequest);
 
-	var requestObj = buildBody([ request ], true);
+	var requestObj = buildBody([ request.toString() ], true);
 	return invokeWebServiceString(requestObj, isEncryptResponse,
 			encryptionPassword);
 
@@ -1761,7 +1761,7 @@ function validateSeasonalCardPlates(plateItem, isEncryptResponse,
 		
 	
 	bodyRequest += '</int:validateSeasonalCard></soapenv:Body></soapenv:Envelope>';
-	var requestObj = buildBody([ bodyRequest ], true);
+	var requestObj = buildBody([ bodyRequest.toString() ], true);
 	var validateResult = invokeWebServiceString(requestObj,
 			isEncryptResponse, encryptionPassword);
 	if(!isUndefinedOrNull(validateResult.Envelope.Body.Fault)){
@@ -1832,7 +1832,7 @@ function switchActivatedVehicle(switchActivatedVehicle, isEncryptResponse, encry
 	bodyRequest += '</int:switchActivatedVehicle></soapenv:Body></soapenv:Envelope>';
 	
 
-	var requestObj = buildBody([ bodyRequest ], true);
+	var requestObj = buildBody([ bodyRequest.toString() ], true);
 	var result = invokeWebServiceString(requestObj, isEncryptResponse,
 			encryptionPassword);
 	
@@ -1862,7 +1862,7 @@ function getExpiredSeasonalCardDetails(cardDetails, isEncryptResponse, encryptio
 	bodyRequest += "</ser:getExpiredSeasonalCardDetails>";
 	var request = getRequestString(bodyRequest);
 
-	var requestObj = buildBody([ request ], true);
+	var requestObj = buildBody([ request.toString() ], true);
 	return invokeWebServiceString(requestObj, isEncryptResponse,
 			encryptionPassword);
 
@@ -1913,7 +1913,7 @@ function getCardByTFNOrPlateDetails(seasonalCardDetails, isEncryptResponse, encr
 						'</seasonalCardRequest>';
 		bodyRequest += '</int:getCardByTFNOrPlateDetails></soapenv:Body></soapenv:Envelope>';
 		
-		var requestObj = buildBody([ bodyRequest ], true);
+		var requestObj = buildBody([ bodyRequest.toString() ], true);
 		var response = invokeWebServiceString(requestObj, isEncryptResponse,
 				encryptionPassword);
 		if(! isUndefinedOrNull(response.Envelope.Body.getCardByTFNOrPlateDetailsResponse) && (response.Envelope.Body.getCardByTFNOrPlateDetailsResponse.SeasonalCardsListResponse) != undefined && 
@@ -1978,7 +1978,7 @@ function initiatePayment( isEncryptResponse, encryptionPassword) {
 	
 	var request = getRequestString(bodyRequest);
 
-	var requestObj = buildBody([ request ], true);
+	var requestObj = buildBody([ request.toString() ], true);
 	return invokeWebServiceString(requestObj, isEncryptResponse,
 			encryptionPassword);
 
@@ -1998,7 +1998,7 @@ function certifyPayment(cardRequest,paymentRequest, isEncryptResponse, encryptio
 	bodyRequest += "</sch:certifyPayment>";
 	var request = getRequestString(bodyRequest);
 
-	var requestObj = buildBody([ request ], true);
+	var requestObj = buildBody([ request.toString() ], true);
 	var certifyResponse= invokeWebServiceString(requestObj, isEncryptResponse,
 			encryptionPassword);
   // if transaction certified call issueSeasonalCard operation
@@ -2024,7 +2024,7 @@ function androidFinalCertifyPayment(cardRequest,paymentRequest, isEncryptRespons
 	bodyRequest += "</sch:certifyPayment>";
 	var request = getRequestString(bodyRequest);
 
-	var requestObj = buildBody([ request ], true);
+	var requestObj = buildBody([ request.toString() ], true);
 	var certifyResponse= invokeWebServiceString(requestObj, isEncryptResponse,
 			encryptionPassword);
   /* if transaction certified call issueSeasonalCard operation
@@ -2150,7 +2150,7 @@ function issueSeasonalCard(cardRequest,paymentRequest, isEncryptResponse,
 	
 	
 	MFP.Logger.warn("beforCalling buildBody | " + bodyRequest)
-	var requestObj = buildBody([ bodyRequest ], true);
+	var requestObj = buildBody([ bodyRequest.toString() ], true);
 	MFP.Logger.warn("afterCalling buildBody | " + requestObj)
 	var issueSeasonalCardResult= invokeWebServiceString(requestObj,
 			isEncryptResponse, encryptionPassword);
