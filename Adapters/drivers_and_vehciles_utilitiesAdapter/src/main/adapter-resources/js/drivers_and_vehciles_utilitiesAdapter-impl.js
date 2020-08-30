@@ -418,22 +418,25 @@ function replaceCredentials(envHeader){
  * @returns {___anonymous2126_2136}
  */
 function buildBody(envHeader, params, namespaces, soapEnvNS) {
-    MFP.Logger.info("****** ****************************************************************** ******   ");
-    MFP.Logger.info("Utilities - buildBody envHeader "+JSON.stringify(envHeader) );
-    MFP.Logger.info("Params " +JSON.stringify(params) );
-    MFP.Logger.info("Namespaces "+namespaces);
-    MFP.Logger.info("****** soapEnvNS******   "+soapEnvNS);
-    MFP.Logger.info("****** ****************************************************************** ******   ");
+    //MFP.Logger.info("****** ****************************************************************** ******   ");
+    //MFP.Logger.info("Utilities - buildBody envHeader "+JSON.stringify(envHeader) );
+    //MFP.Logger.info("Params " +JSON.stringify(params) );
+    //MFP.Logger.info("Namespaces "+namespaces);
+    //MFP.Logger.info("****** soapEnvNS******   "+soapEnvNS);
+    //MFP.Logger.info("****** ****************************************************************** ******   ");
     var body = '<soapenv:Envelope ' + soapEnvNS.toString() + '>\n'+ '<soapenv:Header>\n';
   //  MFP.Logger.info("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
   //  MFP.Logger.info("******body " + JSON.stringify(body));
    // body = jsonToXml(envHeader, body, namespaces);
-    body = jsonToXml(JSON.stringify(envHeader), body.toString(), namespaces);
+	envHeader = JSON.stringify(envHeader)
+    body = jsonToXml(JSON.parse(envHeader), body.toString(), namespaces);
     MFP.Logger.info("******body " + JSON.stringify(body));
     body += '</soapenv:Header>\n';
     body += '<soapenv:Body>\n';
     //body  = jsonToXml(params, body, namespaces);
-    body  = jsonToXml(JSON.stringify(envHeader), body.toString(), namespaces);
+	
+	params = JSON.stringify(params);
+    body  = jsonToXml(JSON.parse(params), body.toString(), namespaces);
     MFP.Logger.debug("******body " + body);
     body += '</soapenv:Body>\n' + '</soapenv:Envelope>\n';
    
