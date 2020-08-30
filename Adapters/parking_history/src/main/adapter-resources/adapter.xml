@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Licensed Materials - Property of IBM
+	5725-I43 (C) Copyright IBM Corp. 2011, 2016. All Rights Reserved.
+	US Government Users Restricted Rights - Use, duplication or
+	disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+<mfp:adapter name="parking_history"
+			 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			 xmlns:mfp="http://www.ibm.com/mfp/integration"
+			 xmlns:http="http://www.ibm.com/mfp/integration/http">
+
+	<displayName>parking_history</displayName>
+	<description>parking_history</description>
+<connectivity>
+	<connectionPolicy xmlns:ns4="http://www.ibm.com/mfp/integration/http"
+					  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:HTTPConnectionPolicyType">
+		<protocol>https</protocol>
+		<!--staging-->
+		            <domain>RTAMHTIBSTGEMS1.rtatestdom.local</domain>
+		            <port>11082</port>
+		<!--PROD-->
+<!--		<domain>eiptibam2.rta.global</domain>-->
+<!--		<port>21012</port>-->
+		<connectionTimeoutInMilliseconds>5000</connectionTimeoutInMilliseconds>
+		<socketTimeoutInMilliseconds>5000</socketTimeoutInMilliseconds>
+		<maxConcurrentConnectionsPerNode>100</maxConcurrentConnectionsPerNode>
+	</connectionPolicy>
+</connectivity>
+<procedure name="getSMSTransactionHistory"/>
+<procedure name="getSmartParkingTransactionHistory"/>
+
+</mfp:adapter>
