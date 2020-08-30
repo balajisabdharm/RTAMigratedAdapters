@@ -2214,8 +2214,8 @@ function invokeWebServiceString(request, isEncryptResponse, encryptionPassword) 
 	};
 
 	var webServiceResult = MFP.Server.invokeHttp(input);
-	MFP.Logger.warn(webServiceResult);
-	MFP.Logger.warn(JSON.stringify(webServiceResult));
+	//MFP.Logger.warn(webServiceResult);
+	//MFP.Logger.warn(JSON.stringify(webServiceResult));
 	if (isEncryptResponse != undefined && isEncryptResponse == true) {
 		var responseString = JSON.stringify(webServiceResult);
 		var invocationData = {
