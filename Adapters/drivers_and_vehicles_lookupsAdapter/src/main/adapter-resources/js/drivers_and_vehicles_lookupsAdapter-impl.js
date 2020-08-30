@@ -103,7 +103,7 @@ function newMaintenanceService(params, isEncryptResponse, encryptionPassword) {
      //MFP.Logger.info("NewMaintenanceService String parameters >>>>>>>>>>>> " + parameters);
 	var request = buildBody(parameters, false);
 	//var request = buildBody(JSON.stringify(envHeader), params, '', _soapEnvNS, false);
-	Log("NewMaintenanceService request >>>>>>>>>>>> " + request);
+	Log("NewMaintenanceService request >>>>>>>>>>>>>> " + request);
     var response = invokeWebService(request, servicePath, null, isEncryptResponse, encryptionPassword);
 	//Log("NewMaintenanceService RESPONSE >>>>>>>>>>>>>>>> " + JSON.stringify(response));
 	return response;
