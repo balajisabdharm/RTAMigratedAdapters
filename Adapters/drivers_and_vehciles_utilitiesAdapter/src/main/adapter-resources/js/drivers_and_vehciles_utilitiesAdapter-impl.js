@@ -424,7 +424,7 @@ function buildBody(envHeader, params, namespaces, soapEnvNS) {
     //MFP.Logger.info("Namespaces "+namespaces);
     //MFP.Logger.info("****** soapEnvNS******   "+soapEnvNS);
     //MFP.Logger.info("****** ****************************************************************** ******   ");
-    var body = '<soapenv:Envelope ' + soapEnvNS.toString() + '>\n'+ '<soapenv:Header>\n';
+    var body = '<soapenv:Envelope ' + soapEnvNS.toString() + '>'+ '<soapenv:Header>';
   //  MFP.Logger.info("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
   //  MFP.Logger.info("******body " + JSON.stringify(body));
    // body = jsonToXml(envHeader, body, namespaces);
@@ -438,7 +438,7 @@ function buildBody(envHeader, params, namespaces, soapEnvNS) {
 	params = JSON.stringify(params);
     body  = jsonToXml(JSON.parse(params), body.toString(), namespaces);
     MFP.Logger.debug("******body " + body);
-    body += '</soapenv:Body>\n' + '</soapenv:Envelope>\n';
+    body += '</soapenv:Body>' + '</soapenv:Envelope>';
    
     body = replaceCredentials(body);
     
@@ -482,18 +482,18 @@ function jsonToXml(jsonObj, xmlStr, namespaces) {
     for(var attr in jsonObj) {
         var val = jsonObj[attr];
         if (attr.charAt(0) != '@') {
-            toAppend += "<" + attr;
+            toAppend += '<' + attr;
             if (typeof val  === 'object') {
                 toAppend += getAttributes(val);
                 if (namespaces != null)
                     toAppend += ' ' + namespaces;
-                toAppend += ">\n";
+                toAppend += '>';
                 toAppend = jsonToXml(val, toAppend);
             }
             else {
-                toAppend += ">" + val;
+                toAppend += '>' + val;
             }
-            toAppend += "</" + attr + ">\n";
+            toAppend += '</' + attr + '>\n';
         }
     }
 
