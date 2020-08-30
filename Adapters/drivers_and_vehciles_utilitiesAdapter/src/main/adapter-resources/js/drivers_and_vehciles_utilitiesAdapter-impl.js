@@ -429,14 +429,14 @@ function buildBody(envHeader, params, namespaces, soapEnvNS) {
   //  MFP.Logger.info("******body " + JSON.stringify(body));
    // body = jsonToXml(envHeader, body, namespaces);
 	envHeader = JSON.stringify(envHeader)
-    body = jsonToXml(JSON.parse(envHeader), body, namespaces);
+    body = jsonToXml(JSON.parse(envHeader), body.toString(), namespaces);
     MFP.Logger.info("******body " + JSON.stringify(body));
     body += '</soapenv:Header>';
     body += '<soapenv:Body>';
     //body  = jsonToXml(params, body, namespaces);
 	
 	params = JSON.stringify(params);
-    body  = jsonToXml(JSON.parse(params), body, namespaces);
+    body  = jsonToXml(JSON.parse(params), body.toString(), namespaces);
     MFP.Logger.debug("******body " + body);
     body += '</soapenv:Body>' + '</soapenv:Envelope>';
    
@@ -482,18 +482,18 @@ function jsonToXml(jsonObj, xmlStr, namespaces) {
     for(var attr in jsonObj) {
         var val = jsonObj[attr];
         if (attr.charAt(0) != '@') {
-            toAppend += '<' + attr;
+            toAppend += "<" + attr;
             if (typeof val  === 'object') {
                 toAppend += getAttributes(val);
                 if (namespaces != null)
-                    toAppend += ' ' + namespaces;
-                toAppend += '>';
+                    toAppend += " " + namespaces;
+                toAppend += ">";
                 toAppend = jsonToXml(val, toAppend);
             }
             else {
-                toAppend += '>' + val;
+                toAppend += ">" + val;
             }
-            toAppend += '</' + attr + '>';
+            toAppend += "</" + attr + ">";
         }
     }
 
