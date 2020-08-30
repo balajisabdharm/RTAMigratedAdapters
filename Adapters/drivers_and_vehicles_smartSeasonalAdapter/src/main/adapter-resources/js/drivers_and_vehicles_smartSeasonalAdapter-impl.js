@@ -2199,6 +2199,7 @@ function Log(text) {
 }
 function invokeWebServiceString(request, isEncryptResponse, encryptionPassword) {
 	MFP.Logger.warn(request);
+	request=JSON.parse(request);
 	var input = {
 			method : 'post',
 			headers : {
@@ -2207,7 +2208,7 @@ function invokeWebServiceString(request, isEncryptResponse, encryptionPassword) 
 			returnedContentType : 'HTML',
 			path : '/seasonalCardService_V3',
 			body : {
-				content : JSON.stringify(request),
+				content : request.toString(),
 				contentType : 'text/xml; charset=utf-8'
 			}
 	};
