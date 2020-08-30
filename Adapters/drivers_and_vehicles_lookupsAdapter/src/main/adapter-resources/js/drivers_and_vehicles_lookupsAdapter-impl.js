@@ -200,11 +200,9 @@ function invokeWebService(body, servicePath, headers, isEncryptResponse, encrypt
     // Adding custom HTTP headers if they were provided as parameter to the
     // procedure call
     headers && (input['headers'] = headers);
-MFP.Logger.info("invoking WS ..... ");
+
     var webServiceResult = MFP.Server.invokeHttp(input);
-MFP.Logger.info("invoked WS ..... ");	
-	Log("Got back WebService Result >>>>>>>>>>>> ====================== " + JSON.stringify(webServiceResult));
-	
+try{
     if(isEncryptResponse != undefined && isEncryptResponse == true)
     {
         var responseString = JSON.stringify(webServiceResult);
@@ -222,7 +220,10 @@ MFP.Logger.info("invoked WS ..... ");
             procedure : 'deleteCredientails',
             parameters : [webServiceResult]
     };
-    return MFP.Server.invokeProcedure(invocationData);
+    webServiceResult = MFP.Server.invokeProcedure(invocationData);
+}catch(e){}
+	
+	return webServiceResult;
 }
 
 function invokeWebServiceStatic(request, servicePath, isEncryptResponse, encryptionPassword) {
