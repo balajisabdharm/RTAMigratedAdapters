@@ -63,7 +63,7 @@ function FFULookupInfoService(params, isEncryptResponse, encryptionPassword){
 	};
 	var servicePath= '/wstraffic/services/FFULookupInfoService';
 	var _soapEnvNS=soapEnvNS+ 'xmlns:ae="http://ae:client.ws.ffu.traffic.services.internet.ae"';
-	var parameters = [envHeader, params, '', _soapEnvNS];
+	var parameters = [envHeader, params, '', _soapEnvNS.toString()];
 	var request = buildBody(parameters, false);
 
 	//Log("FFULookupInfoService request >> " + request);
