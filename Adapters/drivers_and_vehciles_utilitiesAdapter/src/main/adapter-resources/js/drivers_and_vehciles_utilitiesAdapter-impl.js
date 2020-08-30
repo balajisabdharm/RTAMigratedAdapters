@@ -482,18 +482,18 @@ function jsonToXml(jsonObj, xmlStr, namespaces) {
     for(var attr in jsonObj) {
         var val = jsonObj[attr];
         if (attr.charAt(0) != '@') {
-            toAppend += "<" + attr;
+            toAppend += '<' + attr;
             if (typeof val  === 'object') {
                 toAppend += getAttributes(val);
                 if (namespaces != null)
-                    toAppend += " " + namespaces;
-                toAppend += ">";
+                    toAppend += ' ' + namespaces;
+                toAppend += '>';
                 toAppend = jsonToXml(val, toAppend);
             }
             else {
-                toAppend += ">" + val;
+                toAppend += '>' + val;
             }
-            toAppend += "</" + attr + ">";
+            toAppend += '</' + attr + '>';
         }
     }
 
