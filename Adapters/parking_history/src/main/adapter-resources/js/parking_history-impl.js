@@ -110,7 +110,7 @@ function getSMSTransactionHistory(dataObject) {
 			}
 		};
 		var result = MFP.Server.invokeHttp(input);
-		MFP.Logger.warn("getSMSTransactionHistory response | " + JSON.stringify(result));
+		MFP.Logger.warn("getSMSTransactionHistory response | Test" + JSON.stringify(result));
 		return result;
 
 	} catch (exp) {
