@@ -13,6 +13,7 @@
     </connectivity>
     <procedure name="getRecentActivities" scope="IAMUAEPASS" />
 	
+	
 	<property name="tokens.portal.vendorUsername"  description="tokens.portal.vendorUsername" defaultValue="${portalVendorUsername}$"/>
 	<property name="tokens.portal.vendorPassword"  description="tokens.portal.vendorPassword" defaultValue="${portalVendorPassword}$"/>
 </mfp:adapter>
