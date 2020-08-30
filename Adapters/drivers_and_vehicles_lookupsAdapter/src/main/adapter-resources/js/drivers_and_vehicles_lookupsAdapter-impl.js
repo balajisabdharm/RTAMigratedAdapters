@@ -30,6 +30,13 @@ function Log(text){
 		MFP.Logger.debug(text);
 }
 function FFULookupInfoService(params, isEncryptResponse, encryptionPassword){
+	
+	if(!isEncryptResponse){
+		isEncryptResponse = "";	
+	}
+	if(!encryptionPassword){
+		encryptionPassword = "";
+	}
 	var invocationData = {
 			adapter : 'drivers_and_vehicles_trafficAdapter',
 			procedure : 'FFULookupInfoService',
