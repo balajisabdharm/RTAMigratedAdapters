@@ -109,7 +109,7 @@ function viewPersonPictureService(params, isEncryptResponse, encryptionPassword)
 	var headers={"SOAPAction":"impl"};
 
 	//Log("ViewPersonPictureService request >> " + request);
-	return invokeWebService(request,servicePath, null, isEncryptResponse, encryptionPassword);
+	return invokeWebService(request,servicePath, headers, isEncryptResponse, encryptionPassword);
 }
 
 function permitsService(params, isEncryptResponse, encryptionPassword) {
