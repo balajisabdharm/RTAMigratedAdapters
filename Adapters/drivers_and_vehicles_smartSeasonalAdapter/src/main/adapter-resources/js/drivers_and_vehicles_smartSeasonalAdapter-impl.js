@@ -2199,7 +2199,7 @@ function Log(text) {
 }
 function invokeWebServiceString(request, isEncryptResponse, encryptionPassword) {
 	MFP.Logger.warn(request);
-	request=JSON.parse(request);
+	//request=JSON.parse(request);
 	var input = {
 			method : 'post',
 			headers : {
@@ -2208,7 +2208,7 @@ function invokeWebServiceString(request, isEncryptResponse, encryptionPassword) 
 			returnedContentType : 'HTML',
 			path : '/seasonalCardService_V3',
 			body : {
-				content : request,
+				content : request.toString(),
 				contentType : 'text/xml; charset=utf-8'
 			}
 	};
@@ -2299,7 +2299,10 @@ function buildBody(parameters, isStatic) {
 			parameters : parameters
 		});
 	}
-
+	try{
+	MFP.Logger.info("BuildBodyResponse:" + JSON.stringify(request));
+	MFP.Logger.info("BuildBodyResponse:" + JSON.stringify(request.body));
+	}catch(e){}
 	return request.body;
 }
 
