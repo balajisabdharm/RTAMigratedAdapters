@@ -418,33 +418,26 @@ function replaceCredentials(envHeader){
  * @returns {___anonymous2126_2136}
  */
 function buildBody(envHeader, params, namespaces, soapEnvNS) {
-    MFP.Logger.info("****** ****************************************************************** ******   ");
-    MFP.Logger.info("Utilities - buildBody envHeader "+JSON.stringify(envHeader) );
-    MFP.Logger.info("Params " +JSON.stringify(params) );
-    MFP.Logger.info("Namespaces "+namespaces);
-    MFP.Logger.info("****** soapEnvNS******   "+soapEnvNS);
-    MFP.Logger.info("****** ****************************************************************** ******   ");
-    var body = '<soapenv:Envelope ' + soapEnvNS.toString() + '>'+ '<soapenv:Header>';
-    MFP.Logger.info("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
-    MFP.Logger.info("******body " + JSON.stringify(body));
-   // body = jsonToXml(envHeader, body, namespaces);
-    //envHeader = JSON.stringify(envHeader)
-    body = jsonToXml(envHeader, body.toString(), namespaces);
-    MFP.Logger.info("******body " + JSON.stringify(body));
-    body += '</soapenv:Header>';
-    body += '<soapenv:Body>';
-    //body  = jsonToXml(params, body, namespaces);
+    var body = '<soapenv:Envelope ' + soapEnvNS + '>\n'+ '<soapenv:Header>\n'+ ' <wsse:Security soapenv:mustUnderstand="1" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"> \n'+ ' <wsse:UsernameToken wsu:Id="UsernameToken-8">  \n';
+
+	body = jsonToXml(envHeader, body, namespaces);
+	//body = jsonToXml(JSON.parse(envHeader), body.toString(), namespaces);
+	body += '</wsse:UsernameToken>\n'+ '</wsse:Security>\n'+ '</soapenv:Header>\n';
+	body += '<soapenv:Body>\n';
+//	MFP.Logger.warn("|drivers_and_vehicles_trafficAdapter |body params : " + JSON.stringify([params, body, namespaces]));
+
+	body  = jsonToXml(params, body, namespaces);
+	//body = jsonToXml(JSON.parse(params), body.toString(), namespaces);
+
+//	MFP.Logger.warn("|drivers_and_vehicles_trafficAdapter |body : " + JSON.stringify(body));
+
 	
-    //params = JSON.stringify(params);
-    body  = jsonToXml(params, body.toString(), namespaces);
-    MFP.Logger.debug("******body " + body);
-    body += '</soapenv:Body>' + '</soapenv:Envelope>';
-   
-    body = replaceCredentials(body);
-    
-    MFP.Logger.debug("complete body 1223 " + body);
-    return {body : body};
-    
+	body += '</soapenv:Body>\n' + '</soapenv:Envelope>\n';	
+
+	//MFP.Logger.debug("******bo0000000dy " + body);
+	body = replaceCredentials(body);
+
+	return {body : body};
     //return JSON.parse(envHeader);
 }
 
@@ -465,40 +458,40 @@ function buildBodyFromStaticRequest(request) {
 
 
 function getAttributes(jsonObj) {
-    var attrStr = '';
-    for(var attr in jsonObj) {
-        var val = jsonObj[attr];
-        if (attr.charAt(0) == '@') {
-            attrStr += ' ' + attr.substring(1);
-            attrStr += '="' + val + '"';
-        }
-    }
-    return attrStr;
+	var attrStr = '';
+	for(var attr in jsonObj) {
+		var val = jsonObj[attr];
+		if (attr.charAt(0) == '@') {
+			attrStr += ' ' + attr.substring(1);
+			attrStr += '="' + val + '"';
+		}
+	}
+	return attrStr;
 }
 
 function jsonToXml(jsonObj, xmlStr, namespaces) {
-   // MFP.Logger.info("jsonToXml jsonObj "+jsonObj);
-    var toAppend = '';
-    for(var attr in jsonObj) {
-        var val = jsonObj[attr];
-        if (attr.charAt(0) != '@') {
-            toAppend += '<' + attr;
-            if (typeof val  === 'object') {
-                toAppend += getAttributes(val);
-                if (namespaces != null)
-                    toAppend += ' ' + namespaces;
-                toAppend += '>';
-                toAppend = jsonToXml(val, toAppend);
-            }
-            else {
-                toAppend += '>' + val;
-            }
-            toAppend += '</' + attr + '>';
-        }
-    }
 
- //MFP.Logger.info("jsonToXml toAppend "+toAppend);
-    return xmlStr += toAppend;
+	var toAppend = '';
+	for(var attr in jsonObj) {
+		var val = jsonObj[attr];
+		if (attr.charAt(0) != '@') {
+			toAppend += "<" + attr;
+			if (typeof val  === 'object') {
+				toAppend += getAttributes(val);
+				if (namespaces != null)
+					toAppend += ' ' + namespaces;
+				toAppend += ">\n";
+				toAppend = jsonToXml(val, toAppend);
+			}
+			else {
+				toAppend += ">" + val;
+			}
+			toAppend += "</" + attr + ">\n";
+		}
+	}
+
+
+	return xmlStr += toAppend;
 }
 
 function escapeRegExp(string) {
