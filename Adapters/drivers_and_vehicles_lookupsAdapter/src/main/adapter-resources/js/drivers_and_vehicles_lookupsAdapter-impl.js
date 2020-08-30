@@ -97,9 +97,9 @@ function newMaintenanceService(params, isEncryptResponse, encryptionPassword) {
    // MFP.Logger.info("NewMaintenanceService String params >>>>>>>>>>>> " + paramsStr);
 	//params = JSON.stringify(paramsStr);
 	//Log("NewMaintenanceService JSONStringify params >>>>>>>>>>>> " + params);
-	//var parameters = [envHeader.toString(), params.toString(), '', _soapEnvNS.toString()];
-    //var parameters = [JSON.stringify(envHeader), params, '', _soapEnvNS];
-    var parameters =[JSON.stringify(envHeader),JSON.stringify(params),'',_soapEnvNS.toString()];
+	var parameters = [envHeader, params, '', _soapEnvNS.toString()];
+    
+    //var parameters =[JSON.stringify(envHeader),JSON.stringify(params),'',_soapEnvNS.toString()];
      //MFP.Logger.info("NewMaintenanceService String parameters >>>>>>>>>>>> " + parameters);
 	var request = buildBody(parameters, false);
 	//var request = buildBody(JSON.stringify(envHeader), params, '', _soapEnvNS, false);
