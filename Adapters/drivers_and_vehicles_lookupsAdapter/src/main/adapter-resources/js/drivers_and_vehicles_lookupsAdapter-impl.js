@@ -43,10 +43,12 @@ function FFULookupInfoService(params, isEncryptResponse, encryptionPassword){
 			parameters : [params, isEncryptResponse, encryptionPassword]
 	};
 	var response =  MFP.Server.invokeProcedure(invocationData);
+	
+	MFP.Logger.info("Got response "+JSON.stringify(response));
 	var invocationData = {
 			adapter : 'drivers_and_vehciles_utilitiesAdapter',
 			procedure : 'deleteCredientails',
-			parameters : [response.toString()]
+			parameters : [response]
 	};
 	return MFP.Server.invokeProcedure(invocationData); 
 	
