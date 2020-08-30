@@ -55,14 +55,14 @@ function invokeWebServiceString(request) {
 			returnedContentType : 'HTML',
 			path : '/resetNolCardPinService',
 			body : {
-				content : JSON.parse(request),
+				content : request,
 				contentType : 'text/xml; charset=utf-8'
 			}
 	};
 
 	var webServiceResult = MFP.Server.invokeHttp(input);
-	MFP.Logger.warn(webServiceResult);
-	MFP.Logger.warn(JSON.stringify(webServiceResult));
+	//MFP.Logger.warn(webServiceResult);
+	//MFP.Logger.warn(JSON.stringify(webServiceResult));
 	var invocationData1 = {
 			adapter : 'drivers_and_vehciles_utilitiesAdapter',
 			procedure : 'deleteCredientails',
