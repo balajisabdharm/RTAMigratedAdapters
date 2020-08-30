@@ -440,7 +440,7 @@ function buildBody(envHeader, params, namespaces, soapEnvNS) {
    
     body = replaceCredentials(body);
     
-    MFP.Logger.debug("complete body " + body);
+    MFP.Logger.debug("complete body 1223 " + body);
     return {body : body};
     
     //return JSON.parse(envHeader);
