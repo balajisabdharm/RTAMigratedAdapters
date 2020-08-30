@@ -55,7 +55,7 @@ function FFULookupInfoService(params, isEncryptResponse, encryptionPassword){
 	var servicePath= '/wstraffic/services/FFULookupInfoService';
 	var _soapEnvNS=soapEnvNS+ 'xmlns:ae="http://ae:client.ws.ffu.traffic.services.internet.ae"';
 	//var parameters = [envHeader, params, '', _soapEnvNS];
-	var parameters = [envHeader,params, '', _soapEnvNS.toString()];
+	var parameters = [JSON.stringify(envHeader),JSON.stringify(params), '', _soapEnvNS.toString()];
 	var request = buildBody(parameters, false);
 
 	//Log("FFULookupInfoService request >> " + request);
@@ -71,7 +71,7 @@ function getKioskTestCentersService(params, isEncryptResponse, encryptionPasswor
 	var servicePath = "/ws/services/GetKioskTestCentersService";
 	var _soapEnvNS=soapEnvNS+ 'xmlns:ae="http://ae.gov.trf.stp.ws.GetKioskTestCentersService"';
 	//var parameters = [envHeader.toString(), params.toString(), 'xmlns:ae="http://ws.trs.rta.ae"', _soapEnvNS.toString()];
-	var parameters = [envHeader,params, 'xmlns:ae="http://ws.trs.rta.ae"', _soapEnvNS.toString()];
+	var parameters = [JSON.stringify(envHeader),JSON.stringify(params), 'xmlns:ae="http://ws.trs.rta.ae"', _soapEnvNS.toString()];
 	var request = buildBody(parameters, false);
 
 	//Log("getKioskTestCentersService request >> " + request);
@@ -99,7 +99,7 @@ function newMaintenanceService(params, isEncryptResponse, encryptionPassword) {
 	//Log("NewMaintenanceService JSONStringify params >>>>>>>>>>>> " + params);
 	//var parameters = [envHeader.toString(), params.toString(), '', _soapEnvNS.toString()];
     //var parameters = [JSON.stringify(envHeader), params, '', _soapEnvNS];
-    var parameters =[envHeader,params,'',_soapEnvNS.toString()];
+    var parameters =[JSON.stringify(envHeader),JSON.stringify(params),'',_soapEnvNS.toString()];
      //MFP.Logger.info("NewMaintenanceService String parameters >>>>>>>>>>>> " + parameters);
 	var request = buildBody(parameters, false);
 	//var request = buildBody(JSON.stringify(envHeader), params, '', _soapEnvNS, false);
@@ -121,7 +121,7 @@ function exportCertificateService(params, isEncryptResponse, encryptionPassword)
 
 	var servicePath = "/ws/services/ExportCertificateService";
 	//var parameters = [envHeader.toString(), params.toString(), '', _soapEnvNS.toString()];
-	var parameters = [envHeader,params, '', _soapEnvNS.toString()];
+	var parameters = [JSON.stringify(envHeader),JSON.stringify(params), '', _soapEnvNS.toString()];
 	var request = buildBody(parameters, false);
 
 	//Log("exportCertificateService request >> " + request);
@@ -138,7 +138,7 @@ function vehiclePossessionCertificateService(params, isEncryptResponse, encrypti
 	var _soapEnvNS=soapEnvNS+ 'xmlns:urn="urn:VehiclePossessionCertificateService"';
 	var servicePath='/ws/services/VehiclePossessionCertificateService';
 	//var parameters = [envHeader.toString(),params.toString(),'', _soapEnvNS.toString()];
-	var parameters = [envHeader,params, '', _soapEnvNS.toString()];
+	var parameters = [JSON.stringify(envHeader),JSON.stringify(params), '', _soapEnvNS.toString()];
 	var request = buildBody(parameters, false);
 
 	//Log("VehiclePossessionCertificateService request >> " + request);
@@ -251,7 +251,7 @@ function invokeWebServiceStatic(request, servicePath, isEncryptResponse, encrypt
 			returnedContentType : 'xml',
 			path : servicePath, 
 			body : {
-				content : JSON.parse(request),
+				content : request.toString(),
 				contentType : 'text/xml; charset=utf-8'
 			}
 	};
