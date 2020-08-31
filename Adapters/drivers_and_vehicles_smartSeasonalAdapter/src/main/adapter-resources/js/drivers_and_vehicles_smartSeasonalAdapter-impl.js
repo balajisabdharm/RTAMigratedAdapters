@@ -2243,7 +2243,7 @@ function invokeWebService(body, servicePath, headers, isEncryptResponse,
 		headers["SOAPAction"] = "";
 	var input = {
 			method : 'post',
-			returnedContentType : 'HTML',
+			returnedContentType : 'xml',
 			path : servicePath,
 			body : {
 				content : body.toString(),
