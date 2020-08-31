@@ -13,6 +13,8 @@ function getUIList(language,params) {
 		+'</soapenv:Body>'
 	+'</soapenv:Envelope>';
 	
+	MFP.Logger.info("GetUIList request ---===---->>>>   "+request.toString());
+	
 	var result = invokeWebService(request,"getUIList");
 //	return result={
 //			result:result,
