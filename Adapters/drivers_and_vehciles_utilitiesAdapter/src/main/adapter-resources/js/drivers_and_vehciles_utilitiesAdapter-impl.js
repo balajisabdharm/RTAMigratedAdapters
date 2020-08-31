@@ -449,7 +449,9 @@ function buildBody(envHeader, params, namespaces, soapEnvNS) {
  * @returns {___anonymous2291_2301}
  */
 function buildBodyFromStaticRequest(request) {
-    MFP.Logger.info("&&&&&&&& "+request+" &&&&&&");
+    MFP.Logger.info("&&&&&&&& Inside buildBodyStatic ");
+	MFP.Logger.info("&&&&&&&& Inside buildBodyStatic "+ JSON.stringify(request));
+	//MFP.Logger.info("&&&&&&&& "+request+" &&&&&&");
    // var body = JSON.stringify(replaceCredentials(request));
     var body = (replaceCredentials(request));
     MFP.Logger.info("&&&&&&&& "+body+" &&&&&&");
