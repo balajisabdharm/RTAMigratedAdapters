@@ -291,7 +291,7 @@ function invokeWebService(body,servicePath,headers, isEncryptResponse, encryptio
 
 function buildBody(parameters, isStatic) {
 	var request = "";
-	MFP.Logger.info("buildBody:"+parameters);
+	//MFP.Logger.info("buildBody:"+parameters);
 	if (isStatic == true) {
 		request = MFP.Server.invokeProcedure({
 			adapter : 'drivers_and_vehciles_utilitiesAdapter',
