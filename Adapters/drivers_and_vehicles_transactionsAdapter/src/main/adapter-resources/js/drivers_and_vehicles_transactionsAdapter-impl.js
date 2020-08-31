@@ -183,12 +183,30 @@ function TransactionServiceService_operation(envHeader, params, httpHeaders, isE
 }
 
 function TransactionServiceService_operationStringRequest(request, isEncryptResponse, encryptionPassword) { 
-	invocationData = {
+	/*invocationData = {
 			adapter : 'drivers_and_vehicles_trafficAdapter',
 			procedure : 'TransactionServiceService_operationStringRequest',
 			parameters : [request, isEncryptResponse, encryptionPassword]
 	};
-	return MFP.Server.invokeProcedure(invocationData);
+	return MFP.Server.invokeProcedure(invocationData);*/
+	
+	var parameters = [request.toString()];
+	var request = buildBody(parameters, true);
+	if(request.indexOf("<createTransaction><setviceCode>124</setviceCode>") > 0)
+		request = request.replace("<parameters>","<parameters><parameter><name>permitPeriod</name><value>3</value></parameter>");
+
+	servicePath='/wstraffic/services/TransactionService';
+	var result = invokeWebServiceString(request,servicePath);
+	try{
+		MFP.Logger.warn("|drivers_and_vehicles_trafficAdapter |Transaction Process | Request : " + JSON.stringify(request) + ", Response: "+JSON.stringify(result));
+	}catch(e){
+		MFP.Logger.warn("|drivers_and_vehicles_trafficAdapter | Transaction Process | Exception :"+e);
+	}
+	//var response = recertifySeasonalParkingServices(request,result, isEncryptResponse, encryptionPassword);
+
+	
+	return result;
+	
 }
 
 function invokeMobilityPaymentLogServiceOperation(request, isEncryptResponse, encryptionPassword) { 
