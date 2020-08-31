@@ -76,8 +76,10 @@ function getTransactionAmount(spTRN)
 }
 
 function encryptData(data,appId) {
-	var password = MFP.Server.getPropertyValue("epay.Encryption.PASSWORD.RTA" + appId);
+	var password = MFP.Server.getPropertyValue("epay.Encryption.PASSWORD." + appId);
 	
+	MFP.Logger.info("--===--->>> encryptData :: "+appId);
+	MFP.Logger.info("--===--->>> encryptData :: "+password);
 	var cypherText = Aes.Ctr.encrypt(data,password,ENCRYPTION_STRENGTH);
 	//return {cypherText: cypherText };
 	return {cypherText: password};
