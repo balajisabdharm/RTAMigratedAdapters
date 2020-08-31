@@ -190,7 +190,9 @@ function TransactionServiceService_operationStringRequest(request, isEncryptResp
 	};
 	return MFP.Server.invokeProcedure(invocationData);*/
 	
-	var parameters = [request.toString()];
+	MFP.Logger.info("Received Request ::: "+request.toString());
+	
+	var parameters = [request];
 	var request = buildBody(parameters, true);
 	if(request.indexOf("<createTransaction><setviceCode>124</setviceCode>") > 0)
 		request = request.replace("<parameters>","<parameters><parameter><name>permitPeriod</name><value>3</value></parameter>");
