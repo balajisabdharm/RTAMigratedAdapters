@@ -194,7 +194,7 @@ function TransactionServiceService_operationStringRequest(request, isEncryptResp
 	
 	//var parameters = [request];
 	//var request = buildBody(parameters, true);
-	request = buildBody([ bodyRequest.toString() ], true);
+	request = buildBody([ request.toString() ], true);
 	//MFP.Logger.info("Build Body Request ::: "+request.toString());
 	
 	if(request.indexOf("<createTransaction><setviceCode>124</setviceCode>") > 0)
