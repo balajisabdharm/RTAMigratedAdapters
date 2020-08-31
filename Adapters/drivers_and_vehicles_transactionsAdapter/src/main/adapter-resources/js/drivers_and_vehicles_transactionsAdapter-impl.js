@@ -395,7 +395,7 @@ function invokeWebServiceString(request, servicePath, isEncryptResponse, encrypt
 			returnedContentType : 'xml',
 			path :servicePath,
 			body : {
-				content : JSON.parse(request),
+				content : request,
 				contentType : 'text/xml; charset=utf-8'
 			}
 	};
