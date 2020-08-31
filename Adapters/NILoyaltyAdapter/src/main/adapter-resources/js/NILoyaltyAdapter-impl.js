@@ -30,8 +30,11 @@ function fixNameSpace(response){
 	MFP.Logger.info("refined Response -->" + response);
 	
 	try{
+		
+		
 		return JSON.parse(newResponse);
 	}catch(e){
+		MFP.Logger.info("NOT RETURNING refined Response -->" );
 		return response;
 	}
 }
