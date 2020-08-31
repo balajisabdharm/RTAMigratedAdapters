@@ -17,6 +17,25 @@ var message_ar = "هناك خطأ ما. يُرجى إعادة المحاولة �
 //////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////
 
+var xsdStr = "http://www.rta.ae/ActiveMatrix/ESB/NILoyaltyAccountManagementService/SharedResources/XMLSchema/NILoyaltyAccountManagementServiceSchema.xsd";
+function fixNameSpace(response){
+	MFP.Logger.info(" ================================================= REMOVING NAMESPACE =================================================");
+	response = JSON.stringify(response);
+	reg1 = new RegExp('"":"'+xsdStr+'",',"g");
+	reg2 = new RegExp('{"CDATA":',"g");
+	reg3 = new RegExp('"},"',"g");
+	
+	
+	response = response.replace(reg1,"").replace(reg2,"").replace(reg3,"\",\"").replace(/}},/g,"},").replace(/}}]/g,"}]")+"}";
+	MFP.Logger.info("refined Response -->" + response);
+	
+	try{
+		return JSON.parse(newResponse);
+	}catch(e){
+		return response;
+	}
+}
+
 function toString(param) {
 	try {
 		var isBoolean = function (arg) { return typeof arg === 'boolean'; }
@@ -279,7 +298,7 @@ function getBalance(userId, balanceType) {
 			var balanceType = balanceType ? balanceType : "PL";
 			var request = '<soapenv:Envelope xmlns:nil="http://www.rta.ae/ActiveMatrix/ESB/NILoyaltyAccountManagementService/SharedResources/XMLSchema/NILoyaltyAccountManagementServiceSchema.xsd" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"> <soapenv:Header> <wsse:Security soapenv:mustUnderstand="1" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"> <wsse:UsernameToken wsu:Id="UsernameToken-28"> <wsse:Username>' + MFP.Server.getPropertyValue("tokens.tipcoService.username") + '</wsse:Username> <wsse:Password Type="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText">' + MFP.Server.getPropertyValue("tokens.tipcoService.password") + '</wsse:Password> <wsse:Nonce EncodingType="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-soap-message-security-1.0#Base64Binary">eREuKy29HgWD5n9BO13tkw==</wsse:Nonce> <wsu:Created>2018-12-04T11:27:52.892Z</wsu:Created> </wsse:UsernameToken> </wsse:Security> </soapenv:Header> <soapenv:Body> <nil:getAccountStatusRequest> <nil:userId>' + userId + '</nil:userId> </nil:getAccountStatusRequest> </soapenv:Body> </soapenv:Envelope>';
 			adapterLogger("getBalance", "info", "Request", request);
-			var response = invokeWebService(request);
+			var response = fixNameSpace(invokeWebService(request));
 			adapterLogger("getBalance", "info", "Response", toString(response));
 			if (response && response.isSuccessful && response.statusCode == 200) {
 				if (response.Envelope && response.Envelope.Body && response.Envelope.Body.getAccountStatusResponse) {
