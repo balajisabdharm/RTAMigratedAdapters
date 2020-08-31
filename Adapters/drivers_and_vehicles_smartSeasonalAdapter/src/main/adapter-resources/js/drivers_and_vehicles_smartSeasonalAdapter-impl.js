@@ -2199,7 +2199,7 @@ function Log(text) {
 }
 function invokeWebServiceString(request, isEncryptResponse, encryptionPassword) {
 	MFP.Logger.warn("Invoking WS with ::: "+request);
-	request=JSON.stringify(request);
+	//request=JSON.stringify(request);
 	var input = {
 			method : 'post',
 			headers : {
