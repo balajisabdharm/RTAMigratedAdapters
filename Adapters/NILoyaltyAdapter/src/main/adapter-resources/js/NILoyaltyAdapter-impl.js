@@ -27,7 +27,7 @@ function fixNameSpace(response){
 	
 	
 	response = response.replace(reg1,"").replace(reg2,"").replace(reg3,"\",\"").replace(/}},/g,"},").replace(/}}]/g,"}]")+"}";
-	MFP.Logger.info("refined Response -->" + response);
+	//MFP.Logger.info("refined Response -->" + response);
 	
 	try{
 		
