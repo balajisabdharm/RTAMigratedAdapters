@@ -30,19 +30,28 @@ function Log(text){
 		MFP.Logger.debug(text);
 }
 function FFULookupInfoService(params, isEncryptResponse, encryptionPassword){
+	
+	if(!isEncryptResponse){
+		isEncryptResponse = "";	
+	}
+	if(!encryptionPassword){
+		encryptionPassword = "";
+	}
 	/*var invocationData = {
 			adapter : 'drivers_and_vehicles_trafficAdapter',
 			procedure : 'FFULookupInfoService',
 			parameters : [params, isEncryptResponse, encryptionPassword]
 	};
 	var response =  MFP.Server.invokeProcedure(invocationData);
+	
+	MFP.Logger.info("Got response "+JSON.stringify(response));
 	var invocationData = {
 			adapter : 'drivers_and_vehciles_utilitiesAdapter',
 			procedure : 'deleteCredientails',
-			parameters : [response.toString()]
+			parameters : [response]
 	};
-	return MFP.Server.invokeProcedure(invocationData); */
-	
+	return MFP.Server.invokeProcedure(invocationData); 
+	*/
 	
 	var envHeader = { 
 			"ae:authenticationHeader" :{
@@ -54,8 +63,7 @@ function FFULookupInfoService(params, isEncryptResponse, encryptionPassword){
 	};
 	var servicePath= '/wstraffic/services/FFULookupInfoService';
 	var _soapEnvNS=soapEnvNS+ 'xmlns:ae="http://ae:client.ws.ffu.traffic.services.internet.ae"';
-	//var parameters = [envHeader, params, '', _soapEnvNS];
-	var parameters = [envHeader,params, '', _soapEnvNS.toString()];
+	var parameters = [envHeader, params, '', _soapEnvNS.toString()];
 	var request = buildBody(parameters, false);
 
 	//Log("FFULookupInfoService request >> " + request);
@@ -80,8 +88,8 @@ function getKioskTestCentersService(params, isEncryptResponse, encryptionPasswor
 function newMaintenanceService(params, isEncryptResponse, encryptionPassword) {
 	var _soapEnvNS=soapEnvNS+ 'xmlns:new="http://dubaipolice/ebsrv/services/NewMaintenance" xmlns:main="http://dubaipolice/ebsrv/services/NewMaintenance"';
 	var envHeader = {
-			"new:externalPassword": externalPassword,
-			"new:externalUsername": externalUsername,
+			//"new:externalPassword": externalPassword,
+			//"new:externalUsername": externalUsername,
 			"new:password": password,
 			"new:username": userName
 	};
@@ -175,11 +183,11 @@ function buildBody(parameters, isStatic) {
 }
 
 function invokeWebService(body, servicePath, headers, isEncryptResponse, encryptionPassword) {
-	MFP.Logger.info("body:" + JSON.stringify(body));
-	MFP.Logger.info("servicePath:" + JSON.stringify(servicePath));
-	MFP.Logger.info("headers:" + JSON.stringify(headers));
-	MFP.Logger.info("isEncryptResponse:" + JSON.stringify(isEncryptResponse));
-	MFP.Logger.info("encryptionPassword:" + JSON.stringify(encryptionPassword));
+	MFP.Logger.info("--------body:" + body.toString());
+//	MFP.Logger.info("servicePath:" + JSON.stringify(servicePath));
+//	MFP.Logger.info("headers:" + JSON.stringify(headers));
+//	MFP.Logger.info("isEncryptResponse:" + JSON.stringify(isEncryptResponse));
+//	MFP.Logger.info("encryptionPassword:" + JSON.stringify(encryptionPassword));
 	var startTime = new Date().getTime();
     if (!headers)
         headers = {
@@ -202,9 +210,7 @@ function invokeWebService(body, servicePath, headers, isEncryptResponse, encrypt
     headers && (input['headers'] = headers);
 
     var webServiceResult = MFP.Server.invokeHttp(input);
-	
-	//Log("Got back WebService Result >>>>>>>>>>>> ====================== " + webServiceResult);
-	
+try{
     if(isEncryptResponse != undefined && isEncryptResponse == true)
     {
         var responseString = JSON.stringify(webServiceResult);
@@ -222,7 +228,10 @@ function invokeWebService(body, servicePath, headers, isEncryptResponse, encrypt
             procedure : 'deleteCredientails',
             parameters : [webServiceResult]
     };
-    return MFP.Server.invokeProcedure(invocationData);
+    webServiceResult = MFP.Server.invokeProcedure(invocationData);
+}catch(e){}
+	
+	return webServiceResult;
 }
 
 function invokeWebServiceStatic(request, servicePath, isEncryptResponse, encryptionPassword) {
