@@ -2205,7 +2205,7 @@ function invokeWebServiceString(request, isEncryptResponse, encryptionPassword) 
 			headers : {
 				"SOAPAction" : ""
 			},
-			returnedContentType : "HTML",
+			returnedContentType : "xml",
 			path : "/seasonalCardService_V3",
 			body : {
 				content : request,
