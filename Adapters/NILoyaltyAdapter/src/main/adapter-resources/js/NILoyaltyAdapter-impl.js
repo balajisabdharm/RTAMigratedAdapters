@@ -20,13 +20,13 @@ var message_ar = "هناك خطأ ما. يُرجى إعادة المحاولة �
 var xsdStr = "http://www.rta.ae/ActiveMatrix/ESB/NILoyaltyAccountManagementService/SharedResources/XMLSchema/NILoyaltyAccountManagementServiceSchema.xsd";
 function fixNameSpace(response){
 	MFP.Logger.info(" ================================================= REMOVING NAMESPACE =================================================");
-	response = JSON.stringify(response);
+	var newResponse = JSON.stringify(response);
 	reg1 = new RegExp('"":"'+xsdStr+'",',"g");
 	reg2 = new RegExp('{"CDATA":',"g");
 	reg3 = new RegExp('"},"',"g");
 	
 	
-	response = response.replace(reg1,"").replace(reg2,"").replace(reg3,"\",\"").replace(/}},/g,"},").replace(/}}]/g,"}]")+"}";
+	newResponse = newResponse.replace(reg1,"").replace(reg2,"").replace(reg3,"\",\"").replace(/}},/g,"},").replace(/}}]/g,"}]")+"}";
 	//MFP.Logger.info("refined Response -->" + response);
 	
 	try{
