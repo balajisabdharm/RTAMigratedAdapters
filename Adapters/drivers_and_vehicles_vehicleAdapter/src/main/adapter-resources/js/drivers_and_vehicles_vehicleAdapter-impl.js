@@ -306,7 +306,7 @@ function invokeWebService(body,servicePath,headers, isEncryptResponse, encryptio
 	// Adding custom HTTP headers if they were provided as parameter to the
 	// procedure call
 	headers && (input['headers'] = headers);
-
+	try{
 	var webServiceResult = MFP.Server.invokeHttp(input);
 	if(isEncryptResponse != undefined && isEncryptResponse == true)
 	{
@@ -325,7 +325,10 @@ function invokeWebService(body,servicePath,headers, isEncryptResponse, encryptio
 			procedure : 'deleteCredientails',
 			parameters : [webServiceResult]
 	};
-	return MFP.Server.invokeProcedure(invocationData); 
+	webServiceResult = MFP.Server.invokeProcedure(invocationData); 
+	}catch(e){}
+	
+	return webServiceResult;
 }
 
 function isVehicleDueForRenewal(expiryDate) {
