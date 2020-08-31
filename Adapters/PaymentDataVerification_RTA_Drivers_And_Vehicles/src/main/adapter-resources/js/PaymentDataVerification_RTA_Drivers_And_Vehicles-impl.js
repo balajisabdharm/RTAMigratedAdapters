@@ -80,7 +80,8 @@ function encryptData(data,appId) {
 	
 	MFP.Logger.info("--===--->>> encryptData :: "+appId);
 	MFP.Logger.info("--===--->>> encryptData :: "+password);
-	var cypherText = Aes.Ctr.encrypt(data,password,ENCRYPTION_STRENGTH);
+	MFP.Logger.info("--===--->>> encryptData :: "+JSON.stringify(data));
+	var cypherText = Aes.Ctr.encrypt(JSON.stringify(data),password,ENCRYPTION_STRENGTH);
 	//return {cypherText: cypherText };
 	return {cypherText: password};
 }
