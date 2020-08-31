@@ -193,7 +193,7 @@ function TransactionServiceService_operationStringRequest(request, isEncryptResp
 	MFP.Logger.info("Received Request ::: "+request.toString());
 	
 	var parameters = [request];
-	var request = buildBody(parameters, true);
+	//var request = buildBody(parameters, true);
 	
 	MFP.Logger.info("Build Body Request ::: "+request.toString());
 	
