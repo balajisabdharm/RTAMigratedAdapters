@@ -26,7 +26,7 @@ function getUIList(language,params) {
 }
 
 function getImageInBase64(language,params) {
-	MFP.Logger.info("Log Trest getImageInBase64:" + JSON.stringify(language));
+	MFP.Logger.info("Log Test Value getImageInBase64:" + JSON.stringify(language));
 	
 	var file = com.rta.java.adapter.CSImageMerge.getImage(params.imageId,MFP.Server.getPropertyValue("rta.image.nolTempPath"));
 	
