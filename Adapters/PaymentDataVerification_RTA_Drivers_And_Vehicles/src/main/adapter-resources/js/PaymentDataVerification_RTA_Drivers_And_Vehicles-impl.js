@@ -75,7 +75,13 @@ function getTransactionAmount(spTRN)
 	return amount;
 }
 
-
+function encryptData(data,appId) {
+	var password = MFP.Server.getPropertyValue("epay.Encryption.PASSWORD.RTA" + appId);
+	
+	var cypherText = Aes.Ctr.encrypt(data,password,ENCRYPTION_STRENGTH);
+	//return {cypherText: cypherText };
+	return {cypherText: password};
+}
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
 /*  AES implementation in JavaScript                     (c) Chris Veness 2005-2014 / MIT License */
@@ -91,10 +97,4 @@ var ENCRYPTION_STRENGTH = MFP.Server.getPropertyValue("epay.Encryption.STRENGTH"
 if (ENCRYPTION_STRENGTH == '256') ENCRYPTION_STRENGTH = 256;
 else ENCRYPTION_STRENGTH = 128;
 
-function encryptData(data,appId) {
-	var password = MFP.Server.getPropertyValue("epay.Encryption.PASSWORD.RTA" + appId);
-	
-	var cypherText = Aes.Ctr.encrypt(data,password,ENCRYPTION_STRENGTH);
-	//return {cypherText: cypherText };
-	return {cypherText: password};
-}
+
