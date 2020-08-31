@@ -24,7 +24,7 @@
 	<property name="tokens.recentActivities"  description="tokens.recentActivities" defaultValue="${tokenRecentActivities}$"/>
 
      <property name="epay.Encryption.PASSWORD.RTA_Public_Transport"  description="epay.Encryption.PASSWORD.RTA_Public_Transport" defaultValue="${epayEncryptionPasswordRTAPublicTransport}$"/>
-	<prop erty name="epay.Encryption.PASSWORD.RTA_Corporate_Services"  description="epay.Encryption.PASSWORD.RTA_Corporate_Services" defaultValue="${epayEncryptionPasswordRTACorporateServices}$"/>
+	<property name="epay.Encryption.PASSWORD.RTA_Corporate_Services"  description="epay.Encryption.PASSWORD.RTA_Corporate_Services" defaultValue="${epayEncryptionPasswordRTACorporateServices}$"/>
 	<property name="epay.Encryption.PASSWORD.RTA_Drivers_And_Vehicles"  description="epay.Encryption.PASSWORD.RTA_Drivers_And_Vehicles" defaultValue="${epayEncryptionPasswordRTADriversAndaVehicles}$"/>
 	<property name="epay.Encryption.PASSWORD.Smart_Dubai_Parking"  description="epay.Encryption.PASSWORD.Smart_Dubai_Parking" defaultValue="${epayEncryptionPasswordSmartDubaiParking}$"/>
 	<property name="epay.Encryption.PASSWORD.RTA_Dubai"  description="epay.Encryption.PASSWORD." defaultValue="${EncryptionPasswordRTADubai}$"/>
