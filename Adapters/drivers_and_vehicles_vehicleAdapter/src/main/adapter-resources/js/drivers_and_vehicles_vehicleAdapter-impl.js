@@ -306,8 +306,9 @@ function invokeWebService(body,servicePath,headers, isEncryptResponse, encryptio
 	// Adding custom HTTP headers if they were provided as parameter to the
 	// procedure call
 	headers && (input['headers'] = headers);
-	try{
 	var webServiceResult = MFP.Server.invokeHttp(input);
+	try{
+	
 	if(isEncryptResponse != undefined && isEncryptResponse == true)
 	{
 		var responseString = JSON.stringify(webServiceResult);
