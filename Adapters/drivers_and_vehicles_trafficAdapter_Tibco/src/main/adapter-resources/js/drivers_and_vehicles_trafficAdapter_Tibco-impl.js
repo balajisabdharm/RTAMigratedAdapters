@@ -1948,13 +1948,13 @@ function jsonToXml(jsonObj, xmlStr, namespaces) {
 				toAppend += getAttributes(val);
 				if (namespaces != null)
 					toAppend += ' ' + namespaces;
-				toAppend += ">\n";
+				toAppend += ">";
 				toAppend = jsonToXml(val, toAppend);
 			}
 			else {
 				toAppend += ">" + val;
 			}
-			toAppend += "</" + attr + ">\n";
+			toAppend += "</" + attr + ">";
 		}
 	}
 
