@@ -1848,26 +1848,110 @@ function invokeWebService(body, servicePath, headers, isEncryptResponse, encrypt
     return MFP.Server.invokeProcedure(invocationData);
 }
 
-function buildBody2(parameters, isStatic) {
-    var request = "";
+function buildBody2(envHeader, params, namespaces, soapEnvNS) {
+	var body = '<soapenv:Envelope ' + soapEnvNS + '>'+ '<soapenv:Header>'+ ' <wsse:Security soapenv:mustUnderstand="1" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"> '+ ' <wsse:UsernameToken wsu:Id="UsernameToken-8">';
+	
+	body = jsonToXml(envHeader, body, namespaces);
+	//body = jsonToXml(JSON.parse(envHeader), body.toString(), namespaces);
+	body += '</wsse:UsernameToken>'+ '</wsse:Security>'+ '</soapenv:Header>';
+	body += '<soapenv:Body>';
+//	MFP.Logger.warn("|drivers_and_vehicles_trafficAdapter |body params : " + JSON.stringify([params, body, namespaces]));
+	//MFP.Logger.info("|drivers_and_vehicles_trafficAdapter |body Temp Log " + JSON.stringify(jsonToXml2(params, "", namespaces)));
+	body  = jsonToXml(params, body, namespaces);
+	//body = jsonToXml(JSON.parse(params), body.toString(), namespaces);
 
-    if (isStatic == true) {
-        request = MFP.Server.invokeProcedure({
-            adapter: 'drivers_and_vehciles_utilitiesAdapter_Tibco',
-            procedure: 'buildBodyFromStaticRequest',
-            parameters: parameters,
+	body += '</soapenv:Body>' + '</soapenv:Envelope>';	
+	
+	//MFP.Logger.debug("******bo0000000dy " + body);
+	body = replaceCredentials(body);
+	
+	return {body : body};
+}
 
-        });
-    } else {
-        request = MFP.Server.invokeProcedure({
-            adapter: 'drivers_and_vehciles_utilitiesAdapter_Tibco',
-            procedure: 'buildBody2',
-            parameters: parameters
-        });
-    }
-    MFP.Logger.warn("|drivers_and_vehicles_trafficAdapter |buildBody : " + JSON.stringify(request.body));
+function getChannelCredentials() {
+	return {
+		username : Mobstguser,
+		//password : "Test@1234"
+		password : "m792!du)+1g"
+	};
+}
 
-    return request.body;
+function getExternalChannelCredentials() {
+	return {
+		externalUsername : "Mobstguser",
+		//externalPassword : "Test@1234"
+		externalPassword : "m792!du)+1g" //Production
+	};
+}
+
+function getTibcoCredentials() {
+	return {
+		username_tibco : "Mobstguser",
+		password_tibco : "m792!du)+1g",
+	};
+}
+
+function getTrafficCredentials() {
+	return {
+		username : "Mobstguser",
+		//password : "Test@1234"
+		password : "m792!du)+1g" //Production	
+		};
+}
+
+function replaceCredentials(envHeader){
+
+	var string = envHeader;
+	string = this.replaceAll(string, "%#credentials!#!username#%", getChannelCredentials().username);
+	string = this.replaceAll(string, "%#credentials!#!externalUsername#%", getExternalChannelCredentials().externalUsername);
+	string = this.replaceAll(string, "%#credentials!#!username_tibco#%", getTibcoCredentials().username_tibco);
+	string = this.replaceAll(string, "%#credentials!#!password#%", getChannelCredentials().password);
+	string = this.replaceAll(string, "%#credentials!#!password_tibco#%", getTibcoCredentials().password_tibco);
+	string = this.replaceAll(string, "%#credentials!#!externalPassword#%", getExternalChannelCredentials().externalPassword);
+	string = this.replaceAll(string, "%#credentials!#!username_traffic#%", getTrafficCredentials().username);
+	string = this.replaceAll(string, "%#credentials!#!password_traffic#%", getTrafficCredentials().password);
+
+	/*MFP.Logger.debug("??????????????????????????????????????????");
+	MFP.Logger.debug("converted Body " + string);
+	MFP.Logger.debug("??????????????????????????????????????????");*/
+	return string ;
+}
+
+function getAttributes(jsonObj) {
+	var attrStr = '';
+	for(var attr in jsonObj) {
+		var val = jsonObj[attr];
+		if (attr.charAt(0) == '@') {
+			attrStr += ' ' + attr.substring(1);
+			attrStr += '="' + val + '"';
+		}
+	}
+	return attrStr;
+}
+
+function jsonToXml(jsonObj, xmlStr, namespaces) {
+
+	var toAppend = '';
+	for(var attr in jsonObj) {
+		var val = jsonObj[attr];
+		if (attr.charAt(0) != '@') {
+			toAppend += "<" + attr;
+			if (typeof val  === 'object') {
+				toAppend += getAttributes(val);
+				if (namespaces != null)
+					toAppend += ' ' + namespaces;
+				toAppend += ">\n";
+				toAppend = jsonToXml(val, toAppend);
+			}
+			else {
+				toAppend += ">" + val;
+			}
+			toAppend += "</" + attr + ">\n";
+		}
+	}
+
+
+	return xmlStr += toAppend;
 }
 
 function buildBody(parameters, isStatic) {
