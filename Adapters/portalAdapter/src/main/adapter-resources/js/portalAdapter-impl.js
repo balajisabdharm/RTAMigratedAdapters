@@ -933,7 +933,7 @@ function _isAuthorizedPortal(portal_username, portal_password) {
  * @param: String
  * @returns: Boolean
  */
-function _isAuthorized(user_id) {
+/*function _isAuthorized(user_id) {
 	try {
 		var authUserIdentity = MFP.Server.getAuthenticatedUser();
 		//MFP.Logger.info("|_isAuthorized" +JSON.stringify(authUserIdentity));
@@ -967,6 +967,14 @@ function _isAuthorized(user_id) {
 		return handleError(message_en, message_ar, 'RTA-CSHELL-ERROR-2', "_isAuthorized");
 
 	}
+}*/
+
+function _isAuthorized(user_id){
+    
+    return {
+        authRequired: false
+    };
+    
 }
 
 /**
