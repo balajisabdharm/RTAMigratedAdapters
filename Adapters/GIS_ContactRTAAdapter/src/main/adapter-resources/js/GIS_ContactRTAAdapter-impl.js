@@ -14,13 +14,18 @@ function createServiceToken()
 //https://gisint.rta.ae/arcgis/rest/services/Smart_Services/RTA_CSC_PP_Google_API_v2/MapServer/1/query?where=1=1&outFields=*&f=pjson
 function getRtaServices(token){
 	try{
+		
+		
 	if(!token) token= createServiceToken().response.token;
+MFP.Logger.info("GIS_ContactRTAAdapter/getRtaServices/ Token " + token);
 	var invocationData= {
 		adapter: 'CentersAdapter',
 		procedure: 'getCenters',
 		parameters: []
 	};
+		
 	var centers = MFP.Server.invokeProcedure(invocationData);
+	MFP.Logger.info("GIS_ContactRTAAdapter/getRtaServices/response  centers======== " + centers);
 	var customerHappinessCenters= centers.customerHappinessCenters;
 	var vehicleTestingCenters= centers.vehicleTestingCenters;
 	var drivingSchoolsCenters= centers.drivingSchoolsCenters;
@@ -47,7 +52,7 @@ function getRtaServices(token){
 	
 	
 	
-	
+	MFP.Logger.info("GIS_ContactRTAAdapter/getRtaServices/response  result======== " + result);
 	
 	return {
 		features:result
