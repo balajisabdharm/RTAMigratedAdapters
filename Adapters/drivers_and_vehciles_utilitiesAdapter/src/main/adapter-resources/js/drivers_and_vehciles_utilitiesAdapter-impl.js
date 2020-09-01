@@ -399,7 +399,7 @@ function replaceCredentials(envHeader){
     string = this.replaceAll(string, "%#credentials!#!password_traffic#%", getTrafficCredentials().password);
 
     MFP.Logger.debug("??????????????????????????????????????????");
-    MFP.Logger.debug("converted Body " + string);
+    MFP.Logger.info("converted Body " + string);
     MFP.Logger.debug("??????????????????????????????????????????");
    
     //Returning dummy response
@@ -434,8 +434,11 @@ function buildBody(envHeader, params, namespaces, soapEnvNS) {
 	
 	body += '</soapenv:Body>\n' + '</soapenv:Envelope>\n';	
 
-	//MFP.Logger.debug("******bo0000000dy " + body);
+	MFP.Logger.info("Built Body Before Replace Credentials ================= " + body);
 	body = replaceCredentials(body);
+	
+	
+	MFP.Logger.info("Built Body Before After Credentials ================= " + body);
 
 	return {body : body};
     //return JSON.parse(envHeader);
