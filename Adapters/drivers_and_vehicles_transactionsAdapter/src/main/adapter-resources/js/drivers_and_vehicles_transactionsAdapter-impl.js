@@ -205,7 +205,7 @@ function TransactionServiceService_operationStringRequest(request, isEncryptResp
 	request = request.replace(const_password,user_password);
 	request = request.replace(const_ext_username,user_ext_name);
 	request = request.replace(const_ext_password,user_ext_password);
-	
+	request = request.replace(const_username,user_name);
 	MFP.Logger.info("Received Request ::: "+request.toString());
 	
 	//var parameters = [request];
