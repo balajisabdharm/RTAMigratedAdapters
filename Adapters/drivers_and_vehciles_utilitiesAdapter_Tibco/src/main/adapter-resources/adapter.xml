@@ -12,6 +12,7 @@
         </connectionPolicy>
     </connectivity>
     <procedure name="buildBody" />
+	<procedure name="buildBody2" />
     <procedure name="buildBodyFromStaticRequest" />
     <procedure name="getApplicationSettings" />
     <procedure name="getTibcoMode" />
