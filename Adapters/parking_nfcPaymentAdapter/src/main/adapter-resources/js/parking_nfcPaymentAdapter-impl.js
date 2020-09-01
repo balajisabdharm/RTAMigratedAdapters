@@ -4,7 +4,7 @@ var Parking_PASSWORD = "34rth4@ur";
 
 function balanceEnquiry(linkageId,isEncryptResponse, encryptionPassword) {
 	var request = getRequestString('balanceEnquiry', linkageId, '');
-	var requestObj = buildBody([ request ], true);
+	var requestObj = buildBody([request.toString()], true);
 	return invokeWebServiceString(requestObj, isEncryptResponse,
 			encryptionPassword);
 }
@@ -13,7 +13,7 @@ function initNFCPayment(linkageId, mobileNumber, amount, serviceId,
 	var boyParametersString = '<msisdn>' + mobileNumber + '</msisdn>'
 	+ '<amount>' + amount + '</amount><serviceId>4</serviceId>';
 	var request = getRequestString('initNFCPayment', linkageId,boyParametersString);
-	var requestObj = buildBody([ request ], true);
+	var requestObj = buildBody([request.toString()], true);
 	return invokeWebServiceString(requestObj, isEncryptResponse,
 			encryptionPassword);
 }
@@ -24,7 +24,7 @@ function completeNFCPayment(linkageId, mobileNumber, nfcTxnId, status,
 	+ '</status><serviceId>4</serviceId>';
 	var request = getRequestString('completeNFCPayment', linkageId,
 			boyParametersString);
-	var requestObj = buildBody([ request ], true);
+	var requestObj = buildBody([request.toString()], true);
 	return invokeWebServiceString(requestObj, isEncryptResponse,
 			encryptionPassword);
 }
