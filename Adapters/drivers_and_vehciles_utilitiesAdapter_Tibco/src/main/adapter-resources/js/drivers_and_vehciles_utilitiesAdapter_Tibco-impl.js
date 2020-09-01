@@ -438,13 +438,13 @@ function buildBody(envHeader, params, namespaces, soapEnvNS) {
 
 function buildBody2(envHeader, params, namespaces, soapEnvNS) {
 	var body = '<soapenv:Envelope ' + soapEnvNS + '>\n'+ '<soapenv:Header>\n'+ ' <wsse:Security soapenv:mustUnderstand="1" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"> \n'+ ' <wsse:UsernameToken wsu:Id="UsernameToken-8">  \n';
-	MFP.Logger.info("build Body 2 Called");
+	
 	body = jsonToXml(envHeader, body, namespaces);
 	//body = jsonToXml(JSON.parse(envHeader), body.toString(), namespaces);
 	body += '</wsse:UsernameToken>\n'+ '</wsse:Security>\n'+ '</soapenv:Header>\n';
 	body += '<soapenv:Body>\n';
 //	MFP.Logger.warn("|drivers_and_vehicles_trafficAdapter |body params : " + JSON.stringify([params, body, namespaces]));
-	MFP.Logger.info("|drivers_and_vehicles_trafficAdapter |body Temp Log " + JSON.stringify(jsonToXml2(params, "", namespaces)));
+	//MFP.Logger.info("|drivers_and_vehicles_trafficAdapter |body Temp Log " + JSON.stringify(jsonToXml2(params, "", namespaces)));
 	body  = jsonToXml2(params, body, namespaces);
 	//body = jsonToXml(JSON.parse(params), body.toString(), namespaces);
 
@@ -453,8 +453,6 @@ function buildBody2(envHeader, params, namespaces, soapEnvNS) {
 	//MFP.Logger.debug("******bo0000000dy " + body);
 	body = replaceCredentials(body);
 	
-	MFP.Logger.info("|drivers_and_vehicles_trafficAdapter |body With creds: " + JSON.stringify(body));
-
 	return {body : body};
 }
 
@@ -522,18 +520,18 @@ function jsonToXml2(jsonObj, xmlStr, namespaces) {
 				toAppend += getAttributes(val);
 				if (namespaces != null)
 					toAppend += ' ' + namespaces;
-				toAppend += ">\n";
+				toAppend += ">";
 				toAppend = jsonToXml2(val, toAppend);
 			}
 			else {
 				toAppend += ">" + val;
 			}
-			toAppend += "</" + attr + ">\n";
+			toAppend += "</" + attr + ">";
 		}
 	}
 
-
-	return toAppend += xmlStr ;
+	MFP.Logger.info (" Adding to xml "+toAppend);
+	return  xmlStr += toAppend ;
 }
 
 function escapeRegExp(string) {
