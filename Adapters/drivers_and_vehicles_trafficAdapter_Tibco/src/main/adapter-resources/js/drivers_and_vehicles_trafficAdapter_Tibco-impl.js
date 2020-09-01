@@ -859,8 +859,9 @@ function fineManagementService(params, isEncryptResponse, encryptionPassword) {
         var _soapEnvNS = 'xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:lag="http://www.rta.ae/EIP/LAGeneralFinesInquiryService/LAGeneralFinesInquiryService_Schema"';
         MFP.Logger.info("PARAMS Request OBJECT ::::::: "+JSON.stringify(paramsRequest));
         
-        var parameters = [envHeader, paramsRequest, '', _soapEnvNS];
-        var request = buildBody2(parameters, false);
+        var parameters = [];
+        //envHeader, params, namespaces, soapEnvNS
+	var request = buildBody2(envHeader, paramsRequest, '', _soapEnvNS);
         // MFP.Logger.warn("|drivers_and_vehicles_trafficAdapter_Tibco |fineManagementService | Request : " + request + "at " + new Date());
         //return {"REQ" : request};
         MFP.Logger.info("Got Body of Request >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> "+JSON.stringify(request));
