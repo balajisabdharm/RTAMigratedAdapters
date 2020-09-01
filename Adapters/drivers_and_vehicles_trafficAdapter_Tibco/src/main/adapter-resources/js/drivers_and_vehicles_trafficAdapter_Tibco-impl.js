@@ -762,9 +762,10 @@ function fixNameSpace_FI(response){
 	MFP.Logger.info("refined Response -->" + newResponse);
 	
 	try{
-	
 		return JSON.parse(newResponse);
 	}catch(e){
+		
+		MFP.Logger.info("Failed CDATA conversion ::::::: "+newResponse);
 		return response;
 	}
 }
