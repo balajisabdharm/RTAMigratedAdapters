@@ -2119,7 +2119,7 @@ function _invokeWebServiceString(request, servicePath, SOAPAction, isEncryptResp
         returnedContentType: 'xml',
         path: servicePath,
         body: {
-            content: request,
+            content: request.toString(),
             contentType: 'text/xml; charset=utf-8'
         }
     };
