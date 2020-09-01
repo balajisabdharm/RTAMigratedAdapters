@@ -1848,8 +1848,8 @@ function invokeWebService(body, servicePath, headers, isEncryptResponse, encrypt
     return MFP.Server.invokeProcedure(invocationData);
 }
 
-function buildBody2(envHeader, params, namespaces, soapEnvNS) {
-	var body = '<soapenv:Envelope ' + soapEnvNS + '>'+ '<soapenv:Header>'+ ' <wsse:Security soapenv:mustUnderstand="1" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"> '+ ' <wsse:UsernameToken wsu:Id="UsernameToken-8">';
+function buildBody2(envHeader, params, namespaces, soapEnv_NS) {
+	var body = '<soapenv:Envelope ' + soapEnv_NS + '>'+ '<soapenv:Header>'+ ' <wsse:Security soapenv:mustUnderstand="1" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"> '+ ' <wsse:UsernameToken wsu:Id="UsernameToken-8">';
 	
 	body = jsonToXml(envHeader, body, namespaces);
 	//body = jsonToXml(JSON.parse(envHeader), body.toString(), namespaces);
