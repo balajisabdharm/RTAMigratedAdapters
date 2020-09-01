@@ -752,6 +752,7 @@ function fineManagementService(params, isEncryptResponse, encryptionPassword) {
         // MFP.Logger.warn("|drivers_and_vehicles_trafficAdapter_Tibco |fineManagementService | StartParsingRequest : " + new Date());
         // MFP.Logger.warn("|drivers_and_vehicles_trafficAdapter_Tibco |fineManagementService | type : " + type);
         //MFP.Logger.warn("|drivers_and_vehicles_trafficAdapter_Tibco |fineManagementService | params : " + JSON.stringify(params, isEncryptResponse, encryptionPassword));
+         //params["cli:getFines"]["cli:getFineRequestInfo"]["cli:appId"]
         //<lag:ticketStatus>1</lag:ticketStatus>
         switch (type) {
 
@@ -760,8 +761,9 @@ function fineManagementService(params, isEncryptResponse, encryptionPassword) {
                     "lag:getFines": {
                         "lag:ticketStatus": "1",
                         "lag:getFinesByTrfNo": {
-                            "lag:appId": "DNVAPP", //params["cli:getFines"]["cli:getFineRequestInfo"]["cli:appId"],
-                            "lag:TrfNo": params["cli:getFines"]["cli:getFineRequestInfo"]["cli:trafficFileNo"] 
+                            "lag:TrfNo": params["cli:getFines"]["cli:getFineRequestInfo"]["cli:trafficFileNo"],
+                            "lag:appId": "DNVAPP"
+                             
                             
                         } 
                     }
