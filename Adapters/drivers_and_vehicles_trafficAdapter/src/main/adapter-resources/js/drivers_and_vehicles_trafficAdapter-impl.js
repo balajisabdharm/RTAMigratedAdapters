@@ -68,7 +68,7 @@ function fineManagementService(params, isEncryptResponse, encryptionPassword){
 			"wsse:Password" : "m792!du)+1g",
 			"wsse:Username" : "Mobstguser"
 	};
-	var servicePath= '/LAGeneralFinesInquiryServicee';
+	var servicePath= '/LAGeneralFinesInquiryService';
 	//xmlns:cli="http://client.ws.ffu.traffic.services.internet.ae"
 		var _soapEnvNS = 'xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:lag="http://www.rta.ae/EIP/LAGeneralFinesInquiryService/LAGeneralFinesInquiryService_Schema"';
 	var parameters = [envHeader,params, '', _soapEnvNS];
