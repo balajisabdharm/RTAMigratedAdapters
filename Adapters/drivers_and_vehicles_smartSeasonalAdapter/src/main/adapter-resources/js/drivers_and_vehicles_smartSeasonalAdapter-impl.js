@@ -1916,6 +1916,9 @@ function getCardByTFNOrPlateDetails(seasonalCardDetails, isEncryptResponse, encr
 		var requestObj = buildBody([ bodyRequest.toString() ], true);
 		var response = invokeWebServiceString(requestObj, isEncryptResponse,
 				encryptionPassword);
+		
+		MFP.Logger.info("got WS response ::::::::::::: "+JSON.stringify(response));
+		
 		if(! isUndefinedOrNull(response.Envelope.Body.getCardByTFNOrPlateDetailsResponse) && (response.Envelope.Body.getCardByTFNOrPlateDetailsResponse.SeasonalCardsListResponse) != undefined && 
 				(response.Envelope.Body.getCardByTFNOrPlateDetailsResponse.SeasonalCardsListResponse) != null ){
 			
