@@ -12,24 +12,14 @@
 
 	<displayName>drivers_and_vehicles_SalikTripsAdapter</displayName>
 	<description>drivers_and_vehicles_SalikTripsAdapter</description>
-	<connectivity>
-		<connectionPolicy xsi:type="http:HTTPConnectionPolicyType">
-			<protocol>https</protocol>
-			<domain>mobilefirstplatform.ibmcloud.com</domain>
-			<port>443</port>
-			<connectionTimeoutInMilliseconds>30000</connectionTimeoutInMilliseconds>
-			<socketTimeoutInMilliseconds>30000</socketTimeoutInMilliseconds>
-			<maxConcurrentConnectionsPerNode>50</maxConcurrentConnectionsPerNode>
-		</connectionPolicy>
-	</connectivity>
-
+	
 	<connectivity>
 		<connectionPolicy xsi:type="http:HTTPConnectionPolicyType">
 			<protocol>https</protocol>
 			<!--<domain>rtamhtibstgems1.rtatestdom.local</domain>
 			<port>11089</port>-->
-		   <domain>${rtamhtibstgamx1rtatestdomlocal}$</domain>
-            <port>${eiptibam2rtaglobalport21023}$</port>
+		   <domain>rtamhtibstgems1.rtatestdom.local</domain>
+            <port>11089</port>
 			<connectionTimeoutInMilliseconds>60000</connectionTimeoutInMilliseconds>
 			<socketTimeoutInMilliseconds>60000</socketTimeoutInMilliseconds>
 			<maxConcurrentConnectionsPerNode>50</maxConcurrentConnectionsPerNode>
