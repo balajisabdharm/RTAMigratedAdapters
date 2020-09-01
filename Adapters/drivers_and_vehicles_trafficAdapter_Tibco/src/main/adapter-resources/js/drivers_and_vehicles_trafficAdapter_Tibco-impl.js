@@ -751,11 +751,11 @@ var xsdStr_FI = "http://www.rta.ae/EIP/LAGeneralFinesInquiryService/LAGeneralFin
 function fixNameSpace_FI(response){
 	MFP.Logger.info(" ================================================= REMOVING NAMESPACE =================================================");
 	var newResponse = JSON.stringify(response);
-	reg1 = new RegExp('"": "'+xsdStr+'",',"g");	
+	reg1 = new RegExp('"": "'+xsdStr_FI+'",',"g");	
 	reg2 = new RegExp('{"CDATA":',"g");
 	reg3 = new RegExp('"},"',"g");
-	reg4 = new RegExp('"":"'+xsdStr+'",',"g");
-	reg5 = new RegExp('"":"'+xsdStr+'"',"g");
+	reg4 = new RegExp('"":"'+xsdStr_FI+'",',"g");
+	reg5 = new RegExp('"":"'+xsdStr_FI+'"',"g");
 	
 	
 	newResponse = newResponse.replace(reg1,"").replace(reg2,"").replace(reg3,"\",\"").replace(reg4,"").replace(reg5,"");
