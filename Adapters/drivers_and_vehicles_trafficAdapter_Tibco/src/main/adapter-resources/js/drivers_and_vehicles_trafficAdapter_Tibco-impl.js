@@ -860,7 +860,7 @@ function fineManagementService(params, isEncryptResponse, encryptionPassword) {
         MFP.Logger.info("PARAMS Request OBJECT ::::::: "+JSON.stringify(paramsRequest));
         
         var parameters = [envHeader, paramsRequest, '', _soapEnvNS];
-        var request = buildBody(parameters, false);
+        var request = buildBody2(parameters, false);
         // MFP.Logger.warn("|drivers_and_vehicles_trafficAdapter_Tibco |fineManagementService | Request : " + request + "at " + new Date());
         //return {"REQ" : request};
         MFP.Logger.info("Got Body of Request >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> "+JSON.stringify(request));
@@ -1846,6 +1846,28 @@ function invokeWebService(body, servicePath, headers, isEncryptResponse, encrypt
         parameters: [webServiceResult]
     };
     return MFP.Server.invokeProcedure(invocationData);
+}
+
+function buildBody2(parameters, isStatic) {
+    var request = "";
+
+    if (isStatic == true) {
+        request = MFP.Server.invokeProcedure({
+            adapter: 'drivers_and_vehciles_utilitiesAdapter_Tibco',
+            procedure: 'buildBodyFromStaticRequest',
+            parameters: parameters,
+
+        });
+    } else {
+        request = MFP.Server.invokeProcedure({
+            adapter: 'drivers_and_vehciles_utilitiesAdapter_Tibco',
+            procedure: 'buildBody2',
+            parameters: parameters
+        });
+    }
+    MFP.Logger.warn("|drivers_and_vehicles_trafficAdapter |buildBody : " + JSON.stringify(request.body));
+
+    return request.body;
 }
 
 function buildBody(parameters, isStatic) {
