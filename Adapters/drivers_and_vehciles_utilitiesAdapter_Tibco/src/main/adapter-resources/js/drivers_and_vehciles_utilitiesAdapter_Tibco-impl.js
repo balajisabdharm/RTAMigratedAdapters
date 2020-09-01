@@ -427,13 +427,12 @@ function buildBody(envHeader, params, namespaces, soapEnvNS) {
 	body  = jsonToXml(params, body, namespaces);
 	//body = jsonToXml(JSON.parse(params), body.toString(), namespaces);
 
-//	MFP.Logger.warn("|drivers_and_vehicles_trafficAdapter |body : " + JSON.stringify(body));
-
-	
 	body += '</soapenv:Body>\n' + '</soapenv:Envelope>\n';	
-
+	MFP.Logger.info("|drivers_and_vehicles_trafficAdapter |body Without creds: " + JSON.stringify(body));
 	//MFP.Logger.debug("******bo0000000dy " + body);
 	body = replaceCredentials(body);
+	
+	MFP.Logger.info("|drivers_and_vehicles_trafficAdapter |body With creds: " + JSON.stringify(body));
 
 	return {body : body};
 }
