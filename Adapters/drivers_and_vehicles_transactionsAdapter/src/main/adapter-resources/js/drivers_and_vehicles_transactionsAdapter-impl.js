@@ -192,7 +192,7 @@ function TransactionServiceService_operationStringRequest(request, isEncryptResp
 	var const_username = "%#credentials!#!username#%";
 	var user_name = "mobile_user";
 	
-	var const_password = "%#credentials!#!username#%";
+	var const_password = "%#credentials!#!password#%";
 	var user_password = "Test@1234";
 	
 	var const_ext_username = "%#credentials!#!externalUsername#%";
