@@ -1862,10 +1862,10 @@ function buildBody2(envHeader, params, namespaces, soapEnvNS) {
 
 	body += '</soapenv:Body>' + '</soapenv:Envelope>';	
 	
-	//MFP.Logger.debug("******bo0000000dy " + body);
+	MFP.Logger.info("******bo0000000dy " + body);
 	body = replaceCredentials(body);
 	
-	return {body : body};
+	return body;
 }
 
 function getChannelCredentials() {
