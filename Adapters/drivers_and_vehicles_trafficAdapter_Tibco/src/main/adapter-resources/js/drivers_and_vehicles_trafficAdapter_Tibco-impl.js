@@ -862,7 +862,8 @@ function fineManagementService(params, isEncryptResponse, encryptionPassword) {
         var parameters = [envHeader, paramsRequest, '', _soapEnvNS];
         var request = buildBody(parameters, false);
         // MFP.Logger.warn("|drivers_and_vehicles_trafficAdapter_Tibco |fineManagementService | Request : " + request + "at " + new Date());
-        //return {"REQ" : request}; 
+        //return {"REQ" : request};
+        MFP.Logger.info("Got Body of Request >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> "+JSON.stringify(request));
         //Log("RetrieveFinesService request >> " + request);
         //var response = invokeWebService(request, servicePath, null, isEncryptResponse, encryptionPassword);
         var response = _invokeWebServiceString(request, servicePath, SOAPAction, isEncryptResponse, encryptionPassword)
