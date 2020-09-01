@@ -11,7 +11,13 @@
             <maxConcurrentConnectionsPerNode>50</maxConcurrentConnectionsPerNode>
         </connectionPolicy>
     </connectivity>
-    <procedure name="ValidateTag" />
+   <procedure name="ValidateTag" />
+	<procedure name="ValidateTFNAndPlate" />
+	<procedure name="ValidateProfile" />
+    <procedure name="VehicleInformationValidation" />
+	<procedure name="TagRegistration" />
+	<procedure name="ValidateVehicleDetails" />
+	<procedure name="TagRegistrationWithProfileDetails" />
 
     <property name="drivers_and_vehicles_is_debugging"  description="drivers_and_vehicles_is_debugging" defaultValue="${DriversAndVehiclesIsDebugging}$"/>
 </mfp:adapter>
