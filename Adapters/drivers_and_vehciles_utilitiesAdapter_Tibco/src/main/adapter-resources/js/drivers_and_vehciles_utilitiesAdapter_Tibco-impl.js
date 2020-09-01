@@ -511,6 +511,7 @@ function jsonToXml(jsonObj, xmlStr, namespaces) {
 
 function jsonToXml2(jsonObj, xmlStr, namespaces) {
 
+	MFP.Logger.info (" GOT JSON OBJ "+JSON.stringify(jsonObj));
 	var toAppend = '';
 	for(var attr in jsonObj) {
 		var val = jsonObj[attr];
@@ -530,7 +531,7 @@ function jsonToXml2(jsonObj, xmlStr, namespaces) {
 		}
 	}
 
-	MFP.Logger.info (" Adding to xml "+toAppend);
+	
 	return  xmlStr += toAppend ;
 }
 
