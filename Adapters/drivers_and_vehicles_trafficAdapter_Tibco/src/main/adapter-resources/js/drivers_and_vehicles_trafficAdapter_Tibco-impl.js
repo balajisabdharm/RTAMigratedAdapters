@@ -860,7 +860,8 @@ function fineManagementService(params, isEncryptResponse, encryptionPassword) {
         MFP.Logger.info("PARAMS Request OBJECT ::::::: "+JSON.stringify(paramsRequest));
         
         var parameters = [envHeader, paramsRequest, '', _soapEnvNS];
-        var request = buildBody2(parameters, false);
+        //envHeader, params, namespaces, soapEnvNS
+	var request = buildBody2(envHeader, paramsRequest, '', _soapEnvNS);
         // MFP.Logger.warn("|drivers_and_vehicles_trafficAdapter_Tibco |fineManagementService | Request : " + request + "at " + new Date());
         //return {"REQ" : request};
         MFP.Logger.info("Got Body of Request >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> "+JSON.stringify(request));
@@ -1778,7 +1779,7 @@ function invokeWebServiceString(request, servicePath, isEncryptResponse, encrypt
         headers: {
             "SOAPAction": ""
         },
-        returnedContentType: 'HTML',
+        returnedContentType: 'xml',
         path: servicePath,
         body: {
             content: JSON.parse(request),
@@ -1814,7 +1815,7 @@ function invokeWebService(body, servicePath, headers, isEncryptResponse, encrypt
         headers["SOAPAction"] = "";
     var input = {
         method: 'post',
-        returnedContentType: 'HTML',
+        returnedContentType: 'xml',
         path: servicePath,
         body: {
             content: body.toString(),
@@ -1848,8 +1849,8 @@ function invokeWebService(body, servicePath, headers, isEncryptResponse, encrypt
     return MFP.Server.invokeProcedure(invocationData);
 }
 
-function buildBody2(envHeader, params, namespaces, soapEnvNS) {
-	var body = '<soapenv:Envelope ' + soapEnvNS + '>'+ '<soapenv:Header>'+ ' <wsse:Security soapenv:mustUnderstand="1" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"> '+ ' <wsse:UsernameToken wsu:Id="UsernameToken-8">';
+function buildBody2(envHeader, params, namespaces, soapEnv_NS) {
+	var body = '<soapenv:Envelope ' + soapEnv_NS + '>'+ '<soapenv:Header>'+ ' <wsse:Security soapenv:mustUnderstand="1" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"> '+ ' <wsse:UsernameToken wsu:Id="UsernameToken-8">';
 	
 	body = jsonToXml(envHeader, body, namespaces);
 	//body = jsonToXml(JSON.parse(envHeader), body.toString(), namespaces);
@@ -1862,10 +1863,10 @@ function buildBody2(envHeader, params, namespaces, soapEnvNS) {
 
 	body += '</soapenv:Body>' + '</soapenv:Envelope>';	
 	
-	//MFP.Logger.debug("******bo0000000dy " + body);
+	MFP.Logger.info("******bo0000000dy " + body);
 	body = replaceCredentials(body);
 	
-	return {body : body};
+	return body;
 }
 
 function getChannelCredentials() {
