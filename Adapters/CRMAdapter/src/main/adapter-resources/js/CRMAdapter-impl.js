@@ -68,8 +68,10 @@ function createCase(paramStr){
 	try{
 		
 		params = JSON.parse(paramStr);
+		
+		
 		MFP.Logger.warn("CRMAdapter |createCase |paramsCreateCase: " + params );
-		MFP.Logger.warn("CRMAdapter |createCase |paramsCreateCase: " + JSON.parse(paramStr) );
+		MFP.Logger.warn("CRMAdapter |createCase |paramsCreateCase: " + paramStr );
 	}
 	catch(e){
 		return {isSuccessful: false, reason:"Error parsing fields"};
