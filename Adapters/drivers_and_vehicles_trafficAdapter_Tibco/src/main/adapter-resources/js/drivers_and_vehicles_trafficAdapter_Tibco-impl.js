@@ -746,6 +746,29 @@ function convertObiectToArray(Object) {
     return Object;
 }
 
+
+var xsdStr_FI = "http://www.rta.ae/EIP/LAGeneralFinesInquiryService/LAGeneralFinesInquiryService_Schema";
+function fixNameSpace_FI(response){
+	MFP.Logger.info(" ================================================= REMOVING NAMESPACE =================================================");
+	var newResponse = JSON.stringify(response);
+	reg1 = new RegExp('"": "'+xsdStr+'",',"g");	
+	reg2 = new RegExp('{"CDATA":',"g");
+	reg3 = new RegExp('"},"',"g");
+	reg4 = new RegExp('"":"'+xsdStr+'",',"g");
+	reg5 = new RegExp('"":"'+xsdStr+'"',"g");
+	
+	
+	newResponse = newResponse.replace(reg1,"").replace(reg2,"").replace(reg3,"\",\"").replace(reg4,"").replace(reg5,"");
+	MFP.Logger.info("refined Response -->" + newResponse);
+	
+	try{
+	
+		return JSON.parse(newResponse);
+	}catch(e){
+		return response;
+	}
+}
+
 function fineManagementService(params, isEncryptResponse, encryptionPassword) {
     try {
         var type = params["cli:getFines"]["cli:getFineRequestInfo"]["cli:searchingType"];
@@ -857,18 +880,21 @@ function fineManagementService(params, isEncryptResponse, encryptionPassword) {
         var SOAPAction = 'getFines';
         //xmlns:cli="http://client.ws.ffu.traffic.services.internet.ae"
         var _soapEnvNS = 'xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:lag="http://www.rta.ae/EIP/LAGeneralFinesInquiryService/LAGeneralFinesInquiryService_Schema"';
-        MFP.Logger.info("PARAMS Request OBJECT ::::::: "+JSON.stringify(paramsRequest));
+        //MFP.Logger.info("PARAMS Request OBJECT ::::::: "+JSON.stringify(paramsRequest));
         
         var parameters = [envHeader, paramsRequest, '', _soapEnvNS];
         //envHeader, params, namespaces, soapEnvNS
 	var request = buildBody2(envHeader, paramsRequest, '', _soapEnvNS);
         // MFP.Logger.warn("|drivers_and_vehicles_trafficAdapter_Tibco |fineManagementService | Request : " + request + "at " + new Date());
         //return {"REQ" : request};
-        MFP.Logger.info("Got Body of Request >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> "+JSON.stringify(request));
+        //MFP.Logger.info("Got Body of Request >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> "+JSON.stringify(request));
         //Log("RetrieveFinesService request >> " + request);
         //var response = invokeWebService(request, servicePath, null, isEncryptResponse, encryptionPassword);
         var response = _invokeWebServiceString(request, servicePath, SOAPAction, isEncryptResponse, encryptionPassword)
-        //return {"REQ" : request, "RES":response};
+        
+	response.Envelope.Body = fixNameSpace_FI(response.Envelope.Body);
+	
+	//return {"REQ" : request, "RES":response};
         // MFP.Logger.warn("|drivers_and_vehicles_trafficAdapter_Tibco |fineManagementService | response : " + response + "at " + new Date());
         //get confisicatedVehicles
         //get confisicatedVehicles
