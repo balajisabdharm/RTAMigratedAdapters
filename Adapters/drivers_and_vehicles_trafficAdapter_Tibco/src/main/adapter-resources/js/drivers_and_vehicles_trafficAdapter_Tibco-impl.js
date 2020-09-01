@@ -2197,8 +2197,8 @@ function _logRequestResponse(refNum, adapter, SOAPAction, request, response, isD
             parameters: [refNum.toString(), JSON.stringify(response)]
         };
     }
-
+try{
     if (isDBLog)
         MFP.Server.invokeProcedure(invocationLog);
-
+}catch(e){}
 }
