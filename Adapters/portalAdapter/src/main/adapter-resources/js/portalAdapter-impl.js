@@ -1087,6 +1087,7 @@ function getUserInfoForOTP(userId, appid) {
 function updateMobileNumber(userId, oldMobileNumber, newMobileNumber, applicationId) {
 	try {
 		var isAuthorizedResponse = this._isAuthorized(userId);
+        adapterLogger("updateMobileNumber", "info", "authRequired", isAuthorizedResponse.authRequired);
 		if (isAuthorizedResponse.authRequired === false) {
 			//	MFP.Logger.info("|portalAdapter |authRequired |False: ");
 			adapterLogger("updateMobileNumber", "info", "authRequired", "False");
