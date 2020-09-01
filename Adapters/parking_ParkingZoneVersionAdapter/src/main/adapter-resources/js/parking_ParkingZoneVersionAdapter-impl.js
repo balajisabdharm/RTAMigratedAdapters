@@ -27,7 +27,7 @@ function getParkingZoneVersion(dataObject){
    headers :{
 		"SOAPAction" : ""
 	},
-   returnedContentType : 'application/json',
+   returnedContentType : 'HTML',
    path : '/mParkingSmartPhoneWS/smartPhoneWS',
    body : {
     content : getParkingZoneVersionRequest.toString(),
