@@ -437,18 +437,18 @@ function buildBody(envHeader, params, namespaces, soapEnvNS) {
 
 
 function buildBody2(envHeader, params, namespaces, soapEnvNS) {
-	var body = '<soapenv:Envelope ' + soapEnvNS + '>\n'+ '<soapenv:Header>\n'+ ' <wsse:Security soapenv:mustUnderstand="1" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"> \n'+ ' <wsse:UsernameToken wsu:Id="UsernameToken-8">  \n';
+	var body = '<soapenv:Envelope ' + soapEnvNS + '>'+ '<soapenv:Header>'+ ' <wsse:Security soapenv:mustUnderstand="1" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"> '+ ' <wsse:UsernameToken wsu:Id="UsernameToken-8">';
 	
 	body = jsonToXml(envHeader, body, namespaces);
 	//body = jsonToXml(JSON.parse(envHeader), body.toString(), namespaces);
-	body += '</wsse:UsernameToken>\n'+ '</wsse:Security>\n'+ '</soapenv:Header>\n';
-	body += '<soapenv:Body>\n';
+	body += '</wsse:UsernameToken>'+ '</wsse:Security>'+ '</soapenv:Header>';
+	body += '<soapenv:Body>';
 //	MFP.Logger.warn("|drivers_and_vehicles_trafficAdapter |body params : " + JSON.stringify([params, body, namespaces]));
 	//MFP.Logger.info("|drivers_and_vehicles_trafficAdapter |body Temp Log " + JSON.stringify(jsonToXml2(params, "", namespaces)));
 	body  = jsonToXml2(params, body, namespaces);
 	//body = jsonToXml(JSON.parse(params), body.toString(), namespaces);
 
-	body += '</soapenv:Body>\n' + '</soapenv:Envelope>\n';	
+	body += '</soapenv:Body>' + '</soapenv:Envelope>';	
 	
 	//MFP.Logger.debug("******bo0000000dy " + body);
 	body = replaceCredentials(body);
