@@ -17,8 +17,8 @@
 			<protocol>https</protocol>
 			<!-- <domain>rtamhtibstgems1.rtatestdom.local</domain>
 			<port>11089</port> -->
-			<domain>${rtamhtibstgamx1rtatestdomlocal}$</domain>
-            <port>${eiptibam2rtaglobalport21023}$</port>
+			   <domain>${Eiptibam2rtaglobal}$</domain>
+            <port>${Eiptibam2rtaglobalport21020}$</port>
 			<connectionTimeoutInMilliseconds>30000</connectionTimeoutInMilliseconds>
 			<socketTimeoutInMilliseconds>30000</socketTimeoutInMilliseconds>
 			<maxConcurrentConnectionsPerNode>50</maxConcurrentConnectionsPerNode>
