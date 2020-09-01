@@ -754,15 +754,17 @@ function fineManagementService(params, isEncryptResponse, encryptionPassword) {
         //MFP.Logger.warn("|drivers_and_vehicles_trafficAdapter_Tibco |fineManagementService | params : " + JSON.stringify(params, isEncryptResponse, encryptionPassword));
          //params["cli:getFines"]["cli:getFineRequestInfo"]["cli:appId"]
         //<lag:ticketStatus>1</lag:ticketStatus>
+        var paramsRequest = {};
         switch (type) {
 
             case "1":
-                var paramsRequest = {
+                paramsRequest = {
                     "lag:getFines": {
                         "lag:ticketStatus": "1",
                         "lag:getFinesByTrfNo": {
-                            "lag:TrfNo": params["cli:getFines"]["cli:getFineRequestInfo"]["cli:trafficFileNo"],
-                            "lag:appId": "DNVAPP"
+                            "lag:appId": "DNVAPP",
+                            "lag:TrfNo": params["cli:getFines"]["cli:getFineRequestInfo"]["cli:trafficFileNo"]
+                            
                              
                             
                         } 
@@ -774,7 +776,7 @@ function fineManagementService(params, isEncryptResponse, encryptionPassword) {
                 // procedure: fineManagementService
                 // parameters: [{ "cli:getFines": { "cli:getFineRequestInfo": { "cli:plateCategoryDesc": "Private", "cli:plateCodeId": "95", "cli:plateNo": "64400", "cli:plateSource": "1", "cli:plateSourceCode": "DXB", "cli:retrieveAllTickets": "true", "cli:searchingType": "2" } } }, false, null]
 
-                var paramsRequest = {
+                paramsRequest = {
                     "lag:getFines": {
                         "lag:ticketStatus": "1",
                         "lag:getFinesByPltNo": {
@@ -798,7 +800,7 @@ function fineManagementService(params, isEncryptResponse, encryptionPassword) {
                 //  </lag:getFinesByLicNo>
 
 
-                var paramsRequest = {
+                paramsRequest = {
                     "lag:getFines": {
                         "lag:ticketStatus": "1",
                         "lag:getFinesByLicNo": {
@@ -831,7 +833,7 @@ function fineManagementService(params, isEncryptResponse, encryptionPassword) {
                 //     </lag:ticketSource>
                 //  </lag:getFinesByTckNo>
 
-                var paramsRequest = {
+                paramsRequest = {
                     "lag:getFines": {
                         "lag:ticketStatus": "1",
                         "lag:getFinesByTckNo": {
@@ -855,6 +857,8 @@ function fineManagementService(params, isEncryptResponse, encryptionPassword) {
         var SOAPAction = 'getFines';
         //xmlns:cli="http://client.ws.ffu.traffic.services.internet.ae"
         var _soapEnvNS = 'xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:lag="http://www.rta.ae/EIP/LAGeneralFinesInquiryService/LAGeneralFinesInquiryService_Schema"';
+        MFP.Logger.info("PARAMS Request OBJECT ::::::: "+JSON.stringify(paramsRequest));
+        
         var parameters = [envHeader, paramsRequest, '', _soapEnvNS];
         var request = buildBody(parameters, false);
         // MFP.Logger.warn("|drivers_and_vehicles_trafficAdapter_Tibco |fineManagementService | Request : " + request + "at " + new Date());
