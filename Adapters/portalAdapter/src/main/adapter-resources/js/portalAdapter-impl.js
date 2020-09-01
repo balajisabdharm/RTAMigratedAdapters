@@ -970,7 +970,7 @@ function _isAuthorizedPortal(portal_username, portal_password) {
 }*/
 
 function _isAuthorized(user_id){
-    
+    adapterLogger("_isAuthorized", "info", "authRequired", "false");
     return {
         authRequired: false
     };
