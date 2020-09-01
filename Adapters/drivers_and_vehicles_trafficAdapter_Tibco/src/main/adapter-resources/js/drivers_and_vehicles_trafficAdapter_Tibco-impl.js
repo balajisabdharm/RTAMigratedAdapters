@@ -756,9 +756,9 @@ function fixNameSpace_FI(response){
 	reg3 = new RegExp('"},"',"g");
 	reg4 = new RegExp('"":"'+xsdStr_FI+'",',"g");
 	reg5 = new RegExp('"":"'+xsdStr_FI+'"',"g");
+	reg6 = new RegExp('{"CDATA":',"g");
 	
-	
-	newResponse = newResponse.replace(reg1,"").replace(reg2,"").replace(reg3,"\",\"").replace(reg4,"").replace(reg5,"");
+	newResponse = newResponse.replace(reg1,"").replace(reg2,"").replace(reg3,"\",\"").replace(reg4,"").replace(reg5,"").replace(reg6,"");
 	MFP.Logger.info("refined Response -->" + newResponse);
 	
 	try{
