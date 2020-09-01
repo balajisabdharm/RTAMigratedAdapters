@@ -2125,7 +2125,7 @@ function _invokeWebServiceString(request, servicePath, SOAPAction, isEncryptResp
     };
 
     _webServiceResult = MFP.Server.invokeHttp(input);
-
+try{
     //delete credientails
     var invocationData = {
         adapter: 'drivers_and_vehciles_utilitiesAdapter',
@@ -2133,9 +2133,9 @@ function _invokeWebServiceString(request, servicePath, SOAPAction, isEncryptResp
         parameters: [_webServiceResult]
     };
 
-    webServiceResult = MFP.Server.invokeProcedure(invocationData);
+    _webServiceResult = MFP.Server.invokeProcedure(invocationData);
 
-    responseString = webServiceResult;
+    responseString = _webServiceResult;
 
     //encrypt response
     if (isEncryptResponse != undefined && isEncryptResponse == true) {
@@ -2145,13 +2145,13 @@ function _invokeWebServiceString(request, servicePath, SOAPAction, isEncryptResp
             procedure: 'encryptData',
             parameters: [responseString, encryptionPassword]
         };
-        webServiceResult = MFP.Server.invokeProcedure(invocationData);
+        _webServiceResult = MFP.Server.invokeProcedure(invocationData);
     }
-
+}catch(e){}
     //log response
     _logRequestResponse(refNum, adapterName, SOAPAction, null, responseString, true);
 
-    return webServiceResult;
+    return _webServiceResult;
 }
 
 
