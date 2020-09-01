@@ -1870,7 +1870,7 @@ function buildBody2(envHeader, params, namespaces, soapEnvNS) {
 
 function getChannelCredentials() {
 	return {
-		username : Mobstguser,
+		username : "Mobstguser",
 		//password : "Test@1234"
 		password : "m792!du)+1g"
 	};
