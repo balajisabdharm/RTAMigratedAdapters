@@ -125,7 +125,6 @@ function invokeWebService(body, headers) {
 	var input = {
 		method: 'post',
 		returnedContentType: 'xml',
-		returnedContentEncoding: 'utf-8',
 		path: WSDL_Path,
 		headers: headers,
 		body: {
@@ -150,10 +149,9 @@ function isUndefinedOrNull(v) {
 		result = false;
 	return result;
 }
-//Code Commented as advised by Ayman from RTA Not Required as DEFAULT AUTH is being used
 /*function _isAuthorized(user_id) {
-	//var authUserIdentity = MFP.Server.getActiveUser("masterAuthRealm");
-	var authUserIdentity = MFP.Server.getAuthenticatedUser("IAMUAEPASS");
+	//var authUserIdentity = MFP.Server.getAuthenticatedUser();
+	var authUserIdentity = MFP.Server.getAuthenticatedUser();
 	MFP.Logger.info("|_isAuthorized" + JSON.stringify(authUserIdentity));
 	if (authUserIdentity) {
 		var authUserId = authUserIdentity.userId;
@@ -174,15 +172,12 @@ function isUndefinedOrNull(v) {
 		errorMessage: "Not Authorized"
 	};
 }*/
-
 function _isAuthorized(user_id) {
-    //var authUserIdentity = MFP.Server.getActiveUser("masterAuthRealm");
-    
-            return {
-                authRequired: false
-            };
-   
+    return {
+        authRequired: false
+    };
 }
+
 
 function _extractXMLValue(tag, data) {
 	var res = "";
@@ -322,6 +317,7 @@ function invokeWebService2(body) {
 		var input = {
 			method: 'post',
 			returnedContentType: 'xml',
+			returnedContentEncoding: 'ASCII',
 			path: WSDL_Path_For_GetUserProfile ,
 			body: {
 				content: body.toString(),
@@ -365,7 +361,7 @@ function getUserProfileV2(uid, appid) {
 		return handleError(message_en, message_ar, 'RTA-CSHELL-ERROR-2', "getUserProfileV2");
 	}
 }
-function getUserProfile(uid, appid) {
+/*function getUserProfile(uid, appid) {
 	try {
 
 		if (!uid || !appid) {
@@ -388,14 +384,16 @@ function getUserProfile(uid, appid) {
 		//MFP.Logger.info("|portalAdapter |getUserProfile |request: " + request );
 
 		var response = invokeWebService2(request);
-		adapterLogger("getUserProfile", "info", "Soap Response", toString(response));
+		
+		
+		adapterLogger("getUserProfile=", "info", "Soap Response", toString(response));
+		// this for testing only fixed response
+		response= {"isSuccessful":true,"errors":[],"warnings":[],"info":[],"Envelope":{"Header":"","Body":{"getUserProfileReturn":{"userProfile":{"userId":"salik56","title":{"titleID":"1","titleEn":"Mr","titleAr":"السيد"},"firstName":"Salik","middleName":"Salik","lastName":"Salik","phoneNo":"","mobileNo":"971543069768","email":"isoft.dubai@gmail.com","language":"English","userType":"UM_PUBLICUSER","businessLicenseNo":"","nationality":{"nationalityID":"162","nationalityEn":"United Arab Emirates","nationalityAr":"الامارات العربيّة المتّحدة"},"emirate":{"emirateID":"4","emirateEn":"Dubai","emirateAr":"دبي"},"address":"","thirdParty":"No","prefLanguage":"English","prefComm":"Email","isEmailVerified":"true","isMobileVerified":"true","isEmiratesIdVerified":"false","serviceRelatedInfo":[{"serviceId":"MPARKING","linkingAttribute":"dcxvtjyxxf97154306976815785447166469fcddb5eddd54fa18797283c05a109c6glsdbjldjncqxkeojzmwfukuurochrwrs"},{"serviceId":"SALIK","linkingAttribute":"39C0246C-B9CF-44F3-97E2-A4AF20FF4782"}],"createdOn":"17-MAR-20","modifiedOn":"17-MAR-20"}}}},"statusCode":200,"statusReason":"OK","responseHeaders":{"Content-Type":"text/xml; charset=utf-8","Date":"Wed, 22 Apr 2020 13:12:41 GMT"},"responseTime":328,"totalTime":333};
 		//MFP.Logger.info("|portalAdapter |getUserProfile |response: " + JSON.stringify(response));
 		if (response && response.isSuccessful && response.statusCode == 200 && response.Envelope && response.Envelope.Body
 			&& response.Envelope.Body.getUserProfileReturn.userProfile != undefined) {
 			adapterLogger("getUserProfile", "info", "Soap Response Nationality for JAXB", response.Envelope.Body.getUserProfileReturn.userProfile.nationality);
-			var userProfile = response.Envelope.Body.getUserProfileReturn.userProfile;		
-			adapterLogger("getUserProfile", "info", "@userProfile=", userProfile);
-
+			var userProfile = response.Envelope.Body.getUserProfileReturn.userProfile;
 			if (!userProfile.nationality) {
 				response.Envelope.Body.getUserProfileReturn.userProfile.nationality = {
 					nationalityID: "182",
@@ -426,6 +424,121 @@ function getUserProfile(uid, appid) {
 		}
 		adapterLogger("getUserProfile", "info", "responseMOD", toString(response));
 		//		MFP.Logger.info("|portalAdapter |getUserProfile |responseMOD: " + JSON.stringify(response));
+		return response;
+	}
+	catch (e) {
+		adapterLogger("getUserProfile", "error", "Exception", toString(e));
+
+		return handleError(message_en, message_ar, 'RTA-CSHELL-ERROR-2', "getUserProfile");
+
+	}
+}*/
+
+
+function fixNameSpace(strXSD, response){
+                reg1 = new RegExp('{"":"'+strXSD+'","CDATA":', "g");
+                reg2 = new RegExp('"":"'+strXSD+'",',"g");
+                reg3 = new RegExp('{"":"'+strXSD+'"}',"g");
+                response = response.replace(reg1,"").replace(reg2,"").replace(reg3,"\"\"").replace(/},/g,",").replace(/}}]/g,"}]")+"}";
+
+                return JSON.parse(response);
+}
+
+
+// updated bt faran
+function getUserProfile(uid, appid) {
+    
+    MFP.Logger.info("|portalAdapter | getUserProfile received input parameters: " + uid + " appid" +appid );
+	try {
+
+		if (!uid || !appid) {
+			var errorMapping = handleSystemMessages('RTA-CSHELL-ERROR-1');
+			return handleError(errorMapping.message_en, errorMapping.message_ar, errorMapping.responseCode, "getUserProfile");
+		}
+		adapterLogger("getUserProfile", "info", "Adapter Input", toString([uid, appid]));
+		var request = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" '
+			+ 'xmlns:sch="http://www.rta.ae/ActiveMatrix/ESB/schemas/PortalProfileService/Schema.xsd" '
+			+ 'xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"'
+			+ ' xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">'
+			+ getSoapHeader()
+			+ '<soapenv:Body><sch:getUserProfile><sch:userId>'
+			+ uid
+			+ '</sch:userId><sch:applicationId>'
+			+ appid
+			+ '</sch:applicationId>'
+			+ '</sch:getUserProfile></soapenv:Body></soapenv:Envelope>';
+
+       /* var request_new = '<soapenv:Envelope '
+            + 'xmlns:sch="http://www.rta.ae/ActiveMatrix/ESB/schemas/PortalProfileService/Schema.xsd"  xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">'
+            +  '<soapenv:Header><wsse:Security soapenv:mustUnderstand="1" '
+            + 'xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"'
+            + ' xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">'
+            
+           + '<wsse:UsernameToken wsu:Id="UsernameToken-7"><wsse:Username>' + 'EIPUser' + '</wsse:Username>'
+        +'<wsse:Password Type="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText">' + 'EIPUser'
+        +'</wsse:Password><wsse:Nonce EncodingType="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-soap-message-security-1.0#Base64Binary">'
+        +'jeM8hixX40AV0zxt/7LeUA==</wsse:Nonce>'
+        +'<wsu:Created>2020-05-27T10:58:00.044Z</wsu:Created></wsse:UsernameToken></wsse:Security></soapenv:Header>'
+           
+            + '<soapenv:Body><sch:getUserProfile><sch:userId>'
+            + uid
+            + '</sch:userId><sch:applicationId>'
+            + appid
+            + '</sch:applicationId>'
+            + '</sch:getUserProfile></soapenv:Body></soapenv:Envelope>'; */
+        
+        
+        adapterLogger("getUserProfile", "info", "Soap Request", toString(request));
+        
+		var response = invokeWebService2(request);
+		var strResponse = toString(response);
+		
+		//response = strResponse.replace(/{"":"http:\/\/www.rta.ae\/ActiveMatrix\/ESB\/schemas\/PortalProfileService\/Schema.xsd","CDATA":/g,"").replace(/"":"http:\/\/www.rta.ae\/ActiveMatrix\/ESB\/schemas\/PortalProfileService\/Schema.xsd",/g,"").replace(/{"":"http:\/\/www.rta.ae\/ActiveMatrix\/ESB\/schemas\/PortalProfileService\/Schema.xsd"}/g,"\"\"").replace(/},/g,",").replace(/}}]/g,"}]")+"}";
+		
+		
+		//Commented
+		//response = JSON.parse(response);
+		// generic method 
+		var strXSD = "http://www.rta.ae/ActiveMatrix/ESB/schemas/PortalProfileService/Schema.xsd";
+		response=fixNameSpace(strXSD,strResponse);
+		adapterLogger("getUserProfile=", "info", "Refined Response", response);
+		
+  //      response = JSON.parse(strResponse);
+		if (response && response.isSuccessful && response.statusCode == 200 && response.Envelope && response.Envelope.Body
+			&& response.Envelope.Body.getUserProfileReturn.userProfile != undefined) {
+			adapterLogger("getUserProfile", "info", "Soap Response Nationality for JAXB", response.Envelope.Body.getUserProfileReturn.userProfile.nationality);
+			var userProfile = response.Envelope.Body.getUserProfileReturn.userProfile;
+			if (!userProfile.nationality) {
+				response.Envelope.Body.getUserProfileReturn.userProfile.nationality = {
+					nationalityID: "182",
+					nationalityEn: "other",
+					nationalityAr: "other"
+				}
+			}
+			/*if (userProfile.prefLanguage.toLowerCase() == "en")
+				userProfile.prefLanguage = "English";
+
+			if (userProfile.prefLanguage.toLowerCase() == "ar")
+				userProfile.prefLanguage = "Arabic";
+
+			if (userProfile.language.toLowerCase() == "en")
+				userProfile.language = "English";
+
+			if (userProfile.language.toLowerCase() == "ar")
+				userProfile.language = "Arabic";
+
+			if (userProfile.language.toLowerCase() == "ar")
+				userProfile.language = "Arabic";
+
+			if (userProfile.mobileNo == null || userProfile.mobileNo == "" || userProfile.mobileNo == undefined)
+				userProfile.mobileNo = "00";
+
+			if (userProfile.mobileNo.indexOf("+") != -1)
+				userProfile.mobileNo = userProfile.mobileNo.replace("+", "");*/
+		}
+		//adapterLogger("getUserProfile", "info", "responseMOD", toString(response));
+		//MFP.Logger.info("|portalAdapter |getUserProfile |responseMOD: " + JSON.stringify(response));
+		
 		return response;
 	}
 	catch (e) {
@@ -577,7 +690,7 @@ function updateUserProfile(applicationId, titleId, firstName, lastName, national
 			prefLanguage, prefComm, email, isEmailVerified, isMobileVerified]));
 		//MFP.Logger.info("|portalAdapter |updateUserProfile |Data: " + titleId+" "+ firstName+" "+ lastName+" "+ nationalityId+" "+ mobileNo+" "+ userId+" "+ prefLanguage+" "+ prefComm);
 		var isAuthorizedResponse = this._isAuthorized(userId);
-		if (isAuthorizedResponse.authRequired === false) {
+		//if (isAuthorizedResponse.authRequired === false) {
 			//MFP.Logger.info("|portalAdapter |authRequired |False: ");
 			adapterLogger("updateUserProfile", "info", "authRequired", "False");
 
@@ -680,12 +793,12 @@ function updateUserProfile(applicationId, titleId, firstName, lastName, national
 				return handleError("Invalid Parameters", 406);
 			}
 
-		}
+		/*}
 		else {
 			//MFP.Logger.info("|portalAdapter |authRequired |True: " + isAuthorizedResponse);
 			adapterLogger("updateUserProfile", "info", "True", toString(isAuthorizedResponse));
 			return isAuthorizedResponse;
-		}
+		}*/
 	}
 	catch (e) {
 		adapterLogger("updateUserProfile", "error", "Exception", e.toString());
@@ -820,9 +933,9 @@ function _isAuthorizedPortal(portal_username, portal_password) {
  * @param: String
  * @returns: Boolean
  */
-/*function _isAuthorized(user_id) {
+function _isAuthorized(user_id) {
 	try {
-		var authUserIdentity = MFP.Server.getActiveUser("IAMUAEPASS");
+		var authUserIdentity = MFP.Server.getAuthenticatedUser();
 		//MFP.Logger.info("|_isAuthorized" +JSON.stringify(authUserIdentity));
 		adapterLogger("_isAuthorized", "info", "authUserIdentity", toString(authUserIdentity));
 
@@ -854,13 +967,6 @@ function _isAuthorizedPortal(portal_username, portal_password) {
 		return handleError(message_en, message_ar, 'RTA-CSHELL-ERROR-2', "_isAuthorized");
 
 	}
-}*/
-
-function _isAuthorized(user_id){
-    adapterLogger("_isAuthorized", "info", "authRequired", "false");
-    return {
-        authRequired: false
-    };
 }
 
 /**
