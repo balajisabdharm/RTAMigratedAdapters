@@ -27,7 +27,7 @@ function getParkingZoneVersion(dataObject){
    headers :{
 		"SOAPAction" : ""
 	},
-   returnedContentType : 'HTML',
+   returnedContentType : 'application/json',
    path : '/mParkingSmartPhoneWS/smartPhoneWS',
    body : {
     content : getParkingZoneVersionRequest.toString(),
@@ -36,7 +36,7 @@ function getParkingZoneVersion(dataObject){
   };
 
   var result_getParkingZoneVersionResponse =  MFP.Server.invokeHttp(input);
-  
+  MFP.Logger.info("Got repsonse from WS ::::::::::::>>>>>>>>>>>>>>>>>>>>>>>----  "+JSON.stringify(result_getParkingZoneVersionResponse));
   if(result_getParkingZoneVersionResponse.Envelope.Body.getParkingZoneVersionResponse["return"].version == undefined || result_getParkingZoneVersionResponse.Envelope.Body.getParkingZoneVersionResponse["return"].version == null || result_getParkingZoneVersionResponse.Envelope.Body.getParkingZoneVersionResponse["return"].version == ''){
 	var result_getParkingZoneVersionResponse_return =  MFP.Server.invokeHttp(input);
  } else {
