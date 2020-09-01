@@ -51,7 +51,7 @@ function getRecentActivities(userId) {
  * @param: String
  * @returns: Boolean
  */
-function _isAuthorized(user_id) {
+/*function _isAuthorized(user_id) {
 	var authUserIdentity = MFP.Server.getAuthenticatedUser("masterAuthRealm");
 	if (authUserIdentity) {
 		var authUserId = authUserIdentity.userId;
@@ -69,6 +69,13 @@ function _isAuthorized(user_id) {
 		errorCode : "401",
 		errorMessage : "Not Authorized"
 	};
+}*/
+
+function _isAuthorized(user_id) {
+    
+    return {
+        authRequired : false
+    };
 }
 
 function _serverErrorResponse() {
