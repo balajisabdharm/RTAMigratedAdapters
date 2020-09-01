@@ -139,8 +139,11 @@ function createCase(paramStr){
     request += '</sch:Channel></sch:caseData></sch:CreateCase_Request></soapenv:Body></soapenv:Envelope>';
     MFP.Logger.warn("CRMAdapter |createCase |request: " + request );
     
-    
-    return invokeWebService(request);
+    var respObj = invokeWebService(request);
+	
+    MFP.Logger.info("RAW RESPONSE ----- CRM_CREATE_CASE =========== "+JSON.stringify(respObj));	
+	
+    return respObj;
 }
 
 
