@@ -189,13 +189,31 @@ function TransactionServiceService_operationStringRequest(request, isEncryptResp
 			parameters : [request, isEncryptResponse, encryptionPassword]
 	};
 	return MFP.Server.invokeProcedure(invocationData);*/
+	var const_username = "%#credentials!#!username#%";
+	var user_name = "mobile_user";
+	
+	var const_password = "%#credentials!#!username#%";
+	var user_password = "Test@1234";
+	
+	var const_ext_username = "%#credentials!#!externalUsername#%";
+	var user_ext_name = "mobile_user";
+	
+	var const_ext_password = "%#credentials!#!externalPassword#%";
+	var user_ext_password = "Test@1234";
+	
+	request = request.replace(const_username,user_name);
+	request = request.replace(const_password,user_password);
+	request = request.replace(const_ext_username,user_ext_name);
+	request = request.replace(const_ext_password,user_ext_password);
 	
 	MFP.Logger.info("Received Request ::: "+request.toString());
 	
 	//var parameters = [request];
 	//var request = buildBody(parameters, true);
-	request = buildBody([ request.toString() ], true);
+	//request = buildBody([ request.toString() ], true);
 	//MFP.Logger.info("Build Body Request ::: "+request.toString());
+	//TODO: replace credentials
+	
 	
 	if(request.indexOf("<createTransaction><setviceCode>124</setviceCode>") > 0)
 		request = request.replace("<parameters>","<parameters><parameter><name>permitPeriod</name><value>3</value></parameter>");
