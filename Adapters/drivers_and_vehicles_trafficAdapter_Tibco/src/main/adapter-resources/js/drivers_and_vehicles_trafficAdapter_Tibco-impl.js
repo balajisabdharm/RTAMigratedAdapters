@@ -780,12 +780,12 @@ function fixNameSpace_FI(response){
 function fixNameSpace_fault(response){
 	MFP.Logger.info(" ================================================= REMOVING NAMESPACE FAULT =================================================");
 	var newResponse = JSON.stringify(response);
-	var reg1 = new RegExp('{"":"'+xsdStr_fault+'",', "g");
-	var reg2 = new RegExp('"CDATA":',"g");
+	var reg1 = new RegExp('{"":"http://www.rta.ae/EIP/Fault/FaultSchema","CDATA":', "g");
+	
 	var reg3 = new RegExp('}}}}}',"g");
 	
 	
-	newResponse = newResponse.replace(reg1,"").replace(reg2,"").replace(reg3,"}}}}");
+	newResponse = newResponse.replace(reg1,"").replace(reg3,"}}}}");
 	MFP.Logger.info("refined Response FAULT -->" + newResponse);
 	try{
 		return JSON.parse(newResponse);
