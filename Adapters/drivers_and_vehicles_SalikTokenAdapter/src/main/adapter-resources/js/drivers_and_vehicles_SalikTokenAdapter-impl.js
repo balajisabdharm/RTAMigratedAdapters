@@ -156,7 +156,7 @@ function fixNameSpaceGenTok(response){
 	
 	newResponse = newResponse.replace(reg1,"").replace(reg2,"").replace(reg3,"\",\"");
 
-	//MFP.Logger.info("refined Response -->" + newResponse);
+	MFP.Logger.info("refined Response -->" + newResponse);
 	try{
 		return JSON.parse(newResponse);
 	}catch(e){
