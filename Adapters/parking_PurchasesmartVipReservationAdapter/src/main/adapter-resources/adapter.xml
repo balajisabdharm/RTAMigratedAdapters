@@ -9,11 +9,7 @@
             <connectionTimeoutInMilliseconds>5000</connectionTimeoutInMilliseconds>
             <socketTimeoutInMilliseconds>5000</socketTimeoutInMilliseconds>
             <maxConcurrentConnectionsPerNode>100</maxConcurrentConnectionsPerNode>
-            <proxy>
-                <protocol>http</protocol>
-                <domain>10.11.125.1</domain>
-                <port>${port8080}$</port>
-            </proxy>
+         
         </connectionPolicy>
     </connectivity>
     <procedure name="purchaseSelfValetVP" />
