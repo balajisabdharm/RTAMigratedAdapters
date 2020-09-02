@@ -149,7 +149,7 @@ function getWSSE(){
 	var wsse = 
 		'<wsse:Security soapenv:mustUnderstand="0" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">'
 			+'<wsse:UsernameToken wsu:Id="UsernameToken-69">'
-				+'<wsse:Username>'+ MFP.Server.getPropertyValue("wsse.tibco.username"])+'</wsse:Username>'
+				+'<wsse:Username>'+ MFP.Server.getPropertyValue("wsse.tibco.username")+'</wsse:Username>'
 				+'<wsse:Password Type="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText">'+ MFP.Server.getPropertyValue("wsse.tibco.password")+'</wsse:Password>'
 				+'<wsu:Created>'+new Date().toISOString()+'</wsu:Created>'
 			+'</wsse:UsernameToken>'
