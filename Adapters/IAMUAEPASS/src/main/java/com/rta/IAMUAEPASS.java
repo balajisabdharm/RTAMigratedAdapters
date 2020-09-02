@@ -17,6 +17,8 @@ package com.rta;
 
 import com.ibm.mfp.security.checks.base.UserAuthenticationSecurityCheck;
 import com.ibm.mfp.server.registration.external.model.AuthenticatedUser;
+import com.ibm.mfp.server.security.external.checks.AuthorizationResponse;
+import javax.servlet.http.HttpServletRequest;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -59,6 +61,7 @@ import org.apache.http.client.utils.URIBuilder;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 public class IAMUAEPASS extends UserAuthenticationSecurityCheck {
     private String userId, displayName;
@@ -68,11 +71,10 @@ public class IAMUAEPASS extends UserAuthenticationSecurityCheck {
     private static HttpGet host;
     private static HttpPost httpPost;
     private boolean rememberMe = false;
-    private static String PARAMS_STRING_PREFIX = "?params=%5B%22";
-    private static String PARAMS_STRING_SUFFIX = "%22%5D";
-    private static String PARAMS_SEPERATOR = "%22%2C%20%22";
+    
     static Logger logger = Logger.getLogger(UserAuthenticationSecurityCheck.class.getName());
-
+    static String INVALID_SESSION = "Session Expired";
+    static int TOKEN_STATE_EXPIRED_CODE = 300;
     
     @Override
     protected AuthenticatedUser createUser() {
@@ -80,6 +82,40 @@ public class IAMUAEPASS extends UserAuthenticationSecurityCheck {
         return new AuthenticatedUser(userId, displayName, this.getName());
     }
 
+    
+    public boolean isLoggedIn(){
+         return getState().equals(STATE_SUCCESS);
+     }
+    
+    @Override
+       public void logout() {
+           System.out.println("UserLogin: logout ");
+           setState(STATE_EXPIRED);
+       }
+
+    
+    @Override
+       public void authorize(Set<String> scope, Map<String, Object> credentials, HttpServletRequest request, AuthorizationResponse response) {
+             System.out.println("authorize: authorize starts ");
+            System.out.println("authorize: state of user is  "+getState());
+           if (isLoggedIn()){
+               //setState(STATE_SUCCESS);
+               response.addSuccess(scope, getExpiresAt(), this.getName());
+               
+           } else {
+               super.authorize(scope, credentials, request, response);
+               if (getState().equals(STATE_BLOCKED)|| getState().equals(STATE_EXPIRED)){
+                   System.out.println("authorize: state is expired. Relogin");
+                   Map<String, Object> challenge = new HashMap<>();
+                   challenge.put("error", INVALID_SESSION);
+                   challenge.put("errorCode", TOKEN_STATE_EXPIRED_CODE);
+                   
+                   response.addChallenge(getName(), challenge);
+               }
+           }
+       }
+    
+    
     @Override
     protected boolean validateCredentials(Map<String, Object> credentials) {
         System.out.println("UserLogin: validateCredentials starts ");
