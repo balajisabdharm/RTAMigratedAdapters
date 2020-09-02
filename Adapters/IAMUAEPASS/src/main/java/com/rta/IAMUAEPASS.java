@@ -183,6 +183,7 @@ public class IAMUAEPASS extends UserAuthenticationSecurityCheck {
     @Override
     protected Map<String, Object> createChallenge() {
         Map challenge = new HashMap();
+        System.out.println("create ChallengeHandler");
         challenge.put("errorMsg",errorMsg);
         challenge.put("errorCode",DEFAULT_ERROR_CODE);
         challenge.put("remainingAttempts",getRemainingAttempts());
