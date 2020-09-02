@@ -160,6 +160,7 @@ function fixNameSpaceGenTok(response){
 	try{
 		return JSON.parse(newResponse);
 	}catch(e){
+		MFP.Logger.info("Failed parsing Response -->" + JSON.stringify(response));
 		return response;
 	}
 }
