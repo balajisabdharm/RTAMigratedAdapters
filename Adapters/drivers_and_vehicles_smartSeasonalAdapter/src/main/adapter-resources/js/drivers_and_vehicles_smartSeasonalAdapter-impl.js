@@ -1687,11 +1687,11 @@ if (resultArray.length > 0 )
 //
 }
 function getSeasonalCardTypes(branchID, isEncryptResponse, encryptionPassword) {
-	var bodyRequest = "<sch:getSeasonalCardTypesList>";
+	var bodyRequest = '<sch:getSeasonalCardTypesList>';
 	if (branchID != undefined && branchID != null) {
-		bodyRequest += "<branchID>" + branchID + "</branchID>";
+		bodyRequest += '<branchID>' + branchID + '</branchID>';
 	}
-	bodyRequest += "</sch:getSeasonalCardTypesList>";
+	bodyRequest += '</sch:getSeasonalCardTypesList>';
 	var request = getRequestString(bodyRequest);
 
 	var requestObj = buildBody([ request.toString() ], true);
@@ -2162,26 +2162,26 @@ function getRequestString(bodyString) {
 	var requestDate = new Date(Date.now());
 	var requestDateFormated = requestDate.toISOString(); // Returns
 	// 2011-10-05T14:48:00.000Z
-	var request = "<soapenv:Envelope xmlns:sch='http://www.rta.ae/schemas/SeasonalCardService_V3/Schema.xsd' xmlns:soapenv='http://schemas.xmlsoap.org/soap/envelope/'>"
-		+ "<soapenv:Header>"
-		+ "<wsse:Security soapenv:mustUnderstand='1' xmlns:wsse='http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd' xmlns:wsu='http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd'>"
-		+ "<wsse:UsernameToken wsu:Id='UsernameToken-9'>"
-		+ "<wsse:Username>"
+	var request = '<soapenv:Envelope xmlns:sch="http://www.rta.ae/schemas/SeasonalCardService_V3/Schema.xsd" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">'
+		+ '<soapenv:Header>'
+		+ '<wsse:Security soapenv:mustUnderstand="1" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">'
+		+ '<wsse:UsernameToken wsu:Id="UsernameToken-9">'
+		+ '<wsse:Username>'
 		+ username_tibco
-		+ "</wsse:Username>"
-		+ "<wsse:Password Type='http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText'>"
+		+ '</wsse:Username>'
+		+ '<wsse:Password Type="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText">'
 		+ password_tibco
-		+ "</wsse:Password>"
-		+ "<wsse:Nonce EncodingType='http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-soap-message-security-1.0#Base64Binary'>U+Skqf6XeOV1tUKPNuN3PA==</wsse:Nonce>"
-		+ "<wsu:Created>"
+		+ '</wsse:Password>"
+		+ '<wsse:Nonce EncodingType="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-soap-message-security-1.0#Base64Binary">U+Skqf6XeOV1tUKPNuN3PA==</wsse:Nonce>'
+		+ '<wsu:Created>'
 		+ requestDateFormated
-		+ "</wsu:Created>"
-		+ "</wsse:UsernameToken>"
-		+ "</wsse:Security>"
-		+ "</soapenv:Header>"
-		+ "<soapenv:Body>"
+		+ '</wsu:Created>'
+		+ '</wsse:UsernameToken>'
+		+ '</wsse:Security>'
+		+ '</soapenv:Header>'
+		+ '<soapenv:Body>'
 		+ bodyString
-		+ "</soapenv:Body>" + "</soapenv:Envelope>";
+		+ '</soapenv:Body>' + '</soapenv:Envelope>';
 	return request;
 }
 function Log(text) {
