@@ -150,7 +150,7 @@ var xsdStr_genToken = "http://www.rta.ae/schemas/SalikTokenGenerationService/Sch
 function fixNameSpaceGenTok(response){
 	MFP.Logger.info(" ================================================= REMOVING NAMESPACE 2 =================================================");
 	var newResponse = JSON.stringify(response);
-	var reg1 = new RegExp('{"":"'+xsdStr_genToken+'",', "g");
+	var reg1 = new RegExp('{"": "'+xsdStr_genToken+'",', "g");
 	var reg2 = new RegExp('"CDATA":',"g");
 	var reg3 = new RegExp('"},"',"g");
 	
