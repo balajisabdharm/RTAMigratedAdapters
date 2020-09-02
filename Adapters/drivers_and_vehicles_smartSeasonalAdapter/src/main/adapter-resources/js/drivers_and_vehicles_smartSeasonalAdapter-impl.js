@@ -1747,15 +1747,9 @@ function validateSeasonalCardPlates(plateItem, isEncryptResponse,
 		if (!isUndefinedOrNull(plateItem.ownerName)) {
 			bodyRequest += '<ownerName>' + plateItem.ownerName + '</ownerName>';
 		}
-		 bodyRequest += '<emirate>' + plateItem.emirate + '</emirate>'
-		 													  + '<plateCategory>' + plateItem.plateCategory + '</plateCategory>'
-		 													  + '<plateCode>' + plateItem.plateCode + '</plateCode>'
-		 													  + '<plateNumber>' + plateItem.plateNumber + '</plateNumber>';
+		 bodyRequest += '<emirate>' + plateItem.emirate + '</emirate>' + '<plateCategory>' + plateItem.plateCategory + '</plateCategory>' + '<plateCode>' + plateItem.plateCode + '</plateCode>'  + '<plateNumber>' + plateItem.plateNumber + '</plateNumber>';
 		
-
 		bodyRequest += "</plateDetails>";
-		
-		
 		
 		bodyRequest += '</plateDetailsRequest>' ;
 		
@@ -1764,6 +1758,8 @@ function validateSeasonalCardPlates(plateItem, isEncryptResponse,
 	var requestObj = buildBody([ bodyRequest.toString() ], true);
 	var validateResult = invokeWebServiceString(requestObj,
 			isEncryptResponse, encryptionPassword);
+	
+	MFP.Logger.info("Got response ==---==>> "+JSON.stringify(validateResult));
 	if(!isUndefinedOrNull(validateResult.Envelope.Body.Fault)){
 		return validateResult={
 			"Envelope": {
