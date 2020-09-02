@@ -458,7 +458,7 @@ function TransactionServiceService_operation(envHeader, params, httpHeaders, isE
 		'</soapenv:Body>' +
 		'</soapenv:Envelope>';
 		var servicePath = '/wstraffic/services/TransactionService';
-		var parameters = [requestString];
+		var parameters = [requestString.toString()];
 		var request = buildBody(parameters, true);
 		result = invokeWebServiceString(request,servicePath, isEncryptResponse, encryptionPassword);
 		try{
@@ -711,10 +711,10 @@ function invokeWebServiceString(request, servicePath, isEncryptResponse, encrypt
 			headers :{
 				"SOAPAction" : ""
 			},
-			returnedContentType : 'HTML',
+			returnedContentType : 'xml',
 			path :servicePath,
 			body : {
-				content : JSON.parse(request),
+				content : request,
 				contentType : 'text/xml; charset=utf-8'
 			}
 	};
@@ -746,7 +746,7 @@ function invokeWebService(body,servicePath,headers, isEncryptResponse, encryptio
 		headers["SOAPAction"] = "";
 	var input = {
 			method : 'post',
-			returnedContentType : 'HTML', 
+			returnedContentType : 'xml', 
 			path:servicePath,
 			body : {
 				content : body.toString(),
