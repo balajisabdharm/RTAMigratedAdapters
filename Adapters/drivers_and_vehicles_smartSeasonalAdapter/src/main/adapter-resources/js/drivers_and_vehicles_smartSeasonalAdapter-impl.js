@@ -1695,8 +1695,10 @@ function getSeasonalCardTypes(branchID, isEncryptResponse, encryptionPassword) {
 	var request = getRequestString(bodyRequest);
 
 	var requestObj = buildBody([ request.toString() ], true);
-	return invokeWebServiceString(requestObj, isEncryptResponse,
+	var respObj = invokeWebServiceString(requestObj, isEncryptResponse,
 			encryptionPassword);
+	MFP.Logger.info("Response :: "+JSON.stringify(respObj));
+	return respObj;
 
 }
 function validateSeasonalCardPlates(plateItem, isEncryptResponse,
