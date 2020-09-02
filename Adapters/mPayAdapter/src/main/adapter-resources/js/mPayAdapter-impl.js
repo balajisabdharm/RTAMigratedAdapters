@@ -92,7 +92,7 @@ var CryptoJS=CryptoJS||function(a,j){var c={},b=c.lib={},f=function(){},l=b.Base
 						var returnedValue = hash.toString(CryptoJS.enc.Hex);
 
 						MFP.Logger.warn('postHash: ' + returnedValue.toUpperCase());
-						return returnedValue.toUpperCase();
+						return JSON.parse(returnedValue.toUpperCase());
 					}
 
 					function getSecretCode(SP_CODE, SRV_CODE){
