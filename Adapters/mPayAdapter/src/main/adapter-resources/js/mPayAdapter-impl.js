@@ -669,7 +669,7 @@ var CryptoJS=CryptoJS||function(a,j){var c={},b=c.lib={},f=function(){},l=b.Base
 						};
 
 						data = {};
-						data.output = WL.Server.invokeHttp(input);
+						data.output = MFP.Server.invokeHttp(input);
 						data.TIMESTAMP = TIMESTAMP;
 						return _getCDATASHAPED(data);
 					}
