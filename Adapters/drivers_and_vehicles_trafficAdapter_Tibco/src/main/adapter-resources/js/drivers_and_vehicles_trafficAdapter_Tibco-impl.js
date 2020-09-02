@@ -749,8 +749,14 @@ function convertObiectToArray(Object) {
 
 var xsdStr_FI = "http://www.rta.ae/EIP/LAGeneralFinesInquiryService/LAGeneralFinesInquiryService_Schema";
 function fixNameSpace_FI(response){
-	MFP.Logger.info(" ================================================= REMOVING NAMESPACE =================================================");
+	MFP.Logger.info(" ================================================= REMOVING NAMESPACE FAULT =================================================");
+	
 	var newResponse = JSON.stringify(response);
+	
+	if(newResponse.includes(xsdStr_fault)){
+		return fixNameSpace_fault(response);
+	}
+	
 	reg1 = new RegExp('"": "'+xsdStr_FI+'",',"g");	
 	reg2 = new RegExp('{"CDATA":',"g");
 	reg3 = new RegExp('"},"',"g");
@@ -766,6 +772,24 @@ function fixNameSpace_FI(response){
 	}catch(e){
 		
 		MFP.Logger.info("Failed CDATA conversion ::::::: "+newResponse);
+		return response;
+	}
+}
+
+var xsdStr_fault = "http://www.rta.ae/EIP/Fault/FaultSchema";
+function fixNameSpace_fault(response){
+	MFP.Logger.info(" ================================================= REMOVING NAMESPACE 2 =================================================");
+	var newResponse = JSON.stringify(response);
+	var reg1 = new RegExp('{"":"'+xsdStr_fault+'",', "g");
+	var reg2 = new RegExp('{"CDATA":',"g");
+	var reg3 = new RegExp('}}}}}',"g");
+	
+	
+	newResponse = newResponse.replace(reg1,"").replace(reg2,"").replace(reg3,"}}}}");
+	//MFP.Logger.info("refined Response -->" + newResponse);
+	try{
+		return JSON.parse(newResponse);
+	}catch(e){
 		return response;
 	}
 }
