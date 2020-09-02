@@ -65,7 +65,7 @@ import java.util.Set;
 
 public class IAMUAEPASS extends UserAuthenticationSecurityCheck {
     private String userId, displayName;
-    private String errorMsg;
+    private String errorMsg="STATE_INVALID";
     private static CloseableHttpClient client;
     //private static HttpGet host;
     private static HttpGet host;
@@ -97,13 +97,14 @@ public class IAMUAEPASS extends UserAuthenticationSecurityCheck {
     @Override
        public void authorize(Set<String> scope, Map<String, Object> credentials, HttpServletRequest request, AuthorizationResponse response) {
              System.out.println("authorize: authorize starts ");
-            System.out.println("authorize: state of user is  "+getState());
+            
            if (isLoggedIn()){
                //setState(STATE_SUCCESS);
+               System.out.println("authorize: state of user is  "+getState());
                response.addSuccess(scope, getExpiresAt(), this.getName());
                
            } else {
-               System.out.println("authorize: state in else block");
+               System.out.println("authorize: state of user in else block"+ getState());
                //super.authorize(scope, credentials, request, response);
                if (getState().equals(STATE_BLOCKED)|| getState().equals(STATE_EXPIRED) || getState().equals("expired")){
                    System.out.println("authorize: state is expired. Relogin");
@@ -111,9 +112,9 @@ public class IAMUAEPASS extends UserAuthenticationSecurityCheck {
                    errorMsg=INVALID_SESSION;
                    challenge.put("error", INVALID_SESSION);
                    challenge.put("errorCode", TOKEN_STATE_EXPIRED_CODE);
-                    challenge.put("errorMsg", INVALID_SESSION);
+                    challenge.put("errorMsg", errorMsg);
                    
-                   response.addChallenge(getName(), challenge);
+                   response.addChallenge(this.getName(), challenge);
                }
            }
        }
