@@ -72,12 +72,11 @@ public class IAMUAEPASS extends UserAuthenticationSecurityCheck {
     private static HttpGet host;
     private static HttpPost httpPost;
     private boolean rememberMe = false;
-    private static
-    
+   
     static Logger logger = Logger.getLogger(UserAuthenticationSecurityCheck.class.getName());
     static String INVALID_SESSION = "Session Expired";
     static int TOKEN_STATE_EXPIRED_CODE = 300;
-    static int TOKEN_STATE_EXPIRED_CODE = 300;
+   
     
     @Override
     protected AuthenticatedUser createUser() {
@@ -109,8 +108,8 @@ public class IAMUAEPASS extends UserAuthenticationSecurityCheck {
            } else {
                System.out.println("authorize: state of user is --------"+ getState());
                super.authorize(scope, credentials, request, response);
-               if (getState().equals(STATE_BLOCKED)|| getState().equals(STATE_EXPIRED){
-                   System.out.println("authorize: state is expired. Relogin");
+               if (getState().equals(STATE_BLOCKED)|| getState().equals(STATE_EXPIRED)){
+                System.out.println("authorize: state is expired. Relogin");
                    Map<String, Object> challenge = new HashMap<>();
                    errorMsg=INVALID_SESSION;
                    challenge.put("error", INVALID_SESSION);
@@ -185,7 +184,7 @@ public class IAMUAEPASS extends UserAuthenticationSecurityCheck {
     protected Map<String, Object> createChallenge() {
         Map challenge = new HashMap();
         challenge.put("errorMsg",errorMsg);
-        challenge.put("errorCode",errorCode);
+        challenge.put("errorCode",DEFAULT_ERROR_CODE);
         challenge.put("remainingAttempts",getRemainingAttempts());
         return challenge;
     }
