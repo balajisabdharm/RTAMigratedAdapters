@@ -17,15 +17,19 @@ function getRtaServices(token){
 		
 		
 	if(!token) token= createServiceToken().response.token;
+		
+		
 MFP.Logger.info("GIS_ContactRTAAdapter/getRtaServices/ Token " + token);
-	var invocationData= {
+	/*var invocationData= {
 		adapter: 'CentersAdapter',
 		procedure: 'getCenters',
 		parameters: []
 	};
 		
-	var centers = MFP.Server.invokeProcedure(invocationData);
-	MFP.Logger.info("GIS_ContactRTAAdapter/getRtaServices/response  centers======== " + centers);
+	var centers = MFP.Server.invokeProcedure(invocationData);*/
+	var centers=getCenters(token);
+		
+	MFP.Logger.info("GIS_ContactRTAAdapter/getRtaServices/response  centers======== ==============" + centers);
 	var customerHappinessCenters= centers.customerHappinessCenters;
 	var vehicleTestingCenters= centers.vehicleTestingCenters;
 	var drivingSchoolsCenters= centers.drivingSchoolsCenters;
