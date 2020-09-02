@@ -65,15 +65,18 @@ import java.util.Set;
 
 public class IAMUAEPASS extends UserAuthenticationSecurityCheck {
     private String userId, displayName;
-    private String errorMsg="STATE_INVALID";
+    private String errorMsg="INVALID_STATE";
+    private int DEFAULT_ERROR_CODE=500;
     private static CloseableHttpClient client;
     //private static HttpGet host;
     private static HttpGet host;
     private static HttpPost httpPost;
     private boolean rememberMe = false;
+    private static
     
     static Logger logger = Logger.getLogger(UserAuthenticationSecurityCheck.class.getName());
     static String INVALID_SESSION = "Session Expired";
+    static int TOKEN_STATE_EXPIRED_CODE = 300;
     static int TOKEN_STATE_EXPIRED_CODE = 300;
     
     @Override
@@ -105,11 +108,11 @@ public class IAMUAEPASS extends UserAuthenticationSecurityCheck {
                
            } else {
                System.out.println("authorize: state of user in else block--------"+ getState());
-               //super.authorize(scope, credentials, request, response);
+               super.authorize(scope, credentials, request, response);
                if (getState().equals(STATE_BLOCKED)|| getState().equals(STATE_EXPIRED) || getState().equals("expired")){
                    System.out.println("authorize: state is expired. Relogin");
                    Map<String, Object> challenge = new HashMap<>();
-                   errorMsg=INVALID_SESSION;
+                  // errorMsg=INVALID_SESSION;
                    challenge.put("error", INVALID_SESSION);
                    challenge.put("errorCode", TOKEN_STATE_EXPIRED_CODE);
                     challenge.put("errorMsg", errorMsg);
@@ -182,6 +185,7 @@ public class IAMUAEPASS extends UserAuthenticationSecurityCheck {
     protected Map<String, Object> createChallenge() {
         Map challenge = new HashMap();
         challenge.put("errorMsg",errorMsg);
+        challenge.put("errorCode",errorCode);
         challenge.put("remainingAttempts",getRemainingAttempts());
         return challenge;
     }
