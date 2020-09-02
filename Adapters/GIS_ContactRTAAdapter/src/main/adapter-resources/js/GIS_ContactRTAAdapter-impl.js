@@ -72,7 +72,21 @@ function getCenters(token){
 	var drivingSchoolsCenters= getDrivingSchoolsCenters(token).features;
 	var marineTicketOfficesCenters= getMarineTicketOfficesCenters(token).features;
 	var busTicketOfficesCenters= getBusTicketOfficesCenters(token).features;
-
+		var tryNumber=0;
+		
+		
+while(((customerHappinessCenters&&customerHappinessCenters.length<1)||(vehicleTestingCenters&&vehicleTestingCenters.length<1)
+   ||(drivingSchoolsCenters&&drivingSchoolsCenters.length<1)||(marineTicketOfficesCenters&&marineTicketOfficesCenters.length<1)
+   ||(busTicketOfficesCenters&&busTicketOfficesCenters.length<1))&&tryNumber<3){
+	MFP.Logger.info("GIS_ContactRTAAdapter/getCenters/current try  number======== " +tryNumber );
+	tryNumber++;
+	var customerHappinessCenters= getCustomerHappinessCenters(token).features;
+	var vehicleTestingCenters= getVehicleTestingCenters(token).features;
+	var drivingSchoolsCenters= getDrivingSchoolsCenters(token).features;
+	var marineTicketOfficesCenters= getMarineTicketOfficesCenters(token).features;
+	var busTicketOfficesCenters= getBusTicketOfficesCenters(token).features;
+}
+		tryNumber=0
 	return {
 		customerHappinessCenters:customerHappinessCenters,
 		vehicleTestingCenters:vehicleTestingCenters,drivingSchoolsCenters:drivingSchoolsCenters,marineTicketOfficesCenters:marineTicketOfficesCenters,busTicketOfficesCenters:busTicketOfficesCenters
