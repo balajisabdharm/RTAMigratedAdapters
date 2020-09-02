@@ -215,7 +215,7 @@ function _logRequestResponse(refNum, adapter, SOAPAction, request, response, isD
 function fixNameSpaceValTag(response){
 	MFP.Logger.info(" ================================================= REMOVING NAMESPACE 2 =================================================");
 	var newResponse = JSON.stringify(response);
-	var reg1 = new RegExp('"":"http://www.rta.ae/schemas/SalikTokenGenerationService/Schema.xsd",', "g");
+	var reg1 = new RegExp('"":"http://www.rta.ae/schemas/SalikTagService/Schema.xsd",', "g");
 	var reg2 = new RegExp('{"CDATA":',"g");
 	var reg3 = new RegExp('"},"',"g");
 	var reg4 = new RegExp('}}}',"g");
