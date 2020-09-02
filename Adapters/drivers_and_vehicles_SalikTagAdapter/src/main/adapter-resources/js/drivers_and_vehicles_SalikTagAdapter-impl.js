@@ -211,6 +211,26 @@ function _logRequestResponse(refNum, adapter, SOAPAction, request, response, isD
 }
 
 
+
+function fixNameSpaceValTag(response){
+	MFP.Logger.info(" ================================================= REMOVING NAMESPACE 2 =================================================");
+	var newResponse = JSON.stringify(response);
+	var reg1 = new RegExp('"":"http://www.rta.ae/schemas/SalikTokenGenerationService/Schema.xsd",', "g");
+	var reg2 = new RegExp('{"CDATA":',"g");
+	var reg3 = new RegExp('"},"',"g");
+	var reg4 = new RegExp('}}}',"g");
+	
+	newResponse = newResponse.replace(reg1,"").replace(reg2,"").replace(reg3,"\",\"").replace(reg4,"}}");
+
+	MFP.Logger.info("refined Response -->" + newResponse);
+	try{
+		return JSON.parse(newResponse);
+	}catch(e){
+		MFP.Logger.info("Failed parsing Response -->" + JSON.stringify(response));
+		return response;
+	}
+}
+
 function ValidateTag(requestParams, isEncryptResponse, encryptionPassword) {
 
     /* var requestParams = {
@@ -236,7 +256,9 @@ function ValidateTag(requestParams, isEncryptResponse, encryptionPassword) {
         var servicePath = '/salikTagService';
         var SOAPAction = 'ValidateTagRequest';
         var requestObj = buildBody([request.toString()], true);
-        return invokeWebServiceString(requestObj, servicePath, SOAPAction, isEncryptResponse, encryptionPassword);
+        var responseObj = invokeWebServiceString(requestObj, servicePath, SOAPAction, isEncryptResponse, encryptionPassword);
+        responseObj.Envelope.Body = fixNameSpaceValTag(responseObj.Envelope.Body);
+        return responseObj;
     }
 }
 //
