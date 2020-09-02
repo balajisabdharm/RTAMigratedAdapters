@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Licensed Materials - Property of IBM
+	5725-I43 (C) Copyright IBM Corp. 2011, 2016. All Rights Reserved.
+	US Government Users Restricted Rights - Use, duplication or
+	disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+<mfp:adapter name="nolPCardApplicationService"
+			 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			 xmlns:mfp="http://www.ibm.com/mfp/integration"
+			 xmlns:http="http://www.ibm.com/mfp/integration/http">
+
+	<displayName>nolPCardApplicationService</displayName>
+	<description>nolPCardApplicationService</description>
+	<connectivity>
+		<connectionPolicy xsi:type="http:HTTPConnectionPolicyType">
+			<protocol>https</protocol>
+			 <domain>${rtamhtibstgamx1rtatestdomlocal}$</domain>
+			<port>${eiptibamrtaglobalport11064}$</port>
+            <connectionTimeoutInMilliseconds>60000</connectionTimeoutInMilliseconds>
+            <socketTimeoutInMilliseconds>60000</socketTimeoutInMilliseconds>
+            <!--The previous elements: <connectionTimeoutInMilliseconds> and <socketTimeoutInMilliseconds>, were added to <connectionPolicy> element. These elements correspond to TCP connection and socket timeouts when connecting to the back-end. For more details, see HTTP protocol specifications and "Adapter timeout and concurrency" topic in the product Knowledge Center.-->
+			<!--<domain>rtamhtibstgamx1.rtatestdom.local</domain>
+			<port>11064</port> -->
+		<maxConcurrentConnectionsPerNode>5</maxConcurrentConnectionsPerNode>
+            <!--The <maxConcurrentConnectionsPerNode> element has been moved from <loadConstraint> element (and loadConstraint has been commented out). This element sets the maximum number of concurrent requests to the backend. For more information, see the "Adapter timeout and concurrency" topic in the product Knowledge Center.-->
+        </connectionPolicy>
+		<!--<loadConstraints maxConcurrentConnectionsPerNode="5" />-->
+	</connectivity>
+    <!--The requestTimeoutInSeconds attribute in <procedure> elements was removed as it is no longer supported. To change the default connection and socket For more information, see the "Adapter timeout and concurrency" topic in the product Knowledge Center. more details, see <documentation>.-->
+    <procedure name="getPCardApplicationUIList"/>
+    <!--requestTimeoutInSeconds="60"-->
+	<procedure name="trackPcardApplication"/>
+    <!--requestTimeoutInSeconds="60"-->
+	<procedure name="validatePcardApplication"/>
+    <!--requestTimeoutInSeconds="60"-->
+	<procedure name="reviewPcardApplication"/>
+    <!--requestTimeoutInSeconds="60"-->
+	<procedure name="submitPCardApplication"/>
+    <!--requestTimeoutInSeconds="60"-->
+	<procedure name="responsePCardApplicationRequest"/>
+    <!--requestTimeoutInSeconds="60"-->
+
+	<property name="wsse.tibco.username"  description="wsse.tibco.username" defaultValue="${wsseTibcoUsername}$"/>
+	<property name="wsse.tibco.password"  description="wsse.tibco.password" defaultValue="${wsseTibcoPassword}$"/>
+	<property name="rta.pt.pCardApplicationService.response.startup"  description="rta.pt.pCardApplicationService.response.startup" defaultValue="${rtaPtPCardApplicationServiceResponseStartup}$"/>
+	<property name="rta.pt.pCardApplicationService.response.multiply"  description="rta.pt.pCardApplicationService.response.multiply" defaultValue="${rtaPtPCardApplicationServiceResponseMultiply}$"/>
+	<property name="rta.pt.pCardApplicationService.response.timeout"  description="rta.pt.pCardApplicationService.response.timeout" defaultValue="${rtaPtPCardApplicationServiceResponseTimeout}$"/>
+	<property name="rta.soap.language.header.xmlns"  description="rta.soap.language.header.xmlns" defaultValue="${rtaSoapLanguageHeaderXmlns}$"/>
+	<property name="rta.pt.nolPCardApplicationService.endPoint"  description="rta.pt.nolPCardApplicationService.endPoint" defaultValue="${rtaSoapLanguageHeaderXmlns}$"/>
+
+</mfp:adapter>
