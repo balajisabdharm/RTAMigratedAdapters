@@ -47,6 +47,6 @@
 	<property name="rta.pt.pCardApplicationService.response.multiply"  description="rta.pt.pCardApplicationService.response.multiply" defaultValue="${rtaPtPCardApplicationServiceResponseMultiply}$"/>
 	<property name="rta.pt.pCardApplicationService.response.timeout"  description="rta.pt.pCardApplicationService.response.timeout" defaultValue="${rtaPtPCardApplicationServiceResponseTimeout}$"/>
 	<property name="rta.soap.language.header.xmlns"  description="rta.soap.language.header.xmlns" defaultValue="${rtaSoapLanguageHeaderXmlns}$"/>
-	<property name="rta.pt.nolPCardApplicationService.endPoint"  description="rta.pt.nolPCardApplicationService.endPoint" defaultValue="${rtaSoapLanguageHeaderXmlns}$"/>
+	<property name="rta.pt.nolPCardApplicationService.endPoint"  description="rta.pt.nolPCardApplicationService.endPoint" defaultValue="${rtaPtNolPCardApplicationServiceEndPoint}$"/>
 
 </mfp:adapter>
