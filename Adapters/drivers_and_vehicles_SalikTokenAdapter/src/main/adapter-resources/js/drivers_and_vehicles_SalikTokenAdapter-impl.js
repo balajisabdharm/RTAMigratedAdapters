@@ -144,6 +144,25 @@ function buildBody(parameters, isStatic) {
     return request.body;
 }
 
+
+
+var xsdStr_genToken = ""http://www.rta.ae/ActiveMatrix/ESB/mPayService/XMLSchema/Schema.xsd"";
+function fixNameSpaceGenTok(response){
+	MFP.Logger.info(" ================================================= REMOVING NAMESPACE 2 =================================================");
+	var newResponse = JSON.stringify(response);
+	var reg1 = new RegExp('{"":"'+xsdStr_genToken+'",', "g");
+	
+	
+	newResponse = newResponse.replace(reg1,"");
+	//MFP.Logger.info("refined Response -->" + newResponse);
+	try{
+		return JSON.parse(newResponse);
+	}catch(e){
+		return response;
+	}
+}
+
+
 function generateSalikToken(requestParams, isEncryptResponse, encryptionPassword) {
     /*var requestParams = {
         "rta_id": "",
@@ -170,8 +189,12 @@ function generateSalikToken(requestParams, isEncryptResponse, encryptionPassword
         var servicePath = '/generateSalikToken';
         var SOAPAction = 'TokenRequest';
         var requestObj = buildBody([request.toString()], true);
-
-        return invokeWebServiceString(requestObj, servicePath, SOAPAction, isEncryptResponse, encryptionPassword);
+        var responseObj = invokeWebServiceString(requestObj, servicePath, SOAPAction, isEncryptResponse, encryptionPassword);
+        
+        responseObj.Envelope.Body = fixNameSpaceGenTok(responseObj.Envelope.Body);
+        
+        
+        return responseObj;
     }
 
 }
