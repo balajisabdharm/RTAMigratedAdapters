@@ -76,8 +76,10 @@ function invokeWebServiceString(request, servicePath, SOAPAction, isEncryptRespo
     var responseString;
 
     //log request 
-    _logRequestResponse(refNum, adapterName, SOAPAction, request, null, true);
-
+    try{
+        _logRequestResponse(refNum, adapterName, SOAPAction, request, null, true);
+    }catch(e){}
+    
     //do request
     var input = {
         method: 'post',
@@ -116,7 +118,9 @@ function invokeWebServiceString(request, servicePath, SOAPAction, isEncryptRespo
     }
 
     //log response
-    _logRequestResponse(refNum, adapterName, SOAPAction, null, responseString, true);
+    try{
+        _logRequestResponse(refNum, adapterName, SOAPAction, null, responseString, true);
+    }catch(e){}
 
     return webServiceResult;
 }
@@ -165,7 +169,7 @@ function generateSalikToken(requestParams, isEncryptResponse, encryptionPassword
 
         var servicePath = '/generateSalikToken';
         var SOAPAction = 'TokenRequest';
-        var requestObj = buildBody([request], true);
+        var requestObj = buildBody([request.toString()], true);
 
         return invokeWebServiceString(requestObj, servicePath, SOAPAction, isEncryptResponse, encryptionPassword);
     }
