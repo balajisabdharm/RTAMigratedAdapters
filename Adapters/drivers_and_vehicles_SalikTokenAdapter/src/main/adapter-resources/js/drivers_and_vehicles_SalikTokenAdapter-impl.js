@@ -151,9 +151,11 @@ function fixNameSpaceGenTok(response){
 	MFP.Logger.info(" ================================================= REMOVING NAMESPACE 2 =================================================");
 	var newResponse = JSON.stringify(response);
 	var reg1 = new RegExp('{"":"'+xsdStr_genToken+'",', "g");
+	var reg2 = new RegExp('"CDATA":',"g");
+	var reg3 = new RegExp('"},"',"g");
 	
-	
-	newResponse = newResponse.replace(reg1,"");
+	newResponse = newResponse.replace(reg1,"").replace(reg2,"").replace(reg3,"\",\"");
+
 	//MFP.Logger.info("refined Response -->" + newResponse);
 	try{
 		return JSON.parse(newResponse);
