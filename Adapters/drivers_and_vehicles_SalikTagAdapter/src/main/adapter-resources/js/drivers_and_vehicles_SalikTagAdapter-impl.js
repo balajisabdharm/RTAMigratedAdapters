@@ -235,7 +235,7 @@ function ValidateTag(requestParams, isEncryptResponse, encryptionPassword) {
 
         var servicePath = '/salikTagService';
         var SOAPAction = 'ValidateTagRequest';
-        var requestObj = buildBody([request], true);
+        var requestObj = buildBody([request.toString()], true);
         return invokeWebServiceString(requestObj, servicePath, SOAPAction, isEncryptResponse, encryptionPassword);
     }
 }
@@ -638,7 +638,7 @@ function TagRegistration(requestParams, isEncryptResponse, encryptionPassword) {
 
         var servicePath = '/salikTagService';
         var SOAPAction = 'TagRegistrationRequest';
-        var requestObj = buildBody([request], true);
+        var requestObj = buildBody([request.toString()], true);
 
     var response=invokeWebServiceString(requestObj, servicePath, SOAPAction, isEncryptResponse, encryptionPassword);
   return result= {
@@ -692,7 +692,7 @@ function ValidateProfile(requestParams, isEncryptResponse, encryptionPassword) {
 
         var servicePath = '/salikTagService';
         var SOAPAction = 'ValidateProfileRequest';
-        var requestObj = buildBody([request], true);
+        var requestObj = buildBody([request.toString()], true);
 
         return invokeWebServiceString(requestObj, servicePath, SOAPAction, isEncryptResponse, encryptionPassword);
     }
@@ -735,7 +735,7 @@ function ValidateTFNAndPlate(requestParams, isEncryptResponse, encryptionPasswor
         var SOAPAction = 'ValidateTFNAndPlateRequest';
         
         
-        var requestObj = buildBody([request], true);
+        var requestObj = buildBody([request.toString()], true);
         
         
         return response=invokeWebServiceString(requestObj, servicePath, SOAPAction, isEncryptResponse, encryptionPassword);
@@ -780,7 +780,7 @@ function VehicleInformationValidation(requestParams, isEncryptResponse, encrypti
 
         var servicePath = '/salikTagService';
         var SOAPAction = 'VehicleInformationValidationRequest';
-        var requestObj = buildBody([request], true);
+        var requestObj = buildBody([request.toString()], true);
 
        return   response=invokeWebServiceString(requestObj, servicePath, SOAPAction, isEncryptResponse, encryptionPassword);
       /*  return result= {
@@ -945,7 +945,7 @@ function TagRegistrationWithProfileDetails(requestParams, isEncryptResponse, enc
 
         var servicePath = '/salikTagService';
         var SOAPAction = 'TagRegWithProfileDetailsRequest';
-        var requestObj = buildBody([request], true);
+        var requestObj = buildBody([request.toString()], true);
 
       return invokeWebServiceString(requestObj, servicePath, SOAPAction, isEncryptResponse, encryptionPassword);
        // return result= {
@@ -998,7 +998,7 @@ function ValidateVehicleDetails(requestParams, isEncryptResponse, encryptionPass
 
         var servicePath = '/salikTagService';
         var SOAPAction = 'ValidateVehicleDetailsRequest';
-        var requestObj = buildBody([request], true);
+        var requestObj = buildBody([request.toString()], true);
 
         return invokeWebServiceString(requestObj, servicePath, SOAPAction, isEncryptResponse, encryptionPassword);
     }
