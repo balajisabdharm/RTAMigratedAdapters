@@ -28,15 +28,16 @@ MFP.Logger.info("GIS_ContactRTAAdapter/getRtaServices/ Token " + token);
 		
 	var centers = MFP.Server.invokeProcedure(invocationData);*/
 	var centers=getCenters(token);
-		
-	MFP.Logger.info("GIS_ContactRTAAdapter/getRtaServices/response  centers======== ==============" + centers);
+var result =[] ;
+   if(centers)
+   {
 	var customerHappinessCenters= centers.customerHappinessCenters;
 	var vehicleTestingCenters= centers.vehicleTestingCenters;
 	var drivingSchoolsCenters= centers.drivingSchoolsCenters;
 	var marineTicketOfficesCenters= centers.marineTicketOfficesCenters
 	var busTicketOfficesCenters=centers.busTicketOfficesCenters
 
-	var result =[] ;
+	
 	for (var i = 0 ; i< customerHappinessCenters.length;i++){
 		result.push(customerHappinessCenters[i]);
 	}
@@ -53,7 +54,7 @@ MFP.Logger.info("GIS_ContactRTAAdapter/getRtaServices/ Token " + token);
 	for (var i = 0 ; i< busTicketOfficesCenters.length;i++){
 		result.push(busTicketOfficesCenters[i]);
 	}
-	
+   }
 	
 	
 	//MFP.Logger.info("GIS_ContactRTAAdapter/getRtaServices/response  result======== " + result);
