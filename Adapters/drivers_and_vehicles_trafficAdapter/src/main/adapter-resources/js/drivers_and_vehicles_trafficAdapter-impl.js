@@ -711,7 +711,7 @@ function invokeWebServiceString(request, servicePath, isEncryptResponse, encrypt
 			headers :{
 				"SOAPAction" : ""
 			},
-			returnedContentType : 'xml',
+			returnedContentType : 'HTML',
 			path :servicePath,
 			body : {
 				content : request,
@@ -746,7 +746,7 @@ function invokeWebService(body,servicePath,headers, isEncryptResponse, encryptio
 		headers["SOAPAction"] = "";
 	var input = {
 			method : 'post',
-			returnedContentType : 'xml', 
+			returnedContentType : 'HTML', 
 			path:servicePath,
 			body : {
 				content : body.toString(),
