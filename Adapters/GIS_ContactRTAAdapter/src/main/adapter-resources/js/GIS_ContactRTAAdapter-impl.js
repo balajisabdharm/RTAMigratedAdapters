@@ -56,7 +56,7 @@ MFP.Logger.info("GIS_ContactRTAAdapter/getRtaServices/ Token " + token);
 	
 	
 	
-	MFP.Logger.info("GIS_ContactRTAAdapter/getRtaServices/response  result======== " + result);
+	//MFP.Logger.info("GIS_ContactRTAAdapter/getRtaServices/response  result======== " + result);
 	
 	return {
 		features:result
