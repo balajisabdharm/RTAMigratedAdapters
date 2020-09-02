@@ -2171,7 +2171,7 @@ function getRequestString(bodyString) {
 		+ '</wsse:Username>'
 		+ '<wsse:Password Type="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText">'
 		+ password_tibco
-		+ '</wsse:Password>"
+		+ '</wsse:Password>'
 		+ '<wsse:Nonce EncodingType="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-soap-message-security-1.0#Base64Binary">U+Skqf6XeOV1tUKPNuN3PA==</wsse:Nonce>'
 		+ '<wsu:Created>'
 		+ requestDateFormated
