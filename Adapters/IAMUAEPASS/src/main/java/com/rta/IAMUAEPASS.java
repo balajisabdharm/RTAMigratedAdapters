@@ -103,11 +103,11 @@ public class IAMUAEPASS extends UserAuthenticationSecurityCheck {
             
            if (isLoggedIn()){
                //setState(STATE_SUCCESS);
-               System.out.println("authorize: state of user is  "+getState());
+               System.out.println("authorize: state of user is isLoggedIn "+isLoggedIn());
                response.addSuccess(scope, getExpiresAt(), this.getName());
                
            } else {
-               System.out.println("authorize: state of user in else block--------"+ getState());
+               System.out.println("authorize: state of user is --------"+ getState());
                super.authorize(scope, credentials, request, response);
                if (getState().equals(STATE_BLOCKED)|| getState().equals(STATE_EXPIRED) || getState().equals("expired")){
                    System.out.println("authorize: state is expired. Relogin");
