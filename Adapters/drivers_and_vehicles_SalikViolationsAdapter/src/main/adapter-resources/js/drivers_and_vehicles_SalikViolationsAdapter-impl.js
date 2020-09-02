@@ -27,14 +27,36 @@ var validationError = {
 var xsdStr = "http://www.rta.ae/schemas/SalikDisputesAndViolationService/Schema.xsd";
 function fixNameSpace(response){
 	MFP.Logger.info(" ================================================= REMOVING NAMESPACE =================================================");
-	response = JSON.stringify(response);
+	var newResponse = JSON.stringify(response);
 	reg1 = new RegExp('{"":"'+xsdStr+'","CDATA":', "g");
 	reg2 = new RegExp('"":"'+xsdStr+'",',"g");
 	reg3 = new RegExp('{"":"'+xsdStr+'"}',"g");
-	response = response.replace(reg1,"").replace(reg2,"").replace(reg3,"\"\"").replace(/}]}/g,"]").replace(/}}]/g,"}]").replace(/},/g,",")+"}";
-	MFP.Logger.info("refined Response -->" + response);
+	newResponse = newResponse.replace(reg1,"").replace(reg2,"").replace(reg3,"\"\"").replace(/}]}/g,"]").replace(/}}]/g,"}]").replace(/},/g,",")+"}";
+	//MFP.Logger.info("refined Response -->" + newResponse);
+	try{
+		return JSON.parse(newResponse);
+	}catch(e){
+		fixNameSpace2(response);
+	}
+}
+
+function fixNameSpace2(response){
+	MFP.Logger.info(" ================================================= REMOVING NAMESPACE 2 =================================================");
+	var newResponse = JSON.stringify(response);
+	var reg1 = new RegExp('{"":"'+xsdStr+'",', "g");
+	var reg2 = new RegExp('"":"'+xsdStr+'"',"g");
+	var reg3 = new RegExp('{"CDATA":',"g");
+	var reg4 = new RegExp('"},"',"g");
+	var reg5 = new RegExp('}},',"g");
+	var reg6 = new RegExp('}}]',"g");
 	
-	return JSON.parse(response);
+	newResponse = newResponse.replace(reg1,"").replace(reg2,"").replace(reg3,"").replace(reg4,"\",\"").replace(reg5,"},").replace(reg6,"}]");
+	//MFP.Logger.info("refined Response -->" + newResponse);
+	try{
+		return JSON.parse(response);
+	}catch(e){
+		return response;
+	}
 }
 
 function getGrantHeader(RtaUserId, linking_attribute) {
@@ -1435,8 +1457,9 @@ function getAllViolations(requestParams, isEncryptResponse, encryptionPassword) 
         var servicePath = '/salikDisputesAndViolationService';
         var SOAPAction = 'ViewOrSearchViolationsPostLogin';
         var requestObj = buildBody([request.toString()], true);
-
-        return fixNameSpace(invokeWebServiceString(requestObj, servicePath, SOAPAction, isEncryptResponse, encryptionPassword));
+	var respObj = invokeWebServiceString(requestObj, servicePath, SOAPAction, isEncryptResponse, encryptionPassword);
+	respObj.Envelope.Body = fixNameSpace(respObj.Envelope.Body);    
+        return respObj;
     }
 }
 
