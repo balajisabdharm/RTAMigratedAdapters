@@ -38,7 +38,8 @@ import java.util.ArrayList;
 import java.util.List;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
-
+import org.apache.http.params.HttpParams;
+import org.apache.http.params.BasicHttpParams;
 import org.apache.http.NameValuePair;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.entity.ContentType;
@@ -54,7 +55,7 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import org.apache.http.Consts;
-
+import org.apache.http.client.utils.URIBuilder;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -65,8 +66,11 @@ public class IAMUAEPASS extends UserAuthenticationSecurityCheck {
     private static CloseableHttpClient client;
     //private static HttpGet host;
     private static HttpGet host;
+    private static HttpPost httpPost;
     private boolean rememberMe = false;
-
+    private static String PARAMS_STRING_PREFIX = "?params=%5B%22";
+    private static String PARAMS_STRING_SUFFIX = "%22%5D";
+    private static String PARAMS_SEPERATOR = "%22%2C%20%22";
     static Logger logger = Logger.getLogger(UserAuthenticationSecurityCheck.class.getName());
 
     
@@ -82,10 +86,16 @@ public class IAMUAEPASS extends UserAuthenticationSecurityCheck {
         boolean status = false;
         
          // check UAE PASS
+       /* Wrong piece of Code Checked In - to be confirmed
         if(credentials!=null && credentials.containsKey("username") &&credentials.containsKey("authenticationType")&&credentials.containsKey("authenticationType").equals("UAEPASS")&& credentials.containsKey("appID")){
         	return true;
         }
-        
+        */
+        if(credentials!=null && credentials.containsKey("username") && credentials.containsKey("authenticationType")&& (credentials.get("authenticationType").equals("UAEPASS")) && credentials.containsKey("appID")){
+            status = true;
+            return status;
+        }
+         
         if(credentials!=null && credentials.containsKey("username") && credentials.containsKey("password")&& credentials.containsKey("authenticationType")&& credentials.containsKey("appID")){
             String username = credentials.get("username").toString();
             String password = credentials.get("password").toString();
@@ -146,44 +156,32 @@ public class IAMUAEPASS extends UserAuthenticationSecurityCheck {
     throws IOException,
     IllegalStateException, SAXException {
     System.out.println(" execute start username "+username +"password "+password);
-    /*JSONObject response = new JSONObject();
-     
-    response.put("status",0);
-        JSONObject userID = new JSONObject();
-        JSONObject reqObj = new JSONObject();
-        reqObj.put("userId", username);
-        reqObj.put("password", password);
-        reqObj.put("appID", appID);
         
+       
 
-        userID.put("userId", username);
-        JSONObject pwd = new JSONObject();
-        pwd.put("password", password);
-        JSONObject appIdentifier = new JSONObject();
-        appIdentifier.put("appID", appID);*/
+        JSONArray request = new JSONArray();
+        request.put(username);
+         request.put(password);
+        request.put(appID);
 
-        /*JSONArray array = new JSONArray();
-        array.add(userID);
-         array.add(pwd);
-        array.add(appIdentifier);*/
+        
+        
         client = HttpClientBuilder.create().build();
-        String[] parameters = {username , password, appID };
-        //String offsetURL="?params=["+"\"username\""+"]";
-        String offsetURL="?params=%5B%22"+username+"%22%2C%22"+password+"%22%2C%20%22"+appID+"%22%5D'";
-
-        host = new HttpGet("http://mfp-staging.rta.ae:8443/mfp/api/adapters/authenticationIAM/authenticate"+offsetURL);
+       
+        List<NameValuePair> params = new ArrayList<>();
+        params.add(new BasicNameValuePair("params",request.toString() ));
+        
+        //host = new HttpGet("http://mfp-staging.rta.ae:8443/mfp/api/adapters/authenticationIAM/authenticate"+offsetURL);
+        //host = new HttpGet("http://mfp-staging.rta.ae:8443/mfp/api/adapters/authenticationIAM/authenticate");
         //host = new HttpGet("http://localhost:9080/mfp/api/adapters/authenticationIAM/authenticate"+offsetURL);
-       // System.out.println("parameters : "+parameters.toString());
-        //HttpParams params = new BasicHttpParams();
-        //params.setParameter("params",parameters );
+        httpPost = new HttpPost("http://localhost:9080/mfp/api/adapters/authenticationIAM/authenticate");
         
-        //host.setParams(params);
-        //¸.setHeader("Content-Type", "application/json");
-        //host.setHeader("Accept", "application/json");
-        //host.setHeader("Content-type", "application/x-www-form-urlencoded");
+    
+        
+        UrlEncodedFormEntity entity = new UrlEncodedFormEntity(params, Consts.UTF_8);
       
-        
-        HttpResponse RSSResponse = client.execute(host);
+        httpPost.setEntity(entity);
+        HttpResponse RSSResponse = client.execute(httpPost);
         
        
         logger.info("execute response received....");
