@@ -206,9 +206,6 @@ public class IAMUAEPASS extends UserAuthenticationSecurityCheck {
        
         List<NameValuePair> params = new ArrayList<>();
         params.add(new BasicNameValuePair("params",request.toString() ));
-        
-        //host = new HttpGet("http://mfp-staging.rta.ae:8443/mfp/api/adapters/authenticationIAM/authenticate"+offsetURL);
-        //host = new HttpGet("http://mfp-staging.rta.ae:8443/mfp/api/adapters/authenticationIAM/authenticate");
         //host = new HttpGet("http://localhost:9080/mfp/api/adapters/authenticationIAM/authenticate"+offsetURL);
         httpPost = new HttpPost("http://localhost:9080/mfp/api/adapters/authenticationIAM/authenticate");
         
