@@ -1,6 +1,6 @@
 var Parking_USERNAME = "wifiEtisalatAdmin";
-//var Parking_PASSWORD = "wifi@Adm1n#eTi$a1aT%$m";   // Production 
-var Parking_PASSWORD = "34rth4@ur";
+var Parking_PASSWORD = "wifi@Adm1n#eTi$a1aT%$m";   // Production 
+//var Parking_PASSWORD = "34rth4@ur";
 
 function purchaseSelfValetVP(dataObject){
 	 try{
