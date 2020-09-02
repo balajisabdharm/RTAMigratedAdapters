@@ -146,7 +146,7 @@ function buildBody(parameters, isStatic) {
 
 
 
-var xsdStr_genToken = "http://www.rta.ae/ActiveMatrix/ESB/mPayService/XMLSchema/Schema.xsd"";
+var xsdStr_genToken = "http://www.rta.ae/ActiveMatrix/ESB/mPayService/XMLSchema/Schema.xsd";
 function fixNameSpaceGenTok(response){
 	MFP.Logger.info(" ================================================= REMOVING NAMESPACE 2 =================================================");
 	var newResponse = JSON.stringify(response);
