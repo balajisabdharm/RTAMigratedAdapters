@@ -104,11 +104,13 @@ public class IAMUAEPASS extends UserAuthenticationSecurityCheck {
                
            } else {
                super.authorize(scope, credentials, request, response);
-               if (getState().equals(STATE_BLOCKED)|| getState().equals(STATE_EXPIRED)){
+               if (getState().equals(STATE_BLOCKED)|| getState().equals(STATE_EXPIRED) || getState().equals("expired")){
                    System.out.println("authorize: state is expired. Relogin");
                    Map<String, Object> challenge = new HashMap<>();
+                   errorMsg=INVALID_SESSION;
                    challenge.put("error", INVALID_SESSION);
                    challenge.put("errorCode", TOKEN_STATE_EXPIRED_CODE);
+                    challenge.put("errorMsg", INVALID_SESSION);
                    
                    response.addChallenge(getName(), challenge);
                }
