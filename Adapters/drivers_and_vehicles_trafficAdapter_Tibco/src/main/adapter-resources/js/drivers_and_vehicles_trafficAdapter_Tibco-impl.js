@@ -746,14 +746,14 @@ function convertObiectToArray(Object) {
     return Object;
 }
 
-
+var xsdStr_fault = "http://www.rta.ae/EIP/Fault/FaultSchema";
 var xsdStr_FI = "http://www.rta.ae/EIP/LAGeneralFinesInquiryService/LAGeneralFinesInquiryService_Schema";
 function fixNameSpace_FI(response){
-	MFP.Logger.info(" ================================================= REMOVING NAMESPACE FAULT =================================================");
+	MFP.Logger.info(" ================================================= REMOVING NAMESPACE =================================================");
 	
 	var newResponse = JSON.stringify(response);
 	
-	if(newResponse.includes(xsdStr_fault)){
+	if(newResponse.toString().includes(xsdStr_fault)){
 		return fixNameSpace_fault(response);
 	}
 	
@@ -765,7 +765,7 @@ function fixNameSpace_FI(response){
 	reg6 = new RegExp('{"CDATA":',"g");
 	
 	newResponse = newResponse.replace(reg1,"").replace(reg2,"").replace(reg3,"\",\"").replace(reg4,"").replace(reg5,"").replace(reg6,"");
-	MFP.Logger.info("refined Response -->" + newResponse);
+	//MFP.Logger.info("refined Response -->" + newResponse);
 	
 	try{
 		return JSON.parse(newResponse);
@@ -776,9 +776,9 @@ function fixNameSpace_FI(response){
 	}
 }
 
-var xsdStr_fault = "http://www.rta.ae/EIP/Fault/FaultSchema";
+
 function fixNameSpace_fault(response){
-	MFP.Logger.info(" ================================================= REMOVING NAMESPACE 2 =================================================");
+	MFP.Logger.info(" ================================================= REMOVING NAMESPACE FAULT =================================================");
 	var newResponse = JSON.stringify(response);
 	var reg1 = new RegExp('{"":"'+xsdStr_fault+'",', "g");
 	var reg2 = new RegExp('{"CDATA":',"g");
@@ -786,7 +786,7 @@ function fixNameSpace_fault(response){
 	
 	
 	newResponse = newResponse.replace(reg1,"").replace(reg2,"").replace(reg3,"}}}}");
-	//MFP.Logger.info("refined Response -->" + newResponse);
+	MFP.Logger.info("refined Response FAULT -->" + newResponse);
 	try{
 		return JSON.parse(newResponse);
 	}catch(e){
