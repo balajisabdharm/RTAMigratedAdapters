@@ -462,13 +462,14 @@ function serviceEnrolment(rtaID, emailLanguage, attributes, nolCards) {
 		adapterLogger("serviceEnrolment", "info", "Response", toString(response));
 		if (response && response.isSuccessful && response.statusCode == 200) {
 			MFP.Logger.info("GOT success response from be 200");
+			MFP.Logger.info("Resp Code ::"+response.Envelope.Body.serviceEnrolmentReturn.serviceEnrolmentResponse.responseCode);
 			if (response.Envelope
 				&& response.Envelope.Body
 				&& response.Envelope.Body.serviceEnrolmentReturn
 				&& response.Envelope.Body.serviceEnrolmentReturn.serviceEnrolmentResponse) {
 				var serviceEnrolmentResponse = response.Envelope.Body.serviceEnrolmentReturn.serviceEnrolmentResponse;
 			MFP.Logger.info("Got response from BE "+serviceEnrolmentResponse.responseCode);
-				MFP.Logger.info("REsp Code ::"+response.Envelope.Body.serviceEnrolmentReturn.serviceEnrolmentResponse.responseCode);
+				
 				adapterLogger("serviceEnrolment", "info", "serviceEnrolmentResponse", toString(serviceEnrolmentResponse));
 				
 				if (serviceEnrolmentResponse.responseCode == "0" || serviceEnrolmentResponse.responseCode == 0) {
