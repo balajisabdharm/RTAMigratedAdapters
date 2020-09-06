@@ -514,7 +514,9 @@ function serviceEnrolment(rtaID, emailLanguage, attributes, nolCards) {
 				loyaltyId: loyaltyId
 			};
 		} else {
+			MFP.Logger.info("In else with code :: "+ code);
 			var errorMapping = handleSystemMessages(code);
+			MFP.Logger.info("In else with code :: "+ JSON.stringify(errorMapping));
 			return handleError(errorMapping.message_en, errorMapping.message_ar, errorMapping.responseCode, "serviceEnrolment", fault);
 		}
 		adapterLogger("serviceEnrolment", "info", "adapterResponse", toString(adapterResponse));
