@@ -14,7 +14,7 @@ var request = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/
 	
 	var result = invokeWebService(request,"findCardKey");
 		try{
-			result = delete result["cardKey"][""];
+			 delete result["cardKey"][""];
 		}catch(e){}
 	return result;
 
