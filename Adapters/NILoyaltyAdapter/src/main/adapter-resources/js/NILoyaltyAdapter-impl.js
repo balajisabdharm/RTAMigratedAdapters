@@ -467,11 +467,12 @@ function serviceEnrolment(rtaID, emailLanguage, attributes, nolCards) {
 				&& response.Envelope.Body.serviceEnrolmentReturn.serviceEnrolmentResponse) {
 				var serviceEnrolmentResponse = response.Envelope.Body.serviceEnrolmentReturn.serviceEnrolmentResponse;
 				adapterLogger("serviceEnrolment", "info", "serviceEnrolmentResponse", toString(serviceEnrolmentResponse));
+				MFP.Logger.info("Got response from BE "+serviceEnrolmentResponse.responseCode);
 				if (serviceEnrolmentResponse.responseCode == "0" || serviceEnrolmentResponse.responseCode == 0) {
 					status = '0';
 					loyaltyId = serviceEnrolmentResponse.loyaltyId;
 				} else {
-					MFP.Logger.info("Got response Code in else :: "+serviceEnrolmentResponse.responseCode);
+					MFP.Logger.info("Got response Code in else (FIRST):: "+serviceEnrolmentResponse.responseCode);
 					code = serviceEnrolmentResponse.responseCode;
 					fault = {
 						faultstring: serviceEnrolmentResponse.responseDesc,
@@ -481,6 +482,7 @@ function serviceEnrolment(rtaID, emailLanguage, attributes, nolCards) {
 				}
 			}
 		} else {
+			MFP.Logger.info("n else [parsing errors object :: ");
 			if (response.errors && response.errors.length > 0) {
 				if (response.Envelope
 					&& response.Envelope.Body
