@@ -16,7 +16,7 @@
     <procedure name="onLogout" />
 	<procedure name="getUAEPASSProfile" />
 	
-	<property name="tokens.tipcoService.username"  description="tokens.tipcoService.username" defaultValue="${tipcoServiceUsername}$"/>
-    <property name="tokens.tipcoService.password"  description="tokens.tipcoService.password" defaultValue="${tipcoServicePassword}$"/>
-	
+
+	<property name="tokens.tipcoService.username"  description="tokens.tipcoService.username" defaultValue="Mobstguser"/>
+    <property name="tokens.tipcoService.password"  description="tokens.tipcoService.password" defaultValue="m792!du)+1g"/>
 </mfp:adapter>
