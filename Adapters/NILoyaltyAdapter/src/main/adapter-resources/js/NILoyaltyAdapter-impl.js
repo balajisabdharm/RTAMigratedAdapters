@@ -423,8 +423,9 @@ function fixNameSpace_servEnrol(response){
 	reg2 = new RegExp('{"CDATA":',"g");
 	reg3 = new RegExp('"},"',"g");
 	reg4 = new RegExp('}}}}',"g");
+	reg5 = new RegExp('}},',"g");
 	
-	newResponse = newResponse.replace(reg1,"").replace(reg2,"").replace(reg3,"\",\"").replace(reg4,"}}");
+	newResponse = newResponse.replace(reg1,"").replace(reg2,"").replace(reg3,"\",\"").replace(reg4,"}}").replace(reg5,"},");
 	MFP.Logger.info("refined Response -->" + newResponse);
 	
 	try{
