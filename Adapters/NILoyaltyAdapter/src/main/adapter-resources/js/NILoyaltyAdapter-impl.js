@@ -464,7 +464,7 @@ function serviceEnrolment(rtaID, emailLanguage, attributes, nolCards) {
 			MFP.Logger.info("GOT success response from be 200");
 			MFP.Logger.info("Resp Code 1 :: "+JSON.stringify(response.Envelope.Body.serviceEnrolmentReturn));
 			MFP.Logger.info("Resp Code 2 :: "+JSON.stringify(response.Envelope.Body.serviceEnrolmentReturn.serviceEnrolmentResponse));		
-			MFP.Logger.info("Resp Code 3 :: "+response.Envelope.Body.serviceEnrolmentReturn.serviceEnrolmentResponse.responseCode));
+			MFP.Logger.info("Resp Code 3 :: "+response.Envelope.Body.serviceEnrolmentReturn.serviceEnrolmentResponse.responseCode);
 			if (response.Envelope
 				&& response.Envelope.Body
 				&& response.Envelope.Body.serviceEnrolmentReturn
