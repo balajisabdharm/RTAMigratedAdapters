@@ -461,6 +461,7 @@ function serviceEnrolment(rtaID, emailLanguage, attributes, nolCards) {
 		
 		adapterLogger("serviceEnrolment", "info", "Response", toString(response));
 		if (response && response.isSuccessful && response.statusCode == 200) {
+			MFP.Logger.info("GOT success response from be 200");
 			if (response.Envelope
 				&& response.Envelope.Body
 				&& response.Envelope.Body.serviceEnrolmentReturn
