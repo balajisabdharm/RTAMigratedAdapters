@@ -467,8 +467,9 @@ function serviceEnrolment(rtaID, emailLanguage, attributes, nolCards) {
 				&& response.Envelope.Body.serviceEnrolmentReturn
 				&& response.Envelope.Body.serviceEnrolmentReturn.serviceEnrolmentResponse) {
 				var serviceEnrolmentResponse = response.Envelope.Body.serviceEnrolmentReturn.serviceEnrolmentResponse;
+			MFP.Logger.info("Got response from BE "+serviceEnrolmentResponse.responseCode);
 				adapterLogger("serviceEnrolment", "info", "serviceEnrolmentResponse", toString(serviceEnrolmentResponse));
-				MFP.Logger.info("Got response from BE "+serviceEnrolmentResponse.responseCode);
+				
 				if (serviceEnrolmentResponse.responseCode == "0" || serviceEnrolmentResponse.responseCode == 0) {
 					status = '0';
 					loyaltyId = serviceEnrolmentResponse.loyaltyId;
