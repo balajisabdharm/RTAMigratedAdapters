@@ -57,7 +57,7 @@ function getPendingTransactions(envHeader, params, isLockTransaction, isEncryptR
 		var invocationData = {
 				adapter : 'drivers_and_vehicles_trafficAdapter',
 				procedure : 'lockEntity',
-				parameters : [transactionId.toString(),spTrn.toString(),spCode.toString(),serviceCode.toString()]
+				parameters : [transactionId,spTrn,spCode,serviceCode]
 		};
 		result = MFP.Server.invokeProcedure(invocationData);
 		if(result.lockStatus != "SUCCESS")
