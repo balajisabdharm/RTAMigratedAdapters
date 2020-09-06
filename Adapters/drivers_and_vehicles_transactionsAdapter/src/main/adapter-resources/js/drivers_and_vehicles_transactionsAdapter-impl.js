@@ -44,6 +44,16 @@ function getPendingTransactions(envHeader, params, isLockTransaction, isEncryptR
 		var paymentMethod = getParameterValueFromPaymentLog(cData,"paymentMethod");
 		var spCode = (paymentMethod == "epay") ? MFP.Server.getPropertyValue("epay.DSGOptions.SPCODE"):MFP.Server.getPropertyValue("mpay.DSGOptions.SPCODE");
 		var serviceCode = (paymentMethod == "epay") ? MFP.Server.getPropertyValue("epay.DSGOptions.SERVCODE"):MFP.Server.getPropertyValue("mpay.DSGOptions.SERVCODE");
+		
+		MFP.Logger.info("Got Values :::::: ");
+		
+		MFP.Logger.info("txnId "+transactionId);
+		MFP.Logger.info("cData "+cData);
+		MFP.Logger.info("spTrn "+spTrn);
+		MFP.Logger.info("paymentMethod "+paymentMethod);
+		MFP.Logger.info("spCode "+spCode);
+		MFP.Logger.info("serviceCode "+serviceCode);
+		
 		var invocationData = {
 				adapter : 'drivers_and_vehicles_trafficAdapter',
 				procedure : 'lockEntity',
