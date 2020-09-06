@@ -462,16 +462,16 @@ function serviceEnrolment(rtaID, emailLanguage, attributes, nolCards) {
 		
 		adapterLogger("serviceEnrolment", "info", "Response", toString(response));
 		if (response && response.isSuccessful && response.statusCode == 200) {
-			MFP.Logger.info("GOT success response from be 200");
-			MFP.Logger.info("Resp Code 1 :: "+JSON.stringify(response.Envelope.Body.serviceEnrolmentReturn));
-			MFP.Logger.info("Resp Code 2 :: "+JSON.stringify(response.Envelope.Body.serviceEnrolmentReturn.serviceEnrolmentResponse));		
-			MFP.Logger.info("Resp Code 3 :: "+response.Envelope.Body.serviceEnrolmentReturn.serviceEnrolmentResponse.responseCode);
+			//MFP.Logger.info("GOT success response from be 200");
+			//MFP.Logger.info("Resp Code 1 :: "+JSON.stringify(response.Envelope.Body.serviceEnrolmentReturn));
+			//MFP.Logger.info("Resp Code 2 :: "+JSON.stringify(response.Envelope.Body.serviceEnrolmentReturn.serviceEnrolmentResponse));		
+			//MFP.Logger.info("Resp Code 3 :: "+response.Envelope.Body.serviceEnrolmentReturn.serviceEnrolmentResponse.responseCode);
 			if (response.Envelope
 				&& response.Envelope.Body
 				&& response.Envelope.Body.serviceEnrolmentReturn
 				&& response.Envelope.Body.serviceEnrolmentReturn.serviceEnrolmentResponse) {
 				var serviceEnrolmentResponse = response.Envelope.Body.serviceEnrolmentReturn.serviceEnrolmentResponse;
-			MFP.Logger.info("Got response from BE "+serviceEnrolmentResponse.responseCode);
+			//MFP.Logger.info("Got response from BE "+serviceEnrolmentResponse.responseCode);
 				
 				adapterLogger("serviceEnrolment", "info", "serviceEnrolmentResponse", toString(serviceEnrolmentResponse));
 				
@@ -479,17 +479,17 @@ function serviceEnrolment(rtaID, emailLanguage, attributes, nolCards) {
 					status = '0';
 					loyaltyId = serviceEnrolmentResponse.loyaltyId;
 				} else {
-					MFP.Logger.info("Got response Code in else (FIRST):: "+serviceEnrolmentResponse.responseCode);
+			//		MFP.Logger.info("Got response Code in else (FIRST):: "+serviceEnrolmentResponse.responseCode);
 					code = serviceEnrolmentResponse.responseCode;
 					fault = {
 						faultstring: serviceEnrolmentResponse.responseDesc,
 						faultcode: serviceEnrolmentResponse.responseCode
 					};
-					MFP.Logger.info("Values updated :: ");
+			//		MFP.Logger.info("Values updated :: ");
 				}
 			}
 		} else {
-			MFP.Logger.info("n else [parsing errors object :: ");
+			//MFP.Logger.info("n else [parsing errors object :: ");
 			if (response.errors && response.errors.length > 0) {
 				if (response.Envelope
 					&& response.Envelope.Body
@@ -525,9 +525,9 @@ function serviceEnrolment(rtaID, emailLanguage, attributes, nolCards) {
 				loyaltyId: loyaltyId
 			};
 		} else {
-			MFP.Logger.info("In else with code :: "+ code);
+			//MFP.Logger.info("In else with code :: "+ code);
 			var errorMapping = handleSystemMessages(code);
-			MFP.Logger.info("In else with code :: "+ JSON.stringify(errorMapping));
+			//MFP.Logger.info("In else with code :: "+ JSON.stringify(errorMapping));
 			return handleError(errorMapping.message_en, errorMapping.message_ar, errorMapping.responseCode, "serviceEnrolment", fault);
 		}
 		adapterLogger("serviceEnrolment", "info", "adapterResponse", toString(adapterResponse));
