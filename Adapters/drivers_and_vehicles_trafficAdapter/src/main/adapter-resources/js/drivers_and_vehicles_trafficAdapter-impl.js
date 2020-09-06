@@ -486,7 +486,7 @@ function TransactionServiceService_operation(envHeader, params, httpHeaders, isE
 				'</soapenv:Body>'+
 				'</soapenv:Envelope>';
 			var servicePath = '/wstraffic/services/TransactionService';
-			var parameters = [requestString];
+			var parameters = [requestString.toString()];
 			var request = buildBody(parameters, true);
 			result = invokeWebServiceString(request,servicePath, isEncryptResponse, encryptionPassword);
 			try{
@@ -527,7 +527,7 @@ function TransactionServiceService_operation(envHeader, params, httpHeaders, isE
 function TransactionServiceService_operationStringRequest(request, isEncryptResponse, encryptionPassword) { 
 	//MFP.Logger.debug("request to be sent:\n"+request);
 
-	var parameters = [request];
+	var parameters = [request.toString()];
 	var request = buildBody(parameters, true);
 	if(request.indexOf("<createTransaction><setviceCode>124</setviceCode>") > 0)
 		request = request.replace("<parameters>","<parameters><parameter><name>permitPeriod</name><value>3</value></parameter>");
@@ -564,7 +564,7 @@ function createTransaction(innerXml, isEncryptResponse, encryptionPassword){
 	"</soapenv:Envelope>";
 
 	var servicePath = '/wstraffic/services/TransactionService';
-	var parameters = [res];
+	var parameters = [res.toString()];
 	var request = buildBody(parameters, true);
 	var result = invokeWebServiceString(request,servicePath, isEncryptResponse, encryptionPassword);
 
@@ -596,7 +596,7 @@ function cancelTransaction(transactionId, cancelationReason, isEncryptResponse, 
 		'</soapenv:Envelope>';
 
 	var servicePath = '/wstraffic/services/TransactionService';
-	var parameters = [res];
+	var parameters = [res.toString()];
 	var request = buildBody(parameters, true);
 	var result = invokeWebServiceString(request,servicePath, isEncryptResponse, encryptionPassword);
 	try{
@@ -629,7 +629,7 @@ function payAsCash(transactionid, isEncryptResponse, encryptionPassword){
 
 
 	var servicePath = '/wstraffic/services/TransactionService';
-	var parameters = [res];
+	var parameters = [res.toString()];
 	var request = buildBody(parameters, true);
 	var result = invokeWebServiceString(request,servicePath, isEncryptResponse, encryptionPassword);
 
@@ -720,6 +720,7 @@ function invokeWebServiceString(request, servicePath, isEncryptResponse, encrypt
 	};
 
 	var webServiceResult = MFP.Server.invokeHttp(input);
+	try{
 	if(isEncryptResponse != undefined && isEncryptResponse == true)
 	{
 		var responseString = JSON.stringify(webServiceResult);
@@ -735,7 +736,12 @@ function invokeWebServiceString(request, servicePath, isEncryptResponse, encrypt
 			procedure : 'deleteCredientails',
 			parameters : [webServiceResult]
 	};
-	return MFP.Server.invokeProcedure(invocationData);}
+	webServiceResult = MFP.Server.invokeProcedure(invocationData);
+	}catch(e){}
+	
+	return webServiceResult;
+	
+}
 function invokeWebService(body,servicePath,headers, isEncryptResponse, encryptionPassword) {
 	var startTime = new Date().getTime();
 	if (!headers)
@@ -953,7 +959,7 @@ function lockEntity(transactionId,spTrn,spCode,serviceCode){
 	'</soapenv:Body>' +
 	'</soapenv:Envelope>';
 	var servicePath = '/wstraffic/services/LockTransactionForPaymentService';
-	var parameters = [res];
+	var parameters = [res.toString()];
 	var request = buildBody(parameters, true);
 	var result = invokeWebServiceString(request,servicePath);
 	try{
