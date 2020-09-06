@@ -471,11 +471,13 @@ function serviceEnrolment(rtaID, emailLanguage, attributes, nolCards) {
 					status = '0';
 					loyaltyId = serviceEnrolmentResponse.loyaltyId;
 				} else {
+					MFP.Logger.info("Got response Code in else :: "+serviceEnrolmentResponse.responseCode);
 					code = serviceEnrolmentResponse.responseCode;
 					fault = {
 						faultstring: serviceEnrolmentResponse.responseDesc,
 						faultcode: serviceEnrolmentResponse.responseCode
 					};
+					MFP.Logger.info("Values updated :: ");
 				}
 			}
 		} else {
