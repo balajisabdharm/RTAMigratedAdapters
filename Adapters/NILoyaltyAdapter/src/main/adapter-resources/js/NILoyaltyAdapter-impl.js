@@ -425,7 +425,7 @@ function fixNameSpace_servEnrol(response){
 	reg4 = new RegExp('}}}}',"g");
 	
 	newResponse = newResponse.replace(reg1,"").replace(reg2,"").replace(reg3,"\",\"").replace(reg4,"}}");
-	MFP.Logger.info("refined Response -->" + response);
+	MFP.Logger.info("refined Response -->" + newResponse);
 	
 	try{
 		return JSON.parse(newResponse);
