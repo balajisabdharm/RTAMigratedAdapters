@@ -407,6 +407,25 @@ function createServiceEnrolmentBody(rtaID, emailLanguage, attributes, nolCards) 
 function createServiceEnrolmentRequest(rtaID, emailLanguage, attributes, nolCards) {
 	return '<soapenv:Envelope xmlns:nil="http://www.rta.ae/ActiveMatrix/ESB/NILoyaltyAccountManagementService/SharedResources/XMLSchema/NILoyaltyAccountManagementServiceSchema.xsd" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">' + wsseSecurityHeader + createServiceEnrolmentBody(rtaID, emailLanguage, attributes, nolCards) + '</soapenv:Envelope>';
 }
+
+function fixNameSpace_servEnrol(response){
+	MFP.Logger.info(" ================================================= REMOVING NAMESPACE ENROLLMENT=================================================");
+	var newResponse = JSON.stringify(response);
+	reg1 = new RegExp('"":"http://www.rta.ae/ActiveMatrix/ESB/NILoyaltyAccountManagementService/SharedResources/XMLSchema/NILoyaltyAccountManagementServiceSchema.xsd",',"g");
+	reg2 = new RegExp('{"CDATA":',"g");
+	reg3 = new RegExp('"},"',"g");
+	reg4 = new RegExp('}}}}',"g");
+	
+	newResponse = newResponse.replace(reg1,"").replace(reg2,"").replace(reg3,"\",\"").replace(reg4,"}}");
+	MFP.Logger.info("refined Response -->" + response);
+	
+	try{
+		return JSON.parse(newResponse);
+	}catch(e){
+		return response;
+	}
+}
+
 function serviceEnrolment(rtaID, emailLanguage, attributes, nolCards) {
 
 	try {
@@ -428,6 +447,9 @@ function serviceEnrolment(rtaID, emailLanguage, attributes, nolCards) {
 		// var request = createServiceEnrolmentRequest(rtaID, emailLanguage, attributes, nolCards);
 		adapterLogger("serviceEnrolment", "info", "Request", request);
 		var response = invokeWebService(request);
+		
+		response.Envelope.Body = fixNameSpace_servEnrol(response.Envelope.Body);
+		
 		adapterLogger("serviceEnrolment", "info", "Response", toString(response));
 		if (response && response.isSuccessful && response.statusCode == 200) {
 			if (response.Envelope
