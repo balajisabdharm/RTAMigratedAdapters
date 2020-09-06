@@ -468,6 +468,7 @@ function serviceEnrolment(rtaID, emailLanguage, attributes, nolCards) {
 				&& response.Envelope.Body.serviceEnrolmentReturn.serviceEnrolmentResponse) {
 				var serviceEnrolmentResponse = response.Envelope.Body.serviceEnrolmentReturn.serviceEnrolmentResponse;
 			MFP.Logger.info("Got response from BE "+serviceEnrolmentResponse.responseCode);
+				MFP.Logger.info("REsp Code ::"+response.Envelope.Body.serviceEnrolmentReturn.serviceEnrolmentResponse.responseCode);
 				adapterLogger("serviceEnrolment", "info", "serviceEnrolmentResponse", toString(serviceEnrolmentResponse));
 				
 				if (serviceEnrolmentResponse.responseCode == "0" || serviceEnrolmentResponse.responseCode == 0) {
