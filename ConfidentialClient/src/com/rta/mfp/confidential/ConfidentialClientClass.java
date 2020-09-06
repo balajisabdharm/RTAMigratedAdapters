@@ -46,6 +46,8 @@ public class ConfidentialClientClass {
 	private static boolean STATUS_SUCCESS =true;
 	private static boolean STATUS_FAIL =false;
 	private static String HTTP_STATUS_CODE = "HTTPStatusCode";
+	private static String KEY_PARAMS="params";
+	
 	//private static boolean status =false;
 	
 	private static String encodedCredentials (){
@@ -136,31 +138,37 @@ public class ConfidentialClientClass {
 		    }
 	
 	
-	public String callMFPAdapterProcedure(String oauthToken, String userName, String appName)
+	public JSONObject callMFPAdapterProcedure(String oauthToken, String userName, String appName)
 		    {
 		    System.out.println(" callMFPAdapterProcedure() start");
 		    CloseableHttpResponse response =null;
+		    String responseStr =null;
+		    JSONObject localObj = null;
 		    JSONArray inputParams = new JSONArray();
 		    inputParams.put(userName);
-	        // request.put(password);
 		    inputParams.put(appName);
 	        List<NameValuePair> params = new ArrayList<>();
-	        params.add(new BasicNameValuePair("params",inputParams.toString() ));
-
+	        params.add(new BasicNameValuePair(KEY_PARAMS,inputParams.toString() ));
+	        int CONNECTION_TIMEOUT_MS = CONNECTION_TIMEOUT * 1000; // Timeout in millis.
+		    int READ_TIMEOUT_MS = READ_TIMEOUT * 1000; // Timeout in millis.
+		    
+		    RequestConfig requestConfig = RequestConfig.custom()
+		      .setConnectionRequestTimeout(CONNECTION_TIMEOUT_MS)
+		      .setConnectTimeout(CONNECTION_TIMEOUT_MS)
+		      .setSocketTimeout(READ_TIMEOUT_MS)
+		      .build();
+		    
 		    
 		    CloseableHttpClient httpclient = HttpClients.createDefault();
 	        try {
-	            //HttpGet httpGet = new HttpGet("http://httpbin.org/get");
-	        	//String adapterURL=HOSTNAME_URL+MFP_ADAPTER_PROCEEDURE_URL+PARAMS_STRING_PREFIX+userName+PARAMS_SEPERATOR+appName+PARAMS_STRING_SUFFIX;
-	       
-	        	String adapterURL=HOSTNAME_URL+MFP_ADAPTER_PROCEEDURE_URL;
-	 	       System.out.println(" callMFPAdapterProcedure() adapterURL "+adapterURL);
-	        	HttpPost request = new HttpPost(adapterURL);
-	 	       request.addHeader("Authorization","Bearer "+ oauthToken);
-	 	       UrlEncodedFormEntity entity = new UrlEncodedFormEntity(params, Consts.UTF_8);
+	        	UrlEncodedFormEntity entity = new UrlEncodedFormEntity(params, Consts.UTF_8);
+	 	        HttpPost request = new HttpPost(HOSTNAME_URL+MFP_ADAPTER_PROCEEDURE_URL);
 	 	      
-	 	       request.setEntity(entity);
-	 	       
+	 	        request.addHeader("Authorization","Bearer "+ oauthToken);
+	 	        request.setEntity(entity);
+	 	        request.setConfig(requestConfig);
+	 	        
+	 	        
 	            response = httpclient.execute(request);
 	            
 	            int status = response.getStatusLine().getStatusCode();
@@ -176,19 +184,26 @@ public class ConfidentialClientClass {
 	                }
 	                 //System.out.println("callMFPAdapterProcedure Response Received is "+result);
 	                 
-	                 JSONObject localObj = new JSONObject(result.toString());
-	                 System.out.println("callMFPAdapterProcedure Response Received is JSONObj is "+localObj.toString());
-	                
+	                localObj = new JSONObject(result.toString());
+	                 responseStr =result.toString();
+	                 System.out.println("callMFPAdapterProcedure Response is "+responseStr);
+	               
 
-	            } 
+	            } else{
+	            	localObj.optString("statusReason", "Failure");
+	            	
+	            }
 	            
 	        } catch (IllegalStateException e) { 
 				// TODO Auto-generated catch block
+	        	localObj.optString("statusReason", "Failure");
 				e.printStackTrace();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
+				localObj.optString("statusReason", "Failure");
 				e.printStackTrace();
 			}catch (Exception e) {
+				localObj.optString("statusReason", "Failure");
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
@@ -202,7 +217,7 @@ public class ConfidentialClientClass {
 				}
 	            
 	        }
-			return oauthToken;
+	        return localObj;
 
 		        
 		    }
@@ -220,7 +235,9 @@ public class ConfidentialClientClass {
 			String oauthToken=response.getString(OAUTH_TOKEN);
 			System.out.println("response status "+response.getBoolean(STATUS) +" statusCode is "+ response.getInt(HTTP_STATUS_CODE)+" ouath token "+oauthToken);
 			//testObj.callMFPAdapterProcedure(response.getString(OAUTH_TOKEN),'aymannageh2020','DNVAPP');
-			testObj.callMFPAdapterProcedure(oauthToken, "aymannageh2020", "DNVAPP");
+			JSONObject  result =testObj.callMFPAdapterProcedure(oauthToken, "aymannageh2020", "DNVAPP");
+			System.out.println("response status "+result.getString("statusReason"));
+			
 		
 	}
 
