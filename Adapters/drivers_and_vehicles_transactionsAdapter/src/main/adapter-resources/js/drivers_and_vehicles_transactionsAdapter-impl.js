@@ -28,6 +28,14 @@ function getPendingTransactions(envHeader, params, isLockTransaction, isEncryptR
 	var result;
 	var lockFailed = false;
 	//we removed checking on the third param isLockTransaction and lock all the transactions 
+	
+	if(!isEncryptResponse){
+		isEncryptResponse = "";
+	}
+	if(!encryptionPassword){
+		encryptionPassword="";
+	}
+	
 	if(params["ae:setTransactionData"] != undefined && params["ae:setTransactionData"]["ae:paymentStatus"] == 0 )
 	{
 		var transactionId = params["ae:setTransactionData"]["ae:transactionId"];
@@ -39,7 +47,7 @@ function getPendingTransactions(envHeader, params, isLockTransaction, isEncryptR
 		var invocationData = {
 				adapter : 'drivers_and_vehicles_trafficAdapter',
 				procedure : 'lockEntity',
-				parameters : [transactionId,spTrn,spCode,serviceCode]
+				parameters : [transactionId.toString(),spTrn.toString(),spCode.toString(),serviceCode.toString()]
 		};
 		result = MFP.Server.invokeProcedure(invocationData);
 		if(result.lockStatus != "SUCCESS")
