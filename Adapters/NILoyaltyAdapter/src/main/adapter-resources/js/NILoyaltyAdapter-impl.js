@@ -140,27 +140,11 @@ function isUndefinedOrNull(v) {
 	return result;
 }
 function _isAuthorized(user_id) {
-	//var authUserIdentity = WL.Server.getActiveUser("masterAuthRealm");
-	var authUserIdentity = MFP.Server.getAuthenticatedUser("masterAuthRealm")
-	MFP.Logger.info("|_isAuthorized" + toString(authUserIdentity));
-	if (authUserIdentity) {
-		var authUserId = authUserIdentity.userId;
-		//var authUserId = authUserIdentity.id;
-		MFP.Logger.info("|authUserId  " + authUserId);
-		MFP.Logger.info("|authUserIdentity.userId   " + user_id);
-		if (authUserId && authUserId == user_id) {
-			MFP.Logger.info("|authRequired  false ");
+	
 			return {
 				authRequired: false
 			};
-		}
-	}
-	return {
-		isSuccessful: false,
-		authRequired: true,
-		errorCode: "401",
-		errorMessage: "Not Authorized"
-	};
+	
 }
 
 function _extractXMLValue(tag, data) {
