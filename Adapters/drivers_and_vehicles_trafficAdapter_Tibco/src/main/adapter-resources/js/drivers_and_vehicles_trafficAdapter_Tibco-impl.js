@@ -748,7 +748,7 @@ function convertObiectToArray(Object) {
 
 var xsdStr_fault = "http://www.rta.ae/EIP/Fault/FaultSchema";
 var xsdStr_FI = "http://www.rta.ae/EIP/LAGeneralFinesInquiryService/LAGeneralFinesInquiryService_Schema";
-function fixNameSpace_FI(response){
+function fixNameSpace_FI2(response){
 	MFP.Logger.info(" ================================================= REMOVING NAMESPACE =================================================");
 	
 	var newResponse = JSON.stringify(response);
@@ -771,11 +771,37 @@ function fixNameSpace_FI(response){
 		return JSON.parse(newResponse);
 	}catch(e){
 		
+		
 		MFP.Logger.info("Failed CDATA conversion ::::::: "+newResponse);
 		return response;
 	}
 }
 
+function fixNameSpace_FI(response){
+	MFP.Logger.info(" ================================================= REMOVING NAMESPACE =================================================");
+	
+	var newResponse = JSON.stringify(response);
+	
+	if(newResponse.toString().includes(xsdStr_fault)){
+		return fixNameSpace_fault(response);
+	}
+	
+	reg1 = new RegExp('"":"'+xsdStr_FI+'",',"g");	
+	reg2 = new RegExp('"":"'+xsdStr_FI+'"',"g");
+	reg3 = new RegExp('{"CDATA":',"g");
+	reg4 = new RegExp('"},"',"g");
+	reg5 = new RegExp('}},"',"g");
+	
+	
+	newResponse = newResponse.replace(reg1,"").replace(reg2,"").replace(reg3,"").replace(reg4,"\",\"").replace(reg5,"},\"")+}};
+	//MFP.Logger.info("refined Response -->" + newResponse);
+	
+	try{
+		return JSON.parse(newResponse);
+	}catch(e){
+		return fixNameSpace_FI2(response);
+	}
+}
 
 function fixNameSpace_fault(response){
 	MFP.Logger.info(" ================================================= REMOVING NAMESPACE FAULT =================================================");
